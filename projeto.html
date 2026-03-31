@@ -300,7 +300,7 @@ const PROJECTS = {
     date: '14/07/2023',
     hero: 'https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/hero_bg_1.jpg',
     description: ['Design gráfico e comunicação visual para a MyMoment. Peças visuais criativas para campanhas e materiais de marketing.'],
-    gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/hero_bg_2.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/Anuncios%20moment-02%202.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/ML_f2022-15.png','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/ML_f2022-11.png','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/20210715_0286_B.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/expositor_mymomentcream.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/Video_MyMoment_test.mp4'],
+    gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/hero_bg_2.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/Video_MyMoment_test.mp4','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/Anuncios%20moment-02%202.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/ML_f2022-15.png','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/ML_f2022-11.png','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/20210715_0286_B.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/expositor_mymomentcream.jpg'],
     tags: ['Gráfico', 'Campanha', 'Design']
   },
   '4-waves-lite': {
@@ -498,7 +498,8 @@ function render(id) {
   }
   const count = project.gallery.length;
   const galleryHTML = project.gallery.map((img, i) => {
-    const full = count === 1 || (count % 2 !== 0 && i === 0);
+    const isVid = /\.(mp4|webm|mov)$/i.test(typeof img === 'object' ? img.src : img);
+    const full = count === 1 || (count % 2 !== 0 && i === 0) || isVid;
     return `<div class="gallery-item${full ? ' gallery-full' : ''}">${mediaTag(img, project.name)}</div>`;
   }).join('');
 
