@@ -82,7 +82,7 @@
     .gallery-grid .gallery-full { column-span: all; }
     .gallery-item { break-inside: avoid; margin-bottom: 12px; overflow: hidden; border-radius: 10px; }
     .gallery-item img, .gallery-item video { width: 100%; display: block; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .gallery-item video { max-height: 600px; object-fit: contain; background: #000; }
+    .gallery-item video { max-height: 520px; object-fit: cover; }
     .gallery-item:hover img { transform: scale(1.02); }
 
     @media (max-width: 860px) {
@@ -493,14 +493,13 @@ function render(id) {
     const isVideo = /\.(mp4|webm|mov|mkv)$/i.test(src);
     if (isVideo) {
       const videoSrc = src.replace('/image/upload/', '/video/upload/').replace('work%20individual%20pages/', 'work%20individual%20pages%20light/');
-      return `<video src="${videoSrc}" autoplay muted loop playsinline style="width:100%;display:block;border-radius:0;"></video>`;
+      return `<video src="${videoSrc}" autoplay muted loop playsinline style="width:100%;display:block;"></video>`;
     }
     return `<img src="${src}" alt="${name}" loading="lazy"${pos ? ` style="object-position:${pos}"` : ''}>`;
   }
   const count = project.gallery.length;
   const galleryHTML = project.gallery.map((img, i) => {
-    const isVid = /\.(mp4|webm|mov)$/i.test(typeof img === 'object' ? img.src : img);
-    const full = count === 1 || (count % 2 !== 0 && i === 0) || isVid;
+    const full = count === 1 || (count % 2 !== 0 && i === 0);
     return `<div class="gallery-item${full ? ' gallery-full' : ''}">${mediaTag(img, project.name)}</div>`;
   }).join('');
 
