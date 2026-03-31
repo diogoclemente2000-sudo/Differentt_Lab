@@ -491,7 +491,8 @@ function render(id) {
     const pos = typeof item === 'object' && item.position ? item.position : '';
     const isVideo = /\.(mp4|webm|mov|mkv)$/i.test(src);
     if (isVideo) {
-      return `<video src="${src}" autoplay muted loop playsinline style="width:100%;display:block;border-radius:0;"></video>`;
+      const videoSrc = src.replace('/image/upload/', '/video/upload/');
+      return `<video src="${videoSrc}" autoplay muted loop playsinline style="width:100%;display:block;border-radius:0;"></video>`;
     }
     return `<img src="${src}" alt="${name}" loading="lazy"${pos ? ` style="object-position:${pos}"` : ''}>`;
   }
