@@ -347,9 +347,9 @@
   </div>
 </div>
 
-<!-- SERVICES + LOGOS WRAPPER -->
-<div style="position:relative;">
-  <canvas id="logo3dCanvas" aria-hidden="true" style="position:absolute;top:0;left:50%;transform:translate(-50%,0);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;z-index:0;"></canvas>
+<!-- LOGOS + SERVICES WRAPPER -->
+<div id="logos-services-wrap" style="position:relative;">
+  <canvas id="logo3dCanvas" aria-hidden="true" style="position:absolute;left:50%;transform:translate(-50%,-50%);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;z-index:0;"></canvas>
 
 <!-- CLIENT LOGOS -->
 <div class="logos-section" style="position:relative;z-index:1;">
@@ -365,6 +365,9 @@
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Client" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
   </div>
 </div>
+
+<!-- SERVICES + STEPS WRAPPER -->
+<div style="position:relative;z-index:1;">
 
 <!-- SERVICES SECTION -->
 <section id="services-section" class="services-section-wrap" style="position:relative; padding: 180px 48px;">
@@ -445,8 +448,16 @@
       var scrolled   = isMobile ? winH * 0.9 - rect.top  : winH / 2 - rect.top;
       var range      = isMobile ? rect.height * 1.1       : rect.height * 2.2;
       var parallaxF  = isMobile ? 0                       : 0.18;
-      var widthVal   = isMobile ? '320%'                  : '160%';
+      var widthVal   = isMobile ? '320%' : '160%';
       canvas.style.width = widthVal;
+      if (isMobile) {
+        var logosSection = document.querySelector('.logos-section');
+        var logosRect = logosSection.getBoundingClientRect();
+        var wrapRect = document.getElementById('logos-services-wrap').getBoundingClientRect();
+        canvas.style.top = (logosRect.top - wrapRect.top + logosRect.height / 2) + 'px';
+      } else {
+        canvas.style.top = '30%';
+      }
 
       var progress = Math.max(0, Math.min(1, scrolled / range));
       var idx = Math.min(TOTAL - 1, Math.floor(progress * TOTAL));
