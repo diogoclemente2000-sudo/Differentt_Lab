@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(head -10 grep -n \"footer\\\\|site-wrap\" \"d:/Novo/Outros/claude projects/Different lab/trabalho.html\")",
+      "Bash(python3 -:*)",
+      "Bash(node -:*)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-footer)",
+      "Bash(grep -n \"site-wrap\\\\|<footer\\\\|</footer\" \"d:/Novo/Outros/claude projects/Different lab/metodos.html\" echo \"---\" grep -n \"site-wrap\\\\|<footer\\\\|</footer\" \"d:/Novo/Outros/claude projects/Different lab/nos.html\" echo \"---\" grep -n \"site-wrap\\\\|<footer\\\\|</footer\" \"d:/Novo/Outros/claude projects/Different lab/servicos.html\" echo \"---\" grep -n \"site-wrap\\\\|<footer\\\\|</footer\\\\|<section class=\"\"hero\" \"d:/Novo/Outros/claude projects/Different lab/index.html\")",
+      "Bash(node screenshot.mjs \"http://localhost:3000/projeto.html?p=posters\" projeto-related)",
+      "Bash(node screenshot.mjs http://localhost:3000 footer-check)",
+      "Bash(node screenshot.mjs http://localhost:3000 carousel-fixed)",
+      "Bash(node screenshot.mjs http://localhost:3000 cta-check)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-maxwidth)",
+      "Bash(node -e \":*)",
+      "Read(//c/Users/nateh/AppData/Local/Temp/puppeteer-test/**)",
+      "Read(//c/Users/Usuario/AppData/Local/Temp/puppeteer-test/**)",
+      "Bash(node screenshot.mjs http://localhost:3000 services-3d)",
+      "Bash(node screenshot.mjs http://localhost:3000/metodos.html metodos-cards)",
+      "Bash(node screenshot.mjs http://localhost:3000/metodos.html metodos-caps)",
+      "Bash(node screenshot.mjs http://localhost:3000/nos.html nos-banner)"
+    ]
+  }
+}

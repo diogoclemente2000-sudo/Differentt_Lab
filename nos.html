@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nós – Differentt Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:wght@300;400;600;700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; }
+    body { background: linear-gradient(45deg, #000000 0%, #080808 25%, #030303 50%, #0a0a0a 75%, #000000 100%); min-height: 100vh; color: #fff; font-family: 'Nunito Sans', sans-serif; }
+    .site-wrap { max-width: 1750px; margin: 0 auto; overflow: visible; }
+
+    /* NAV */
+    .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
+    .nav-links { display: flex; gap: 50px; }
+    .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
+    .nav-icons { display: flex; gap: 18px; align-items: center; }
+    .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; }
+    .nav-icons a:hover { opacity: 1; }
+    .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
+    .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out 0.22s cubic-bezier(0.4,0,1,1) forwards; }
+    @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes mob-nav-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
+    @keyframes mob-link-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+    .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-mob-close:hover { opacity: 1; }
+    .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
+    .nav-mob-links a { color: #fff; text-decoration: none; font-family: 'Overpass', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; opacity: 0; }
+    .nav-mob-links a:hover { color: #9e7bb6; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(1) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(2) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.13s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(3) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(4) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.23s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(5) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
+    .nav-mob-icons { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .nav-mob-icons a { color: #fff; opacity: 0.6; transition: opacity 0.2s; display: flex; align-items: center; }
+    .nav-mob-icons a:hover { opacity: 1; }
+    @media (max-width: 1199px) {
+      .nav-links { display: none !important; }
+      .nav-icons { display: none !important; }
+      .nav-hamburger { display: flex !important; }
+    }
+
+    /* HERO */
+    .hero { position: relative; min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
+    .hero-bg { position: absolute; inset: 0; background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_us_page/The-ultimate-Apple-workspace-setup-for-designers2.jpg'); background-size: cover; background-position: center top; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.92) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 0 48px 100px; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+    .hero-top { display: flex; flex-direction: column; }
+    .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 16px; }
+    .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(36px, 6vw, 84px); font-weight: 300; letter-spacing: -0.02em; line-height: 0.95; margin-bottom: 20px; }
+    .hero-desc { font-size: clamp(15px, 1.2vw, 20px); line-height: 1.5; color: rgba(255,255,255,0.5); max-width: 800px; margin-bottom: 8px; }
+    .hero-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .hero-identity { display: flex; align-items: center; gap: 16px; }
+    .hero-logo-box { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); flex-shrink: 0; }
+    .hero-identity-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.2); }
+    .hero-identity-text { display: flex; flex-direction: column; gap: 2px; }
+    .hero-identity-label { font-family: 'Overpass', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .hero-identity-name { font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; border: 1px solid rgba(255,255,255,0.3); border-radius: 100px; font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .hero-cta:hover { border-color: #9e7bb6; background: rgba(158,123,182,0.1); }
+
+    /* TEAM CARDS */
+    .team-section { padding: 80px 48px 80px; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .team-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.07); }
+    .team-card-img { position: relative; height: 240px; overflow: hidden; flex-shrink: 0; }
+    .team-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); filter: grayscale(1) contrast(1.05) brightness(0.95); }
+    .team-card:hover .team-card-img img { transform: scale(1.04); }
+    .team-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3) 100%); }
+    .team-card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; }
+    .team-card-name { font-family: 'Nunito Sans', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #fff; text-transform: uppercase; }
+    .team-card-role { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .team-card-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .team-card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .team-tag { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+    .team-tag.accent { border-color: rgba(158,123,182,0.5); color: #9e7bb6; background: rgba(158,123,182,0.08); }
+
+    /* PORQUÊ NÓS */
+    .why-section { padding: 100px 48px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; }
+    .why-heading { font-family: 'Nunito Sans', sans-serif; font-size: clamp(56px, 9vw, 130px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.92; margin-bottom: 28px; }
+    .why-sub { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.4); max-width: 520px; margin: 0 auto 28px; }
+    .why-list { display: flex; flex-direction: column; text-align: left; max-width: 800px; margin: 0 auto; }
+    .why-item { display: flex; gap: 28px; align-items: flex-end; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .why-num { font-family: 'Overpass', sans-serif; font-size: 80px; font-weight: 700; color: rgba(255,255,255,0.15); min-width: 90px; flex-shrink: 0; line-height: 1; }
+    .why-content p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.45); }
+    .why-content p strong { color: #fff; font-weight: 700; }
+
+    /* PROJETOS */
+    .projects-section { padding: 80px 48px; border-top: 1px solid rgba(255,255,255,0.06); background: #050505; text-align: center; width: 100vw; margin-left: calc(50% - 50vw); }
+    .projects-inner { max-width: 1400px; margin: 0 auto; }
+    .projects-heading { font-family: 'Nunito Sans', sans-serif; font-size: clamp(56px, 9vw, 130px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.0; text-align: center; margin: 0 0 16px; }
+    .projects-sub { font-size: 15px; color: rgba(255,255,255,0.45); text-align: center; margin: 0 0 48px; }
+    .proj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .proj-thumb { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; border-radius: 12px; text-decoration: none; display: flex; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.45); }
+    .proj-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .proj-thumb:hover img { transform: scale(1.06); }
+    .proj-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); pointer-events: none; }
+    .proj-thumb-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .proj-thumb-cat { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 4px; }
+    .proj-thumb-name { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: #fff; transition: color 0.2s; }
+    .proj-thumb:hover .proj-thumb-name { color: #c585b8; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
+    .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; }
+    .footer-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); max-width: 220px; margin: 16px 0 24px; }
+    .social-links { display: flex; gap: 14px; }
+    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .social-link:hover { border-color: #9e7bb6; color: #9e7bb6; }
+    .footer-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #9e7bb6; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: center; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 0 32px 48px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .team-section { padding: 32px 32px 64px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-section, .projects-section { padding: 64px 32px; }
+      .proj-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .hero-content { padding: 0 20px 36px; }
+      .hero-title { font-size: clamp(28px, 8vw, 42px); }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; justify-content: flex-start; }
+      .hero-cta { align-self: flex-start; }
+      .team-section { padding: 24px 24px 48px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .why-section, .projects-section { padding: 64px 24px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .proj-thumb { aspect-ratio: 16/5; }
+      footer { padding: 48px 24px 24px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrap">
+
+<!-- NAV -->
+<div class="nav-wrapper">
+  <nav>
+    <a href="./index.html" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    </a>
+    <div class="nav-links">
+      <a href="./servicos.html">Serviços</a>
+      <a href="./metodos.html">Metodos</a>
+      <a href="./nos.html" class="active">Nós</a>
+      <a href="./contactos.html">Contactos</a>
+    </div>
+    <div class="nav-icons">
+      <a href="mailto:differenttdesignlab@gmail.com">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+      <a href="https://www.instagram.com/differentt_lab/" target="_blank">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+    </button>
+  </nav>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile-overlay" id="nav-mobile-overlay">
+  <div class="nav-mob-top">
+    <a href="./index.html" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="32" height="32"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    </a>
+    <button class="nav-mob-close" id="nav-mob-close" aria-label="Fechar menu">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mob-links">
+    <a href="./nos.html">Nós</a>
+    <a href="./servicos.html">Serviços</a>
+    <a href="./metodos.html">Metodos</a>
+    <a href="./contactos.html">Contactos</a>
+  </div>
+  <div class="nav-mob-icons">
+    <a href="mailto:differenttdesignlab@gmail.com" title="Email">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="https://www.instagram.com/differentt_lab/" target="_blank" title="Instagram">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-top">
+      <div class="hero-eyebrow">Lisboa · Portugal</div>
+      <h1 class="hero-title">DIFFERENTT DESIGN LAB</h1>
+      <p class="hero-desc">Somos a DIFFERENTT LAB, uma agência digital que não acredita em barreiras, mas valoriza as ligações reais. Com uma estrutura 100% preparada para o mundo remoto, somos uma equipa jovem, dinâmica e — honestamente — obcecada por resultados.</p>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-identity">
+        <div class="hero-logo-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="20" height="20"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        </div>
+        <div class="hero-identity-text">
+          <span class="hero-identity-label">Founder</span>
+          <span class="hero-identity-name">Diogo Vieira</span>
+        </div>
+      </div>
+      <a href="./trabalho.html" class="hero-cta">
+        Ver Trabalho
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="7,2 12,7 7,12"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM CARDS -->
+<section class="team-section">
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-card-img">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_us_page/DiogoVieira.jpg" alt="Diogo Vieira" style="object-position: center top; transform: scale(1.4); transform-origin: center top;">
+        <div class="team-card-img-overlay"></div>
+      </div>
+      <div class="team-card-body">
+        <div class="team-card-name">Diogo Vieira</div>
+        <div class="team-card-role">Founder</div>
+        <p class="team-card-desc">Marketing e Design e diretor criativo da agência, focado em análise e estratégia.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">Portfolio</span>
+          <span class="team-tag accent">PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-img">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_us_page/Us/Marta.jpeg" alt="Marta Fernandes">
+        <div class="team-card-img-overlay"></div>
+      </div>
+      <div class="team-card-body">
+        <div class="team-card-name">Marta</div>
+        <div class="team-card-role">3D Artist</div>
+        <p class="team-card-desc">Especialista em modelação 3D e rendering para produtos e interiores.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">Portfolio</span>
+          <span class="team-tag accent">PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-img">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_us_page/image.png" alt="David Vieira">
+        <div class="team-card-img-overlay"></div>
+      </div>
+      <div class="team-card-body">
+        <div class="team-card-name">David Clemente</div>
+        <div class="team-card-role">Videógrafo</div>
+        <p class="team-card-desc">Criação de conteúdo vídeo e fotografia para redes sociais e campanhas digitais.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">Portfolio</span>
+          <span class="team-tag accent">PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-card-img">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_us_page/Captura de ecrã 2026-03-30 223221.png" alt="Beatriz">
+        <div class="team-card-img-overlay"></div>
+      </div>
+      <div class="team-card-body">
+        <div class="team-card-name">Beatriz</div>
+        <div class="team-card-role">Social Media</div>
+        <p class="team-card-desc">Gestão de redes sociais, criação de conteúdo e estratégia digital para marcas.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">Portfolio</span>
+          <span class="team-tag accent">PDF</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORQUÊ NÓS -->
+<section class="why-section">
+  <h2 class="why-heading">Porquê Nós</h2>
+  <p class="why-sub">Sabemos que agências há muitas, mas parceiros que realmente entendem a tua marca são raros. Na Differentt Lab, a nossa criatividade serve para ganhar mercado.</p>
+  <div style="display:flex;justify-content:center;gap:12px;margin-bottom:40px;">
+    <div style="width:52px;height:52px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg>
+    </div>
+    <div style="width:52px;height:52px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+    </div>
+  </div>
+  <p style="font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:48px;">Eis o que nos separa da multidão</p>
+  <div style="width:100%;border-top:1px solid rgba(255,255,255,0.08);margin-bottom:48px;"></div>
+  <div class="why-list">
+    <div class="why-item">
+      <div class="why-num">1</div>
+      <div class="why-content">
+        <p><strong>Parceria Lado a Lado:</strong> Esquece os processos frios. Somos uma equipa jovem que acompanha o teu projeto do rascunho ao lançamento, sempre disponíveis e próximos.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">2</div>
+      <div class="why-content">
+        <p><strong>Design com Intenção:</strong> Cada decisão visual tem um motivo estratégico. Não criamos por criar — criamos para comunicar, converter e posicionar a tua marca no topo.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">3</div>
+      <div class="why-content">
+        <p><strong>Ecossistema Completo:</strong> Do branding ao 3D, do website à gestão de redes sociais — gerimos todo o teu universo digital num só lugar para que te possas focar no que importa.</p>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">4</div>
+      <div class="why-content">
+        <p><strong>Decisões Baseadas em Dados:</strong> Acompanhamos o impacto do nosso trabalho com dados reais. Crescimento de seguidores, engagement e conversões fazem parte do nosso compromisso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section class="projects-section">
+  <div class="projects-inner">
+  <h2 class="projects-heading">Projetos</h2>
+  <p class="projects-sub">Descubra mais sobre o nosso trabalho</p>
+  <div class="proj-grid">
+    <a href="./projeto.html?p=madaline" class="proj-thumb">
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_work_page/iLBQsvjxtXftHJD8QSOg7l18s0.jpg" alt="Madaline">
+      <div class="proj-thumb-overlay"></div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-cat">Branding</div>
+        <div class="proj-thumb-name">Madaline</div>
+      </div>
+    </a>
+    <a href="./projeto.html?p=gymtime-app" class="proj-thumb">
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_work_page/szYm9GEkyeKRDx0ge1EUlw7voA.jpg" alt="Gym Time">
+      <div class="proj-thumb-overlay"></div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-cat">3D & Produto</div>
+        <div class="proj-thumb-name">Gym Time</div>
+      </div>
+    </a>
+    <a href="./projeto.html?p=mymoment" class="proj-thumb">
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_work_page/klGbthe0JI7DFVH5t7AOtZMNCo.jpg" alt="MyMoment">
+      <div class="proj-thumb-overlay"></div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-cat">Design Gráfico</div>
+        <div class="proj-thumb-name">MyMoment</div>
+      </div>
+    </a>
+    <a href="./projeto.html?p=moment-laser" class="proj-thumb">
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_work_page/0FcpNdg9d7Pu1qe0CHvc8AXak.jpg" alt="Moment Laser">
+      <div class="proj-thumb-overlay"></div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-cat">Redes Sociais</div>
+        <div class="proj-thumb-name">Moment Laser</div>
+      </div>
+    </a>
+  </div>
+  </div>
+</section>
+
+</div><!-- /site-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
+      <p class="footer-desc">Differentt é uma agência 100% remota em todo o mundo.</p>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
+        <a href="#" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col"><h4>Recursos</h4><ul><li><a href="#">Blog</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Casos de Estudo</a></li><li><a href="#">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Agência</h4><ul><li><a href="./nos.html">Sobre Nós</a></li><li><a href="./metodos.html">Metodologia</a></li><li><a href="./servicos.html">Serviços</a></li><li><a href="./trabalho.html">Trabalhos</a></li><li><a href="./contactos.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacidade</a></li><li><a href="#">Termos</a></li><li><a href="#">Cookies</a></li><li><a href="#">RGPD</a></li></ul></div>
+      <div class="footer-col"><h4>Social</h4><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">Todos os direitos reservados. Differentt Lab 2025.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay = document.getElementById('nav-mobile-overlay');
+  const closeBtn = document.getElementById('nav-mob-close');
+  hamburger.addEventListener('click', () => { overlay.classList.remove('closing'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  closeBtn.addEventListener('click', () => { overlay.classList.add('closing'); overlay.addEventListener('animationend', () => { overlay.classList.remove('open', 'closing'); document.body.style.overflow = ''; }, { once: true }); });
+</script>
+
+<!-- COOKIE CONSENT -->
+<a href="https://wa.me/351926283061" target="_blank" rel="noopener" id="whatsapp-btn" title="Fala connosco no WhatsApp" style="position:fixed;bottom:40px;right:40px;z-index:9998;width:56px;height:56px;border-radius:50%;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;"><svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<style>#whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.2);}</style>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 28px;align-items:center;gap:24px;max-width:700px;width:calc(100% - 48px);box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+  <p style="font-family:'Nunito Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;flex:1;">Usamos cookies para melhorar a tua experiência. <a href="#" style="color:#9e7bb6;text-decoration:none;">Saber mais</a></p>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button onclick="cookieConsent('reject')" style="font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 18px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;">Rejeitar</button>
+    <button onclick="cookieConsent('accept')" style="font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 20px;border-radius:100px;border:none;background:#9e7bb6;color:#fff;cursor:pointer;">Aceitar</button>
+  </div>
+</div>
+<script>
+  (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='flex'; })();
+  function cookieConsent(v){ localStorage.setItem('cookie_consent',v); document.getElementById('cookie-banner').style.display='none'; }
+</script>
+</body>
+</html>
