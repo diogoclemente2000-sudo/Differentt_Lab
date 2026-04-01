@@ -45,6 +45,8 @@ const mime = {
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
   '.webp': 'image/webp',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
 };
 
 // SSE clients for live reload
