@@ -80,11 +80,12 @@
     .service-card-photo { position: relative; flex: 1; min-height: 0; overflow: hidden; }
     .service-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.25); transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .service-card:hover .service-card-bg { transform: scale(1.32); }
-    .service-card-content { padding: 18px 20px; background: transparent; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); flex-shrink: 0; }
-    .service-cat-pill { display: inline-block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9e7bb6; border: 1px solid rgba(158,123,182,0.5); border-radius: 100px; padding: 4px 12px; margin-bottom: 10px; }
-    .service-tag { font-family: 'Inter', sans-serif; font-size: 21px; font-weight: 400; color: #fff; margin-bottom: 8px; }
-    .service-link { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 700; color: #fff; margin-top: 6px; display: block; text-decoration: none; transition: color 0.2s; }
-    .service-card:hover .service-link { color: #c585b8; }
+    .service-card-content { padding: 18px 20px; background: transparent; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); flex-shrink: 0; text-align: left; display: flex; flex-direction: column; align-items: flex-start; }
+    .service-cat-pill { display: inline-block; font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9e7bb6; border: 1px solid rgba(158,123,182,0.5); border-radius: 100px; padding: 4px 12px; margin-bottom: 10px; }
+    .service-tag { font-family: 'Nunito Sans', sans-serif; font-size: 21px; font-weight: 300; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .service-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s, gap 0.2s; }
+    .service-link::after { content: '→'; font-size: 13px; }
+    .service-card:hover .service-link { color: #c585b8; gap: 10px; }
     @media (max-width: 1024px) { .filter-bar { padding: 40px 32px 20px; } .services-grid { grid-template-columns: repeat(2, 1fr); padding: 0 32px 80px; } }
     @media (max-width: 600px) { .filter-bar { padding: 32px 8px 16px; gap: 8px; } .services-grid { grid-template-columns: 1fr; padding: 24px 8px 80px; } .service-card { height: 360px; } }
 
