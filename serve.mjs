@@ -104,7 +104,13 @@ const server = createServer(async (req, res) => {
   let filePath = join(__dirname, urlPath === '/' ? 'index.html' : urlPath);
 
   try {
-    const stats = await stat(filePath);
+    let stats = await stat(filePath).catch(() => null);
+    // Clean URL support: try appending .html if file not found and has no extension
+    if (!stats && !extname(filePath)) {
+      filePath = filePath + '.html';
+      stats = await stat(filePath).catch(() => null);
+    }
+    if (!stats) throw new Error('not found');
     if (stats.isDirectory()) filePath = join(filePath, 'index.html');
     const ext = extname(filePath).toLowerCase();
     const contentType = mime[ext] || 'application/octet-stream';
