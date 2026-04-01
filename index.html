@@ -195,6 +195,11 @@
     .logos-label { font-size: clamp(28px, 4vw, 48px); }
   }
 
+  /* ── TABLET 3D CANVAS (769px–1024px) ── */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    #logo3dCanvas { width: 280% !important; max-width: none !important; top: 50% !important; }
+  }
+
   /* ── MOBILE CARDS (≤768px) ── */
   @media (max-width: 768px) {
     .services-grid { grid-template-columns: 1fr; row-gap: 32px; }
@@ -258,6 +263,21 @@
   }
 
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3066909863517847');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3066909863517847&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -450,18 +470,23 @@
       var section = document.getElementById('services-section');
       var rect = section.getBoundingClientRect();
       var winH = window.innerHeight;
-      var isMobile = window.innerWidth < 768;
+      var isMobile = window.innerWidth < 769;
+      var isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024;
 
       var scrolled   = isMobile ? winH * 1.2 - rect.top  : winH / 2 - rect.top;
       var range      = isMobile ? rect.height * 1.1       : rect.height * 2.2;
       var parallaxF  = isMobile ? 0                       : 0.18;
-      var widthVal   = isMobile ? '320%' : '160%';
+      var widthVal   = isMobile ? '320%' : isTablet ? '280%' : '160%';
       canvas.style.width = widthVal;
       if (isMobile) {
         var logosSection = document.querySelector('.logos-section');
         var logosRect = logosSection.getBoundingClientRect();
         var wrapRect = document.getElementById('logos-services-wrap').getBoundingClientRect();
         canvas.style.top = (logosRect.top - wrapRect.top + logosRect.height / 2) + 'px';
+      } else if (isTablet) {
+        var servicesRect = rect;
+        var wrapRect = document.getElementById('logos-services-wrap').getBoundingClientRect();
+        canvas.style.top = (servicesRect.top - wrapRect.top + servicesRect.height / 2) + 'px';
       } else {
         canvas.style.top = '25%';
       }
