@@ -75,7 +75,7 @@ const server = createServer(async (req, res) => {
         if (!anthropic) anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
         const { messages } = JSON.parse(body);
         const response = await anthropic.messages.create({
-          model: 'claude-haiku-4-5',
+          model: 'claude-haiku-4-5-20251001',
           max_tokens: 150,
           system: SYSTEM_PROMPT + '\n\nIMPORTANTE: Mantém SEMPRE as respostas curtas — máximo 2-3 frases. Nunca uses listas longas. Vai direto ao ponto.',
           messages: messages.slice(-10), // keep last 10 turns
