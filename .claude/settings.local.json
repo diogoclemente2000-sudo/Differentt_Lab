@@ -41,7 +41,11 @@
       "Bash(printf 'node_modules/\\\\n.env\\\\ntemporary screenshots/\\\\nscreenshot.mjs\\\\nWebsite_videos/\\\\nWebsite_photos/\\\\n')",
       "Bash(printf 'node_modules/\\\\n.env\\\\ntemporary screenshots/\\\\nscreenshot.mjs\\\\n\"\"Website_videos/video homepage.mp4\"\"\\\\nupload-to-cloudinary.mjs\\\\ntest-upload.mjs\\\\n')",
       "Bash(printf 'node_modules/\\\\n.env\\\\ntemporary screenshots/\\\\nscreenshot.mjs\\\\nWebsite_videos/\\\\nWebsite_photos/\\\\nupload-to-cloudinary.mjs\\\\ntest-upload.mjs\\\\nupload-video.mjs\\\\n')",
-      "Bash(curl -s \"https://differenttlab.up.railway.app\")"
+      "Bash(curl -s \"https://differenttlab.up.railway.app\")",
+      "Bash(do sed:*)",
+      "Bash(done)",
+      "Bash(grep -l \"favicon\" *.html)",
+      "Bash(node upload-videos.mjs)"
     ]
   },
   "autoApprove": true
