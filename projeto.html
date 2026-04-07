@@ -234,7 +234,7 @@
     </div>
     <div class="footer-nav">
       <div class="footer-col"><h3>Recursos</h3><ul><li><a href="#">Blog</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Casos de Estudo</a></li><li><a href="#">Guias</a></li><li><a href="#">FAQ</a></li></ul></div>
-      <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./trabalho">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
+      <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
       <div class="footer-col"><h3>Legal</h3><ul><li><a href="#">Privacidade</a></li><li><a href="#">Termos</a></li><li><a href="#">Cookies</a></li><li><a href="#">RGPD</a></li></ul></div>
       <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
     </div>
@@ -502,7 +502,7 @@ function render(id) {
     content.innerHTML = `
       <div class="not-found">
         <h1>Projeto não encontrado</h1>
-        <p><a href="./trabalho">← Voltar ao trabalho</a></p>
+        <p><a href="./portfolio">← Voltar ao trabalho</a></p>
       </div>`;
     return;
   }
@@ -544,14 +544,14 @@ function render(id) {
       <div class="project-hero-bg" style="background-image:url('${project.hero}')"></div>
       <div class="project-hero-overlay"></div>
       <div class="project-hero-content">
-        <div class="project-hero-cat"><a href="./trabalho" style="color:rgba(255,255,255,0.35);text-decoration:none;margin-right:8px;">← Trabalho</a>${project.cat}</div>
+        <div class="project-hero-cat"><a href="./portfolio" style="color:rgba(255,255,255,0.35);text-decoration:none;margin-right:8px;">← Trabalho</a>${project.cat}</div>
         <h1 class="project-hero-title">${project.name}</h1>
       </div>
     </section>
 
     <div class="project-light">
       <section class="project-info">
-        <div class="project-breadcrumb"><a href="./trabalho">Trabalho</a> / ${project.cat}</div>
+        <div class="project-breadcrumb"><a href="./portfolio">Trabalho</a> / ${project.cat}</div>
         <div class="project-title-row">
           <h2 class="project-title">${project.name}</h2>
           <div class="project-date">${project.date}</div>
