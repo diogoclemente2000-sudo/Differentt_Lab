@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M66X7THV');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criação de Websites Lisboa | Web Design com SEO | Differentt Lab</title>
+  <meta name="description" content="Criação de websites em Lisboa com SEO integrado, design moderno e foco em resultados. Websites profissionais para pequenas e médias empresas em Portugal. Pede já o teu orçamento.">
+  <meta name="keywords" content="criação de websites Lisboa, criar site Portugal, web design Lisboa, websites com SEO, agência web Odivelas">
+  <link rel="canonical" href="https://differenttlab.com/criacao-de-websites-lisboa">
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:wght@300;400;600;700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: linear-gradient(45deg, #000 0%, #050505 25%, #020202 50%, #060606 75%, #000 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; }
+
+    /* NAV */
+    .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
+    .nav-links { display: flex; gap: 50px; }
+    .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
+    .nav-icons { display: flex; gap: 18px; align-items: center; }
+    .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; }
+    .nav-icons a:hover { opacity: 1; }
+    .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); }
+    .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out 0.22s cubic-bezier(0.4,0,1,1) forwards; }
+    @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes mob-nav-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
+    @keyframes mob-link-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+    .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-mob-close:hover { opacity: 1; }
+    .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
+    .nav-mob-links a { color: #fff; text-decoration: none; font-family: 'Nunito Sans', sans-serif; font-size: 30px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0; }
+    .nav-mob-links a:hover { color: #9e7bb6; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(1) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(2) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.13s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(3) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(4) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.23s forwards; }
+    .nav-mobile-overlay.open .nav-mob-links a:nth-child(5) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
+    .nav-mob-icons { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .nav-mob-icons a { color: #fff; opacity: 0.6; transition: opacity 0.2s; display: flex; align-items: center; }
+    .nav-mob-icons a:hover { opacity: 1; }
+    @media (max-width: 1199px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none !important; }
+      .nav-icons { display: none !important; }
+      .nav-hamburger { display: flex !important; }
+    }
+
+    /* HERO */
+    .page-hero { position: relative; width: 100%; background: #000; padding: 180px max(48px, calc((100% - 1400px) / 2)) 120px; }
+    .hero-inner-wrap { max-width: 860px; }
+    .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; }
+    .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(42px, 6vw, 96px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 28px; }
+    .hero-title span { color: #9e7bb6; }
+    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.55); max-width: 560px; margin-bottom: 48px; }
+    .hero-actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+    /* BUTTONS */
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
+    .btn-primary:hover { background: #000; color: #fff; }
+    .hero-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .hero-link:hover { color: #9e7bb6; }
+
+    /* SECTIONS */
+    .section { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
+    .section-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
+    .section-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; color: #fff; margin-bottom: 28px; }
+    .section-title span { color: #9e7bb6; }
+    .section-body { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 680px; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0 48px; }
+
+    /* 2-COL GRID */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .two-col .section-body { max-width: 100%; }
+
+    /* CARDS GRID */
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    .card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px 32px; }
+    .card-icon { width: 40px; height: 40px; background: rgba(158,123,182,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #9e7bb6; }
+    .card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+    .card p { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.45); }
+
+    /* PROCESS */
+    .process-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; }
+    .process-step { display: flex; gap: 40px; align-items: flex-start; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .process-step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: #9e7bb6; flex-shrink: 0; width: 48px; padding-top: 4px; }
+    .step-content h3 { font-family: 'Nunito Sans', sans-serif; font-size: 20px; font-weight: 300; text-transform: uppercase; letter-spacing: -0.01em; color: #fff; margin-bottom: 10px; }
+    .step-content p { font-size: 14px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 600px; }
+
+    /* BENEFITS */
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; margin-top: 56px; }
+    .benefit { background: #000; padding: 48px 36px; }
+    .benefit-num { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #9e7bb6; line-height: 1; margin-bottom: 12px; opacity: 0.6; }
+    .benefit h3 { font-family: 'Nunito Sans', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; margin-bottom: 10px; }
+    .benefit p { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.4); }
+
+    /* WHO */
+    .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    .who-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px 32px; position: relative; overflow: hidden; }
+    .who-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, #9e7bb6, transparent); }
+    .who-card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 18px; font-weight: 300; text-transform: uppercase; letter-spacing: -0.01em; color: #fff; margin-bottom: 12px; }
+    .who-card p { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.4); }
+
+    /* EXAMPLES */
+    .examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .example-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; background: #0a0a0a; transition: border-color 0.2s; }
+    .example-card:hover { border-color: rgba(158,123,182,0.4); }
+    .example-img-wrap { aspect-ratio: 16/10; overflow: hidden; position: relative; background: #111; }
+    .example-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .example-card:hover .example-img-wrap img { transform: scale(1.04); }
+    .example-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+    .example-meta { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .example-tag { font-family: 'Overpass', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; }
+    .example-name { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.6); }
+
+    /* STATS / DONUT */
+    .stats-wrap { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
+    .mini-stats { display: flex; gap: 48px; margin-top: 48px; }
+    .mini-stat { display: flex; flex-direction: column; }
+    .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; }
+    .mini-stat-unit { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #9e7bb6; }
+    .mini-stat-val-wrap { display: flex; align-items: baseline; gap: 2px; }
+    .mini-stat-label { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
+    .donut-wrap { position: relative; width: 260px; height: 260px; flex-shrink: 0; }
+    .donut-svg { display: block; }
+    .donut-fill { transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .donut-pct { font-family: 'Overpass', sans-serif; font-size: 52px; font-weight: 900; color: #fff; line-height: 1; }
+    .donut-sym { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #9e7bb6; line-height: 1; margin-left: 2px; }
+    .donut-label { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px; line-height: 1.5; }
+
+    /* FAQ */
+    .faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; max-width: 800px; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .faq-q { font-family: 'Nunito Sans', sans-serif; font-size: 17px; font-weight: 300; color: #fff; padding: 28px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; user-select: none; }
+    .faq-q:hover { color: #9e7bb6; }
+    .faq-icon { flex-shrink: 0; color: rgba(255,255,255,0.35); transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: #9e7bb6; }
+    .faq-a { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); padding-bottom: 28px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* CTA */
+    .cta-bar { padding: 80px max(48px, calc((100% - 1400px) / 2)); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+    .cta-bar h2 { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.1; }
+    .cta-bar h2 span { color: #9e7bb6; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
+    .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; }
+    .footer-brand-name { margin: 20px 0 12px; }
+    .footer-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); max-width: 220px; margin-bottom: 24px; }
+    .social-links { display: flex; gap: 14px; }
+    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, color 0.2s; font-size: 13px; }
+    .social-link:hover { border-color: #9e7bb6; color: #9e7bb6; }
+    .footer-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h3 { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #9e7bb6; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: center; align-items: center; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 1024px) {
+      .page-hero { padding: 150px 48px 100px; }
+      .cards-grid, .benefits-grid, .who-grid, .examples-grid { grid-template-columns: 1fr 1fr; }
+      .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .donut-wrap { margin: 0 auto; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .section { padding: 80px 48px; }
+      .divider { margin: 0 48px; }
+      footer { padding: 48px 48px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .cta-bar { padding: 60px 48px; }
+    }
+    @media (max-width: 600px) {
+      .page-hero { padding: 130px 24px 72px; }
+      .section { padding: 56px 24px; }
+      .divider { margin: 0 24px; }
+      .cards-grid, .benefits-grid, .who-grid, .examples-grid { grid-template-columns: 1fr; }
+      .mini-stats { gap: 28px; flex-wrap: wrap; }
+      .process-step { flex-direction: column; gap: 12px; }
+      .step-num { width: auto; }
+      .cta-bar { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
+      footer { padding-top: 48px; padding-bottom: 24px; padding-left: 24px; padding-right: 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .faq-list { max-width: 100%; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3066909863517847');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3066909863517847&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M66X7THV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<!-- NAV -->
+<div class="nav-wrapper">
+<nav>
+  <a href="./index.html" style="display:flex;align-items:center;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </a>
+  <div class="nav-links">
+    <a href="./servicos">Serviços</a>
+    <a href="./metodos">Metodos</a>
+    <a href="./nos">Nós</a>
+    <a href="./contactos">Contactos</a>
+  </div>
+  <div class="nav-icons">
+    <a href="mailto:differenttdesignlab@gmail.com">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="https://www.instagram.com/differentt_lab/" target="_blank">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+    </a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu">
+    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+  </button>
+</nav>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile-overlay" id="nav-mobile-overlay">
+  <div class="nav-mob-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    <button class="nav-mob-close" id="nav-mob-close" aria-label="Fechar menu">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mob-links">
+    <a href="./nos">Nós</a>
+    <a href="./servicos">Serviços</a>
+    <a href="./metodos">Metodos</a>
+    <a href="./contactos">Contactos</a>
+  </div>
+  <div class="nav-mob-icons">
+    <a href="mailto:differenttdesignlab@gmail.com" title="Email">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="https://www.instagram.com/differentt_lab/" target="_blank" title="Instagram">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-inner-wrap">
+    <div class="hero-eyebrow">Web Design · Lisboa · Portugal</div>
+    <h1 class="hero-title">Criação de<br><span>Websites</span></h1>
+    <p class="hero-sub">Websites profissionais criados de raiz para gerar leads, aumentar a visibilidade no Google e fazer crescer o teu negócio. Da Differentt Lab, em Odivelas, para todo Portugal.</p>
+    <div class="hero-actions">
+      <a href="./contactos" class="btn-primary" style="padding:14px 36px;font-size:14px;">Pedir Orçamento</a>
+      <a href="./portfolio" class="hero-link">Ver Portfólio →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 1: WHY A PROFESSIONAL WEBSITE -->
+<section class="section">
+  <div class="two-col">
+    <div>
+      <div class="section-eyebrow">Porquê investir</div>
+      <h2 class="section-title">Um website<br>profissional<br><span>faz a diferença</span></h2>
+    </div>
+    <div>
+      <p class="section-body">Hoje, o teu website é a primeira impressão que um cliente tem do teu negócio. Se o site for lento, desatualizado ou difícil de usar em telemóvel, o cliente vai embora — e vai diretamente à concorrência.</p>
+      <br><br>
+      <p class="section-body">Um website bem construído não é apenas uma presença online. É uma ferramenta de vendas que trabalha 24 horas por dia, todos os dias do ano. Transmite credibilidade, gera confiança e converte visitantes em clientes reais. Para pequenas e médias empresas em Lisboa e em todo Portugal, esta diferença é muitas vezes determinante para o crescimento do negócio.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
+<section class="section">
+  <div class="section-eyebrow">Construído para crescer</div>
+  <h2 class="section-title">Websites com <span>SEO integrado</span><br>desde o primeiro dia</h2>
+  <p class="section-body" style="margin-top:16px;">Não basta criar um site bonito. Se ninguém o encontrar no Google, não serve de nada. Por isso, em vez de adicionar SEO depois, nós integramos otimização para motores de busca desde a estrutura base. O resultado: mais visibilidade orgânica, mais tráfego qualificado, mais clientes.</p>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3>Velocidade de carregamento</h3>
+      <p>Sites otimizados para carregar em menos de 2 segundos. O Google prioriza a velocidade — e os teus clientes também não esperam.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+      </div>
+      <h3>Mobile-first design</h3>
+      <p>Mais de 70% das pesquisas em Portugal são feitas em telemóvel. Os nossos websites são desenhados primeiro para mobile, depois para desktop.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+      </div>
+      <h3>Estrutura semântica</h3>
+      <p>H1, H2, H3 corretamente hierarquizados. Meta tags, URLs limpas e schema markup para que o Google entenda exatamente o que ofereces.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <h3>Estratégia de palavras-chave</h3>
+      <p>Identificamos as pesquisas que os teus clientes fazem em Lisboa e em Portugal, e construímos o conteúdo à volta delas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Segurança SSL</h3>
+      <p>HTTPS em todos os projetos, certificados de segurança incluídos. Transmite confiança e é um fator de ranking no Google.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Analytics e conversões</h3>
+      <p>Google Analytics e rastreio de conversões configurados desde o início, para saberes exatamente o que funciona e o que pode melhorar.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 3: PROCESS -->
+<section class="section">
+  <div class="section-eyebrow">Como trabalhamos</div>
+  <h2 class="section-title">O nosso <span>processo</span></h2>
+  <div class="process-list">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Briefing e estratégia</h3>
+        <p>Começamos por entender o teu negócio, os teus clientes e os teus objetivos. Definimos a estrutura do site, as palavras-chave principais e a proposta de valor que vai guiar todo o projeto.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Design e prototipagem</h3>
+        <p>Criamos o design visual do site com foco em conversão. Cada elemento — cores, tipografia, hierarquia visual — é pensado para guiar o visitante até ao contacto ou compra.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Desenvolvimento</h3>
+        <p>Desenvolvemos o site com código limpo, rápido e otimizado. Sem templates genéricos — cada projeto é construído de raiz para o teu negócio específico.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>SEO on-page e conteúdo</h3>
+        <p>Otimizamos cada página para os motores de busca: títulos, meta descrições, estrutura de headings, velocidade, imagens e conteúdo orientado para as pesquisas dos teus clientes em Lisboa e Portugal.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Lançamento e acompanhamento</h3>
+        <p>Fazemos o lançamento do site, configuramos o Google Search Console e Analytics, e acompanhamos os primeiros meses para garantir que tudo funciona como esperado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 4: BENEFITS -->
+<section class="section">
+  <div class="section-eyebrow">O que ganhas</div>
+  <h2 class="section-title">Resultados <span>concretos</span></h2>
+  <div class="benefits-grid">
+    <div class="benefit">
+      <div class="benefit-num">+</div>
+      <h3>Visibilidade no Google</h3>
+      <p>Aparece nas pesquisas que os teus clientes fazem quando estão prontos para comprar. Deixa de depender exclusivamente das redes sociais.</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit-num">+</div>
+      <h3>Mais leads qualificados</h3>
+      <p>Um website bem estruturado atrai visitantes com intenção de compra real — não apenas curiosos. Cada visita tem mais probabilidade de se converter em cliente.</p>
+    </div>
+    <div class="benefit">
+      <div class="benefit-num">+</div>
+      <h3>Marca mais forte</h3>
+      <p>Design consistente, profissional e diferenciado. O teu website passa a ser um reflexo direto da qualidade do teu trabalho, antes de o cliente falar contigo.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION: EXAMPLES -->
+<hr class="divider">
+<section class="section">
+  <div class="section-eyebrow">Exemplos reais</div>
+  <h2 class="section-title">Landing pages que <span>convertem</span></h2>
+  <p class="section-body" style="margin-bottom:48px;">Cada projeto é construído para um objetivo concreto — gerar contactos, vender, ou captar leads. Aqui estão alguns exemplos do nosso trabalho.</p>
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="example-img-wrap">
+        <div class="example-placeholder">+ Adicionar imagem</div>
+      </div>
+      <div class="example-meta">
+        <span class="example-tag">Landing Page</span>
+        <span class="example-name">Clínica Estética</span>
+      </div>
+    </div>
+    <div class="example-card">
+      <div class="example-img-wrap">
+        <div class="example-placeholder">+ Adicionar imagem</div>
+      </div>
+      <div class="example-meta">
+        <span class="example-tag">Website Institucional</span>
+        <span class="example-name">Restaurante</span>
+      </div>
+    </div>
+    <div class="example-card">
+      <div class="example-img-wrap">
+        <div class="example-placeholder">+ Adicionar imagem</div>
+      </div>
+      <div class="example-meta">
+        <span class="example-tag">E-commerce</span>
+        <span class="example-name">Loja Online</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: STATS / DONUT -->
+<hr class="divider">
+<section class="section">
+  <div class="stats-wrap">
+    <div class="stats-left">
+      <div class="section-eyebrow">Resultados mensuráveis</div>
+      <h2 class="section-title">Websites que <span>lideram</span><br>nos resultados</h2>
+      <p class="section-body">Os nossos websites são construídos para performance máxima — velocidade, SEO e conversão integrados desde o primeiro dia. O resultado fala por si.</p>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="93">0</span><span class="mini-stat-unit">%</span></div>
+          <span class="mini-stat-label">Otimização média</span>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="3">0</span><span class="mini-stat-unit">x</span></div>
+          <span class="mini-stat-label">Mais leads</span>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="2">0</span><span class="mini-stat-unit">s</span></div>
+          <span class="mini-stat-label">Tempo de carregamento</span>
+        </div>
+      </div>
+    </div>
+    <div class="stats-right">
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 120 120" width="260" height="260">
+          <circle class="donut-bg" cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+          <circle class="donut-fill" cx="60" cy="60" r="50" fill="none" stroke="#9e7bb6" stroke-width="10"
+            stroke-linecap="round"
+            stroke-dasharray="314.16"
+            stroke-dashoffset="314.16"
+            transform="rotate(-90 60 60)"/>
+        </svg>
+        <div class="donut-center">
+          <span class="donut-pct" data-target="93">0</span><span class="donut-sym">%</span>
+          <span class="donut-label">Visibilidade<br>& Otimização</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: WHO IS IT FOR -->
+<section class="section">
+  <div class="section-eyebrow">Para quem é</div>
+  <h2 class="section-title">Feito para <span>negócios</span><br>que querem crescer</h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <h3>Pequenos negócios</h3>
+      <p>Lojas, restaurantes, clínicas, salões e serviços locais em Lisboa, Odivelas e arredores que precisam de uma presença online profissional para atrair mais clientes.</p>
+    </div>
+    <div class="who-card">
+      <h3>Empresas locais</h3>
+      <p>Negócios estabelecidos que têm um site desatualizado ou que nunca investiram em SEO — e estão a perder visibilidade para a concorrência no Google.</p>
+    </div>
+    <div class="who-card">
+      <h3>Startups e novos projetos</h3>
+      <p>Marcas que estão a começar e querem entrar no mercado com uma identidade digital sólida, sem cometer os erros clássicos de quem improvisa.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 6: FAQ -->
+<section class="section">
+  <div class="section-eyebrow">Dúvidas frequentes</div>
+  <h2 class="section-title"><span>FAQ</span></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">
+        Quanto custa criar um website em Portugal?
+        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">O custo de criação de um website depende da complexidade do projeto, do número de páginas e das funcionalidades necessárias. Na Differentt Lab, trabalhamos com orçamentos personalizados para cada cliente — não existem pacotes genéricos. Entra em contacto e recebe uma proposta sem compromisso.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Quanto tempo demora a criar um website?
+        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Um website institucional simples pode estar pronto em 3 a 4 semanas. Projetos mais complexos, com funcionalidades específicas ou loja online, podem levar entre 6 a 10 semanas. O prazo é sempre definido em conjunto antes do início do projeto.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Um website ajuda a aparecer no Google?
+        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Sim — mas apenas se for construído com SEO em mente. Um website bonito sem otimização para motores de busca é praticamente invisível. Na Differentt Lab, integramos SEO on-page desde a primeira linha de código, o que significa que o teu site começa a ser indexado e a ganhar posições no Google desde o lançamento.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Trabalham apenas em Lisboa ou também noutras zonas de Portugal?
+        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Embora estejamos sediados em Odivelas, Lisboa, trabalhamos com clientes em todo Portugal e também internacionalmente. Todos os projetos são geridos remotamente, sem perda de qualidade ou comunicação.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Posso gerir o website sozinho depois do lançamento?
+        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">Sim. Dependendo da solução utilizada, fornecemos formação e documentação para que possas atualizar conteúdos de forma autónoma. Oferecemos também planos de manutenção mensal para quem prefere que tratemos de tudo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="cta-bar">
+  <h2>Pronto para ter um<br>website que <span>trabalha por ti?</span></h2>
+  <a href="./contactos" class="btn-primary">Pedir Orçamento</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
+      <p class="footer-desc" style="margin-top:16px;">Differentt é uma agência 100% remota em todo o mundo.</p>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
+        <a href="#" class="social-link" title="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col"><h3>Recursos</h3><ul><li><a href="#">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="#">Casos de Estudo</a></li><li><a href="#">Guias</a></li><li><a href="#">FAQ</a></li></ul></div>
+      <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
+      <div class="footer-col"><h3>Legal</h3><ul><li><a href="#">Privacidade</a></li><li><a href="#">Termos</a></li><li><a href="#">Cookies</a></li><li><a href="#">RGPD</a></li></ul></div>
+      <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">Todos os direitos reservados. Differentt Lab 2025.</p>
+  </div>
+</footer>
+
+<script>
+  // Donut + counter animation on scroll
+  const CIRCUMFERENCE = 314.16;
+
+  function animateCounter(el, target, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.round(start);
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  function animateDonut(pct) {
+    const fill = document.querySelector('.donut-fill');
+    if (!fill) return;
+    const offset = CIRCUMFERENCE - (pct / 100) * CIRCUMFERENCE;
+    fill.style.strokeDashoffset = offset;
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      // Animate donut
+      animateDonut(93);
+      // Animate donut percent label
+      const donutPct = document.querySelector('.donut-pct');
+      if (donutPct) animateCounter(donutPct, 93, 1600);
+      // Animate mini-stats
+      document.querySelectorAll('.mini-stat-val').forEach(el => {
+        animateCounter(el, parseInt(el.dataset.target), 1400);
+      });
+      statsObserver.disconnect();
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.donut-wrap');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // Nav + FAQ
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay = document.getElementById('nav-mobile-overlay');
+  const closeBtn = document.getElementById('nav-mob-close');
+  hamburger.addEventListener('click', () => { overlay.classList.remove('closing'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  closeBtn.addEventListener('click', () => { overlay.classList.add('closing'); overlay.addEventListener('animationend', () => { overlay.classList.remove('open', 'closing'); document.body.style.overflow = ''; }, { once: true }); });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+<a href="https://wa.me/351926283061" target="_blank" rel="noopener" id="whatsapp-btn" title="Fala connosco no WhatsApp" style="position:fixed;bottom:40px;right:40px;z-index:9998;width:56px;height:56px;border-radius:50%;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;"><svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<style>#whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.2);}</style>
+
+<div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10001;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 28px;align-items:center;gap:24px;max-width:700px;width:calc(100% - 48px);box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+  <p style="font-family:'Nunito Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;flex:1;">Usamos cookies para melhorar a tua experiência. <a href="#" style="color:#9e7bb6;text-decoration:none;">Saber mais</a></p>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button onclick="cookieConsent('reject')" style="font-family:'Nunito Sans',sans-serif;font-size:13px;padding:10px 20px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;">Rejeitar</button>
+    <button onclick="cookieConsent('accept')" style="font-family:'Nunito Sans',sans-serif;font-size:13px;padding:10px 20px;border-radius:100px;border:none;background:#9e7bb6;color:#fff;cursor:pointer;">Aceitar</button>
+  </div>
+</div>
+<script>
+  (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='flex'; })();
+  function cookieConsent(v){ localStorage.setItem('cookie_consent',v); document.getElementById('cookie-banner').style.display='none'; }
+</script>
+</body>
+</html>
