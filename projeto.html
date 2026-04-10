@@ -169,7 +169,7 @@
 
 <div class="nav-wrapper">
 <nav>
-  <a href="./index.html" style="display:flex;align-items:center;text-decoration:none;">
+  <a href="./index" style="display:flex;align-items:center;text-decoration:none;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
   </a>
   <div class="nav-links">
@@ -194,7 +194,7 @@
 
 <div class="nav-mobile-overlay" id="nav-mobile-overlay">
   <div class="nav-mob-top">
-    <a href="./index.html" style="display:flex;align-items:center;text-decoration:none;">
+    <a href="./index" style="display:flex;align-items:center;text-decoration:none;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="32" height="32"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
     </a>
     <button class="nav-mob-close" id="nav-mob-close" aria-label="Fechar menu">
@@ -527,7 +527,7 @@ function render(id) {
 
   const related = getRelated(id);
   const relatedHTML = related.map(([relId, rel]) => `
-    <a class="related-card" href="./projeto.html?p=${relId}">
+    <a class="related-card" href="./projeto?p=${relId}">
       <img src="${rel.hero}" alt="${rel.name}" loading="lazy">
       <div class="related-overlay"></div>
       <div class="related-label">
