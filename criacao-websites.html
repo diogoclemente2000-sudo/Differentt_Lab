@@ -142,6 +142,8 @@
     }
     .phone-frame {
       width:178px; border-radius:22px; overflow:hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: radial-gradient(white, black);
       background:#111; border:2px solid rgba(255,255,255,0.13);
       box-shadow:0 24px 80px rgba(0,0,0,0.92), 0 0 0 1px rgba(255,255,255,0.05);
       opacity:1;
@@ -477,7 +479,7 @@
       }
       .hero-phone-left { order: 2; }
       .hero-phone-right { order: 3; }
-      .phone-frame { width: 100% !important; border-radius: 20px !important; }
+      .phone-frame { width: 100% !important; border-radius: 20px !important; -webkit-mask-image: -webkit-radial-gradient(white, black); }
       .phone-screen { height: 190px; }
       .phone-notch { height: 10px; }
       .phone-notch::after { width: 24px; height: 4px; }
