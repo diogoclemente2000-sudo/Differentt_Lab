@@ -54,7 +54,8 @@
     }
 
     /* CONTACT LAYOUT */
-    .contact-section { padding: 140px 48px 80px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; }
+    .contact-section { padding: 140px 0 80px; }
+    .contact-inner { max-width: 1400px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
 
     /* LEFT SIDE */
     .contact-left { }
@@ -106,7 +107,8 @@
     #form-success { color: #9e7bb6; font-size: 14px; padding: 16px; border: 1px solid rgba(158,123,182,0.3); border-radius: 10px; text-align: center; background: rgba(158,123,182,0.05); }
 
     @media (max-width: 1024px) {
-      .contact-section { grid-template-columns: 1fr; gap: 56px; padding: 120px 32px 72px; }
+      .contact-section { padding: 120px 0 72px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 56px; padding: 0 32px; }
       .checkbox-group { grid-template-columns: 1fr; }
       footer { padding: 48px 32px 24px; }
       .footer-top { flex-direction: column; gap: 40px; }
@@ -115,7 +117,8 @@
       .footer-copy { font-size: 10px; white-space: nowrap; }
     }
     @media (max-width: 600px) {
-      .contact-section { padding: 100px 24px 60px; }
+      .contact-section { padding: 100px 0 60px; }
+      .contact-inner { padding: 0 24px; }
       .form-row { grid-template-columns: 1fr; }
       footer { padding: 40px 20px 20px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -230,6 +233,7 @@
 
 <!-- CONTACT MAIN -->
 <section class="contact-section">
+<div class="contact-inner">
 
   <!-- LEFT: HIRE US -->
   <div class="contact-left">
@@ -326,11 +330,12 @@
     </form>
   </div>
 
+</div>
 </section>
 
 <!-- DE LISBOA PARA O MUNDO -->
 <section class="world-section">
-  <h2 class="world-title" style="padding-left:clamp(0px, 25vw, 400px);">De Lisboa para o mundo</h2>
+  <h2 class="world-title">De Lisboa para o mundo</h2>
   <div style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;overflow:hidden;margin-top:48px;">
     <iframe
       src="https://maps.google.com/maps?q=Av.+Miguel+Torga+20+A,+2675-664+Odivelas,+Portugal&output=embed&z=16"
