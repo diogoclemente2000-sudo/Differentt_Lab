@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
-    "cloudinary": "^2.9.0"
+    "cloudinary": "^2.9.0",
+    "puppeteer": "^24.40.0"
   }
 }
