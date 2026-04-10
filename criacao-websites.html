@@ -448,17 +448,40 @@
       .page-hero { padding: 100px 16px 0; }
       .hero-title { font-size: clamp(32px, 9vw, 52px); }
       .hero-sub { font-size: 14px; }
-      .hero-visuals { height: 280px; }
-      .browser-frame { width: 256px; }
-      .browser-screen { height: 178px; }
-      .hero-phone-left { left: calc(50% - 182px); }
-      .hero-phone-right { left: calc(50% + 90px); }
-      .phone-frame { width: 74px; border-radius: 16px; }
-      .phone-screen { height: 160px; }
+
+      /* Mobile hero: stack browser on top, phones side by side below */
+      .hero-visuals {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding-bottom: 20px;
+        overflow: visible;
+      }
+      .hero-browser-wrap {
+        position: relative;
+        left: auto;
+        transform: none;
+        width: 100%;
+        order: 1;
+        animation: none;
+      }
+      .browser-frame { width: 100%; }
+      .browser-screen { height: 200px; }
+      .hero-phone {
+        position: relative;
+        left: auto !important;
+        bottom: auto !important;
+        width: calc(50% - 5px);
+      }
+      .hero-phone-left { order: 2; }
+      .hero-phone-right { order: 3; }
+      .phone-frame { width: 100% !important; border-radius: 20px !important; }
+      .phone-screen { height: 190px; }
       .phone-notch { height: 10px; }
       .phone-notch::after { width: 24px; height: 4px; }
-      .badge-3 { display: none; }
-      .badge-1 { left: calc(50% + 40px); top: 8px; font-size: 10px; padding: 5px 10px; }
+      .hero-badge { display: none !important; }
       .section { padding: 56px 24px; }
       .divider { margin: 0 24px; }
       .cards-grid, .benefits-grid, .who-grid, .examples-grid { grid-template-columns: 1fr; }
