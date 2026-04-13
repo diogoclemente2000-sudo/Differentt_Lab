@@ -123,23 +123,35 @@
     }
     @media (max-width: 600px) {
       .hero-collage {
-        display: block !important;
-        position: relative !important;
-        height: 360px !important;
-        flex-direction: unset !important;
+        position: static !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding-bottom: 0 !important;
+        min-width: 0 !important;
+        width: 100% !important;
       }
       .hc-img {
-        position: absolute !important;
-        animation: hcFloat1 6s ease-in-out infinite !important;
+        position: relative !important;
+        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+        flex-shrink: 0 !important;
+        animation: none !important;
+        width: auto !important;
+        height: 130px !important;
       }
-      /* centered: total width ~310px, offset by -155px from center */
-      .hc-1 { width: 150px !important; height: 150px !important; top: 0 !important; left: calc(50% - 155px) !important; animation-delay: 0s !important; }
-      .hc-2 { width: 130px !important; height: 130px !important; top: 10px !important; left: calc(50% + 5px) !important; animation: hcFloat2 7s ease-in-out infinite !important; animation-delay: 0.5s !important; }
-      .hc-3 { width: 140px !important; height: 140px !important; top: 170px !important; left: calc(50% - 155px) !important; animation-delay: 1s !important; }
-      .hc-4 { width: 120px !important; height: 120px !important; top: 165px !important; left: calc(50% + 15px) !important; animation: hcFloat2 6.5s ease-in-out infinite !important; animation-delay: 1.5s !important; }
+      /* left card */
+      .hc-2 { width: 100px !important; height: 130px !important; order: 1 !important; }
+      /* center card — EVO mockup, bigger */
+      .hc-1 { width: 130px !important; height: 175px !important; order: 2 !important; }
+      /* right card */
+      .hc-3 { width: 100px !important; height: 130px !important; order: 3 !important; }
+      .hc-4 { display: none !important; }
       .hc-5 { display: none !important; }
       .hc-6 { display: none !important; }
-      .hc-label { position: absolute !important; bottom: 0 !important; left: 50% !important; transform: translateX(-50%) !important; margin-top: 0 !important; }
+      .hc-label { display: none !important; }
     }
 
     /* BUTTONS */
