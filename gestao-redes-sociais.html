@@ -83,15 +83,19 @@
     }
     .hc-img {
       position: absolute; border-radius: 14px; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.07);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
     }
+    /* hc-5 is the largest, on top — give it strongest shadow */
+    .hc-5 { z-index: 3; box-shadow: 0 32px 80px rgba(0,0,0,0.95), 0 12px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1); }
+    .hc-3 { z-index: 2; }
+    .hc-1 { z-index: 2; }
     .hc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hc-1 { width: 200px; height: 200px; top: 0; left: 0; border-radius: 14px; animation: hcFloat1 6s ease-in-out infinite; }
-    .hc-2 { width: 160px; height: 160px; top: 0; left: 220px; border-radius: 14px; animation: hcFloat2 7s ease-in-out infinite 0.5s; }
-    .hc-3 { width: 220px; height: 220px; top: 0; right: 0; border-radius: 14px; animation: hcFloat1 8s ease-in-out infinite 1s; }
-    .hc-4 { width: 180px; height: 180px; top: 220px; left: 20px; border-radius: 14px; animation: hcFloat2 6.5s ease-in-out infinite 1.5s; }
-    .hc-5 { width: 240px; height: 240px; top: 190px; left: 210px; border-radius: 14px; animation: hcFloat1 7.5s ease-in-out infinite 0.8s; }
-    .hc-6 { width: 170px; height: 170px; top: 230px; right: 0; border-radius: 14px; animation: hcFloat2 6s ease-in-out infinite 2s; }
+    .hc-1 { width: 200px; height: 200px; top: 0; left: 0; animation: hcFloat1 6s ease-in-out infinite; }
+    .hc-2 { width: 160px; height: 160px; top: 0; left: 220px; animation: hcFloat2 7s ease-in-out infinite 0.5s; }
+    .hc-3 { width: 220px; height: 220px; top: 0; right: 0; animation: hcFloat1 8s ease-in-out infinite 1s; }
+    .hc-4 { width: 180px; height: 180px; top: 220px; left: 20px; animation: hcFloat2 6.5s ease-in-out infinite 1.5s; }
+    .hc-5 { width: 240px; height: 240px; top: 190px; left: 210px; animation: hcFloat1 7.5s ease-in-out infinite 0.8s; }
+    .hc-6 { width: 170px; height: 170px; top: 230px; right: 0; animation: hcFloat2 6s ease-in-out infinite 2s; }
     .hc-label {
       position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
       background: rgba(158,123,182,0.12); border: 1px solid rgba(158,123,182,0.25);
@@ -102,6 +106,28 @@
     }
     @keyframes hcFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes hcFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* COLLAGE: tablet & mobile — switch to grid */
+    @media (max-width: 1024px) {
+      .hero-collage {
+        position: static; height: auto;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+        padding-bottom: 0; margin-bottom: 8px;
+      }
+      .hc-img {
+        position: relative !important; width: 100% !important; height: 150px !important;
+        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+        animation: none !important;
+      }
+      .hc-5 { grid-column: span 2; height: 170px !important; z-index: 1; }
+      .hc-label { position: relative; left: auto; transform: none; margin-top: 10px; display: inline-block; }
+    }
+    @media (max-width: 600px) {
+      .hero-collage { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .hc-img { height: 120px !important; }
+      .hc-5 { grid-column: span 2; height: 140px !important; }
+      .hc-3 { display: none; }
+    }
 
     /* BUTTONS */
     .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
@@ -212,14 +238,7 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 1024px) {
-      .hero-layout { grid-template-columns: 1fr; gap: 48px; padding: 120px 0 80px; }
-      .hero-collage { height: 340px; }
-      .hc-1 { width: 140px; height: 140px; }
-      .hc-2 { width: 110px; height: 110px; left: 160px; }
-      .hc-3 { width: 150px; height: 150px; }
-      .hc-4 { width: 120px; height: 120px; top: 155px; }
-      .hc-5 { width: 160px; height: 160px; top: 135px; left: 150px; }
-      .hc-6 { width: 115px; height: 115px; top: 155px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 32px; padding: 120px 0 80px; }
       .cards-grid, .benefits-grid, .who-grid, .proof-grid { grid-template-columns: 1fr 1fr; }
       .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
       .donut-wrap { margin: 0 auto; }
@@ -234,13 +253,6 @@
     @media (max-width: 600px) {
       .page-hero { padding: 0 16px; }
       .hero-layout { padding: 110px 0 60px; }
-      .hero-collage { height: 280px; }
-      .hc-1 { width: 110px; height: 110px; }
-      .hc-2 { width: 90px; height: 90px; left: 125px; }
-      .hc-3 { width: 120px; height: 120px; }
-      .hc-4 { width: 100px; height: 100px; top: 120px; left: 10px; }
-      .hc-5 { width: 130px; height: 130px; top: 110px; left: 120px; }
-      .hc-6 { width: 90px; height: 90px; top: 120px; right: 5px; }
       .section { padding: 56px 8px; }
       .divider { margin: 0 8px; }
       .cards-grid, .benefits-grid, .who-grid, .proof-grid { grid-template-columns: 1fr; }
