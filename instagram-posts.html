@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;700;900&family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;padding:40px;display:flex;flex-direction:column;gap:40px;align-items:center;}
+
+.slide{
+  width:1080px;height:1350px;background:#000;
+  position:relative;overflow:hidden;
+  font-family:'Nunito Sans',sans-serif;color:#fff;
+  flex-shrink:0;
+}
+.noise{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
+.content{position:relative;z-index:2;width:100%;height:100%;padding:80px;display:flex;flex-direction:column;}
+.eyebrow{font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#9e7bb6;}
+.divider{height:1px;background:rgba(158,123,182,0.28);width:100%;}
+.glow-tl{position:absolute;top:-200px;left:-100px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(158,123,182,0.22) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-br{position:absolute;bottom:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,133,184,0.16) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,0.13) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+.logo-mark path{fill:#fff;}
+.tag{padding:14px 28px;border:1px solid rgba(158,123,182,0.3);border-radius:100px;font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.14em;color:#9e7bb6;}
+.tag-ghost{padding:14px 28px;border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,0.35);}
+.footer-line{font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,0.2);}
+
+/* ─── LOGO SVG SNIPPET (reused) ─── */
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 1 · SERVIÇOS — S1 Cover     -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="s1">
+  <!-- ambient glow behind headline -->
+  <div style="position:absolute;bottom:-80px;left:-120px;width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,0.2) 0%,transparent 60%);z-index:0;pointer-events:none;"></div>
+  <div style="position:absolute;top:-100px;right:-80px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,133,184,0.1) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="noise"></div>
+
+  <div class="content" style="justify-content:space-between;">
+    <!-- top: logo + label -->
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="40" height="40"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);">DIFFERENTT LAB</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;display:block;"></span>
+        <span class="eyebrow">Lisboa · Portugal</span>
+      </div>
+    </div>
+
+    <!-- centre block -->
+    <div>
+      <div class="eyebrow" style="margin-bottom:36px;">Design & Criação Digital</div>
+      <!-- single-line SERVIÇOS — sized to fill the content width -->
+      <h1 style="font-family:'Overpass',sans-serif;font-size:138px;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;line-height:1;color:#fff;white-space:nowrap;">SERVIÇOS</h1>
+      <!-- accent rule -->
+      <div style="display:flex;align-items:center;gap:20px;margin-top:40px;">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(158,123,182,0.7),rgba(197,133,184,0.3),transparent);"></div>
+      </div>
+      <!-- service pills row -->
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;">
+        <span class="tag-ghost">BRANDING</span>
+        <span class="tag-ghost">WEBSITES</span>
+        <span class="tag-ghost">REDES SOCIAIS</span>
+        <span class="tag-ghost">3D</span>
+        <span class="tag">MARKETING</span>
+      </div>
+    </div>
+
+    <!-- bottom -->
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span>
+      <span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 1 · SERVIÇOS — S2 Tabela    -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="noise"></div>
+  <!-- subtle right-side glow -->
+  <div style="position:absolute;top:50%;right:-150px;transform:translateY(-50%);width:500px;height:800px;background:radial-gradient(ellipse,rgba(158,123,182,0.1) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- header -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+        <div class="eyebrow">O Que Fazemos</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36" opacity=".25"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- services list — 5 real services from website -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+
+      <!-- 01 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:28px;">
+          <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:900;color:rgba(158,123,182,0.35);letter-spacing:-.02em;flex-shrink:0;min-width:52px;">01</span>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;">Branding & Comunicação</h2>
+        </div>
+        <span style="width:14px;height:14px;border-radius:50%;background:rgba(158,123,182,0.3);flex-shrink:0;"></span>
+      </div>
+
+      <!-- 02 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:28px;">
+          <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:900;color:rgba(158,123,182,0.35);letter-spacing:-.02em;flex-shrink:0;min-width:52px;">02</span>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;">Criação de Websites</h2>
+        </div>
+        <span style="width:14px;height:14px;border-radius:50%;background:rgba(158,123,182,0.3);flex-shrink:0;"></span>
+      </div>
+
+      <!-- 03 highlighted -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(158,123,182,0.05);margin:0 -20px;padding-left:20px;padding-right:20px;">
+        <div style="display:flex;align-items:center;gap:28px;">
+          <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:900;color:#9e7bb6;letter-spacing:-.02em;flex-shrink:0;min-width:52px;">03</span>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:#9e7bb6;">Gestão de Redes Sociais</h2>
+        </div>
+        <span style="width:14px;height:14px;border-radius:50%;background:#9e7bb6;flex-shrink:0;box-shadow:0 0 12px rgba(158,123,182,0.8);"></span>
+      </div>
+
+      <!-- 04 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:28px;">
+          <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:900;color:rgba(158,123,182,0.35);letter-spacing:-.02em;flex-shrink:0;min-width:52px;">04</span>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;">3D & Interiores</h2>
+        </div>
+        <span style="width:14px;height:14px;border-radius:50%;background:rgba(158,123,182,0.3);flex-shrink:0;"></span>
+      </div>
+
+      <!-- 05 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;">
+        <div style="display:flex;align-items:center;gap:28px;">
+          <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:900;color:rgba(158,123,182,0.35);letter-spacing:-.02em;flex-shrink:0;min-width:52px;">05</span>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;">Marketing & Funil de Vendas</h2>
+        </div>
+        <span style="width:14px;height:14px;border-radius:50%;background:rgba(158,123,182,0.3);flex-shrink:0;"></span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+      <span class="footer-line">DIFFERENTT LAB</span>
+      <span class="footer-line">differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 1 · SERVIÇOS — S3 CTA       -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="glow-c"></div>
+  <div class="noise"></div>
+  <div style="position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="620" height="620" opacity=".04"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div class="content" style="justify-content:space-between;">
+    <div class="eyebrow">Pronto Para Começar?</div>
+
+    <div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:116px;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;color:#fff;">VAMOS<br><span style="color:#9e7bb6;">CRIAR</span><br>JUNTOS.</h1>
+      <div style="width:80px;height:3px;background:linear-gradient(90deg,#9e7bb6,#c585b8);border-radius:2px;margin-top:44px;margin-bottom:36px;"></div>
+      <p style="font-size:38px;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.5;max-width:820px;">Tens um projeto em mente? Conta-nos tudo. Transformamos ideias em marcas memoráveis.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:20px;padding:30px 40px;border:1px solid rgba(158,123,182,0.28);border-radius:100px;background:rgba(158,123,182,0.07);">
+      <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9e7bb6;">differenttlab.com</span>
+      <span style="width:6px;height:6px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+      <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P1 Cover    -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p1">
+  <div class="glow-br"></div>
+  <div class="noise"></div>
+  <div style="position:absolute;bottom:-60px;right:-60px;z-index:0;opacity:.06;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="720" height="720"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="40" height="40"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+      <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);">DIFFERENTT LAB</span>
+    </div>
+
+    <div>
+      <div class="eyebrow" style="margin-bottom:28px;">Trabalhos Selecionados</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:152px;font-weight:900;letter-spacing:-.05em;text-transform:uppercase;line-height:.88;color:#fff;">PORT<br><span style="color:transparent;-webkit-text-stroke:3px #9e7bb6;">FOLIO</span></h1>
+      <p style="margin-top:40px;font-size:36px;font-weight:300;color:rgba(255,255,255,0.38);letter-spacing:.04em;">Branding · Web Design · Social Media</p>
+      <div style="display:flex;gap:14px;margin-top:32px;align-items:center;">
+        <div style="width:48px;height:1px;background:#9e7bb6;"></div>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:#9e7bb6;">2020 — 2026</span>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span>
+      <span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P2 Branding -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p2">
+  <div class="glow-tl" style="opacity:.5;"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- header -->
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;">Identidade Visual</div>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1;">BRANDING</h2>
+        </div>
+        <span style="font-family:'Overpass',sans-serif;font-size:100px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-.04em;">01</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- 2×2 image grid — fixed height so nothing spills -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:900px;">
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/SHROOMFEST/7.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/madaline/design-01j5xj2n80-1724671147-6.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages%20light/KIOTO/design-01jaxcah65-1773943831.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages%20light/brunch%20sol/design-01j536tqmp-1725027102.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- footer row -->
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:10px;">
+        <span class="tag">LOGO</span>
+        <span class="tag-ghost">IDENTIDADE</span>
+        <span class="tag-ghost">CARTAZES</span>
+      </div>
+      <span class="footer-line">differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P3 Social   -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p3">
+  <div class="glow-br" style="opacity:.5;"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- header -->
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;">Redes Sociais</div>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1;">SOCIAL MEDIA</h2>
+        </div>
+        <span style="font-family:'Overpass',sans-serif;font-size:100px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-.04em;">02</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- 2×2 image grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:900px;">
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="Website_photos/work individual pages/Aroma boreal/CATALOGO-AROMA-BOREAL-2025-V14-1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="Website_photos/work individual pages/moment laser/spart ads (criativos)-01.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="Website_photos/work individual pages/evo clinic/Como estava inicialmente - 50.PNG" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="Website_photos/work individual pages/Esthetic solution/Criativos (meta)-17.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- footer row -->
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:10px;">
+        <span class="tag">INSTAGRAM</span>
+        <span class="tag-ghost">CONTEÚDO</span>
+        <span class="tag-ghost">ESTRATÉGIA</span>
+      </div>
+      <span class="footer-line">differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P4 3D       -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p4">
+  <div class="glow-tl" style="opacity:.4;"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- header -->
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;">Projetos 3D</div>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1;">MODELAÇÃO 3D</h2>
+        </div>
+        <span style="font-family:'Overpass',sans-serif;font-size:100px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-.04em;">03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- 3-column image grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;height:900px;">
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/RAIZES/3d.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/mymoment/hero_bg_2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages%20light/Stand/STAND.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- footer row -->
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:10px;">
+        <span class="tag">MODELAÇÃO 3D</span>
+        <span class="tag-ghost">BRANDING</span>
+        <span class="tag-ghost">WEBSITES</span>
+      </div>
+      <span class="footer-line">differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P5 Gráfico  -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p5">
+  <div class="glow-br" style="opacity:.4;"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+
+    <!-- header -->
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;">Design Gráfico</div>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1;">GRÁFICO</h2>
+        </div>
+        <span style="font-family:'Overpass',sans-serif;font-size:100px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-.04em;">04</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- 3-column image grid -->
+    <div style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px;height:900px;">
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/REVISTA/revista.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/work%20individual%20pages/posters/1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06);">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_work_page/HZH8lwwLlBTsq0MxtEykVNAUb4I.jpg" style="width:100%;height:100%;object-fit:cover;object-position:35% center;display:block;">
+      </div>
+    </div>
+
+    <!-- footer row -->
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:10px;">
+        <span class="tag">GRÁFICO</span>
+        <span class="tag-ghost">CARTAZES</span>
+        <span class="tag-ghost">PUBLICIDADE</span>
+      </div>
+      <span class="footer-line">differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 2 · PORTFOLIO — P6 CTA      -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="p6">
+  <div class="glow-tl"></div>
+  <div class="noise"></div>
+  <div style="position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="560" height="560" opacity=".05"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div class="content" style="justify-content:space-between;align-items:center;text-align:center;">
+    <!-- top eyebrow -->
+    <div class="eyebrow">Fim do Portfolio</div>
+
+    <!-- main content -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:48px;">
+      <h1 style="font-family:'Overpass',sans-serif;font-size:124px;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.88;white-space:nowrap;">OBRIGADO</h1>
+      <div style="width:60px;height:2px;background:linear-gradient(90deg,#9e7bb6,#c585b8);border-radius:2px;"></div>
+      <p style="font-size:38px;font-weight:300;color:rgba(255,255,255,0.38);letter-spacing:.04em;">Fale Connosco</p>
+      <div style="padding:28px 64px;border:1px solid rgba(158,123,182,0.28);border-radius:100px;background:rgba(158,123,182,0.08);">
+        <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:700;letter-spacing:.14em;color:#9e7bb6;">differenttlab.com</span>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div style="display:flex;align-items:center;gap:14px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30"><path fill="rgba(255,255,255,0.25)" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+      <span class="footer-line">DIFFERENTT LAB</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 3 · SOBRE NÓS — M1 Cover    -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="m1">
+  <div class="glow-tl"></div>
+  <div class="glow-br" style="opacity:.8;"></div>
+  <div class="noise"></div>
+  <div style="position:absolute;top:0;right:200px;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(158,123,182,0.2),transparent);z-index:1;transform:rotate(8deg);transform-origin:top;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.26em;color:rgba(255,255,255,0.3);">DIFFERENTT LAB</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow" style="margin-bottom:32px;">Sobre Nós · Agência</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:152px;font-weight:900;letter-spacing:-.05em;text-transform:uppercase;line-height:.87;color:#fff;">CRIA<br><span style="color:#9e7bb6;">TIVOS</span></h1>
+      <div style="margin-top:44px;display:flex;flex-direction:column;gap:12px;">
+        <div style="height:1px;background:rgba(158,123,182,0.28);"></div>
+        <div style="display:flex;gap:32px;align-items:center;">
+          <span style="font-size:36px;font-weight:300;color:rgba(255,255,255,0.42);letter-spacing:.04em;">4 Pessoas</span>
+          <span style="width:6px;height:6px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-size:36px;font-weight:300;color:rgba(255,255,255,0.42);letter-spacing:.04em;">Design & Marketing</span>
+          <span style="width:6px;height:6px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-size:36px;font-weight:300;color:rgba(255,255,255,0.42);letter-spacing:.04em;">Lisboa</span>
+        </div>
+        <div style="height:1px;background:rgba(158,123,182,0.28);"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span>
+      <span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 3 · SOBRE NÓS — M2 Agência  -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="m2">
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+        <div class="eyebrow">Quem Somos</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="28" height="28" opacity=".22"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:40px;">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:90px;background:#9e7bb6;border-radius:2px;flex-shrink:0;margin-top:6px;"></div>
+        <div>
+          <h3 style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#9e7bb6;margin-bottom:14px;">A AGÊNCIA</h3>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:16px;">DIFFERENTT LAB</h2>
+          <p style="font-size:34px;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.52);">Somos uma equipa de 4 criativos sediados em Lisboa, especializados em design e comunicação digital.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:90px;background:#c585b8;border-radius:2px;flex-shrink:0;margin-top:6px;"></div>
+        <div>
+          <h3 style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#c585b8;margin-bottom:14px;">O QUE FAZEMOS</h3>
+          <p style="font-size:34px;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.52);">Branding, websites, redes sociais, 3D e marketing. Cobrimos tudo o que a tua marca precisa.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:70px;background:rgba(158,123,182,0.4);border-radius:2px;flex-shrink:0;margin-top:6px;"></div>
+        <div>
+          <h3 style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(158,123,182,0.6);margin-bottom:14px;">A NOSSA MISSÃO</h3>
+          <p style="font-size:34px;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.52);">Transformar marcas em experiências memoráveis que comunicam com impacto.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="footer-line">DIFFERENTT LAB · differenttlab.com</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 3 · SOBRE NÓS — M3 Valores  -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="m3">
+  <div class="glow-tl" style="opacity:.6;"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div class="eyebrow" style="margin-bottom:20px;">A Nossa Abordagem</div>
+      <h2 style="font-family:'Overpass',sans-serif;font-size:96px;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;margin-bottom:24px;">VALORES</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;padding-left:56px;">
+      <div style="position:absolute;left:18px;top:10px;bottom:10px;width:1px;background:rgba(158,123,182,0.3);"></div>
+
+      <div style="position:relative;padding-bottom:88px;">
+        <div style="position:absolute;left:-46px;top:8px;width:18px;height:18px;border-radius:50%;background:#9e7bb6;border:3px solid #000;box-shadow:0 0 0 2px #9e7bb6,0 0 20px rgba(158,123,182,0.5);"></div>
+        <div style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;color:#9e7bb6;margin-bottom:14px;">01 — CRIATIVIDADE</div>
+        <h3 style="font-family:'Overpass',sans-serif;font-size:44px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px;">PENSAR DIFERENTE</h3>
+        <p style="font-size:30px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.5;">Cada projeto é único. Nunca usamos fórmulas — criamos soluções à medida.</p>
+      </div>
+
+      <div style="position:relative;">
+        <div style="position:absolute;left:-46px;top:8px;width:18px;height:18px;border-radius:50%;background:#c585b8;border:3px solid #000;box-shadow:0 0 0 2px #c585b8,0 0 20px rgba(197,133,184,0.5);"></div>
+        <div style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;color:#c585b8;margin-bottom:14px;">02 — RESULTADO</div>
+        <h3 style="font-family:'Overpass',sans-serif;font-size:44px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px;">FOCO NO CLIENTE</h3>
+        <p style="font-size:30px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.5;">O sucesso da tua marca é o nosso objetivo. Trabalhamos para gerar impacto real.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="divider"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <span class="tag">DESIGN</span>
+        <span class="tag-ghost">ESTRATÉGIA</span>
+        <span class="tag-ghost">IMPACTO</span>
+      </div>
+      <span class="footer-line">DIFFERENTT LAB · differenttlab.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- SÉRIE 3 · SOBRE MIM — M4 Final    -->
+<!-- ══════════════════════════════════ -->
+<div class="slide" id="m4">
+  <div class="glow-c"></div>
+  <div class="noise"></div>
+  <div class="content" style="justify-content:center;align-items:center;text-align:center;gap:0;">
+    <div class="eyebrow" style="margin-bottom:56px;">Mais Detalhes</div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="84" height="84" style="margin-bottom:44px;"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    <h1 style="font-family:'Overpass',sans-serif;font-size:100px;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.88;margin-bottom:48px;color:#fff;">DIFFERENTT<br><span style="color:#9e7bb6;">LAB</span></h1>
+    <div style="width:60px;height:2px;background:linear-gradient(90deg,#9e7bb6,#c585b8);margin-bottom:56px;border-radius:2px;"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:600px;">
+      <div style="padding:22px 40px;border:1px solid rgba(158,123,182,0.28);border-radius:100px;background:rgba(158,123,182,0.08);">
+        <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:700;letter-spacing:.16em;color:#9e7bb6;">differenttlab.com</span>
+      </div>
+      <div style="padding:22px 40px;border:1px solid rgba(255,255,255,0.1);border-radius:100px;">
+        <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,0.3);">@differentt_lab</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
