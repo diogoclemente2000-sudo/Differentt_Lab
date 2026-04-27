@@ -45,4 +45,24 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://differenttlab.com/blog/gestao-redes-sociais-vale-a-pena</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://differenttlab.com/blog/quanto-custa-gestao-redes-sociais-portugal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://differenttlab.com/blog/roi-redes-sociais-como-medir</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://differenttlab.com/blog/como-escolher-agencia-redes-sociais</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
