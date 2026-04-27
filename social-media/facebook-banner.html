@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;700;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+
+.banner{
+  width:820px;height:312px;background:#000;
+  position:relative;overflow:hidden;
+  font-family:'Nunito Sans',sans-serif;color:#fff;
+  flex-shrink:0;
+}
+
+/* glows */
+.glow-l{position:absolute;top:-80px;left:-80px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(158,123,182,0.28) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-r{position:absolute;bottom:-80px;right:-60px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(197,133,184,0.18) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(158,123,182,0.08) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+/* noise */
+.noise{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+
+/* diagonal line accent */
+.line-accent{position:absolute;top:0;left:55%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(158,123,182,0.25),transparent);z-index:1;transform:rotate(12deg);transform-origin:top;}
+
+/* grid dots */
+.dots{position:absolute;inset:0;z-index:0;background-image:radial-gradient(circle,rgba(158,123,182,0.12) 1px,transparent 1px);background-size:32px 32px;}
+
+.content{position:relative;z-index:2;width:100%;height:100%;padding:36px 48px;display:flex;align-items:center;justify-content:space-between;gap:40px;}
+
+/* left block */
+.left{display:flex;flex-direction:column;justify-content:center;gap:20px;}
+
+.logo-row{display:flex;align-items:center;gap:14px;}
+.logo-text{font-family:'Overpass',sans-serif;font-size:13px;font-weight:700;letter-spacing:.28em;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+
+.tagline{font-family:'Overpass',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1.05;}
+
+.sub{font-size:13px;font-weight:300;color:rgba(255,255,255,0.4);letter-spacing:.06em;text-transform:uppercase;}
+
+/* divider */
+.vdivider{width:1px;height:160px;background:linear-gradient(180deg,transparent,rgba(158,123,182,0.35),transparent);flex-shrink:0;}
+
+/* right block */
+.right{display:flex;flex-direction:column;justify-content:center;gap:14px;min-width:240px;}
+
+.service{display:flex;align-items:center;gap:12px;font-family:'Overpass',sans-serif;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.38);}
+.service.active{color:#fff;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(158,123,182,0.3);flex-shrink:0;}
+.dot.active{background:#9e7bb6;box-shadow:0 0 8px rgba(158,123,182,0.7);}
+
+.url{font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;color:rgba(158,123,182,0.6);margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="glow-l"></div>
+  <div class="glow-r"></div>
+  <div class="glow-c"></div>
+  <div class="dots"></div>
+  <div class="line-accent"></div>
+  <div class="noise"></div>
+
+  <div class="content">
+    <!-- LEFT -->
+    <div class="left">
+      <div class="logo-row">
+        <!-- logo mark -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="32" height="32">
+          <path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+        </svg>
+        <span class="logo-text">Differentt Lab</span>
+      </div>
+
+      <div class="tagline">
+        Design que<br><span style="color:#9e7bb6;">comunica.</span>
+      </div>
+
+      <div class="sub">Estúdio criativo · Lisboa, Portugal</div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="vdivider"></div>
+
+    <!-- RIGHT — services inline -->
+    <div class="right">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Branding</span>
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Websites</span>
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Redes Sociais</span>
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Modelação 3D</span>
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Marketing</span>
+        <span style="padding:10px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;">Design Gráfico</span>
+      </div>
+      <div class="url">differenttlab.com · @differentt_lab</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
