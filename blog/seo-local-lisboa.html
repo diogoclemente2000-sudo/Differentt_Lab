@@ -117,6 +117,9 @@
     .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .related-card{display:flex;flex-direction:column;background:#080808;border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s}
     .related-card:hover{transform:translateY(-4px);border-color:rgba(158,123,182,.15);box-shadow:0 20px 48px rgba(0,0,0,.5)}
+    .related-card-img{aspect-ratio:16/9;overflow:hidden}
+    .related-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+    .related-card:hover .related-card-img img{transform:scale(1.06)}
     .related-card-body{padding:20px 22px}
     .related-card-cat{font-family:'Overpass',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#9e7bb6;margin-bottom:8px;display:block}
     .related-card-title{font-family:'Overpass',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.25;color:rgba(255,255,255,.82);transition:color .2s}
@@ -368,25 +371,19 @@
     </div>
 
     <div class="related-section">
-      <p class="related-label">Artigos relacionados</p>
+      <div class="related-label">Leia também</div>
       <div class="related-grid">
         <a href="./aparecer-google-maps-lisboa.html" class="related-card">
-          <div class="related-card-body">
-            <span class="related-card-cat">SEO Local</span>
-            <p class="related-card-title">Como Aparecer no Google Maps em Lisboa (Guia 2026)</p>
-          </div>
+          <div class="related-card-img"><img src="https://placehold.co/400x225/080808/c585b8?text=Maps" alt="Google Maps Lisboa" loading="lazy"></div>
+          <div class="related-card-body"><span class="related-card-cat">SEO Local</span><div class="related-card-title">Como Aparecer no Google Maps em Lisboa (Guia 2026)</div></div>
         </a>
         <a href="./google-business-profile-lisboa.html" class="related-card">
-          <div class="related-card-body">
-            <span class="related-card-cat">SEO Local</span>
-            <p class="related-card-title">Google Business Profile: Guia Completo para Empresas em Lisboa</p>
-          </div>
+          <div class="related-card-img"><img src="https://placehold.co/400x225/080808/c585b8?text=GBP" alt="Google Business Profile Lisboa" loading="lazy"></div>
+          <div class="related-card-body"><span class="related-card-cat">SEO Local</span><div class="related-card-title">Google Business Profile: Guia Completo para Empresas em Lisboa</div></div>
         </a>
         <a href="./negocio-nao-aparece-google.html" class="related-card">
-          <div class="related-card-body">
-            <span class="related-card-cat">SEO Local</span>
-            <p class="related-card-title">Porque o Teu Negócio Não Aparece no Google (E Como Resolver)</p>
-          </div>
+          <div class="related-card-img"><img src="https://placehold.co/400x225/080808/c585b8?text=Invisível%3F" alt="Negócio não aparece no Google" loading="lazy"></div>
+          <div class="related-card-body"><span class="related-card-cat">SEO Local</span><div class="related-card-title">Porque o Teu Negócio Não Aparece no Google (E Como Resolver)</div></div>
         </a>
       </div>
     </div>
