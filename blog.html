@@ -202,17 +202,45 @@
       .featured-article { grid-template-columns: 1fr; min-height: auto; }
       .featured-img-wrap { aspect-ratio: 16/9; }
       .articles-grid { grid-template-columns: repeat(2, 1fr); }
-      .newsletter-card { flex-direction: column; padding: 48px; }
+      .newsletter-card { flex-direction: column; padding: 48px; align-items: flex-start; gap: 28px; }
       .newsletter-form { width: 100%; }
       .newsletter-input { flex: 1; width: auto; }
     }
     @media (max-width: 768px) {
-      .blog-header { padding: 130px 0 56px; }
-      .articles-grid { grid-template-columns: 1fr; }
-      .filter-bar-inner { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
+      .container { padding: 0 20px; }
+      .blog-header { padding: 130px 0 48px; }
+      .blog-desc { font-size: 15px; }
+      .filter-bar { padding: 0 0 40px; }
+      .filter-bar-inner { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; scrollbar-width: none; -ms-overflow-style: none; }
+      .filter-bar-inner::-webkit-scrollbar { display: none; }
+      .featured-wrap { margin-bottom: 48px; }
+      .featured-content { padding: 32px 28px; }
+      .featured-meta-top { margin-bottom: 20px; }
+      .featured-excerpt { margin-bottom: 28px; }
+      .section-label { margin-bottom: 32px; }
+      .articles-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; }
+      .newsletter-card { padding: 28px 24px; }
+      .newsletter-form { flex-direction: column; gap: 10px; }
+      .newsletter-input { width: 100%; }
+      .newsletter-btn { width: 100%; justify-content: center; }
+      .load-more-wrap { padding: 0 0 80px; }
+      footer { padding: 48px 24px 32px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .newsletter-card { padding: 32px 24px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .blog-header { padding: 118px 0 36px; }
+      .blog-title { letter-spacing: -.03em; }
+      .featured-content { padding: 24px 20px; }
+      .featured-h2 { font-size: clamp(22px, 6vw, 32px); }
+      .featured-footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .card-body { padding: 20px 18px 16px; }
+      .card-title { font-size: 17px; }
+      .newsletter-card { padding: 24px 20px; }
+      .newsletter-h3 { font-size: 20px; }
+      footer { padding: 40px 20px 28px; }
+      .footer-nav { grid-template-columns: 1fr 1fr; gap: 14px 20px; }
     }
   </style>
 </head>
