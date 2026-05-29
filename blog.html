@@ -502,10 +502,12 @@
         <h3 class="newsletter-h3">Insights digitais direto na tua caixa de entrada.</h3>
         <p class="newsletter-sub">Sem spam. Apenas artigos úteis sobre design, websites e marketing digital — uma vez por mês.</p>
       </div>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" class="newsletter-input" placeholder="O teu email" autocomplete="email">
+      <form class="newsletter-form" id="newsletter-form" action="https://formspree.io/f/xgonpzjb" method="POST">
+        <input type="hidden" name="_subject" value="Nova subscrição newsletter (blog)">
+        <input type="email" class="newsletter-input" name="email" placeholder="O teu email" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscrever</button>
       </form>
+      <p id="newsletter-success" style="display:none;margin-top:14px;font-size:13px;color:#9e7bb6;font-weight:600;">Obrigado! Subscrição confirmada. ✦</p>
     </div>
 
     <!-- Card 7 -->
@@ -804,6 +806,35 @@
     overlay.addEventListener('animationend', () => { overlay.classList.remove('open','closing'); }, { once: true });
   }
   closeBtn.addEventListener('click', closeNav);
+
+  // Newsletter -> Formspree
+  const nlForm = document.getElementById('newsletter-form');
+  if (nlForm) {
+    nlForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = nlForm.querySelector('.newsletter-btn');
+      const original = btn.textContent;
+      btn.textContent = 'A enviar...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(nlForm.action, {
+          method: 'POST',
+          body: new FormData(nlForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          nlForm.style.display = 'none';
+          document.getElementById('newsletter-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Erro — tenta novamente';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = original;
+        btn.disabled = false;
+      }
+    });
+  }
 
   // Category filter
   const pills = document.querySelectorAll('.filter-pill');
