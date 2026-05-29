@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Resumo Mensal — Gestão de Redes Sociais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Overpass:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    background:#e8e8e8;
+    font-family:'Nunito Sans',sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:40px 20px;
+    gap:32px;
+  }
+
+  .page{
+    width:794px;
+    height:1123px;
+    background:#fff;
+    padding:64px 72px 56px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 4px 40px rgba(0,0,0,.12);
+    overflow:hidden;
+  }
+
+  @media print {
+    @page { size:A4; margin:0; }
+    body { background:none; padding:0; gap:0; }
+    .page { box-shadow:none; break-after:page; }
+  }
+
+  /* ── HEADER ── */
+  .header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:28px;
+    border-bottom:2px solid #111;
+    margin-bottom:36px;
+  }
+  .header-logo{display:flex;align-items:center;gap:12px;}
+  .header-logo span{
+    font-family:'Overpass',sans-serif;
+    font-size:15px;font-weight:700;
+    letter-spacing:.22em;text-transform:uppercase;color:#111;
+  }
+  .header-meta{text-align:right;}
+  .header-meta p{
+    font-size:11px;font-weight:400;
+    letter-spacing:.06em;color:#888;
+    text-transform:uppercase;line-height:1.8;
+  }
+  .header-meta strong{color:#111;font-weight:700;}
+
+  /* ── DOC TITLE ── */
+  .doc-title{margin-bottom:28px;}
+  .doc-title h1{
+    font-family:'Overpass',sans-serif;
+    font-size:26px;font-weight:900;
+    letter-spacing:-.02em;color:#111;
+    text-transform:uppercase;line-height:1;margin-bottom:6px;
+  }
+  .doc-title p{font-size:12px;font-weight:400;color:#999;letter-spacing:.08em;text-transform:uppercase;}
+
+  /* ── PRESTADOR / CLIENTE ── */
+  .two-col{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:1px;background:#ddd;border:1px solid #ddd;
+    margin-bottom:28px;
+  }
+  .two-col-cell{background:#fff;padding:18px 20px;}
+  .two-col-cell .cell-label{
+    font-size:9px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:#aaa;margin-bottom:8px;
+  }
+  .two-col-cell .cell-name{
+    font-family:'Overpass',sans-serif;
+    font-size:13px;font-weight:700;color:#111;margin-bottom:6px;
+  }
+  .two-col-cell .cell-info{font-size:11.5px;color:#666;line-height:1.85;}
+
+  /* ── CLIENT BOX ── */
+  .client-box{
+    display:grid;grid-template-columns:1fr 1fr 1fr;
+    border:1px solid #ddd;margin-bottom:28px;
+  }
+  .client-cell{padding:14px 18px;border-right:1px solid #ddd;}
+  .client-cell:last-child{border-right:none;}
+  .client-cell label{
+    display:block;font-size:9px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:#aaa;margin-bottom:5px;
+  }
+  .client-cell span{font-size:13px;font-weight:600;color:#111;}
+
+  /* ── SECTION TITLE ── */
+  .section-title{
+    font-family:'Overpass',sans-serif;
+    font-size:10px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:#aaa;
+    margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e8;
+  }
+
+  /* ── SUMMARY ── */
+  .summary-block{margin-bottom:28px;}
+  .summary-block p{font-size:12.5px;font-weight:400;color:#444;line-height:1.75;}
+
+  /* ── TABLE ── */
+  .data-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:12.5px;}
+  .data-table thead tr{background:#111;}
+  .data-table thead th{
+    padding:10px 16px;text-align:left;
+    font-family:'Overpass',sans-serif;
+    font-size:9px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:#fff;
+  }
+  .data-table thead th:last-child{text-align:right;}
+  .data-table tbody tr{border-bottom:1px solid #eee;}
+  .data-table tbody tr:nth-child(even){background:#fafafa;}
+  .data-table tbody td{
+    padding:12px 16px;color:#333;
+    font-weight:400;vertical-align:top;line-height:1.5;
+  }
+  .data-table tbody td:last-child{text-align:right;font-weight:600;color:#111;white-space:nowrap;}
+  .data-table .sub-item{font-size:11px;color:#888;margin-top:2px;}
+
+  /* ── TOTAL ── */
+  .total-box{
+    border:2px solid #111;padding:20px;margin-bottom:32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .total-box .total-label{
+    font-family:'Overpass',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#111;
+  }
+  .total-box .total-breakdown{text-align:right;font-size:11px;color:#888;line-height:1.8;}
+  .total-box .total-amount{
+    font-family:'Overpass',sans-serif;
+    font-size:28px;font-weight:900;color:#111;letter-spacing:-.02em;
+  }
+
+  /* ── OBJECTIVES ── */
+  .objectives-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:1px;background:#ddd;border:1px solid #ddd;margin-bottom:28px;
+  }
+  .objective-cell{background:#fff;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;}
+  .objective-num{
+    font-family:'Overpass',sans-serif;
+    font-size:9px;font-weight:700;letter-spacing:.12em;color:#ccc;
+    padding-top:2px;flex-shrink:0;
+  }
+  .objective-text{font-size:12px;font-weight:400;color:#333;line-height:1.5;}
+
+  /* ── NEXT STEP ── */
+  .next-step{
+    background:#f5f5f5;padding:18px 20px;margin-bottom:auto;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .next-step-label{
+    font-family:'Overpass',sans-serif;
+    font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:#aaa;flex-shrink:0;padding-top:2px;
+  }
+  .next-step p{font-size:12.5px;color:#333;line-height:1.6;}
+
+  /* ── FOOTER ── */
+  .footer{
+    margin-top:auto;padding-top:24px;border-top:1px solid #ddd;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .footer-logo{display:flex;align-items:center;gap:10px;}
+  .footer-logo span{
+    font-family:'Overpass',sans-serif;
+    font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:#bbb;
+  }
+  .footer-contact{text-align:right;font-size:10px;color:#bbb;letter-spacing:.06em;line-height:1.8;}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ -->
+<!-- PÁGINA 1                               -->
+<!-- ════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30">
+        <path fill="#111" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+      </svg>
+      <span>Differentt Lab</span>
+    </div>
+    <div class="header-meta">
+      <p>Documento Nº <strong>001</strong></p>
+      <p>Data <strong>Maio 2026</strong></p>
+      <p>Ref. <strong>GRS-2026-05</strong></p>
+    </div>
+  </div>
+
+  <div class="doc-title">
+    <h1>Resumo Mensal</h1>
+    <p>Gestão de Redes Sociais</p>
+  </div>
+
+  <div class="two-col">
+    <div class="two-col-cell">
+      <div class="cell-label">Prestador de Serviço</div>
+      <div class="cell-name">Differentt Lab</div>
+      <div class="cell-info">
+        differenttlab@gmail.com<br>
+        Lisboa, Portugal
+      </div>
+    </div>
+    <div class="two-col-cell">
+      <div class="cell-label">Cliente</div>
+      <div class="cell-name">Villas Tapas Gourmet</div>
+      <div class="cell-info">Lisboa, Portugal</div>
+    </div>
+  </div>
+
+  <div class="client-box">
+    <div class="client-cell">
+      <label>Período</label>
+      <span>Maio 2026</span>
+    </div>
+    <div class="client-cell">
+      <label>Plano</label>
+      <span>Gestão Mensal</span>
+    </div>
+    <div class="client-cell">
+      <label>Estado</label>
+      <span>Pendente</span>
+    </div>
+  </div>
+
+  <div class="summary-block">
+    <div class="section-title">Resumo do Primeiro Mês</div>
+    <p>Durante este primeiro mês foi realizado um trabalho de organização e arranque da presença digital do restaurante. Procedemos à organização dos perfis nas redes sociais, à criação de conteúdo fotográfico e de vídeo dos pratos, cocktails e ambiente do espaço, e ao planeamento e publicação dos primeiros conteúdos alinhados com a identidade da marca.</p>
+  </div>
+
+  <div class="section-title">Serviços Prestados</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:55%;">Descrição</th>
+        <th>Incluído</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Gestão de Redes Sociais (Mensal)
+          <div class="sub-item">1 visita mensal para foto e vídeo · 12 publicações mensais · Stories semanais</div>
+        </td>
+        <td>✓</td>
+        <td>200 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Extras</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:55%;">Descrição</th>
+        <th>Qtd.</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Modelo — Marta</td>
+        <td>1</td>
+        <td>50 €</td>
+      </tr>
+      <tr>
+        <td>Branding / Identidade Gráfica</td>
+        <td>1</td>
+        <td>100 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <div class="footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="18" height="18">
+        <path fill="#ccc" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+      </svg>
+      <span>Differentt Lab</span>
+    </div>
+    <div class="footer-contact">
+      www.differenttlab.com &nbsp;·&nbsp; Lisboa, Portugal &nbsp;·&nbsp; Pág. 1 / 2
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- PÁGINA 2                               -->
+<!-- ════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30">
+        <path fill="#111" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+      </svg>
+      <span>Differentt Lab</span>
+    </div>
+    <div class="header-meta">
+      <p>Ref. <strong>GRS-2026-05</strong></p>
+      <p>Cliente <strong>Villas Tapas Gourmet</strong></p>
+    </div>
+  </div>
+
+  <div class="total-box">
+    <div class="total-label">Total a Pagar</div>
+    <div class="total-breakdown">
+      Gestão de Redes Sociais · 200 €<br>
+      Extras · 150 €
+    </div>
+    <div class="total-amount">350 €</div>
+  </div>
+
+  <div class="section-title">Objetivos para o Próximo Mês</div>
+  <div class="objectives-grid">
+    <div class="objective-cell">
+      <span class="objective-num">01</span>
+      <span class="objective-text">Marcar dia de gravação e sessão fotográfica</span>
+    </div>
+    <div class="objective-cell">
+      <span class="objective-num">02</span>
+      <span class="objective-text">Definir os vinhos a destacar nas publicações</span>
+    </div>
+    <div class="objective-cell">
+      <span class="objective-num">03</span>
+      <span class="objective-text">Selecionar os pratos a fotografar no próximo mês</span>
+    </div>
+    <div class="objective-cell">
+      <span class="objective-num">04</span>
+      <span class="objective-text">Definir os cocktails de destaque a comunicar</span>
+    </div>
+  </div>
+
+  <div class="next-step">
+    <span class="next-step-label">Próximos Passos</span>
+    <p>Design de menus para manter uma imagem visual coerente e profissional em todos os suportes do restaurante. Criação do perfil do Villas Tapas Gourmet noutras plataformas para aumentar a presença digital. Melhoria e otimização da conta Google para maior visibilidade nas pesquisas e resultados do Google.</p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="18" height="18">
+        <path fill="#ccc" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+      </svg>
+      <span>Differentt Lab</span>
+    </div>
+    <div class="footer-contact">
+      www.differenttlab.com &nbsp;·&nbsp; Lisboa, Portugal &nbsp;·&nbsp; Pág. 2 / 2
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

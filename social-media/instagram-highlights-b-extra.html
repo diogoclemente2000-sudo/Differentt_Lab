@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0a;padding:60px 40px;display:flex;gap:56px;align-items:flex-start;flex-wrap:wrap;}
+.concept{display:flex;flex-direction:column;gap:14px;}
+.concept-label{font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.18);}
+.wrap{display:flex;gap:24px;align-items:center;}
+.hl{width:1080px;height:1920px;background:#000;position:relative;overflow:hidden;flex-shrink:0;}
+.prev{width:200px;height:200px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.07);position:relative;}
+.prev-inner{width:200px;height:355px;position:absolute;top:50%;left:0;transform:translateY(-50%);}
+.prev-inner>div{width:1080px;height:1920px;position:absolute;top:0;left:0;transform:scale(0.1852);transform-origin:top left;}
+.n{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- VARIANT 1 — "Giant Lines"                                      -->
+<!-- Logos tão grandes que só fragmentos das linhas são visíveis    -->
+<!-- Efeito arquitectónico — linhas cruzam o frame como guias       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">Var 1 — Giant Lines</span>
+<div class="wrap">
+<div class="hl" id="v1">
+  <div class="n"></div>
+
+  <!-- Glow central — camada larga, blend suave -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;
+    background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;pointer-events:none;filter:blur(12px);"></div>
+  <!-- Glow central — halo interior, falloff muito gradual -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;
+    background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;pointer-events:none;filter:blur(6px);"></div>
+
+  <!-- BG Logo 1 — quadrante sup-esq, centro em (190,480), sangra topo e esquerda, invertido 180° -->
+  <div style="position:absolute;top:-780px;left:-780px;z-index:2;pointer-events:none;transform:rotate(180deg);">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- BG Logo 2 — quadrante inf-dir, centro em (890,1440), sangra fundo e direita -->
+  <div style="position:absolute;top:540px;left:-10px;z-index:3;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo principal — pequeno, nítido, centrado -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="320" height="320" style="display:block;">
+      <path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Studio label -->
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;pointer-events:none;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span>
+  </div>
+
+  <!-- Vignette edges -->
+  <div style="position:absolute;inset:0;z-index:7;pointer-events:none;
+    background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div>
+
+<!-- Preview circle -->
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.07) 0%,transparent 65%);z-index:0;"></div>
+  <div style="position:absolute;top:-420px;left:-710px;z-index:2;transform:rotate(180deg);">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800"><path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;top:540px;left:-10px;z-index:3;">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800"><path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;">
+    <svg viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span></div>
+  <div style="position:absolute;inset:0;z-index:7;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div></div></div>
+
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- VARIANT 2 — "Blur Depth"                                       -->
+<!-- Depth-of-field: logos de fundo desfocados, centro nítido       -->
+<!-- Blur aumenta com a distância — bokeh atmosférico                -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">Var 2 — Blur Depth</span>
+<div class="wrap">
+<div class="hl" id="v2">
+  <div class="n"></div>
+
+  <!-- Glow central -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:1000px;
+    background:radial-gradient(ellipse,rgba(158,123,182,.1) 0%,transparent 60%);z-index:0;pointer-events:none;"></div>
+
+  <!-- BG Layer 1 — grande, blur pesado, cor roxa saturada -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;
+    filter:blur(22px) opacity(0.6);">
+    <svg viewBox="0 0 71.18 71.18" width="960" height="960" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.5)" stroke-width="1.2"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- BG Layer 2 — médio, blur leve -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;pointer-events:none;
+    filter:blur(7px) opacity(0.75);">
+    <svg viewBox="0 0 71.18 71.18" width="580" height="580" style="display:block;">
+      <path fill="none" stroke="rgba(197,133,184,0.45)" stroke-width="1"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo principal — zero blur, máxima nitidez -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="300" height="300" style="display:block;">
+      <path fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.15"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Halo branco subtil em volta do logo central -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;pointer-events:none;
+    width:340px;height:340px;
+    background:radial-gradient(ellipse,rgba(255,255,255,.04) 0%,transparent 70%);"></div>
+
+  <!-- Studio label -->
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;pointer-events:none;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span>
+  </div>
+
+  <!-- Vignette -->
+  <div style="position:absolute;inset:0;z-index:7;pointer-events:none;
+    background:radial-gradient(ellipse 85% 75% at 50% 50%,transparent 35%,rgba(0,0,0,.6) 100%);"></div>
+</div>
+
+<!-- Preview circle -->
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:1000px;background:radial-gradient(ellipse,rgba(158,123,182,.1) 0%,transparent 60%);z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;filter:blur(22px) opacity(0.6);">
+    <svg viewBox="0 0 71.18 71.18" width="960" height="960"><path fill="none" stroke="rgba(158,123,182,0.5)" stroke-width="1.2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;filter:blur(7px) opacity(0.75);">
+    <svg viewBox="0 0 71.18 71.18" width="580" height="580"><path fill="none" stroke="rgba(197,133,184,0.45)" stroke-width="1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;">
+    <svg viewBox="0 0 71.18 71.18" width="300" height="300"><path fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="1.15" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span></div>
+  <div style="position:absolute;inset:0;z-index:7;background:radial-gradient(ellipse 85% 75% at 50% 50%,transparent 35%,rgba(0,0,0,.6) 100%);"></div>
+</div></div></div>
+
+</div>
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- VAR 6 — "Giant Lines XL" (logos ainda maiores — 2500px)        -->
+<!-- Só fragmentos mínimos das linhas visíveis — quase abstracto    -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">Var 6 — Giant Lines XL</span>
+<div class="wrap">
+<div class="hl" id="v6">
+  <div class="n"></div>
+
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;
+    background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;pointer-events:none;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;
+    background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;pointer-events:none;filter:blur(6px);"></div>
+
+  <!-- Logo 1 — 2500px, sup-esq, invertido -->
+  <div style="position:absolute;top:-1130px;left:-1130px;z-index:2;pointer-events:none;transform:rotate(180deg);">
+    <svg viewBox="0 0 71.18 71.18" width="2500" height="2500" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.10)" stroke-width="0.30"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo 2 — 2500px, inf-dir -->
+  <div style="position:absolute;top:550px;left:-290px;z-index:3;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="2500" height="2500" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.10)" stroke-width="0.30"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo central -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="320" height="320" style="display:block;">
+      <path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;pointer-events:none;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span>
+  </div>
+  <div style="position:absolute;inset:0;z-index:7;pointer-events:none;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div>
+
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;filter:blur(6px);"></div>
+  <div style="position:absolute;top:-1130px;left:-1130px;z-index:2;transform:rotate(180deg);"><svg viewBox="0 0 71.18 71.18" width="2500" height="2500"><path fill="none" stroke="rgba(158,123,182,0.10)" stroke-width="0.30" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:550px;left:-290px;z-index:3;"><svg viewBox="0 0 71.18 71.18" width="2500" height="2500"><path fill="none" stroke="rgba(158,123,182,0.10)" stroke-width="0.30" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;"><svg viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span></div>
+  <div style="position:absolute;inset:0;z-index:7;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- VAR 6B — "Giant Lines XL + Blur"                               -->
+<!-- Mesma diagonal XL mas ambos os logos com blur atmosférico      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">Var 6B — Giant Lines XL + Blur</span>
+<div class="wrap">
+<div class="hl" id="v6b">
+  <div class="n"></div>
+
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;
+    background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;pointer-events:none;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;
+    background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;pointer-events:none;filter:blur(6px);"></div>
+
+  <!-- Logo 1 — 2500px, sup-esq, invertido, blur 16px -->
+  <div style="position:absolute;top:-1130px;left:-1130px;z-index:2;pointer-events:none;transform:rotate(180deg);filter:blur(16px);">
+    <svg viewBox="0 0 71.18 71.18" width="2500" height="2500" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.28)" stroke-width="0.38"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo 2 — 2500px, inf-dir, blur 22px -->
+  <div style="position:absolute;top:550px;left:-290px;z-index:3;pointer-events:none;filter:blur(22px);">
+    <svg viewBox="0 0 71.18 71.18" width="2500" height="2500" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.32)" stroke-width="0.38"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo central — zero blur, nítido -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="320" height="320" style="display:block;">
+      <path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;pointer-events:none;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span>
+  </div>
+  <div style="position:absolute;inset:0;z-index:7;pointer-events:none;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div>
+
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;filter:blur(6px);"></div>
+  <div style="position:absolute;top:-1130px;left:-1130px;z-index:2;transform:rotate(180deg);filter:blur(16px);"><svg viewBox="0 0 71.18 71.18" width="2500" height="2500"><path fill="none" stroke="rgba(158,123,182,0.28)" stroke-width="0.38" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:550px;left:-290px;z-index:3;filter:blur(22px);"><svg viewBox="0 0 71.18 71.18" width="2500" height="2500"><path fill="none" stroke="rgba(158,123,182,0.32)" stroke-width="0.38" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;"><svg viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span></div>
+  <div style="position:absolute;inset:0;z-index:7;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div></div></div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- VAR 1B — "Giant Lines Touching"                                 -->
+<!-- Cópia do Var 1 com logo superior descido até tocar o inferior  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">Var 1B — Giant Lines Touching</span>
+<div class="wrap">
+<div class="hl" id="v1b">
+  <div class="n"></div>
+
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;
+    background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;pointer-events:none;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;
+    background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;pointer-events:none;filter:blur(6px);"></div>
+
+  <!-- Logo 1 — descido de -780 para -260 para tocar o logo inferior -->
+  <div style="position:absolute;top:-490px;left:-780px;z-index:2;pointer-events:none;transform:rotate(180deg);">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo 2 — igual ao Var 1 -->
+  <div style="position:absolute;top:540px;left:-10px;z-index:3;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="1800" height="1800" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+
+  <!-- Logo central -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;">
+    <svg viewBox="0 0 71.18 71.18" width="320" height="320" style="display:block;">
+      <path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;pointer-events:none;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span>
+  </div>
+  <div style="position:absolute;inset:0;z-index:7;pointer-events:none;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div>
+
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1100px;height:1100px;background:radial-gradient(ellipse,rgba(158,123,182,.09) 0%,rgba(158,123,182,.05) 30%,rgba(158,123,182,.02) 55%,transparent 75%);z-index:0;filter:blur(12px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,133,184,.11) 0%,rgba(180,120,182,.06) 40%,rgba(158,123,182,.02) 65%,transparent 85%);z-index:0;filter:blur(6px);"></div>
+  <div style="position:absolute;top:-260px;left:-780px;z-index:2;transform:rotate(180deg);"><svg viewBox="0 0 71.18 71.18" width="1800" height="1800"><path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:540px;left:-10px;z-index:3;"><svg viewBox="0 0 71.18 71.18" width="1800" height="1800"><path fill="none" stroke="rgba(158,123,182,0.11)" stroke-width="0.42" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;"><svg viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;bottom:128px;left:0;right:0;z-index:6;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.8em;text-transform:uppercase;color:rgba(255,255,255,.25);text-indent:.8em;">Studio</span></div>
+  <div style="position:absolute;inset:0;z-index:7;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.55) 100%);"></div>
+</div></div></div>
+</div>
+</div>
+
+
+</body>
+</html>

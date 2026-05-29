@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,200;0,300;0,700;0,900;1,200&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0a;padding:60px 40px;display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap;}
+.concept{display:flex;flex-direction:column;gap:16px;}
+.concept-label{font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+.wrap{display:flex;gap:20px;align-items:center;}
+/* Full slide */
+.hl{width:1080px;height:1920px;background:#000;position:relative;overflow:hidden;flex-shrink:0;}
+/* Circle preview */
+.prev{width:200px;height:200px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.08);position:relative;}
+.prev-inner{width:200px;height:355px;position:absolute;top:50%;left:0;transform:translateY(-50%);}
+.prev-inner > div{width:1080px;height:1920px;position:absolute;top:0;left:0;transform:scale(0.1852);transform-origin:top left;}
+/* noise */
+.n{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT A — "Bleed Outline"                                -->
+<!-- Logo outline oversize, sangra pelas bordas + label fino    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">A — Bleed Outline</span>
+<div class="wrap">
+<div class="hl" id="cA">
+  <div class="n"></div>
+  <!-- X logo outline — ENORME, sangra, rotação leve -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-48%,-50%) rotate(8deg);z-index:2;pointer-events:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="1100" height="1100">
+      <path fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Purple glow centrado sutil -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(158,123,182,.14) 0%,transparent 65%);z-index:1;pointer-events:none;"></div>
+  <!-- Label no topo -->
+  <div style="position:absolute;top:108px;left:0;right:0;z-index:3;display:flex;justify-content:center;">
+    <span style="font-family:'Overpass',sans-serif;font-size:36px;font-weight:200;letter-spacing:.55em;text-transform:uppercase;color:rgba(255,255,255,.5);">Work</span>
+  </div>
+</div>
+<!-- preview -->
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-48%,-50%) rotate(8deg);z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="1100" height="1100"><path fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(158,123,182,.14) 0%,transparent 65%);z-index:1;"></div>
+  <div style="position:absolute;top:108px;left:0;right:0;z-index:3;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:36px;font-weight:200;letter-spacing:.55em;text-transform:uppercase;color:rgba(255,255,255,.5);">Work</span></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT B — "Ghost Layers"                                  -->
+<!-- 3 logos outline sobrepostos a escalas diferentes            -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">B — Ghost Layers</span>
+<div class="wrap">
+<div class="hl" id="cB">
+  <div class="n"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.12) 0%,transparent 65%);z-index:0;"></div>
+  <!-- Layer 1 — enorme, quase invisível -->
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="960" height="960"><path fill="none" stroke="rgba(158,123,182,0.09)" stroke-width="0.55" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <!-- Layer 2 — médio -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="640" height="640"><path fill="none" stroke="rgba(158,123,182,0.22)" stroke-width="0.75" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <!-- Layer 3 — pequeno, sólido -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <!-- Label em baixo -->
+  <div style="position:absolute;bottom:120px;left:0;right:0;z-index:5;display:flex;justify-content:center;">
+    <span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:200;letter-spacing:.6em;text-transform:uppercase;color:rgba(255,255,255,.3);">Studio</span>
+  </div>
+</div>
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.12) 0%,transparent 65%);z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="960" height="960"><path fill="none" stroke="rgba(158,123,182,0.09)" stroke-width="0.55" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="640" height="640"><path fill="none" stroke="rgba(158,123,182,0.22)" stroke-width="0.75" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="320" height="320"><path fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;bottom:120px;left:0;right:0;z-index:5;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:28px;font-weight:200;letter-spacing:.6em;text-transform:uppercase;color:rgba(255,255,255,.3);">Studio</span></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT C — "Half & Half"                                   -->
+<!-- Logo preenchido (metade sup) + outline (metade inf)         -->
+<!-- linha divisória com label                                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">C — Half & Half</span>
+<div class="wrap">
+<div class="hl" id="cC">
+  <div class="n"></div>
+  <!-- glow -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.15) 0%,transparent 60%);z-index:0;"></div>
+  <!-- Logo outline grande -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);z-index:2;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="680" height="680">
+      <path fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Logo fill por cima mas com clip -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);z-index:3;clip-path:inset(0 0 50% 0);">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="680" height="680">
+      <path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Linha divisória com label -->
+  <div style="position:absolute;top:50%;left:0;right:0;transform:translateY(-20px);z-index:4;display:flex;align-items:center;gap:24px;padding:0 80px;">
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.15);"></div>
+    <span style="font-family:'Overpass',sans-serif;font-size:24px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;">Branding</span>
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.15);"></div>
+  </div>
+</div>
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.15) 0%,transparent 60%);z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="680" height="680"><path fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);z-index:3;clip-path:inset(0 0 50% 0);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="680" height="680"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:0;right:0;transform:translateY(-20px);z-index:4;display:flex;align-items:center;gap:24px;padding:0 80px;"><div style="flex:1;height:1px;background:rgba(255,255,255,.15);"></div><span style="font-family:'Overpass',sans-serif;font-size:24px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;">Branding</span><div style="flex:1;height:1px;background:rgba(255,255,255,.15);"></div></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT D — "Type Dominant"                                 -->
+<!-- Palavra gigante + logo pequeno no canto                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">D — Type Dominant</span>
+<div class="wrap">
+<div class="hl" id="cD">
+  <div class="n"></div>
+  <!-- glow topo esquerdo sutil -->
+  <div style="position:absolute;top:-200px;left:-100px;width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.13) 0%,transparent 65%);z-index:0;"></div>
+  <!-- glow fundo direito -->
+  <div style="position:absolute;bottom:-570px;left:-200px;width:1200px;height:1200px;background:radial-gradient(ellipse,rgba(158,123,182,.17) 0%,rgba(120,80,160,.07) 40%,transparent 70%);z-index:0;filter:blur(20px);"></div>
+  <!-- WORK purple background — maior, roxo, blur -->
+  <!-- Logo gigante outline roxo + blur -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;filter:blur(2px);">
+    <svg viewBox="0 0 71.18 71.18" width="900" height="900" style="display:block;">
+      <path fill="none" stroke="rgba(158,123,182,0.5)" stroke-width="0.8"
+        d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Palavra WORK gigante, vertical centered -->
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;">
+    <span style="font-family:'Overpass',sans-serif;font-size:360px;font-weight:900;letter-spacing:-.05em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.70);writing-mode:vertical-lr;text-orientation:mixed;line-height:1;">WORK</span>
+  </div>
+  <!-- Logo pequeno no canto inferior direito -->
+  <div style="position:absolute;bottom:100px;right:80px;z-index:3;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="80" height="80"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <!-- Label horizontal pequeno topo -->
+  <div style="position:absolute;top:100px;left:80px;z-index:3;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:300;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.35);">Portfolio</span>
+  </div>
+</div>
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:-200px;left:-100px;width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,.13) 0%,transparent 65%);z-index:0;"></div>
+  <div style="position:absolute;bottom:-570px;left:-200px;width:1200px;height:1200px;background:radial-gradient(ellipse,rgba(158,123,182,.17) 0%,rgba(120,80,160,.07) 40%,transparent 70%);z-index:0;filter:blur(20px);"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;"><svg viewBox="0 0 71.18 71.18" width="5400" height="5400" style="display:block;"><path fill="none" stroke="rgba(158,123,182,0.65)" stroke-width="1" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;"><span style="font-family:'Overpass',sans-serif;font-size:360px;font-weight:900;letter-spacing:-.05em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.70);writing-mode:vertical-lr;text-orientation:mixed;line-height:1;">WORK</span></div>
+  <div style="position:absolute;bottom:100px;right:80px;z-index:3;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="80" height="80"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:100px;left:80px;z-index:3;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:300;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.35);">Portfolio</span></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT E — "Purple Fill + Outline Echo"                   -->
+<!-- Background púrpura, logo fill branco + outline eco atrás   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">E — Purple + Echo</span>
+<div class="wrap">
+<div class="hl" id="cE" style="background:#0e0814;">
+  <div class="n"></div>
+  <!-- glow fundo -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1400px;height:1400px;background:radial-gradient(ellipse,rgba(158,123,182,.22) 0%,rgba(80,30,120,.08) 50%,transparent 70%);z-index:0;"></div>
+  <!-- Outline eco grande -->
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="780" height="780">
+      <path fill="none" stroke="rgba(158,123,182,0.15)" stroke-width="0.8" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Logo fill -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="380" height="380">
+      <path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Label topo -->
+  <div style="position:absolute;top:112px;left:0;right:0;z-index:4;display:flex;justify-content:center;">
+    <span style="font-family:'Overpass',sans-serif;font-size:30px;font-weight:200;letter-spacing:.55em;text-transform:uppercase;color:rgba(197,133,184,.55);">Services</span>
+  </div>
+  <!-- dot grid decorativo -->
+  <div style="position:absolute;bottom:100px;left:0;right:0;z-index:4;display:flex;justify-content:center;gap:16px;">
+    <div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.3);"></div>
+    <div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.6);"></div>
+    <div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.3);"></div>
+  </div>
+</div>
+<div class="prev"><div class="prev-inner"><div style="background:#0e0814;">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1400px;height:1400px;background:radial-gradient(ellipse,rgba(158,123,182,.22) 0%,rgba(80,30,120,.08) 50%,transparent 70%);z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="780" height="780"><path fill="none" stroke="rgba(158,123,182,0.15)" stroke-width="0.8" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="380" height="380"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:112px;left:0;right:0;z-index:4;display:flex;justify-content:center;"><span style="font-family:'Overpass',sans-serif;font-size:30px;font-weight:200;letter-spacing:.55em;text-transform:uppercase;color:rgba(197,133,184,.55);">Services</span></div>
+  <div style="position:absolute;bottom:100px;left:0;right:0;z-index:4;display:flex;justify-content:center;gap:16px;"><div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.3);"></div><div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.6);"></div><div style="width:5px;height:5px;border-radius:50%;background:rgba(158,123,182,.3);"></div></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT F — "Scan Line"                                     -->
+<!-- Logo outline centrado + linha horizontal de scan            -->
+<!-- texto rotacionado na vertical                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="concept">
+<span class="concept-label">F — Scan Line</span>
+<div class="wrap">
+<div class="hl" id="cF">
+  <div class="n"></div>
+  <!-- Logo outline grande centrado -->
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="700" height="700">
+      <path fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+    </svg>
+  </div>
+  <!-- Linha scan horizontal -->
+  <div style="position:absolute;top:50%;left:0;right:0;transform:translateY(-2px);z-index:3;display:flex;align-items:center;gap:0;">
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);"></div>
+  </div>
+  <!-- Linha acima scan -->
+  <div style="position:absolute;top:calc(50% - 16px);left:0;right:0;z-index:3;">
+    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);"></div>
+  </div>
+  <!-- Linha abaixo scan -->
+  <div style="position:absolute;top:calc(50% + 16px);left:0;right:0;z-index:3;">
+    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);"></div>
+  </div>
+  <!-- Texto vertical esquerdo -->
+  <div style="position:absolute;left:72px;top:0;bottom:0;z-index:4;display:flex;align-items:center;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.25);writing-mode:vertical-rl;transform:rotate(180deg);">Differentt Lab</span>
+  </div>
+  <!-- Texto vertical direito — categoria -->
+  <div style="position:absolute;right:72px;top:0;bottom:0;z-index:4;display:flex;align-items:center;">
+    <span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;">Work</span>
+  </div>
+  <!-- glow subtil -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(158,123,182,.1) 0%,transparent 65%);z-index:1;"></div>
+</div>
+<div class="prev"><div class="prev-inner"><div>
+  <div style="position:absolute;top:50%;left:46.5%;transform:translate(-50%,-50%);z-index:2;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="700" height="700"><path fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg></div>
+  <div style="position:absolute;top:50%;left:0;right:0;transform:translateY(-2px);z-index:3;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);"></div></div>
+  <div style="position:absolute;left:72px;top:0;bottom:0;z-index:4;display:flex;align-items:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.25);writing-mode:vertical-rl;transform:rotate(180deg);">Differentt Lab</span></div>
+  <div style="position:absolute;right:72px;top:0;bottom:0;z-index:4;display:flex;align-items:center;"><span style="font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;">Work</span></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(158,123,182,.1) 0%,transparent 65%);z-index:1;"></div>
+</div></div></div>
+</div>
+</div>
+
+</body>
+</html>

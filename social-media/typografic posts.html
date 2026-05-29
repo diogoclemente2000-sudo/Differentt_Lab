@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,200;0,300;0,700;0,800;0,900;1,200;1,300&family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;padding:60px 40px;display:flex;flex-direction:column;gap:120px;align-items:center;}
+.carousel-label{width:1080px;font-family:'Overpass',sans-serif;font-size:13px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.2);padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06);}
+.carousel{width:1080px;display:flex;flex-direction:column;gap:4px;}
+.slide{width:1080px;height:1350px;background:#000;position:relative;overflow:hidden;font-family:'Nunito Sans',sans-serif;color:#fff;flex-shrink:0;}
+.noise{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+.content{position:relative;z-index:2;width:100%;height:100%;padding:80px;display:flex;flex-direction:column;}
+.eyebrow{font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#9e7bb6;}
+.divider{height:1px;background:rgba(158,123,182,0.28);width:100%;}
+.glow-tl{position:absolute;top:-200px;left:-100px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(158,123,182,0.22) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-br{position:absolute;bottom:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,133,184,0.16) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.glow-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(158,123,182,0.13) 0%,transparent 60%);pointer-events:none;z-index:0;}
+.tag{padding:14px 28px;border:1px solid rgba(158,123,182,0.3);border-radius:100px;font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.14em;color:#9e7bb6;}
+.tag-ghost{padding:14px 28px;border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-family:'Overpass',sans-serif;font-size:22px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,0.35);}
+.footer-line{font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,0.2);}
+.slide-number{font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.15);}
+
+/* S2/S3 title elements — Nunito Sans Medium */
+.t-med{font-family:'Nunito Sans',sans-serif;font-weight:600;}
+/* S2/S3 body/descriptive text — Nunito Sans Light */
+.t-light{font-family:'Nunito Sans',sans-serif;font-weight:300;}
+</style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 1 · "Sabes porque é que ninguém se lembra        -->
+<!--           da tua marca?"                              -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 01 — Memória de Marca · 3 slides</div>
+<div class="carousel">
+
+<!-- P1·S1 — Hook -->
+<div class="slide">
+  <div class="glow-tl"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Branding & Comunicação</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:114px;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase;">SABES<br>PORQUE<br><span style="color:transparent;-webkit-text-stroke:2.5px #9e7bb6;">NINGUÉM</span><br>SE LEMBRA<br>DA TUA<br>MARCA?</h1>
+    </div>
+  </div>
+</div>
+
+<!-- P1·S2 — O Problema -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;bottom:-100px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,133,184,0.12) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Problema</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:52px;font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:60px;">Porque a maioria das marcas comunica exatamente da mesma forma:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesmas cores</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesmos layouts</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesmas frases</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#c585b8;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#c585b8;">Mesma presença online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P1·S3 — Conclusão -->
+<div class="slide">
+  <div class="glow-c"></div><div class="noise"></div>
+  <div style="position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="580" height="580" opacity=".04"><path fill="#9e7bb6" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+  </div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="eyebrow">A Solução</div><span class="slide-number">03 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:40px;">
+      <h1 style="font-family:'Nunito Sans',sans-serif;font-size:104px;font-weight:600;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">MARCAS<br>MEMORÁVEIS<br>NÃO TENTAM<br>SER <span style="color:#9e7bb6;">"BONITAS".</span></h1>
+      <div style="height:1px;background:linear-gradient(90deg,rgba(158,123,182,0.7),rgba(197,133,184,0.3),transparent);"></div>
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:38px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;max-width:860px;">Tentam ser <strong style="color:#fff;font-weight:600;">reconhecíveis</strong>, <strong style="color:#fff;font-weight:600;">consistentes</strong> e <strong style="color:#fff;font-weight:600;">diferentes</strong>.</p>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 1 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 2 · "O teu Instagram está a atrair clientes…    -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 02 — Instagram como ferramenta · 3 slides</div>
+<div class="carousel">
+
+<!-- P2·S1 -->
+<div class="slide">
+  <div class="glow-br"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:36px;">
+      <div class="eyebrow">Social Media</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:106px;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase;">O TEU<br>INSTAGRAM<br>ESTÁ A<br>ATRAIR<br><span style="color:#9e7bb6;">CLIENTES…</span></h1>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div>
+        <h2 style="font-family:'Overpass',sans-serif;font-size:72px;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,0.3);">OU LIKES?</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P2·S2 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;top:-100px;left:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(158,123,182,0.15) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">A Realidade</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px;">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:120px;background:#9e7bb6;border-radius:2px;flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <h2 style="font-family:'Nunito Sans',sans-serif;font-size:72px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;margin-bottom:20px;">LIKES NÃO SIGNIFICAM CONFIANÇA.</h2>
+          <p style="font-family:'Nunito Sans',sans-serif;font-size:36px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;">E confiança é o que gera vendas.</p>
+        </div>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);"></div>
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:80px;background:rgba(197,133,184,0.5);border-radius:2px;flex-shrink:0;margin-top:8px;"></div>
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:42px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.5;">Um feed bonito <em style="color:rgba(255,255,255,0.7);">sem estratégia</em> raramente converte.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P2·S3 -->
+<div class="slide">
+  <div class="glow-tl" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Que Deve Fazer</div><span class="slide-number">03 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:48px;font-weight:600;letter-spacing:-.02em;margin-bottom:52px;line-height:1.1;">A tua comunicação deve:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Transmitir autoridade</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Criar perceção de valor</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mostrar posicionamento</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#9e7bb6;">Gerar intenção de compra</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#9e7bb6;flex-shrink:0;box-shadow:0 0 12px rgba(158,123,182,0.8);"></span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 2 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 3 · "Porque é que algumas marcas parecem caras"  -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 03 — Perceção de Valor · 3 slides</div>
+<div class="carousel">
+
+<!-- P3·S1 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;bottom:-80px;left:-60px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(197,133,184,0.14) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Branding & Valor</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:98px;font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">PORQUE É<br>QUE ALGUMAS<br>MARCAS<br>PARECEM<br><span style="color:#9e7bb6;">CARAS…</span></h1>
+      <p style="font-size:48px;font-weight:200;color:rgba(255,255,255,0.35);font-style:italic;letter-spacing:.02em;">mesmo sem dizer preços?</p>
+    </div>
+  </div>
+</div>
+
+<!-- P3·S2 -->
+<div class="slide">
+  <div class="glow-c" style="opacity:.7;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">A Resposta</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:44px;">
+      <h2 style="font-family:'Nunito Sans',sans-serif;font-size:80px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.9;">PERCEÇÃO VISUAL<br>ALTERA<br>PERCEÇÃO<br><span style="color:#9e7bb6;">DE VALOR.</span></h2>
+      <div style="height:1px;background:rgba(158,123,182,0.28);"></div>
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:38px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.65;max-width:880px;">Design, tipografia, espaçamento, fotografia e consistência mudam completamente a forma como a marca é <em style="color:rgba(255,255,255,0.7);">percebida</em>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- P3·S3 -->
+<div class="slide">
+  <div class="glow-br" style="opacity:.6;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="eyebrow">Marcas Premium</div><span class="slide-number">03 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px;">
+      <h1 style="font-family:'Nunito Sans',sans-serif;font-size:120px;font-weight:600;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">MARCAS<br>PREMIUM<br>NÃO<br><span style="color:transparent;-webkit-text-stroke:2.5px #9e7bb6;">GRITAM.</span></h1>
+      <div style="height:1px;background:linear-gradient(90deg,rgba(158,123,182,0.7),rgba(197,133,184,0.3),transparent);"></div>
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;">Comunicam com <strong style="color:#fff;font-weight:600;">clareza</strong>, <strong style="color:#fff;font-weight:600;">confiança</strong> e <strong style="color:#9e7bb6;font-weight:600;">direção visual.</strong></p>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 3 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 4 · "O teu website está a vender ou existe?"     -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 04 — Website como ferramenta de vendas · 3 slides</div>
+<div class="carousel">
+
+<!-- P4·S1 -->
+<div class="slide">
+  <div class="glow-tl"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Web Design & Estratégia</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:112px;font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">O TEU<br>WEBSITE<br>ESTÁ A<br><span style="color:#9e7bb6;">VENDER…</span></h1>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></div>
+        <h2 style="font-family:'Overpass',sans-serif;font-size:64px;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,0.28);white-space:nowrap;">OU EXISTE?</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P4·S2 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;top:-100px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,133,184,0.12) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Diagnóstico</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:48px;font-weight:600;letter-spacing:-.02em;margin-bottom:44px;line-height:1.1;">A maioria dos websites:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;gap:28px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:28px;font-weight:600;color:rgba(197,133,184,0.5);">✕</span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">São lentos</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:28px;font-weight:600;color:rgba(197,133,184,0.5);">✕</span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">São confusos</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:28px;font-weight:600;color:rgba(197,133,184,0.5);">✕</span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Sem direção</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:26px 0;">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:28px;font-weight:600;color:rgba(197,133,184,0.5);">✕</span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Sem estratégia de conversão</span>
+        </div>
+      </div>
+      <div style="margin-top:40px;padding:28px 36px;background:rgba(197,133,184,0.06);border:1px solid rgba(197,133,184,0.15);border-radius:16px;">
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:38px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.5;">Resultado? O visitante entra… e sai.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P4·S3 -->
+<div class="slide">
+  <div class="glow-tl" style="opacity:.4;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Que Deve Fazer</div><span class="slide-number">03 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:48px;font-weight:600;letter-spacing:-.02em;margin-bottom:44px;line-height:1.1;">Um website deve:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Captar atenção rapidamente</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Transmitir confiança</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Simplificar a navegação</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0;">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#9e7bb6;">Transformar visitas em contactos</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#9e7bb6;flex-shrink:0;box-shadow:0 0 12px rgba(158,123,182,0.8);"></span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 4 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 5 · "Se a tua marca desaparecesse hoje"          -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 05 — Ligação Emocional com a Marca · 3 slides</div>
+<div class="carousel">
+
+<!-- P5·S1 -->
+<div class="slide">
+  <div class="glow-br"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Identidade de Marca</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:88px;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase;">SE A TUA<br>MARCA<br>DESAPARECESSE<br>HOJE…</h1>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <div style="width:48px;height:2px;background:#9e7bb6;flex-shrink:0;border-radius:2px;"></div>
+        <h2 style="font-family:'Overpass',sans-serif;font-size:54px;font-weight:200;color:rgba(255,255,255,0.45);font-style:italic;">alguém sentia falta?</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P5·S2 -->
+<div class="slide">
+  <div class="glow-c" style="opacity:.6;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Que Diferencia</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px;">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:100px;background:rgba(158,123,182,0.3);border-radius:2px;flex-shrink:0;margin-top:8px;"></div>
+        <h2 style="font-family:'Nunito Sans',sans-serif;font-size:64px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;color:rgba(255,255,255,0.45);">Muitas empresas<br>vendem produtos.</h2>
+      </div>
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:120px;background:#9e7bb6;border-radius:2px;flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <h2 style="font-family:'Nunito Sans',sans-serif;font-size:68px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;margin-bottom:20px;">Poucas criam<br><span style="color:#9e7bb6;">ligação emocional.</span></h2>
+          <p style="font-family:'Nunito Sans',sans-serif;font-size:36px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;">E é isso que diferencia marcas esquecidas de marcas fortes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P5·S3 -->
+<div class="slide">
+  <div class="glow-tl" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">Marcas Que Ficam</div><span class="slide-number">03 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:48px;font-weight:600;letter-spacing:-.02em;margin-bottom:44px;line-height:1.1;">As marcas que ficam na mente das pessoas:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Têm identidade</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Têm visão</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Têm posicionamento</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:30px 0;">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#9e7bb6;">Criam comunidade</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#9e7bb6;flex-shrink:0;box-shadow:0 0 12px rgba(158,123,182,0.8);"></span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 5 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 6 · "A tua marca parece atual ou parada em 2021" -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 06 — Relevância e Evolução · 3 slides</div>
+<div class="carousel">
+
+<!-- P6·S1 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(158,123,182,0.16) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Evolução de Marca</div>
+      <div>
+        <h1 style="font-family:'Overpass',sans-serif;font-size:112px;font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;margin-bottom:20px;">A TUA MARCA<br>PARECE<br><span style="color:#9e7bb6;">ATUAL…</span></h1>
+        <div style="display:flex;align-items:center;gap:20px;">
+          <div style="width:48px;height:2px;background:rgba(255,255,255,0.15);flex-shrink:0;border-radius:2px;"></div>
+          <h2 style="font-family:'Overpass',sans-serif;font-size:64px;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,0.25);">OU 2021?</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P6·S2 -->
+<div class="slide">
+  <div class="glow-br" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">A Realidade</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:44px;">
+      <h2 style="font-family:'Nunito Sans',sans-serif;font-size:72px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.9;">O DIGITAL<br>EVOLUI<br>RAPIDAMENTE.</h2>
+      <div style="height:1px;background:rgba(158,123,182,0.28);"></div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;">Marcas desatualizadas transmitem <em style="color:rgba(255,255,255,0.7);">falta de evolução</em>.</p>
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;color:#9e7bb6;letter-spacing:-.02em;">Visualmente… o mercado percebe.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P6·S3 -->
+<div class="slide">
+  <div class="glow-tl" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="eyebrow">A Atualização</div><span class="slide-number">03 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:40px;">
+      <h1 style="font-family:'Nunito Sans',sans-serif;font-size:100px;font-weight:600;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">ATUALIZAR<br>UMA MARCA<br>NÃO É<br><span style="color:transparent;-webkit-text-stroke:2.5px #9e7bb6;">"SEGUIR</span><br><span style="color:transparent;-webkit-text-stroke:2.5px #9e7bb6;">TENDÊNCIAS".</span></h1>
+      <div style="height:1px;background:linear-gradient(90deg,rgba(158,123,182,0.7),rgba(197,133,184,0.3),transparent);"></div>
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:38px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;">É garantir <strong style="color:#fff;font-weight:600;">relevância</strong>, <strong style="color:#fff;font-weight:600;">clareza</strong> e <strong style="color:#9e7bb6;font-weight:600;">competitividade.</strong></p>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 6 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 7 · "O conteúdo visual está alinhado com         -->
+<!--           o preço que cobras?"                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 07 — Coerência Visual e Preço · 3 slides</div>
+<div class="carousel">
+
+<!-- P7·S1 -->
+<div class="slide">
+  <div class="glow-c" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Posicionamento Visual</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:88px;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase;">O CONTEÚDO<br>VISUAL<br>DA TUA MARCA<br>ESTÁ ALINHADO<br>COM O <span style="color:#9e7bb6;">PREÇO</span><br>QUE COBRAS?</h1>
+    </div>
+  </div>
+</div>
+
+<!-- P7·S2 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;top:-100px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,133,184,0.14) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Problema</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:48px;">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="width:3px;min-height:100px;background:rgba(197,133,184,0.5);border-radius:2px;flex-shrink:0;margin-top:8px;"></div>
+        <div>
+          <h2 style="font-family:'Nunito Sans',sans-serif;font-size:60px;font-weight:600;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;margin-bottom:20px;">Se cobras premium mas comunicas de forma amadora…</h2>
+          <p style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.5;">o cliente sente <em style="color:rgba(255,255,255,0.7);">incoerência</em>.</p>
+        </div>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);"></div>
+      <div style="padding:32px 40px;background:rgba(197,133,184,0.06);border:1px solid rgba(197,133,184,0.15);border-radius:20px;">
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;letter-spacing:-.02em;text-transform:uppercase;color:#c585b8;">Incoerência<br>reduz confiança.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P7·S3 -->
+<div class="slide">
+  <div class="glow-br" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Alinhamento</div><span class="slide-number">03 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:52px;font-weight:600;letter-spacing:-.02em;margin-bottom:44px;line-height:1.1;">Marcas fortes alinham:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Preço</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Comunicação</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Design</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Posicionamento</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:rgba(158,123,182,0.4);flex-shrink:0;"></span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 0;">
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:40px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#9e7bb6;">Experiência visual</span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#9e7bb6;flex-shrink:0;box-shadow:0 0 12px rgba(158,123,182,0.8);"></span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 7 -->
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- POST 8 · "A tua marca tem uma voz própria?"           -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="carousel-label">Post 08 — Voz de Marca · 3 slides</div>
+<div class="carousel">
+
+<!-- P8·S1 -->
+<div class="slide">
+  <div class="glow-br"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,0.25);">DIFFERENTT LAB</span>
+      </div>
+      <span class="slide-number">01 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <div class="eyebrow">Branding & Comunicação</div>
+      <h1 style="font-family:'Overpass',sans-serif;font-size:112px;font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">A TUA<br>MARCA<br>TEM<br><span style="color:#9e7bb6;">VOZ<br>PRÓPRIA?</span></h1>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+        <h2 style="font-family:'Overpass',sans-serif;font-size:52px;font-weight:900;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.22);white-space:nowrap;">OU SOA IGUAL?</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P8·S2 -->
+<div class="slide">
+  <div class="noise"></div>
+  <div style="position:absolute;top:-100px;right:-80px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(158,123,182,0.13) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <div class="eyebrow">O Problema</div><span class="slide-number">02 / 03</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:52px;font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:60px;">Muitas marcas comunicam sem personalidade:</p>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesmos termos genéricos</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesmo call-to-action</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#9e7bb6;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;">Mesma linguagem neutra</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;padding:28px 0;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#c585b8;flex-shrink:0;"></span>
+          <span style="font-family:'Nunito Sans',sans-serif;font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:-.02em;color:#c585b8;">Mesmo tom impessoal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P8·S3 -->
+<div class="slide">
+  <div class="glow-tl" style="opacity:.5;"></div><div class="noise"></div>
+  <div class="content" style="justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="eyebrow">A Diferença</div><span class="slide-number">03 / 03</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:32px;">
+      <h1 style="font-family:'Nunito Sans',sans-serif;font-size:96px;font-weight:600;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;">MARCAS<br>FORTES NÃO<br>FALAM.<br><span style="color:#9e7bb6;">CONVERSAM.</span></h1>
+      <div style="height:1px;background:linear-gradient(90deg,rgba(158,123,182,0.7),rgba(197,133,184,0.3),transparent);"></div>
+      <p style="font-family:'Nunito Sans',sans-serif;font-size:38px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.55;max-width:860px;">A voz de marca é o que torna a comunicação <strong style="color:#fff;font-weight:600;">reconhecível</strong>, <strong style="color:#fff;font-weight:600;">consistente</strong> e <strong style="color:#9e7bb6;font-weight:600;">humana.</strong></p>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="footer-line">differenttlab.com</span><span class="footer-line">@differentt_lab</span>
+    </div>
+  </div>
+</div>
+</div><!-- /carousel 8 -->
+
+
+</body>
+</html>

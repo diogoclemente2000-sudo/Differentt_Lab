@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&family=Overpass:wght@200;300;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0d0d0d;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:60px;}
+.slide{
+  width:1080px;
+  height:1920px;
+  background:#4e6998;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+</style>
+</head>
+<body>
+
+<div class="slide" id="cafe-sergio-story">
+
+  <!-- Grain texture -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.06;mix-blend-mode:overlay;pointer-events:none;z-index:1;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <rect width="100%" height="100%" filter="url(#grain)"/>
+  </svg>
+
+  <!-- Vignette -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,.35) 100%);"></div>
+
+  <!-- CONTENT WRAPPER -->
+  <div style="position:absolute;inset:0;z-index:2;padding:160px 80px 140px;display:flex;flex-direction:column;justify-content:space-between;">
+
+    <!-- TOP: logo -->
+    <div style="display:flex;align-items:center;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="38" height="38">
+          <path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/>
+        </svg>
+        <span style="font-family:'Nunito Sans',sans-serif;font-size:22px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);">Differentt Lab</span>
+      </div>
+    </div>
+
+    <!-- CENTRE: headline + body -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 0 60px;">
+
+      <!-- Small label + line -->
+      <div style="display:flex;align-items:center;gap:20px;margin-bottom:44px;">
+        <span style="font-family:'Overpass',sans-serif;font-size:20px;font-weight:700;
+          letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);">Design de Produto & Vídeo 3D</span>
+        <div style="flex:1;height:1px;background:rgba(255,255,255,.2);"></div>
+      </div>
+
+      <!-- Big headline -->
+      <div style="width:fit-content;align-self:flex-start;">
+        <h1 style="font-family:'Overpass',sans-serif;font-weight:900;
+          letter-spacing:-.03em;text-transform:uppercase;line-height:.88;margin-bottom:0;">
+          <span style="display:block;font-size:158px;color:#fff;">CAFÉ</span>
+          <span style="display:block;font-size:158px;color:transparent;-webkit-text-stroke:2.5px rgba(255,255,255,.5);">SÉRGIO.</span>
+        </h1>
+
+        <!-- Body copy -->
+        <p style="font-family:'Nunito Sans',sans-serif;font-size:28px;font-weight:300;text-transform:uppercase;
+          line-height:1.5;color:rgba(255,255,255,.8);margin-top:16px;
+          text-align:left;width:750px;">
+          Foi desenvolvida uma <span style="color:#fff;">maquete conceptual</span> focada no design de produto e embalagem, criando uma identidade sofisticada e contemporânea. O projeto incluiu também a produção de um <span style="color:#fff;">vídeo 3D</span> para apresentar a identidade da marca.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM: footer -->
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'Nunito Sans',sans-serif;font-size:20px;font-weight:300;
+        letter-spacing:.08em;color:rgba(255,255,255,.3);">www.differenttlab.com</span>
+      <span style="font-family:'Nunito Sans',sans-serif;font-size:20px;font-weight:300;
+        letter-spacing:.08em;color:rgba(255,255,255,.3);">@differentt_lab</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
