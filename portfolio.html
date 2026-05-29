@@ -66,33 +66,27 @@
     }
 
     /* HERO */
-    .page-hero { position: relative; display: flex; align-items: flex-end; overflow: visible; padding: 0; background: linear-gradient(to bottom, #000 80%, transparent 100%); padding-bottom: 320px; margin-bottom: -320px; }
-    .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0) 100%); z-index: 4; pointer-events: none; }
-    .hero-inner { display: flex; align-items: flex-end; justify-content: center; gap: 200px; width: 100%; position: relative; z-index: 1; padding-top: 140px; }
-    .hero-left { position: relative; z-index: 2; flex: 0 0 auto; padding: 160px 0 80px 48px; }
-    .hero-right { position: relative; z-index: 1; flex: 0 0 35%; max-width: 700px; align-self: flex-end; pointer-events: none; }
-    .hero-right img { width: 100%; height: auto; object-fit: contain; object-position: center bottom; display: block; transform: translateY(80px); opacity: 0.50; filter: grayscale(100%); }
+    .page-hero { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 220px 48px 110px; background: linear-gradient(to bottom, #000 80%, transparent 100%); text-align: center; }
+    .page-hero::before { content: ''; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); width: 980px; height: 620px; max-width: 110%; background: radial-gradient(ellipse, rgba(158,123,182,0.20) 0%, rgba(197,133,184,0.06) 38%, transparent 68%); pointer-events: none; z-index: 0; }
+    .hero-inner { display: flex; justify-content: center; width: 100%; position: relative; z-index: 1; }
+    .hero-left { position: relative; z-index: 2; max-width: 800px; padding: 0; }
     .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; }
     .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(48px, 7vw, 110px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 28px; }
-    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 420px; margin-bottom: 40px; }
-    .hero-actions { display: flex; align-items: center; gap: 28px; }
+    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 40px; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 28px; }
     .hero-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .hero-link:hover { color: #9e7bb6; }
     @media (max-width: 1024px) {
-      .page-hero { min-height: auto; padding: 140px 0 0; }
-      .hero-inner { flex-direction: column; gap: 0; }
-      .hero-left { flex: none; width: 100%; padding: 0 48px 48px; }
-      .hero-right { flex: none; width: 100%; }
-      .hero-right img { mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, transparent 100%); }
+      .page-hero { padding: 170px 48px 80px; }
+      .hero-left { width: 100%; }
     }
     @media (max-width: 600px) {
-      .hero-left { padding: 120px 24px 40px; }
-      .hero-right { display: none; }
-      .page-hero { padding: 0; margin-bottom: 0; padding-bottom: 0; }
+      .page-hero { padding: 140px 24px 64px; }
+      .hero-actions { flex-direction: column; gap: 18px; }
     }
 
     /* FILTER BAR */
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 48px 48px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 5; }
+    .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0 48px 48px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 5; }
     .filter-tab { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 10px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: rgba(255,255,255,0.35); cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
     .filter-tab:hover { border-color: rgba(158,123,182,0.4); color: rgba(255,255,255,0.7); }
     .filter-tab.active { border-color: rgba(158,123,182,0.5); background: rgba(158,123,182,0.15); color: #9e7bb6; }
@@ -236,9 +230,6 @@
         <a href="./contactos" class="btn-primary" style="padding:14px 36px;font-size:14px;">Trabalhar Connosco</a>
         <a href="./nos" class="hero-link">Sobre Nós →</a>
       </div>
-    </div>
-    <div class="hero-right">
-      <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/1112.png" alt="Differentt Lab – Agência criativa em Lisboa" style="filter: grayscale(1) brightness(2.0) contrast(1.2);">
     </div>
   </div>
 </section>
