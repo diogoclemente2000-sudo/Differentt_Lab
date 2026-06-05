@@ -10,3 +10,6 @@ upload-video.mjs
 social-media/
 Propostas/
 nexus assets/
+
+# Local Netlify folder
+.netlify

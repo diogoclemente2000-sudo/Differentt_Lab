@@ -235,11 +235,19 @@
     .two-col .section-body { max-width: 100%; }
 
     /* CARDS GRID */
-    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
-    .card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px 32px; }
-    .card-icon { width: 40px; height: 40px; background: rgba(158,123,182,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #9e7bb6; }
-    .card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
-    .card p { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.45); }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .card { background: linear-gradient(140deg, rgba(158,123,182,.08) 0%, rgba(10,10,10,1) 65%); border: 1px solid rgba(158,123,182,.22); border-radius: 16px; padding: 24px 22px; box-shadow: 0 4px 32px rgba(158,123,182,.06), inset 0 1px 0 rgba(255,255,255,.04); transition: border-color .2s, box-shadow .2s; }
+    .card:hover { border-color: rgba(158,123,182,.4); box-shadow: 0 8px 40px rgba(158,123,182,.12), inset 0 1px 0 rgba(255,255,255,.06); }
+    .card-icon { width: 36px; height: 36px; background: rgba(158,123,182,0.14); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: #9e7bb6; }
+    .card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 0; }
+    .card p { display: none; }
+
+    /* BENEFITS */
+    .benefits-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .benefit-item { background: linear-gradient(140deg, rgba(158,123,182,.08) 0%, rgba(10,10,10,1) 65%); border: 1px solid rgba(158,123,182,.22); border-radius: 16px; padding: 28px 24px; display: flex; align-items: flex-start; gap: 16px; box-shadow: 0 4px 32px rgba(158,123,182,.05), inset 0 1px 0 rgba(255,255,255,.04); }
+    .benefit-item-num { font-family: 'Overpass', sans-serif; font-size: 32px; font-weight: 900; color: #9e7bb6; line-height: 1; opacity: .5; flex-shrink: 0; margin-top: 2px; }
+    .benefit-item h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #fff; margin-bottom: 6px; }
+    .benefit-item p { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,.4); }
 
     /* PROCESS */
     .process-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; }
@@ -432,7 +440,7 @@
       .badge-1 { left: calc(50% + 80px); }
       .badge-2 { left: calc(50% + 180px); }
       .badge-3 { left: calc(50% - 300px); }
-      .cards-grid, .benefits-grid, .who-grid, .examples-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid, .benefits-strip, .who-grid, .examples-grid { grid-template-columns: 1fr 1fr; }
       .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
       .donut-wrap { margin: 0 auto; }
       .two-col { grid-template-columns: 1fr; gap: 40px; }
@@ -500,7 +508,11 @@
       .hero-badge { display: none !important; }
       .section { padding: 56px 24px; }
       .divider { margin: 0 24px; }
-      .cards-grid, .benefits-grid, .who-grid, .examples-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .cards-grid .card { padding: 16px 14px; border-radius: 12px; }
+      .cards-grid .card-icon { width: 28px; height: 28px; border-radius: 8px; margin-bottom: 10px; }
+      .cards-grid .card h3 { font-size: 11px; }
+      .benefits-strip, .who-grid, .examples-grid { grid-template-columns: 1fr; }
       .mini-stats { gap: 28px; flex-wrap: wrap; }
       .process-step { flex-direction: column; gap: 12px; }
       .step-num { width: auto; }
@@ -685,28 +697,10 @@
 
 <hr class="divider">
 
-<!-- SECTION 1: WHY A PROFESSIONAL WEBSITE -->
-<section class="section">
-  <div class="two-col">
-    <div>
-      <div class="section-eyebrow">Porquê investir</div>
-      <h2 class="section-title">Um website<br>profissional<br><span>faz a diferença</span></h2>
-    </div>
-    <div>
-      <p class="section-body">Hoje, o teu website é a primeira impressão que um cliente tem do teu negócio. Se o site for lento, desatualizado ou difícil de usar em telemóvel, o cliente vai embora — e vai diretamente à concorrência.</p>
-      <br><br>
-      <p class="section-body">Um website bem construído não é apenas uma presença online. É uma ferramenta de vendas que trabalha 24 horas por dia, todos os dias do ano. Transmite credibilidade, gera confiança e converte visitantes em clientes reais. Para pequenas e médias empresas em Lisboa e em todo Portugal, esta diferença é muitas vezes determinante para o crescimento do negócio.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
 <!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
 <section class="section">
   <div class="section-eyebrow">Construído para crescer</div>
   <h2 class="section-title">Websites com <span>SEO integrado</span><br>desde o primeiro dia</h2>
-  <p class="section-body" style="margin-top:16px;">Não basta criar um site bonito. Se ninguém o encontrar no Google, não serve de nada. Por isso, em vez de adicionar SEO depois, nós integramos otimização para motores de busca desde a estrutura base. O resultado: mais visibilidade orgânica, mais tráfego qualificado, mais clientes.</p>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
@@ -759,21 +753,27 @@
 <section class="section">
   <div class="section-eyebrow">O que ganhas</div>
   <h2 class="section-title">Resultados <span>concretos</span></h2>
-  <div class="benefits-grid">
-    <div class="benefit">
-      <div class="benefit-num">+</div>
-      <h3>Visibilidade no Google</h3>
-      <p>Aparece nas pesquisas que os teus clientes fazem quando estão prontos para comprar. Deixa de depender exclusivamente das redes sociais.</p>
+  <div class="benefits-strip">
+    <div class="benefit-item">
+      <div class="benefit-item-num">+</div>
+      <div>
+        <h3>Visibilidade no Google</h3>
+        <p>Aparece quando os teus clientes procuram — prontos para comprar.</p>
+      </div>
     </div>
-    <div class="benefit">
-      <div class="benefit-num">+</div>
-      <h3>Mais leads qualificados</h3>
-      <p>Um website bem estruturado atrai visitantes com intenção de compra real — não apenas curiosos. Cada visita tem mais probabilidade de se converter em cliente.</p>
+    <div class="benefit-item">
+      <div class="benefit-item-num">+</div>
+      <div>
+        <h3>Mais leads qualificados</h3>
+        <p>Visitantes com intenção real. Cada visita mais perto de se tornar cliente.</p>
+      </div>
     </div>
-    <div class="benefit">
-      <div class="benefit-num">+</div>
-      <h3>Marca mais forte</h3>
-      <p>Design consistente, profissional e diferenciado. O teu website passa a ser um reflexo direto da qualidade do teu trabalho, antes de o cliente falar contigo.</p>
+    <div class="benefit-item">
+      <div class="benefit-item-num">+</div>
+      <div>
+        <h3>Marca mais forte</h3>
+        <p>Design profissional que transmite qualidade antes de falar contigo.</p>
+      </div>
     </div>
   </div>
 </section>
