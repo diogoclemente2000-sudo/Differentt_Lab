@@ -13,7 +13,7 @@ Serviços oferecidos pela Differentt Lab:
 Gestão de Redes Sociais
 Planeamento estratégico, criação de conteúdos, design de publicações, acompanhamento de resultados e crescimento da presença digital das marcas.
 
-Criação de Websites com Integração de Inteligência Artificial
+Desenvolvimento Web com Integração de Inteligência Artificial
 Desenvolvimento de websites modernos, rápidos e otimizados para conversão, incluindo integração de chatbots, automações e soluções inteligentes para melhorar a experiência do utilizador e aumentar vendas.
 
 Design Gráfico
