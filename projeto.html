@@ -159,6 +159,17 @@
     .not-found { padding: 200px max(48px, calc((100% - 1400px) / 2)) 100px; text-align: center; }
     .not-found h1 { font-family: 'Nunito Sans'; font-size: clamp(40px, 6vw, 80px); font-weight: 300; text-transform: uppercase; }
     .not-found a { color: #9e7bb6; text-decoration: none; }
+
+    /* GALLERY LIGHTBOX (clicar na foto expande + deslizar para baixo) */
+    .gallery-item img, .gallery-item video { cursor: zoom-in; }
+    .pf-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
+    .pf-viewer.open { display: block; }
+    .pf-track { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
+    .pf-track::-webkit-scrollbar { display: none; }
+    .pf-slide { height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+    .pf-slide-media { max-width: min(94vw, 820px); max-height: 90vh; width: auto; height: auto; object-fit: contain; border-radius: 14px; }
+    .pf-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    @media (max-width: 600px) { .pf-close { top: 16px; right: 16px; } }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -597,6 +608,71 @@ function render(id) {
       <p class="related-sub">Descubra mais sobre o nosso trabalho</p>
       <div class="related-grid">${relatedHTML}</div>
     </section>`;
+
+  setupGalleryLightbox(project);
+}
+
+function openLightbox(index) {
+  const viewer = document.getElementById('pfViewer');
+  const track = document.getElementById('pfTrack');
+  if (!viewer || !track) return;
+  viewer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const slide = track.children[index];
+  if (slide) {
+    track.scrollTop = slide.offsetTop;
+    const vid = slide.querySelector('video');
+    if (vid) { try { vid.play(); } catch (e) {} }
+  }
+}
+
+function closeLightbox() {
+  const viewer = document.getElementById('pfViewer');
+  if (!viewer) return;
+  viewer.classList.remove('open');
+  document.body.style.overflow = '';
+  viewer.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (e) {} });
+}
+
+function setupGalleryLightbox(project) {
+  let viewer = document.getElementById('pfViewer');
+  if (!viewer) {
+    viewer = document.createElement('div');
+    viewer.className = 'pf-viewer';
+    viewer.id = 'pfViewer';
+    viewer.innerHTML = '<button type="button" class="pf-close" id="pfClose" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="pf-track" id="pfTrack"></div>';
+    document.body.appendChild(viewer);
+    viewer.querySelector('#pfClose').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  }
+  const track = viewer.querySelector('#pfTrack');
+  track.innerHTML = '';
+
+  project.gallery.forEach(item => {
+    const src = typeof item === 'object' ? item.src : item;
+    const isVideo = /\.(mp4|webm|mov|mkv)$/i.test(src);
+    const slide = document.createElement('div');
+    slide.className = 'pf-slide';
+    let media;
+    if (isVideo) {
+      const videoSrc = src.replace('/image/upload/', '/video/upload/').replace('work%20individual%20pages/', 'work%20individual%20pages%20light/');
+      media = document.createElement('video');
+      media.src = videoSrc;
+      media.muted = true; media.loop = true; media.playsInline = true; media.controls = true;
+      media.setAttribute('muted', ''); media.setAttribute('playsinline', '');
+      media.preload = 'none';
+    } else {
+      media = document.createElement('img');
+      media.src = src; media.alt = project.name; media.loading = 'lazy';
+    }
+    media.className = 'pf-slide-media';
+    slide.appendChild(media);
+    track.appendChild(slide);
+  });
+
+  Array.from(document.querySelectorAll('.gallery-item img, .gallery-item video')).forEach((el, i) => {
+    el.addEventListener('click', () => openLightbox(i));
+  });
 }
 
 const params = new URLSearchParams(window.location.search);
