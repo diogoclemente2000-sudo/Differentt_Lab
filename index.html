@@ -178,6 +178,64 @@
     .service-link::after { content: '→'; font-size: 13px; }
     .service-card:hover .service-link { color: #c585b8; gap: 10px; }
 
+    /* REELS / PORTFOLIO GRID */
+    .reels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .reels-grid .reel-card:nth-child(n+5) { display: none; }
+    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; }
+    .reel-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .reel-card:hover .reel-card-img { transform: scale(1.06); }
+    .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, transparent 70%); pointer-events: none; }
+    .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
+    .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reel-card-expand { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(-4px); transition: opacity 0.2s, transform 0.2s; }
+    .reel-card:hover .reel-card-expand { opacity: 1; transform: translateY(0); }
+    @media (max-width: 1199px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* MOBILE — product-style gallery: 1 featured card + thumbnail circles */
+    .reels-mobile-gallery { display: none; }
+    .reel-featured { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; margin-bottom: 20px; }
+    .reel-featured-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
+    .reel-featured-img.active { opacity: 1; }
+    .reel-thumbs { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 2px 2px 10px; }
+    .reel-thumbs::-webkit-scrollbar { display: none; }
+    .reel-thumb { position: relative; flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; overflow: hidden; cursor: pointer; padding: 2px; border: 2px solid transparent; transition: border-color 0.2s, opacity 0.2s; opacity: 0.55; }
+    .reel-thumb img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+    .reel-thumb.active { border-color: #9e7bb6; opacity: 1; }
+    .reel-thumbs .reel-thumb:nth-child(n+8) { display: none; }
+    @media (max-width: 600px) {
+      .reels-grid { display: none; }
+      .reels-mobile-gallery { display: block; }
+      #portfolio-reels-section { padding-left: 8px !important; padding-right: 8px !important; }
+      .reel-featured { width: 100%; }
+    }
+
+    /* REELS FULLSCREEN VIEWER */
+    .reels-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
+    .reels-viewer.open { display: block; }
+    .reels-track { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
+    .reels-track::-webkit-scrollbar { display: none; }
+    .reels-slide { position: relative; height: 100dvh; width: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #050505; }
+    .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
+    .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 56px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
+    .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    /* GLASSMORPHISM CTA (gradient + blur, no SVG distortion — reliable across browsers/GPUs) */
+    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
+    .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .reels-slide-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.26); }
+    .reels-slide-cta-effect, .reels-slide-cta-tint, .reels-slide-cta-shine { display: none; }
+    .reels-slide-cta-text { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .reels-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-mute { position: absolute; top: 24px; left: 24px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
+    .reels-progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
+    .reels-progress-bar span { display: block; height: 100%; width: 0%; background: #fff; }
+    .reels-progress-bar.done span { width: 100%; }
+    @media (min-width: 601px) { .reels-slide-info { max-width: none; width: 100%; margin: 0; align-items: flex-start; text-align: left; padding: 0 64px 72px; } }
+    @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: 16px; right: 16px; } .reels-progress { padding: 14px 16px 0; } }
+
     /* STEPS SECTION */
     .steps-section { padding: 100px 48px; background: transparent !important; }
     .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
@@ -439,6 +497,7 @@
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt="MyMoment – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – clínica de estética avançada – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
   </div>
 </div>
 
@@ -605,6 +664,150 @@
       <a href="./metodos" style="display:inline-flex;align-items:center;margin-top:20px;font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9e7bb6;text-decoration:none;gap:6px;">Saber mais →</a>
     </div>
   </div>
+</section>
+
+<!-- PORTFOLIO REELS -->
+<section id="portfolio-reels-section" style="position:relative; padding: 0 48px 180px;">
+  <h2 class="section-title">Portfolio</h2>
+  <p style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Trabalhos da nossa agência</p>
+
+  <div class="reels-grid" id="reelsGrid">
+    <div class="reel-card" data-project="moment-laser" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/moment%20laser/VIDEO%2016.9%203.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HAudCUpgz64V7Ty2yht9XMJbyY.jpg" alt="Moment Laser – Gestão de Redes Sociais | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Moment Laser</span></div>
+    </div>
+    <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/evo%20clinic/5%20TV.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HV885HO4Fkcy0k237JIZVqfPd2w.jpg" alt="Evo Clinic – Gestão de Redes Sociais | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Evo Clinic</span></div>
+    </div>
+    <div class="reel-card" data-project="aroma-boreal" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Aroma%20boreal/Quer%20saber%20qual%20%C3%A9%20a%20rotina%20de%20cuidados%20aconselhada%20pela%20Camila%2C%20esteticista%20Evo%20Clinic%20Veja%20este.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Aroma Boreal</span></div>
+    </div>
+    <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Esthetic Solution</span></div>
+    </div>
+    <div class="reel-card" data-project="4-waves-lite" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/4%20waves%20lite/2%203D%20CORRIGIDO.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/0FcpNdg9d7Pu1qe0CHvc8AXak.jpg" alt="4 Waves Lite – Visualização 3D | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">3D & Produto</span><span class="reel-card-name">4 Waves Lite</span></div>
+    </div>
+    <div class="reel-card" data-project="coffe-sergio" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/coffe%20sergio/ACELARADO.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HZH8lwwLlBTsq0MxtEykVNAUb4I.jpg" alt="Coffe Sergio – Visualização 3D | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">3D & Produto</span><span class="reel-card-name">Coffe Sergio</span></div>
+    </div>
+    <div class="reel-card" data-project="shroom-fest">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/SHROOMFEST/7.jpg" alt="Shroomfest – Branding | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Shroomfest</span></div>
+    </div>
+    <div class="reel-card" data-project="raizes">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/RAIZES/3d.jpg" alt="Raízes – Modelação 3D | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Modelação 3D</span><span class="reel-card-name">Raízes</span></div>
+    </div>
+    <div class="reel-card" data-project="madaline">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/madaline/design-01j5xj2n80-1724671147-6.jpg" alt="Madaline – Branding | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Madaline</span></div>
+    </div>
+    <div class="reel-card" data-project="kioto">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages light/KIOTO/design-01jaxcah65-1773943831.jpg" alt="Kioto – Branding | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Kioto</span></div>
+    </div>
+    <div class="reel-card" data-project="mymoment" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/mymoment/Video_MyMoment_test.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/mymoment/hero_bg_2.jpg" alt="MyMoment – Modelação 3D | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Modelação 3D</span><span class="reel-card-name">MyMoment</span></div>
+    </div>
+    <div class="reel-card" data-project="rean">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages light/REAN/WhatsApp Image 2022-03-27 at 21.01.20.jpeg" alt="REAN – Gráfico | Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Gráfico</span><span class="reel-card-name">REAN</span></div>
+    </div>
+  </div>
+
+  <!-- MOBILE: product-style gallery (featured card + thumbnail circles) -->
+  <div class="reels-mobile-gallery" id="reelsMobileGallery">
+    <div class="reel-featured" id="reelFeatured">
+      <img class="reel-featured-img" id="reelFeaturedImg" src="" alt="">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-info"><span class="reel-card-cat" id="reelFeaturedCat"></span><span class="reel-card-name" id="reelFeaturedName"></span></div>
+    </div>
+    <div class="reel-thumbs" id="reelThumbs"></div>
+  </div>
+
+  <script>
+  (function(){
+    var cards = Array.from(document.querySelectorAll('#reelsGrid .reel-card'));
+    var thumbsWrap = document.getElementById('reelThumbs');
+    var featuredImg = document.getElementById('reelFeaturedImg');
+    var catEl = document.getElementById('reelFeaturedCat');
+    var nameEl = document.getElementById('reelFeaturedName');
+    if (!cards.length || !thumbsWrap) return;
+
+    var featuredEl = document.getElementById('reelFeatured');
+
+    function setFeatured(data){
+      featuredImg.classList.remove('active');
+      setTimeout(function(){
+        featuredImg.src = data.src;
+        featuredImg.alt = data.alt;
+        featuredImg.onload = function(){ featuredImg.classList.add('active'); };
+      }, 150);
+      catEl.textContent = data.cat;
+      nameEl.textContent = data.name;
+      featuredEl.dataset.project = data.project;
+    }
+
+    var thumbs = cards.map(function(card, i){
+      var img = card.querySelector('.reel-card-img');
+      var data = { src: img.getAttribute('src'), alt: img.getAttribute('alt'), cat: card.querySelector('.reel-card-cat').textContent, name: card.querySelector('.reel-card-name').textContent, project: card.getAttribute('data-project') };
+      var thumb = document.createElement('button');
+      thumb.type = 'button';
+      thumb.className = 'reel-thumb' + (i === 0 ? ' active' : '');
+      thumb.setAttribute('aria-label', data.name);
+      var thumbImg = document.createElement('img');
+      thumbImg.src = data.src;
+      thumbImg.alt = data.name;
+      thumbImg.loading = 'lazy';
+      thumb.appendChild(thumbImg);
+      thumb.addEventListener('click', function(){
+        thumbs.forEach(function(t){ t.classList.remove('active'); });
+        thumb.classList.add('active');
+        setFeatured(data);
+      });
+      thumbsWrap.appendChild(thumb);
+      return thumb;
+    });
+
+    featuredImg.src = cards[0].querySelector('.reel-card-img').getAttribute('src');
+    featuredImg.alt = cards[0].querySelector('.reel-card-img').getAttribute('alt');
+    featuredImg.classList.add('active');
+    catEl.textContent = cards[0].querySelector('.reel-card-cat').textContent;
+    nameEl.textContent = cards[0].querySelector('.reel-card-name').textContent;
+    featuredEl.dataset.project = cards[0].getAttribute('data-project');
+  })();
+  </script>
 </section>
 
 </div><!-- end SERVICES + STEPS WRAPPER -->
@@ -1023,6 +1226,173 @@
   }
 
   input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+})();
+</script>
+
+<!-- REELS FULLSCREEN VIEWER -->
+<div class="reels-viewer" id="reelsViewer">
+  <div class="reels-progress" id="reelsProgress"></div>
+  <button type="button" class="reels-close" id="reelsClose" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <div class="reels-track" id="reelsTrack"></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden;">
+  <filter id="glass-distortion-cta" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05 0.15" numOctaves="1" seed="5" result="turbulence" />
+    <feComponentTransfer in="turbulence" result="mapped">
+      <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+      <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+      <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+    </feComponentTransfer>
+    <feGaussianBlur in="turbulence" stdDeviation="2" result="softMap" />
+    <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+      <fePointLight x="-100" y="-100" z="200" />
+    </feSpecularLighting>
+    <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+    <feDisplacementMap in="SourceGraphic" in2="softMap" scale="18" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+
+<script>
+(function(){
+  var cardEls = Array.from(document.querySelectorAll('#reelsGrid .reel-card'));
+  if (!cardEls.length) return;
+
+  var allData = cardEls.map(function(card){
+    return {
+      project: card.getAttribute('data-project'),
+      video: card.getAttribute('data-video') || null,
+      img: card.querySelector('.reel-card-img').getAttribute('src'),
+      alt: card.querySelector('.reel-card-img').getAttribute('alt'),
+      cat: card.querySelector('.reel-card-cat').textContent,
+      name: card.querySelector('.reel-card-name').textContent
+    };
+  });
+  // video projects first, then image-only projects
+  var reelsOrder = allData.filter(function(d){ return d.video; }).concat(allData.filter(function(d){ return !d.video; }));
+
+  var viewer = document.getElementById('reelsViewer');
+  var track = document.getElementById('reelsTrack');
+  var closeBtn = document.getElementById('reelsClose');
+  var progressWrap = document.getElementById('reelsProgress');
+
+  var muteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  var unmuteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+
+  var slides = reelsOrder.map(function(data, i){
+    var slide = document.createElement('div');
+    slide.className = 'reels-slide';
+    slide.dataset.index = i;
+
+    var media;
+    var isVideo = !!data.video;
+    if (isVideo) {
+      media = document.createElement('video');
+      media.muted = true;
+      media.loop = true;
+      media.playsInline = true;
+      media.preload = 'none';
+      media.dataset.src = data.video;
+      media.poster = data.img;
+    } else {
+      media = document.createElement('img');
+      media.loading = 'lazy';
+      media.src = data.img;
+      media.alt = data.alt;
+    }
+    media.className = 'reels-slide-media';
+    slide.appendChild(media);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'reels-slide-overlay';
+    slide.appendChild(overlay);
+
+    if (isVideo) {
+      var muteBtn = document.createElement('button');
+      muteBtn.type = 'button';
+      muteBtn.className = 'reels-mute';
+      muteBtn.innerHTML = muteIcon;
+      muteBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        media.muted = !media.muted;
+        muteBtn.innerHTML = media.muted ? muteIcon : unmuteIcon;
+      });
+      slide.appendChild(muteBtn);
+    }
+
+    var info = document.createElement('div');
+    info.className = 'reels-slide-info';
+    info.innerHTML = '<span class="reels-slide-cat">' + data.cat + '</span><span class="reels-slide-name">' + data.name + '</span><a class="reels-slide-cta" href="./projeto?p=' + data.project + '"><span class="reels-slide-cta-effect"></span><span class="reels-slide-cta-tint"></span><span class="reels-slide-cta-shine"></span><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
+    slide.appendChild(info);
+
+    track.appendChild(slide);
+
+    var bar = document.createElement('div');
+    bar.className = 'reels-progress-bar';
+    bar.innerHTML = '<span></span>';
+    progressWrap.appendChild(bar);
+
+    return { el: slide, media: media, isVideo: isVideo, bar: bar };
+  });
+
+  function updateProgress(activeIndex){
+    slides.forEach(function(s, i){
+      s.bar.classList.toggle('done', i < activeIndex);
+      s.bar.querySelector('span').style.width = i <= activeIndex ? '100%' : '0%';
+    });
+  }
+
+  function activateSlide(index){
+    updateProgress(index);
+    slides.forEach(function(s, i){
+      if (!s.isVideo) return;
+      if (i === index) {
+        if (!s.media.src) s.media.src = s.media.dataset.src;
+        s.media.play().catch(function(){});
+      } else {
+        s.media.pause();
+      }
+    });
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+        activateSlide(parseInt(entry.target.dataset.index, 10));
+      }
+    });
+  }, { root: track, threshold: [0, 0.6] });
+  slides.forEach(function(s){ observer.observe(s.el); });
+
+  function openReels(projectId){
+    var startIndex = reelsOrder.findIndex(function(d){ return d.project === projectId; });
+    if (startIndex < 0) startIndex = 0;
+    viewer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    track.scrollTop = slides[startIndex].el.offsetTop;
+    setTimeout(function(){ activateSlide(startIndex); }, 50);
+  }
+
+  function closeReels(){
+    viewer.classList.remove('open');
+    document.body.style.overflow = '';
+    slides.forEach(function(s){ if (s.isVideo) s.media.pause(); });
+  }
+
+  closeBtn.addEventListener('click', closeReels);
+
+  cardEls.forEach(function(card){
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function(){ openReels(card.getAttribute('data-project')); });
+  });
+
+  var mobileFeatured = document.getElementById('reelFeatured');
+  if (mobileFeatured) {
+    mobileFeatured.style.cursor = 'pointer';
+    mobileFeatured.addEventListener('click', function(){
+      openReels(mobileFeatured.dataset.project || cardEls[0].getAttribute('data-project'));
+    });
+  }
 })();
 </script>
 </body>
