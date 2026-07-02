@@ -208,6 +208,7 @@
       .reels-grid { display: none; }
       .reels-mobile-gallery { display: block; }
       #portfolio-reels-section { padding: 72px 8px !important; }
+      #portfolio-reels-section .section-title { margin-bottom: 60px; }
       .reel-featured { width: 100%; }
     }
 
@@ -355,7 +356,7 @@
     .step-card { padding: 24px 18px; }
 
     /* Título e descrição da secção serviços + label da equipa escondidos visualmente no mobile (mantidos no DOM para SEO/acessibilidade) */
-    #services-title, #services-subtitle, #team-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+    #services-title, #services-subtitle, #team-label, #reels-subtitle { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 
     /* Team cards — full tall portrait */
     .team-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -409,7 +410,7 @@
   <div class="hero-bg">
     <video autoplay muted loop playsinline preload="metadata"
            poster="https://res.cloudinary.com/dgun4lhkm/video/upload/so_0,q_auto,f_auto,w_1280/Website_videos/video_homepage_full.jpg">
-      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_videos/video_homepage_full.mp4" type="video/mp4">
+      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/v1774958279/Website_videos/video_homepage_light.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -684,7 +685,7 @@
 <!-- PORTFOLIO REELS -->
 <section id="portfolio-reels-section" style="position:relative; padding: 180px 48px;">
   <h2 class="section-title">Portfolio</h2>
-  <p style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Trabalhos da nossa agência</p>
+  <p id="reels-subtitle" style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Trabalhos da nossa agência</p>
 
   <div class="reels-grid" id="reelsGrid">
     <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/evo%20clinic/EVO%20TERESA%20ADD.mp4">
