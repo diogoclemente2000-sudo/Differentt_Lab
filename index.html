@@ -43,7 +43,8 @@
     },
     "sameAs": [
       "https://www.instagram.com/differentt_lab/",
-      "https://www.tiktok.com/@differentt_lab"
+      "https://www.tiktok.com/@differentt_lab",
+      "https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT"
     ],
     "knowsAbout": ["Branding", "Design Gráfico", "Websites", "Gestão de Redes Sociais", "Marketing Digital", "SEO Local Lisboa", "Odivelas", "PMEs Portuguesas"]
   }
@@ -206,7 +207,7 @@
     @media (max-width: 600px) {
       .reels-grid { display: none; }
       .reels-mobile-gallery { display: block; }
-      #portfolio-reels-section { padding-left: 8px !important; padding-right: 8px !important; }
+      #portfolio-reels-section { padding: 72px 8px !important; }
       .reel-featured { width: 100%; }
     }
 
@@ -246,7 +247,7 @@
     @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: 16px; right: 16px; } .reels-progress { padding: 14px 16px 0; } }
 
     /* STEPS SECTION */
-    .steps-section { padding: 100px 48px; background: transparent !important; }
+    .steps-section { padding: 180px 48px; background: transparent !important; }
     .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
     .step-card { background: linear-gradient(135deg, rgba(158,123,182,0.08) 0%, rgba(0,0,0,0.35) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 40px 28px; border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; transition: border-color 0.3s, background 0.3s; }
     .step-card:hover { border-color: rgba(158,123,182,0.35); background: linear-gradient(135deg, rgba(158,123,182,0.14) 0%, rgba(0,0,0,0.45) 100%); }
@@ -339,6 +340,7 @@
     .logos-section { padding-top: 72px; padding-bottom: 72px; }
     .steps-section { padding-top: 72px; padding-bottom: 72px; }
     .team-section  { padding-top: 72px; padding-bottom: 72px; }
+    #reviews-section { padding-top: 72px !important; padding-bottom: 72px !important; }
     .cta-section   { padding-top: 72px; padding-bottom: 72px; padding-left: 56px; padding-right: 56px; }
     .cta-inner     { flex-direction: column; align-items: flex-start; gap: 32px; }
     footer         { padding-top: 48px; padding-bottom: 24px; }
@@ -351,6 +353,9 @@
     /* Steps — 2 colunas para poupar scroll vertical */
     .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .step-card { padding: 24px 18px; }
+
+    /* Título e descrição da secção serviços + label da equipa escondidos visualmente no mobile (mantidos no DOM para SEO/acessibilidade) */
+    #services-title, #services-subtitle, #team-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 
     /* Team cards — full tall portrait */
     .team-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -518,8 +523,8 @@
 <section id="services-section" class="services-section-wrap" style="position:relative; padding: 180px 48px;">
   <!-- content -->
   <div style="position:relative;z-index:1;">
-  <h2 class="section-title">CONHEÇA OS SERVIÇOS</h2>
-  <p style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Cobrimos toda a parte digital do seu negócio — desde branding e criação de websites até gestão de redes sociais.</p>
+  <h2 class="section-title" id="services-title">CONHEÇA OS SERVIÇOS</h2>
+  <p id="services-subtitle" style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Cobrimos toda a parte digital do seu negócio — desde branding e criação de websites até gestão de redes sociais.</p>
 
   <div class="services-grid">
     <a class="service-card" href="gestao-redes-sociais" style="text-decoration:none;">
@@ -677,7 +682,7 @@
 </section>
 
 <!-- PORTFOLIO REELS -->
-<section id="portfolio-reels-section" style="position:relative; padding: 0 48px 180px;">
+<section id="portfolio-reels-section" style="position:relative; padding: 180px 48px;">
   <h2 class="section-title">Portfolio</h2>
   <p style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:56px;text-align:center;">Trabalhos da nossa agência</p>
 
@@ -824,7 +829,7 @@
 
 <!-- TEAM SECTION -->
 <section class="team-section">
-  <div class="section-label">A nossa metodologia projetual divide-se em 4 etapas essenciais.</div>
+  <div class="section-label" id="team-label">A nossa metodologia projetual divide-se em 4 etapas essenciais.</div>
   <h2 class="section-title">Conheça a equipa</h2>
 
   <div class="team-grid">
@@ -844,7 +849,7 @@
 </section>
 
 <!-- REVIEWS CAROUSEL -->
-<section style="padding: 180px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw);">
+<section id="reviews-section" style="padding: 180px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw);">
 
   <style>
     .rc { background: linear-gradient(135deg, #111 0%, #0a0a0a 100%); border: 1px solid rgba(158,123,182,0.5); border-radius: 20px; padding: 28px 32px; width: 320px; flex-shrink: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 8px rgba(158,123,182,0.15); }
@@ -978,16 +983,15 @@
         <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
         <p class="footer-desc" style="margin-top:16px;">Differentt Lab é uma agência digital sediada em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs portuguesas.</p>
         <div class="social-links">
-          <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
-          <a href="#" class="social-link" title="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" class="social-link" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
           <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
       <div class="footer-nav">
-        <div class="footer-col"><h3>Recursos</h3><ul><li><a href="#">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="#">FAQ</a></li></ul></div>
+        <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
         <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
-        <div class="footer-col"><h3>Legal</h3><ul><li><a href="#">Privacidade</a></li><li><a href="#">Termos</a></li><li><a href="#">Cookies</a></li><li><a href="#">RGPD</a></li></ul></div>
-        <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+        <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
+        <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1009,7 +1013,7 @@
 }
 </style>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10001;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 28px;align-items:center;gap:24px;max-width:700px;width:calc(100% - 48px);box-shadow:0 8px 40px rgba(0,0,0,0.6);">
-  <p style="font-family:'Nunito Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;flex:1;">Usamos cookies para melhorar a tua experiência. <a href="#" style="color:#9e7bb6;text-decoration:none;">Saber mais</a></p>
+  <p style="font-family:'Nunito Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;flex:1;">Usamos cookies para melhorar a tua experiência. <a href="./privacidade#cookies" style="color:#9e7bb6;text-decoration:none;">Saber mais</a></p>
   <div style="display:flex;gap:10px;flex-shrink:0;">
     <button onclick="cookieConsent('reject')" style="font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 18px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;">Rejeitar</button>
     <button onclick="cookieConsent('accept')" style="font-family:'Overpass',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 20px;border-radius:100px;border:none;background:#9e7bb6;color:#fff;cursor:pointer;">Aceitar</button>
@@ -1409,6 +1413,8 @@
       track.addEventListener('scroll', hideScrollHint, { passive: true });
       hintTimer = setTimeout(hideScrollHint, 5000);
     }
+    // entrada no histórico para o botão "voltar" fechar o viewer em vez de sair da página
+    history.pushState({ reelsOpen: true }, '');
   }
 
   function closeReels(){
@@ -1418,7 +1424,19 @@
     slides.forEach(function(s){ if (s.isVideo) s.media.pause(); });
   }
 
-  closeBtn.addEventListener('click', closeReels);
+  closeBtn.addEventListener('click', function(){
+    if (history.state && history.state.reelsOpen) history.back();
+    else closeReels();
+  });
+  window.addEventListener('popstate', function(){
+    if (viewer.classList.contains('open')) closeReels();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && viewer.classList.contains('open')) {
+      if (history.state && history.state.reelsOpen) history.back();
+      else closeReels();
+    }
+  });
 
   cardEls.forEach(function(card){
     card.style.cursor = 'pointer';

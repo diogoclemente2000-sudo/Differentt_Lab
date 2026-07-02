@@ -24,6 +24,7 @@ Trabalho remoto disponível para clientes em todo o mundo.
 - Email: differenttdesignlab@gmail.com
 - Instagram: https://www.instagram.com/differentt_lab/
 - TikTok: https://www.tiktok.com/@differentt_lab
+- Facebook: https://www.facebook.com/profile.php?id=61566459876656
 - Website: https://differenttlab.com
 
 ## Páginas do site
@@ -36,3 +37,4 @@ Trabalho remoto disponível para clientes em todo o mundo.
 - [Nós](https://differenttlab.com/nos) — Equipa e valores da agência
 - [Portfolio](https://differenttlab.com/portfolio) — Trabalhos e projetos realizados
 - [Contactos](https://differenttlab.com/contactos) — Formulário de contacto e informações
+- [FAQ](https://differenttlab.com/faq) — Perguntas frequentes sobre serviços, preços, prazos e forma de trabalhar
