@@ -365,6 +365,58 @@
       .faq-list { max-width: 100%; }
       .benefits-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── REELS SHOWCASE (como na home) ── */
+    .reels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; }
+    .reel-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .reel-card:hover .reel-card-img { transform: scale(1.06); }
+    .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 48%, transparent 70%); pointer-events: none; }
+    .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; display: flex; flex-direction: column; gap: 5px; }
+    .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
+    .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reel-card-metric { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); line-height: 1.4; }
+    .reel-card-play { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .reel-card-name { font-size: 15px; } .reel-card-metric { font-size: 11px; } }
+
+    /* ── REELS FULLSCREEN VIEWER ── */
+    .reels-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
+    .reels-viewer.open { display: block; }
+    .reels-track { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
+    .reels-track::-webkit-scrollbar { display: none; }
+    .reels-slide { position: relative; height: 100dvh; width: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #050505; }
+    .reels-slide-frame { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+    .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
+    .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
+    .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
+    .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .reels-slide-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.26); }
+    .reels-slide-cta-text { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+    .reels-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-mute { position: absolute; top: 24px; left: 24px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
+    .reels-progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
+    .reels-progress-bar span { display: block; height: 100%; width: 0%; background: #fff; }
+    .reels-progress-bar.done span { width: 100%; }
+    .reels-scroll-hint { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 1010; display: flex; flex-direction: column; align-items: center; gap: 2px; pointer-events: none; color: #fff; opacity: 0; transition: opacity 0.4s ease; }
+    .reels-scroll-hint.show { opacity: 0.9; animation: reelsHintBounce 1.6s ease-in-out infinite; }
+    .reels-scroll-hint-text { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+    .reels-scroll-hint svg { filter: drop-shadow(0 1px 4px rgba(0,0,0,0.6)); }
+    @keyframes reelsHintBounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+    @media (min-width: 601px) {
+      .reels-slide-frame { width: auto; height: min(90vh, 90dvh); aspect-ratio: 9 / 16; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
+      .reels-slide-info { max-width: none; margin: 0; align-items: flex-start; text-align: left; padding: 0 28px 34px; }
+    }
+    @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: 16px; right: 16px; } .reels-progress { padding: 14px 16px 0; } }
+
+    /* ── REVEAL ON SCROLL ── */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -489,9 +541,9 @@
       <h2 class="section-title">A tua marca<br>existe onde<br><span>os teus clientes estão</span></h2>
     </div>
     <div>
-      <p class="section-body">Em Portugal, mais de 7 milhões de pessoas usam redes sociais diariamente. O Instagram, Facebook e TikTok deixaram de ser entretenimento — tornaram-se o principal canal de descoberta de marcas, produtos e serviços para a geração que compra hoje.</p>
-      <br><br>
-      <p class="section-body">Uma presença inconsistente ou inexistente nestas plataformas não é neutra — é uma desvantagem competitiva real. Os teus concorrentes estão lá. Os teus clientes também. A questão é: estás tu a aproveitar essa oportunidade, ou estás a ceder terreno?</p>
+      <p class="section-body">Mais de 7 milhões de portugueses usam redes sociais todos os dias. É lá que descobrem marcas, comparam serviços e decidem comprar.</p>
+      <br>
+      <p class="section-body">Os teus concorrentes já lá estão. Os teus clientes também. A questão é: estás a aproveitar — ou a ceder terreno?</p>
     </div>
   </div>
 </section>
@@ -502,49 +554,49 @@
 <section class="section">
   <div class="section-eyebrow">A nossa abordagem</div>
   <h2 class="section-title">Mais do que publicar —<br><span>uma estratégia</span> com objetivo</h2>
-  <p class="section-body" style="margin-top:16px;">A maioria das empresas publica conteúdo sem direção. Nós fazemos diferente: cada post, cada story, cada campanha serve um objetivo de negócio concreto — mais seguidores qualificados, mais mensagens, mais vendas.</p>
+  <p class="section-body" style="margin-top:16px;">Cada post, story e campanha serve um objetivo concreto: mais seguidores qualificados, mais mensagens, mais vendas.</p>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 20h20M5 20V10l7-7 7 7v10"/></svg>
       </div>
       <h3>Estratégia de conteúdo</h3>
-      <p>Definimos pilares de conteúdo alinhados com a tua marca e os teus objetivos. Cada publicação tem um propósito — informar, envolver, converter.</p>
+      <p>Pilares de conteúdo alinhados com a tua marca. Cada publicação tem um propósito.</p>
     </div>
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </div>
       <h3>Segmentação de audiência</h3>
-      <p>Identificamos o teu cliente ideal em Lisboa, Odivelas ou em todo Portugal, e criamos conteúdo que fala diretamente com ele — na linguagem certa, no momento certo.</p>
+      <p>Conteúdo que fala diretamente com o teu cliente ideal — na linguagem certa, no momento certo.</p>
     </div>
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       </div>
       <h3>Planeamento mensal</h3>
-      <p>Calendário editorial estruturado com antecedência. Sem improvisos de última hora — consistência é a base de qualquer crescimento orgânico sustentável.</p>
+      <p>Calendário editorial estruturado com antecedência. Consistência é a base do crescimento.</p>
     </div>
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
       </div>
       <h3>Análise de performance</h3>
-      <p>Relatórios mensais com métricas que importam: alcance, engagement, crescimento de seguidores e conversões. Dados reais para decisões informadas.</p>
+      <p>Relatórios mensais com as métricas que importam: alcance, engagement e conversões.</p>
     </div>
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
       <h3>Gestão de comunidade</h3>
-      <p>Respondemos a comentários e mensagens, gerimos a relação com os teus seguidores e construímos uma comunidade ativa à volta da tua marca.</p>
+      <p>Respondemos a comentários e mensagens e construímos uma comunidade ativa à volta da marca.</p>
     </div>
     <div class="card">
       <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3>Objetivos de negócio</h3>
-      <p>Tudo o que fazemos está ligado a um resultado concreto. Crescimento de seguidores, mais mensagens recebidas, mais tráfego para o website — definimos KPIs e cumprimo-los.</p>
+      <p>Definimos KPIs e cumprimo-los: seguidores, mensagens recebidas, tráfego para o website.</p>
     </div>
   </div>
 </section>
@@ -560,35 +612,35 @@
       <div class="step-num">01</div>
       <div class="step-content">
         <h3>Diagnóstico e estratégia</h3>
-        <p>Analisamos o teu negócio, a tua concorrência e a tua presença digital atual. Definimos a estratégia, o tom de voz e os objetivos para os primeiros 90 dias.</p>
+        <p>Analisamos o teu negócio e a concorrência. Definimos estratégia, tom de voz e objetivos para 90 dias.</p>
       </div>
     </div>
     <div class="process-step">
       <div class="step-num">02</div>
       <div class="step-content">
         <h3>Criação de conteúdo</h3>
-        <p>Produzimos conteúdo visual e escrito alinhado com a identidade da tua marca — imagens, vídeos, reels, stories e legendas otimizadas para engagement.</p>
+        <p>Imagens, vídeos, reels e stories alinhados com a identidade da tua marca.</p>
       </div>
     </div>
     <div class="process-step">
       <div class="step-num">03</div>
       <div class="step-content">
         <h3>Publicação e gestão diária</h3>
-        <p>Gerimos as tuas redes sociais de forma consistente, respondemos a mensagens e comentários, e mantemos a tua presença ativa e profissional todos os dias.</p>
+        <p>Presença ativa e profissional todos os dias — publicações, mensagens e comentários.</p>
       </div>
     </div>
     <div class="process-step">
       <div class="step-num">04</div>
       <div class="step-content">
         <h3>Análise e otimização</h3>
-        <p>Monitorizamos o desempenho de cada publicação, testamos formatos e ajustamos a estratégia mensalmente com base nos dados reais da tua audiência.</p>
+        <p>Testamos formatos e ajustamos a estratégia com base nos dados reais da audiência.</p>
       </div>
     </div>
     <div class="process-step">
       <div class="step-num">05</div>
       <div class="step-content">
         <h3>Relatório e reunião mensal</h3>
-        <p>No final de cada mês, apresentamos os resultados, discutimos o que funcionou e definimos a estratégia para o mês seguinte. Transparência total.</p>
+        <p>Apresentamos resultados e definimos o mês seguinte. Transparência total.</p>
       </div>
     </div>
   </div>
@@ -604,59 +656,53 @@
     <div class="benefit">
       <div class="benefit-num">+</div>
       <h3>Mais alcance e visibilidade</h3>
-      <p>O teu conteúdo chega a mais pessoas — seguidores atuais e potenciais clientes que ainda não te conhecem. Presença consistente gera reconhecimento de marca.</p>
+      <p>O teu conteúdo chega a quem ainda não te conhece. Consistência gera reconhecimento.</p>
     </div>
     <div class="benefit">
       <div class="benefit-num">+</div>
       <h3>Mais engagement real</h3>
-      <p>Conteúdo estratégico gera comentários, partilhas e mensagens diretas. Uma comunidade ativa é um sinal de confiança que converte seguidores em clientes.</p>
+      <p>Comentários, partilhas e mensagens diretas. Comunidade ativa converte em clientes.</p>
     </div>
     <div class="benefit">
       <div class="benefit-num">+</div>
       <h3>Mais leads e clientes</h3>
-      <p>O objetivo final é sempre o negócio. Redes sociais bem geridas geram pedidos de orçamento, reservas, visitas à loja e vendas diretas — não apenas likes.</p>
+      <p>Pedidos de orçamento, reservas e vendas diretas — não apenas likes.</p>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- SECTION 5: PORTFOLIO / PROOF -->
+<!-- SECTION 5: REELS SHOWCASE -->
 <section class="section">
   <div class="section-eyebrow">Casos reais</div>
   <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
-  <p class="section-body" style="margin-bottom:48px;">Trabalhamos com pequenas e médias empresas em Lisboa, Odivelas e em todo Portugal. Aqui estão alguns exemplos do nosso trabalho em gestão de redes sociais.</p>
-  <div class="proof-grid">
-    <a class="proof-card" href="./projeto?p=evo-clinic" style="text-decoration:none;color:inherit;display:block;">
-      <div class="proof-img">
-        <img loading="lazy" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HV885HO4Fkcy0k237JIZVqfPd2w.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
-      </div>
-      <div class="proof-meta">
-        <span class="proof-tag">Redes Sociais · Estética Avançada</span>
-        <div class="proof-name">Evo Clinic</div>
-        <div class="proof-desc">Clínica de estética avançada em Lisboa. Gestão de redes sociais, conteúdo profissional, tráfego pago e landing pages. Resultado: <strong>+70% ligações telefónicas</strong> e <strong>+30% taxa de marcações</strong> no primeiro ano.</div>
-      </div>
-    </a>
-    <a class="proof-card" href="./projeto?p=aroma-boreal" style="text-decoration:none;color:inherit;display:block;">
-      <div class="proof-img">
-        <img loading="lazy" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal - Gestão de Redes Sociais">
-      </div>
-      <div class="proof-meta">
-        <span class="proof-tag">Redes Sociais · Bem-estar</span>
-        <div class="proof-name">Aroma Boreal</div>
-        <div class="proof-desc">Conteúdo visual consistente e gestão de comunidade para marca de aromaterapia.</div>
-      </div>
-    </a>
-    <a class="proof-card" href="./projeto?p=moment-laser" style="text-decoration:none;color:inherit;display:block;">
-      <div class="proof-img">
-        <img loading="lazy" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HAudCUpgz64V7Ty2yht9XMJbyY.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
-      </div>
-      <div class="proof-meta">
-        <span class="proof-tag">Redes Sociais · Equipamentos de Estética</span>
-        <div class="proof-name">Moment Laser</div>
-        <div class="proof-desc">Empresa de venda e aluguer de equipamentos de estética (@momentlaser_oficial). Tráfego orgânico + Google & Meta Ads, vídeos de equipamentos e provas sociais. Resultado em 1 ano: <strong>7.000 → 10.000 seguidores</strong>, <strong>+813 mil visualizações no Instagram</strong> e <strong>+70 agendamentos mensais</strong> — agenda cheia para o trimestre seguinte.</div>
-      </div>
-    </a>
+  <p class="section-body">Vê o conteúdo que criamos. Toca num vídeo e desliza — como nos reels.</p>
+  <div class="reels-grid" id="reelsGrid">
+    <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/evo%20clinic/EVO%20TERESA%20ADD.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Estética Avançada</span><span class="reel-card-name">Evo Clinic</span><span class="reel-card-metric">+70% ligações · +30% marcações</span></div>
+    </div>
+    <div class="reel-card" data-project="moment-laser" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/moment%20laser/INES%20FORMA%C3%87%C3%83O%20REEL.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Equipamentos de Estética</span><span class="reel-card-name">Moment Laser</span><span class="reel-card-metric">7.000 → 10.000 seguidores · +813 mil views</span></div>
+    </div>
+    <div class="reel-card" data-project="aroma-boreal" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Aroma%20boreal/Quer%20saber%20qual%20%C3%A9%20a%20rotina%20de%20cuidados%20aconselhada%20pela%20Camila%2C%20esteticista%20Evo%20Clinic%20Veja%20este.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
+    </div>
+    <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4">
+      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">Redes Sociais & Ads</span></div>
+    </div>
   </div>
 </section>
 
@@ -708,15 +754,15 @@
   <div class="who-grid">
     <div class="who-card">
       <h3>Pequenos negócios locais</h3>
-      <p>Restaurantes, salões, clínicas, lojas e serviços em Lisboa, Odivelas e arredores que precisam de uma presença digital profissional para atrair mais clientes da zona.</p>
+      <p>Restaurantes, clínicas, salões e lojas que querem atrair mais clientes da zona.</p>
     </div>
     <div class="who-card">
       <h3>Marcas pessoais</h3>
-      <p>Profissionais liberais, coaches, consultores e criadores que querem construir autoridade online, crescer a sua audiência e transformar seguidores em clientes.</p>
+      <p>Profissionais e criadores que querem construir autoridade e transformar seguidores em clientes.</p>
     </div>
     <div class="who-card">
       <h3>Empresas estabelecidas</h3>
-      <p>Negócios com presença física consolidada que ainda não investiram seriamente nas redes sociais — e que sabem que estão a perder oportunidades todos os dias.</p>
+      <p>Negócios consolidados que ainda não investiram a sério nas redes — e sabem o que estão a perder.</p>
     </div>
   </div>
 </section>
@@ -846,6 +892,180 @@
       if (!isOpen) item.classList.add('open');
     });
   });
+</script>
+
+<!-- REELS FULLSCREEN VIEWER -->
+<div class="reels-viewer" id="reelsViewer">
+  <div class="reels-progress" id="reelsProgress"></div>
+  <button type="button" class="reels-close" id="reelsClose" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <div class="reels-track" id="reelsTrack"></div>
+  <div class="reels-scroll-hint" id="reelsScrollHint" aria-hidden="true">
+    <span class="reels-scroll-hint-text">Deslize</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cardEls = Array.from(document.querySelectorAll('#reelsGrid .reel-card'));
+  if (!cardEls.length) return;
+
+  var reelsOrder = cardEls.map(function(card){
+    return {
+      project: card.getAttribute('data-project'),
+      video: card.getAttribute('data-video'),
+      img: card.querySelector('.reel-card-img').getAttribute('src'),
+      cat: card.querySelector('.reel-card-cat').textContent,
+      name: card.querySelector('.reel-card-name').textContent
+    };
+  });
+
+  var viewer = document.getElementById('reelsViewer');
+  var track = document.getElementById('reelsTrack');
+  var closeBtn = document.getElementById('reelsClose');
+  var progressWrap = document.getElementById('reelsProgress');
+  var scrollHint = document.getElementById('reelsScrollHint');
+  var hintTimer = null;
+  function hideScrollHint(){
+    if (!scrollHint) return;
+    scrollHint.classList.remove('show');
+    if (hintTimer) { clearTimeout(hintTimer); hintTimer = null; }
+    track.removeEventListener('scroll', hideScrollHint);
+  }
+
+  var muteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  var unmuteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+
+  var slides = reelsOrder.map(function(data, i){
+    var slide = document.createElement('div');
+    slide.className = 'reels-slide';
+    slide.dataset.index = i;
+
+    var media = document.createElement('video');
+    media.muted = true; media.loop = true; media.playsInline = true; media.preload = 'none';
+    media.setAttribute('muted',''); media.setAttribute('playsinline',''); media.setAttribute('webkit-playsinline','');
+    media.dataset.src = data.video;
+    media.poster = data.img;
+    media.className = 'reels-slide-media';
+
+    var frame = document.createElement('div');
+    frame.className = 'reels-slide-frame';
+    frame.appendChild(media);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'reels-slide-overlay';
+    frame.appendChild(overlay);
+
+    var muteBtn = document.createElement('button');
+    muteBtn.type = 'button';
+    muteBtn.className = 'reels-mute';
+    muteBtn.innerHTML = muteIcon;
+    muteBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      media.muted = !media.muted;
+      muteBtn.innerHTML = media.muted ? muteIcon : unmuteIcon;
+    });
+    frame.appendChild(muteBtn);
+
+    var info = document.createElement('div');
+    info.className = 'reels-slide-info';
+    info.innerHTML = '<span class="reels-slide-cat">' + data.cat + '</span><span class="reels-slide-name">' + data.name + '</span><a class="reels-slide-cta" href="./projeto?p=' + data.project + '"><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
+    frame.appendChild(info);
+
+    slide.appendChild(frame);
+    track.appendChild(slide);
+
+    var bar = document.createElement('div');
+    bar.className = 'reels-progress-bar';
+    bar.innerHTML = '<span></span>';
+    progressWrap.appendChild(bar);
+
+    return { el: slide, media: media, bar: bar };
+  });
+
+  function updateProgress(activeIndex){
+    slides.forEach(function(sl, i){
+      sl.bar.classList.toggle('done', i < activeIndex);
+      sl.bar.querySelector('span').style.width = i <= activeIndex ? '100%' : '0%';
+    });
+  }
+
+  function activateSlide(index){
+    updateProgress(index);
+    slides.forEach(function(sl, i){
+      if (i === index) {
+        if (!sl.media.getAttribute('src')) { sl.media.setAttribute('src', sl.media.dataset.src); sl.media.load(); }
+        var p = sl.media.play(); if (p && p.catch) p.catch(function(){});
+      } else { sl.media.pause(); }
+    });
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) activateSlide(parseInt(entry.target.dataset.index, 10));
+    });
+  }, { root: track, threshold: [0, 0.6] });
+  slides.forEach(function(sl){ observer.observe(sl.el); });
+
+  function openReels(projectId){
+    var startIndex = reelsOrder.findIndex(function(d){ return d.project === projectId; });
+    if (startIndex < 0) startIndex = 0;
+    viewer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    track.scrollTop = slides[startIndex].el.offsetTop;
+    setTimeout(function(){ activateSlide(startIndex); }, 50);
+    if (scrollHint && slides.length > 1) {
+      scrollHint.classList.add('show');
+      track.addEventListener('scroll', hideScrollHint, { passive: true });
+      hintTimer = setTimeout(hideScrollHint, 5000);
+    }
+    history.pushState({ reelsOpen: true }, '');
+  }
+
+  function closeReels(){
+    hideScrollHint();
+    viewer.classList.remove('open');
+    document.body.style.overflow = '';
+    slides.forEach(function(sl){ sl.media.pause(); });
+  }
+
+  closeBtn.addEventListener('click', function(){
+    if (history.state && history.state.reelsOpen) history.back(); else closeReels();
+  });
+  window.addEventListener('popstate', function(){
+    if (viewer.classList.contains('open')) closeReels();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && viewer.classList.contains('open')) {
+      if (history.state && history.state.reelsOpen) history.back(); else closeReels();
+    }
+  });
+
+  cardEls.forEach(function(card){
+    card.addEventListener('click', function(){ openReels(card.getAttribute('data-project')); });
+  });
+})();
+</script>
+
+<script>
+// Reveal on scroll — anima secções e cards à entrada (transform/opacity apenas)
+(function(){
+  var targets = document.querySelectorAll('.section-eyebrow, .section-title, .section-body, .card, .process-step, .benefit, .who-card, .reel-card, .faq-item, .stats-wrap, .cta-bar h2');
+  targets.forEach(function(el){ el.classList.add('reveal'); });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var siblings = Array.from(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); });
+        var idx = siblings.indexOf(el);
+        el.style.transitionDelay = (Math.max(idx,0) * 70) + 'ms';
+        el.classList.add('in');
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
 </script>
 </body>
 </html>
