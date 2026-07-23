@@ -117,14 +117,15 @@
       .hero-content h1 { text-align: left !important; max-width: 100% !important; font-size: 22px !important; }
       .hero-content h1 span { font-size: 16px !important; }
       .hero-content div { justify-content: flex-start !important; flex-direction: column !important; align-items: flex-start !important; }
-      .btn-primary, .btn-outline { font-size: 18px !important; padding: 18px 64px !important; }
+      /* sem override de tamanho: os botoes usam o spec canonico em todos os ecras */
     }
 
     /* BUTTONS */
-    .btn-primary { display: inline-flex; align-items: center; padding: 21px 80px; background: #fff; color: #000; border: 1.2px solid #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
-    .btn-primary:hover { background: #000; color: #fff; }
-    
-    .btn-outline { display: inline-flex; align-items: center; padding: 21px 80px; background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1.2px solid #fff; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
+    .btn-primary:hover { background: #000; color: #fff; border-color: rgba(255,255,255,0.3); }
+
+    /* botao secundario — emparelhado com o .btn-primary, mesmas dimensoes */
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.35); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
     .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
     
 
@@ -135,10 +136,11 @@
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,1) 100%); pointer-events: none; }
     .hero-content { position: relative; z-index: 2; padding: 0 48px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
     .hero-label { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
-    .hero-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: 36px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 24px; }
-    .hero-title span { color: #9e7bb6; }
+    /* hero da homepage: frase, nao titulo display — por isso nao usa .hero-title das outras paginas */
+    .home-hero-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: 36px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 24px; }
+    .home-hero-title span { color: #9e7bb6; }
     @keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+    .home-hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
     .hero-btns { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
     .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 480px; }
 
@@ -370,7 +372,7 @@
     .logos-label   { font-size: clamp(26px, 7vw, 42px) !important; margin-bottom: 40px; }
 
     /* Buttons */
-    .btn-primary, .btn-outline { padding: 16px 72px !important; font-size: 15px !important; max-width: 320px; }
+    .btn-primary, .btn-outline { max-width: 320px; }
 
     /* Footer */
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
@@ -415,7 +417,7 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="hero-title" style="text-align:left;max-width:900px;">Uma agência 100% remota, flexível e dedicada a transformar a sua visão em resultados únicos.<br><br><span style="font-size:25px;">Criamos marcas fortes, com impacto no digital.</span></h1>
+    <h1 class="home-hero-title" style="text-align:left;max-width:900px;">Uma agência 100% remota, flexível e dedicada a transformar a sua visão em resultados únicos.<br><br><span style="font-size:25px;">Criamos marcas fortes, com impacto no digital.</span></h1>
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end;margin-top:80px;">
       <a href="./contactos" class="btn-primary">Contacte-nos</a>
       <a href="./portfolio" class="btn-outline">Ver Trabalhos</a>
@@ -978,26 +980,25 @@
 </div>
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
-        <p class="footer-desc" style="margin-top:16px;">Differentt Lab é uma agência digital sediada em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs portuguesas.</p>
-        <div class="social-links">
-          <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" class="social-link" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-nav">
-        <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
-        <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
-        <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
-        <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+  <div class="footer-top">
+    <div>
+      <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
+      <p class="footer-desc" style="margin-top:16px;">Differentt Lab é uma agência digital sediada em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs portuguesas.</p>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" class="social-link" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">Todos os direitos reservados. Differentt Lab 2025.</p>
+    <div class="footer-nav">
+      <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
+      <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
+      <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
+      <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://wa.me/351926283061" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
     </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">Todos os direitos reservados. Differentt Lab 2025.</p>
+    <p class="footer-copy">De Lisboa para o mundo.</p>
   </div>
 </footer>
 

@@ -1,54 +1,162 @@
-# CLAUDE.md — Frontend Website Rules
+# CLAUDE.md — Website Differentt Lab
 
-## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+Site institucional da **Differentt Lab**, agência digital sediada em Odivelas, Lisboa
+(branding, websites, design gráfico, 3D e gestão de redes sociais para PMEs portuguesas).
 
-## Reference Images
-- If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.
-- If no reference image: design from scratch with high craft (see guardrails below).
-- Screenshot your output, compare against reference, fix mismatches, re-screenshot. Do at least 2 comparison rounds. Stop only when no visible differences remain or user says so.
+Domínio de produção: **https://differenttlab.com**
 
-## Local Server
-- **Always serve on localhost** — never screenshot a `file:///` URL.
-- Start the dev server: `node serve.mjs` (serves the project root at `http://localhost:3000`)
-- `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
-- If the server is already running, do not start a second instance.
+---
 
-## Screenshot Workflow
-- Puppeteer is installed at `C:/Users/nateh/AppData/Local/Temp/puppeteer-test/`. Chrome cache is at `C:/Users/nateh/.cache/puppeteer/`.
-- **Always screenshot from localhost:** `node screenshot.mjs http://localhost:3000`
-- Screenshots are saved automatically to `./temporary screenshots/screenshot-N.png` (auto-incremented, never overwritten).
-- Optional label suffix: `node screenshot.mjs http://localhost:3000 label` → saves as `screenshot-N-label.png`
-- `screenshot.mjs` lives in the project root. Use it as-is.
-- After screenshotting, read the PNG from `temporary screenshots/` with the Read tool — Claude can see and analyze the image directly.
-- When comparing, be specific: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px"
-- Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing
+## Stack — o que isto é (e o que não é)
 
-## Output Defaults
-- Single `index.html` file, all styles inline, unless user says otherwise
-- Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Placeholder images: `https://placehold.co/WIDTHxHEIGHT`
-- Mobile-first responsive
+- **HTML estático puro.** Não há build step, bundler, framework nem npm run build.
+- **CSS escrito à mão**, dentro de um `<style>` no `<head>` de cada página. Não existe nenhum ficheiro `.css` externo. Cada página é autocontida.
+- **JavaScript vanilla inline**, no fim de cada página.
+- ⚠️ O **Tailwind CDN** está carregado em apenas 3 páginas (`index`, `metodos`, `contactos`) e é essencialmente resíduo — o sistema de design real é o CSS próprio. **Não escrever novo código com classes Tailwind**; seguir o CSS existente da página.
 
-## Brand Assets
-- Always check the `brand_assets/` folder before designing. It may contain logos, color guides, style guides, or images.
-- If assets exist there, use them. Do not use placeholders where real assets are available.
-- If a logo is present, use it. If a color palette is defined, use those exact values — do not invent brand colors.
+Dependências npm (`package.json`) servem só ferramentas locais: `puppeteer` (screenshots),
+`cloudinary` (upload de media), `@anthropic-ai/sdk` (chatbot do servidor de dev).
 
-## Anti-Generic Guardrails
-- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Pick a custom brand color and derive from it.
-- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
-- **Typography:** Never use the same font for headings and body. Pair a display/serif with a clean sans. Apply tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
-- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth.
-- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
-- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
-- **Images:** Add a gradient overlay (`bg-gradient-to-t from-black/60`) and a color treatment layer with `mix-blend-multiply`.
-- **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
-- **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
+---
 
-## Hard Rules
-- Do not add sections, features, or content not in the reference
-- Do not "improve" a reference design — match it
-- Do not stop after one screenshot pass
-- Do not use `transition-all`
-- Do not use default Tailwind blue/indigo as primary color
+## Servidor local
+
+```bash
+node serve.mjs     # a partir de "Different lab v2/"
+```
+
+→ **http://localhost:3001** — o porto por omissão é **3001**, não 3000. (`PORT` env override.)
+
+O `serve.mjs` dá:
+- **Live reload** por SSE — grava um `.html` na raiz e o browser recarrega sozinho.
+- **URLs limpos** — `/contactos` serve `contactos.html`.
+- **`POST /api/chat`** — chatbot "Margarida", proxy para a API Anthropic (modelo `claude-haiku-4-5-20251001`, respostas de 2-3 frases). Lê `ANTHROPIC_API_KEY` do `.env` e o system prompt de `chatbot information/txt prompt chatbot.txt`.
+
+Se o servidor já estiver a correr, **não arrancar uma segunda instância**.
+
+---
+
+## Screenshots
+
+```bash
+node screenshot.mjs http://localhost:3001 <etiqueta>
+```
+Guarda em `temporary screenshots/screenshot-N-<etiqueta>.png` (numeração automática, nunca sobrescreve).
+Chrome do Puppeteer em `C:\Users\diogo\.cache\puppeteer` (instalar com `npx puppeteer browsers install chrome`).
+
+**Limitação importante:** o `screenshot.mjs` **não faz scroll**. A `gestao-redes-sociais.html` usa animações
+de scroll-reveal (`.reveal { opacity: 0 }` → `.reveal.in`) e imagens `loading="lazy"`, por isso a captura
+sai **praticamente preta**. Para essa página é preciso um script que percorra a página antes de capturar.
+
+Nunca fotografar um URL `file:///` — servir sempre por localhost.
+
+---
+
+## Páginas
+
+| Ficheiro | Rota | O que é |
+|---|---|---|
+| `index.html` | `/` | Homepage |
+| `servicos.html` | `/servicos` | Lista de serviços |
+| `criacao-websites.html` | `/criacao-websites` | Landing de serviço — websites e software |
+| `gestao-redes-sociais.html` | `/gestao-redes-sociais` | Landing de serviço — social media |
+| `portfolio.html` | `/portfolio` | Portefólio (suporta `?filter=social`) |
+| `projeto.html` | `/projeto` | Página de projeto individual |
+| `metodos.html` | `/metodos` | Metodologia |
+| `nos.html` | `/nos` | Sobre a agência / equipa |
+| `contactos.html` | `/contactos` | Contactos |
+| `blog.html` | `/blog` | Índice do blog (artigos em `blog/`) |
+| `faq.html` | `/faq` | Perguntas frequentes |
+| `termos.html` · `privacidade.html` · `rgpd.html` | — | Legal |
+
+SEO: `sitemap.xml`, `robots.txt`, `llms.txt` e JSON-LD no `<head>` do `index`.
+
+---
+
+## Pastas
+
+| Pasta | Conteúdo | No git? |
+|---|---|---|
+| `Brand_assets/` | Logo da agência + `client_logos/` (SVG dos clientes) | ✅ sim — servido do repositório |
+| `blog/` | Artigos do blog | ✅ sim |
+| `Website_photos/` | Fotos por página e por cliente | ❌ **gitignored** |
+| `Website_videos/` | Vídeos | ❌ gitignored |
+| `Website_texts/` · `website_links/` · `chatbot information/` | Conteúdo de apoio e prompt do chatbot | — |
+| `temporary screenshots/` | Saída do `screenshot.mjs` | ❌ gitignored |
+| `social-media/` · `md files_rules/` | **Ignorar. Não fazem parte do website** (também no `.netlifyignore`) | ❌ |
+
+---
+
+## Imagens — Cloudinary (regra crítica)
+
+`Website_photos/` está no `.gitignore`, logo **as imagens não são servidas do repositório**.
+Todas vêm do Cloudinary (cloud `dgun4lhkm`).
+
+Ao adicionar uma imagem nova:
+1. Colocar o ficheiro em `Website_photos/...`
+2. **Fazer upload para o Cloudinary** com o `public_id` a espelhar o caminho (ver `upload-to-cloudinary.mjs`)
+3. Referenciar no HTML com transformações: `https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/<public_id>.<ext>`
+
+Limite de upload: **10 MB** — redimensionar antes se for preciso.
+Exceção: os logos em `Brand_assets/` são servidos do repositório por caminho relativo (`./Brand_assets/...`).
+
+---
+
+## Sistema de design
+
+**Cor de marca:** `#9e7bb6` (roxo) — de longe a mais usada. Acento secundário `#c585b8`.
+**Fundos:** pretos em camadas — `#000`, `#020202`, `#050505`, `#080808`, `#0a0a0a`, `#0d0d0d`.
+Nunca usar azul/índigo por omissão como cor primária.
+
+**Tipografia** (Google Fonts):
+- `Overpass` (700/800/900) — números, eyebrows, nomes destacados
+- `Nunito Sans` (300/400/600/700) — títulos e corpo de texto
+- `Inter` (400/700) — navegação
+
+Títulos grandes: `font-weight: 300`, `text-transform: uppercase`, `letter-spacing: -0.02em`.
+Corpo: `font-weight: 300`, `line-height: 1.7`.
+
+**Componentes partilhados** (mesmas classes em várias páginas):
+- `nav-links` + `footer-top` — nav e rodapé, presentes nas **14** páginas
+- `page-hero` — hero de página interior (5 páginas)
+- `section-eyebrow` / `section-title` / `section-body` — cabeçalho de secção; o `<span>` dentro do título pinta-se de roxo
+- `btn-primary` (pílula branca), `btn-glow`, `divider`, `cta-bar`, `faq-list`
+
+---
+
+## Linguagem e tom
+
+- **Português de Portugal.** `<html lang="pt">`.
+- **Tratamento por "tu"** — "o teu negócio", "os teus clientes". É o padrão dominante do site; manter.
+- Direto e concreto. Números reais e nomes de clientes reais (Evo Clinic, Moment Laser, Aroma Boreal, Esthetic Solution) em vez de promessas vagas.
+- **Evitar copy genérica de IA.** Nada de "Aqui estão alguns exemplos", "Soluções à medida para o seu negócio", "Impulsione o seu negócio". Títulos devem dizer o que a secção mostra.
+
+---
+
+## Regras de design
+
+- **Sombras:** nunca planas. Usar camadas com tinta de cor e opacidade baixa.
+- **Tipografia:** nunca a mesma fonte para título e corpo.
+- **Gradientes:** sobrepor vários radiais; adicionar grão/textura para dar profundidade.
+- **Animações:** animar **só `transform` e `opacity`**. Nunca `transition-all`.
+- **Estados:** todo o elemento clicável precisa de `hover`, `focus-visible` e `active`.
+- **Imagens:** aplicar gradiente escuro por cima e uma camada de cor de marca com `mix-blend-multiply` para as unificar.
+- **Profundidade:** manter hierarquia de superfícies (base → elevada → flutuante).
+- **Excesso de cards:** o site já usa grelhas de cards em muitas secções. Antes de criar mais uma, considerar faixas full-bleed, marquees ou linhas editoriais. O que faz "ler como card" é a moldura (borda + raio + sombra), não a grelha.
+
+### Ao seguir uma imagem de referência
+Reproduzir layout, espaçamento, tipografia e cor **exatamente**. Não acrescentar secções nem "melhorar".
+Fotografar o resultado, comparar com a referência, corrigir e repetir — no mínimo 2 rondas.
+Ser específico na comparação ("o título está a 32px, a referência tem ~24px").
+
+---
+
+## Deploy
+
+Repositório: `https://github.com/diogoclemente2000-sudo/Differentt_Lab.git` (branch `main`).
+**Push para `main` dispara deploy de produção automático no Netlify.** Confirmar antes de publicar.
+
+Notas de git neste PC:
+- O drive não regista ownership → foi preciso `git config --global --add safe.directory '<caminho>'`
+- Credenciais guardadas no Git Credential Manager
+- `server.log` e `liquid glass/` estão por commitar de propósito — não são conteúdo do site
