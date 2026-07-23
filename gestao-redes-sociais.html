@@ -130,102 +130,67 @@
     /* HERO */
     .page-hero {
       position: relative; width: 100%; background: #000; overflow: hidden;
-      padding: 0 max(48px, calc((100% - 1400px) / 2));
+      padding: 0;
       min-height: 100vh;
-      display: flex; align-items: center;
+      display: flex; flex-direction: column; justify-content: flex-start;
     }
     .page-hero::after {
-      content: ''; position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%);
+      content: ''; position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%);
       width: 700px; height: 700px;
       background: radial-gradient(ellipse, rgba(158,123,182,0.18) 0%, transparent 65%);
       pointer-events: none; z-index: 0;
     }
     .hero-layout {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-      width: 100%; padding: 140px 0 100px; position: relative; z-index: 1;
+      width: 100%; max-width: 1400px; margin: 0 auto;
+      padding: 140px 48px 48px; text-align: center;
+      position: relative; z-index: 1;
     }
     .hero-inner-wrap { }
     .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; }
     .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 5vw, 80px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 28px; }
     .hero-title span { color: #9e7bb6; }
-    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.55); max-width: 480px; margin-bottom: 48px; }
-    .hero-actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.55); max-width: 620px; margin: 0 auto 48px; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
 
-    /* HERO IMAGE GRID */
-    .hero-collage {
-      position: relative; height: 580px;
-    }
-    .hc-img {
-      position: absolute; border-radius: 14px; overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
-    }
-    /* hc-5 is the largest, on top — give it strongest shadow */
-    .hc-5 { z-index: 3; box-shadow: 0 32px 80px rgba(0,0,0,0.95), 0 12px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1); }
-    .hc-3 { z-index: 2; }
-    .hc-1 { z-index: 2; }
-    .hc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hc-1 { width: 200px; height: 200px; top: 0; left: 0; animation: hcFloat1 6s ease-in-out infinite; }
-    .hc-2 { width: 160px; height: 160px; top: 0; left: 220px; animation: hcFloat2 7s ease-in-out infinite 0.5s; }
-    .hc-3 { width: 220px; height: 220px; top: 0; right: 0; animation: hcFloat1 8s ease-in-out infinite 1s; }
-    .hc-4 { width: 180px; height: 180px; top: 220px; left: 20px; animation: hcFloat2 6.5s ease-in-out infinite 1.5s; }
-    .hc-5 { width: 240px; height: 240px; top: 190px; left: 210px; animation: hcFloat1 7.5s ease-in-out infinite 0.8s; }
-    .hc-6 { width: 170px; height: 170px; top: 230px; right: 0; animation: hcFloat2 6s ease-in-out infinite 2s; }
-    .hc-label {
-      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    /* ── HERO MARQUEE: faixa de trabalhos a deslizar, de ponta a ponta ── */
+    .hero-proof-label {
+      display: inline-flex; margin: 0 auto 26px;
       background: rgba(158,123,182,0.12); border: 1px solid rgba(158,123,182,0.25);
-      backdrop-filter: blur(12px); border-radius: 100px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 100px;
       padding: 10px 24px; white-space: nowrap;
       font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700;
       letter-spacing: 0.18em; text-transform: uppercase; color: #9e7bb6;
     }
-    @keyframes hcFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    @keyframes hcFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    /* margin-top:auto empurra a faixa para o fundo do hero quando sobra espaço */
+    .hero-marquee { position: relative; z-index: 1; width: 100%; margin-top: auto; text-align: center; padding-bottom: 72px; }
+    .hero-marquee-viewport { position: relative; width: 100%; overflow: hidden; }
+    /* véu que suaviza as imagens e funde a faixa no preto da página */
+    .hero-marquee-viewport::after {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.08) 28%, rgba(0,0,0,0.18) 62%, rgba(0,0,0,0.88) 100%),
+        linear-gradient(to right, rgba(0,0,0,0.65) 0%, transparent 14%, transparent 86%, rgba(0,0,0,0.65) 100%);
+    }
+    /* camada de cor da marca, muito ténue, para as imagens não destoarem */
+    .hero-marquee-viewport::before {
+      content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: rgba(158,123,182,0.10); mix-blend-mode: multiply;
+    }
+    .hero-marquee-track { display: flex; width: max-content; animation: heroMarquee 50s linear infinite; }
+    .hero-marquee-viewport:hover .hero-marquee-track { animation-play-state: paused; }
+    .hero-marquee-item { flex: none; width: 320px; height: 440px; }
+    .hero-marquee-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.85) brightness(0.82) contrast(0.95); }
+    /* a pista tem o conjunto duplicado — deslizar 50% dá um ciclo sem costura */
+    @keyframes heroMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .hero-marquee-track { animation: none; } }
 
-    /* COLLAGE: tablet & mobile — stack vertically */
     @media (max-width: 1024px) {
-      .hero-collage {
-        position: static; height: auto;
-        display: flex; flex-direction: column; gap: 10px;
-        padding-bottom: 0;
-      }
-      .hc-img {
-        position: relative !important; width: 100% !important; height: 200px !important;
-        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-        animation: none !important;
-      }
-      .hc-label { position: relative; left: auto; transform: none; margin-top: 4px; display: inline-block; }
+      .hero-marquee-item { width: 250px; height: 340px; }
     }
     @media (max-width: 600px) {
-      .hero-collage {
-        position: static !important;
-        height: auto !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        padding-bottom: 0 !important;
-        min-width: 0 !important;
-        width: 100% !important;
-      }
-      .hc-img {
-        position: relative !important;
-        top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-        flex-shrink: 0 !important;
-        animation: none !important;
-        width: auto !important;
-        height: 130px !important;
-      }
-      /* left card */
-      .hc-2 { width: 27vw !important; height: 170px !important; order: 1 !important; }
-      /* center card — EVO mockup, bigger */
-      .hc-1 { width: 36vw !important; height: 225px !important; order: 2 !important; }
-      /* right card */
-      .hc-3 { width: 27vw !important; height: 170px !important; order: 3 !important; }
-      .hc-4 { display: none !important; }
-      .hc-5 { display: none !important; }
-      .hc-6 { display: none !important; }
-      .hc-label { display: none !important; }
+      .hero-marquee-item { width: 170px; height: 235px; }
+      .hero-proof-label { font-size: 9px; padding: 8px 18px; margin-bottom: 18px; }
+      .hero-marquee { padding-bottom: 48px; }
     }
 
     /* BUTTONS */
@@ -299,7 +264,7 @@
 
     /* STATS */
     .stats-wrap { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
-    .mini-stats { display: flex; gap: 48px; margin-top: 48px; }
+    .mini-stats { display: flex; flex-wrap: wrap; column-gap: 48px; row-gap: 32px; margin-top: 48px; }
     .mini-stat { display: flex; flex-direction: column; }
     .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; }
     .mini-stat-unit { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #9e7bb6; }
@@ -345,7 +310,7 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 1024px) {
-      .hero-layout { grid-template-columns: 1fr; gap: 32px; padding: 120px 0 80px; }
+      .hero-layout { padding: 120px 48px 40px; }
       .cards-grid, .benefits-grid, .who-grid, .proof-grid, .process-grid { grid-template-columns: 1fr 1fr; }
       .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
       .donut-wrap { margin: 0 auto; }
@@ -358,8 +323,7 @@
       .cta-bar { padding: 60px 48px; }
     }
     @media (max-width: 600px) {
-      .page-hero { padding: 0 16px; }
-      .hero-layout { padding: 110px 0 60px; }
+      .hero-layout { padding: 110px 16px 32px; }
       .section { padding: 56px 8px; }
       .divider { margin: 0 8px; }
       .benefits-grid, .who-grid, .proof-grid { grid-template-columns: 1fr; }
@@ -398,8 +362,27 @@
     .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
     .reel-card-metric { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); line-height: 1.4; }
     .reel-card-play { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+
+    /* ── REEL ITEM: pill da marca por cima + card da foto por baixo ── */
+    .reel-item { display: flex; flex-direction: column; gap: 12px; }
+    .reel-pill { display: flex; width: 100%; align-items: center; gap: 9px; padding: 6px 16px 6px 6px; border-radius: 999px; border: 1px solid rgba(158,123,182,0.45); background: linear-gradient(135deg, rgba(158,123,182,0.18) 0%, rgba(10,10,10,0.55) 100%); box-shadow: 0 4px 18px rgba(158,123,182,0.14), inset 0 1px 0 rgba(255,255,255,0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+    .reel-item:hover .reel-pill { transform: translateY(-2px); border-color: rgba(158,123,182,0.8); box-shadow: 0 6px 24px rgba(158,123,182,0.28), inset 0 1px 0 rgba(255,255,255,0.1); }
+    .reel-pill-logo { flex: none; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    /* logo real da marca — preenche o círculo como um avatar */
+    .reel-pill-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .reel-pill-name { font-family: 'Overpass', sans-serif; font-size: 13.5px; font-weight: 800; letter-spacing: -0.01em; color: #fff; white-space: nowrap; }
+    /* o nome passou para a pill — fica no DOM porque o viewer de reels o lê */
+    .reels-grid .reel-card-name { display: none; }
+
     @media (max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } .reel-card-name { font-size: 15px; } .reel-card-metric { font-size: 11px; } }
+    @media (max-width: 600px) {
+      .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .reel-card-metric { font-size: 11px; }
+      .reel-item { gap: 8px; }
+      .reel-pill { gap: 7px; padding: 4px 11px 4px 4px; }
+      .reel-pill-logo { width: 22px; height: 22px; }
+      .reel-pill-name { font-size: 11px; }
+    }
 
     /* ── REELS FULLSCREEN VIEWER ── */
     .reels-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
@@ -526,29 +509,28 @@
       </div>
     </div>
 
-    <!-- RIGHT: Image collage -->
-    <div class="hero-collage">
-      <div class="hc-img hc-1">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955075/Website_photos/work%20individual%20pages/evo%20clinic/ap_EVOclinc-16.jpg" alt="EVO Clinic">
-      </div>
-      <div class="hc-img hc-2">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955200/Website_photos/work%20individual%20pages/Aroma%20boreal/posts.jpg" alt="Aroma Boreal">
-      </div>
-      <div class="hc-img hc-3">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955105/Website_photos/work%20individual%20pages/moment%20laser/Anuncios%20moment-03.jpg" alt="Moment Laser">
-      </div>
-      <div class="hc-img hc-4">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955079/Website_photos/work%20individual%20pages/evo%20clinic/cores%20feed_insta_ODIVELAS.jpg" alt="EVO Clinic Feed">
-      </div>
-      <div class="hc-img hc-5">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955116/Website_photos/work%20individual%20pages/moment%20laser/spart%20ads%20%28criativos%29-05.jpg" alt="Moment Laser Ad">
-      </div>
-      <div class="hc-img hc-6">
-        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955197/Website_photos/work%20individual%20pages/Aroma%20boreal/post%20restructure-02.jpg" alt="Aroma Boreal Post">
-      </div>
-      <div class="hc-label">Resultados Reais ✦ Marcas Reais</div>
-    </div>
+  </div>
 
+  <!-- MARQUEE: faixa de trabalhos de ponta a ponta -->
+  <div class="hero-marquee">
+    <div class="hero-proof-label">Resultados Reais ✦ Marcas Reais</div>
+    <div class="hero-marquee-viewport">
+      <div class="hero-marquee-track">
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955075/Website_photos/work%20individual%20pages/evo%20clinic/ap_EVOclinc-16.jpg" alt="EVO Clinic"></div>
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955200/Website_photos/work%20individual%20pages/Aroma%20boreal/posts.jpg" alt="Aroma Boreal"></div>
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955105/Website_photos/work%20individual%20pages/moment%20laser/Anuncios%20moment-03.jpg" alt="Moment Laser"></div>
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955079/Website_photos/work%20individual%20pages/evo%20clinic/cores%20feed_insta_ODIVELAS.jpg" alt="EVO Clinic Feed"></div>
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955116/Website_photos/work%20individual%20pages/moment%20laser/spart%20ads%20%28criativos%29-05.jpg" alt="Moment Laser Ad"></div>
+        <div class="hero-marquee-item"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955197/Website_photos/work%20individual%20pages/Aroma%20boreal/post%20restructure-02.jpg" alt="Aroma Boreal Post"></div>
+        <!-- duplicado (decorativo) para o ciclo não ter costura -->
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955075/Website_photos/work%20individual%20pages/evo%20clinic/ap_EVOclinc-16.jpg" alt=""></div>
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955200/Website_photos/work%20individual%20pages/Aroma%20boreal/posts.jpg" alt=""></div>
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955105/Website_photos/work%20individual%20pages/moment%20laser/Anuncios%20moment-03.jpg" alt=""></div>
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955079/Website_photos/work%20individual%20pages/evo%20clinic/cores%20feed_insta_ODIVELAS.jpg" alt=""></div>
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955116/Website_photos/work%20individual%20pages/moment%20laser/spart%20ads%20%28criativos%29-05.jpg" alt=""></div>
+        <div class="hero-marquee-item" aria-hidden="true"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/v1774955197/Website_photos/work%20individual%20pages/Aroma%20boreal/post%20restructure-02.jpg" alt=""></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -647,29 +629,53 @@
   <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
   <p class="section-body">Vê o conteúdo que criamos. Toca num vídeo e desliza — como nos reels.</p>
   <div class="reels-grid" id="reelsGrid">
-    <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/evo%20clinic/EVO%20TERESA%20ADD.mp4">
-      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
-      <div class="reel-card-overlay"></div>
-      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-      <div class="reel-card-info"><span class="reel-card-cat">Estética Avançada</span><span class="reel-card-name">Evo Clinic</span><span class="reel-card-metric">+70% ligações · +30% marcações</span></div>
+    <div class="reel-item">
+      <div class="reel-pill">
+        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-aroma-boreal.jpg" alt="Logo Aroma Boreal"></span>
+        <span class="reel-pill-name">Aroma Boreal</span>
+      </div>
+      <div class="reel-card" data-project="aroma-boreal" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Aroma%20boreal/Quer%20saber%20qual%20%C3%A9%20a%20rotina%20de%20cuidados%20aconselhada%20pela%20Camila%2C%20esteticista%20Evo%20Clinic%20Veja%20este.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
+      </div>
     </div>
-    <div class="reel-card" data-project="moment-laser" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/moment%20laser/INES%20FORMA%C3%87%C3%83O%20REEL.mp4">
-      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
-      <div class="reel-card-overlay"></div>
-      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-      <div class="reel-card-info"><span class="reel-card-cat">Equipamentos de Estética</span><span class="reel-card-name">Moment Laser</span><span class="reel-card-metric">7.000 → 10.000 seguidores · +813 mil views</span></div>
+    <div class="reel-item">
+      <div class="reel-pill">
+        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-evo-clinic.png" alt="Logo Evo Clinic"></span>
+        <span class="reel-pill-name">Evo Clinic</span>
+      </div>
+      <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/evo%20clinic/EVO%20TERESA%20ADD.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Estética Avançada</span><span class="reel-card-name">Evo Clinic</span><span class="reel-card-metric">+70% ligações · +30% marcações</span></div>
+      </div>
     </div>
-    <div class="reel-card" data-project="aroma-boreal" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Aroma%20boreal/Quer%20saber%20qual%20%C3%A9%20a%20rotina%20de%20cuidados%20aconselhada%20pela%20Camila%2C%20esteticista%20Evo%20Clinic%20Veja%20este.mp4">
-      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
-      <div class="reel-card-overlay"></div>
-      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-      <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
+    <div class="reel-item">
+      <div class="reel-pill">
+        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-moment-laser.jpg" alt="Logo Moment Laser"></span>
+        <span class="reel-pill-name">Moment Laser</span>
+      </div>
+      <div class="reel-card" data-project="moment-laser" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/moment%20laser/INES%20FORMA%C3%87%C3%83O%20REEL.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos de Estética</span><span class="reel-card-name">Moment Laser</span><span class="reel-card-metric">7.000 → 10.000 seguidores · +813 mil views</span></div>
+      </div>
     </div>
-    <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4">
-      <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
-      <div class="reel-card-overlay"></div>
-      <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-      <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">Redes Sociais & Ads</span></div>
+    <div class="reel-item">
+      <div class="reel-pill">
+        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-esthetic-solution.jpg" alt="Logo Esthetic Solution"></span>
+        <span class="reel-pill-name">Esthetic Solution</span>
+      </div>
+      <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_photos/work%20individual%20pages%20light/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">+6.000 seguidores · 200 clientes/mês · +127 mil views/mês</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -681,7 +687,7 @@
     <div class="stats-left">
       <div class="section-eyebrow">Resultados mensuráveis</div>
       <h2 class="section-title">Números que<br><span>falam por si</span></h2>
-      <p class="section-body">Números reais dos nossos clientes. Evo Clinic e Moment Laser — duas clínicas de estética em Lisboa geridas pela Differentt Lab.</p>
+      <p class="section-body">Números reais dos nossos clientes. Evo Clinic, Moment Laser e Esthetic Solution — marcas de estética geridas pela Differentt Lab.</p>
       <div class="mini-stats">
         <div class="mini-stat">
           <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="900">0</span><span class="mini-stat-unit">mil</span></div>
@@ -694,6 +700,14 @@
         <div class="mini-stat">
           <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="30">0</span><span class="mini-stat-unit">%</span></div>
           <span class="mini-stat-label">Mais marcações (Evo Clinic)</span>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="200">0</span></div>
+          <span class="mini-stat-label">Clientes/mês (Esthetic Solution)</span>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="127">0</span><span class="mini-stat-unit">mil</span></div>
+          <span class="mini-stat-label">Visualizações/mês (Esthetic Solution)</span>
         </div>
       </div>
     </div>
