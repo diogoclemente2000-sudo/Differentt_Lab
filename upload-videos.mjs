@@ -7,10 +7,14 @@ import { dirname } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 cloudinary.config({
-  cloud_name: 'dgun4lhkm',
-  api_key: '894592477567926',
-  api_secret: '8ftKWDzo-b-0-LNGoHe48Q_tjSE'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+  throw new Error('Defina CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET antes de executar este script.');
+}
 
 const photosDir = join(__dirname, 'Website_photos');
 

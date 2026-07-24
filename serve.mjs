@@ -29,6 +29,10 @@ try {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
+const MAX_BODY_BYTES = 64 * 1024;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 20;
+const requestLog = new Map();
 
 const mime = {
   '.html': 'text/html; charset=utf-8',
@@ -68,14 +72,42 @@ const LIVERELOAD_SCRIPT = `
 </script>`;
 
 const server = createServer(async (req, res) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+
   // Chat API endpoint
   if (req.url === '/api/chat' && req.method === 'POST') {
+    const ip = req.socket.remoteAddress || 'unknown';
+    const now = Date.now();
+    const recent = (requestLog.get(ip) || []).filter(time => now - time < RATE_LIMIT_WINDOW_MS);
+    if (recent.length >= RATE_LIMIT_MAX_REQUESTS) {
+      res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+      res.end(JSON.stringify({ reply: 'Demasiados pedidos. Tente novamente dentro de um minuto.' }));
+      return;
+    }
+    recent.push(now);
+    requestLog.set(ip, recent);
     let body = '';
-    req.on('data', chunk => { body += chunk; });
+    let bodyTooLarge = false;
+    req.on('data', chunk => {
+      body += chunk;
+      if (body.length > MAX_BODY_BYTES) {
+        bodyTooLarge = true;
+        req.destroy();
+      }
+    });
     req.on('end', async () => {
       try {
+        if (bodyTooLarge) throw new Error('Request body too large');
         if (!anthropic) anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
         const { messages } = JSON.parse(body);
+        if (!Array.isArray(messages) || messages.length === 0 || messages.length > 10 ||
+          messages.some(message => !message || !['user', 'assistant'].includes(message.role) || typeof message.content !== 'string' || message.content.length > 2_000)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ reply: 'Pedido inválido.' }));
+          return;
+        }
         const response = await anthropic.messages.create({
           model: 'claude-haiku-4-5-20251001',
           max_tokens: 150,
@@ -104,6 +136,12 @@ const server = createServer(async (req, res) => {
 
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
   let filePath = join(__dirname, urlPath === '/' ? 'index.html' : urlPath);
+
+  if (!filePath.startsWith(__dirname + '\\') && filePath !== __dirname) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
+    return;
+  }
 
   try {
     let stats = await stat(filePath).catch(() => null);
