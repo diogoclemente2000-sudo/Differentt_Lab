@@ -2,7 +2,8 @@ node_modules/
 .env
 temporary screenshots/
 screenshot.mjs
-Website_videos/
+Website_videos/*
+!Website_videos/video_homepage_hero.mp4
 Website_photos/
 upload-to-cloudinary.mjs
 test-upload.mjs

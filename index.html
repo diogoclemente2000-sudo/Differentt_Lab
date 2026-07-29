@@ -412,10 +412,9 @@
   <div class="hero-bg">
     <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata"
            poster="https://res.cloudinary.com/dgun4lhkm/video/upload/so_0,q_auto,f_auto,w_1280/Website_videos/video_homepage_full.jpg">
-      <!-- Chrome/Firefox: VP9 webm (leve) -->
-      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_webm/Website_videos/video_homepage_full.webm" type="video/webm">
-      <!-- Safari/iOS: H.264 explícito — o f_auto entrega HEVC ao iPhone e o autoplay inline falha -->
-      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,vc_h264/Website_videos/video_homepage_full.mp4" type="video/mp4">
+      <!-- MP4 H.264 estático, servido pelo Netlify (não pelo Cloudinary): mesmos bytes para todos
+           os browsers/dispositivos, sem content-negotiation. Evita o HEVC (iPhone) e o webm (congelava). -->
+      <source src="./Website_videos/video_homepage_hero.mp4" type="video/mp4">
     </video>
     <script>
     (function(){
