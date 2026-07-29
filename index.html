@@ -410,10 +410,26 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline preload="metadata"
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="metadata"
            poster="https://res.cloudinary.com/dgun4lhkm/video/upload/so_0,q_auto,f_auto,w_1280/Website_videos/video_homepage_full.jpg">
-      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_auto/Website_videos/video_homepage_full.mp4" type="video/mp4">
+      <!-- Chrome/Firefox: VP9 webm (leve) -->
+      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,f_webm/Website_videos/video_homepage_full.webm" type="video/webm">
+      <!-- Safari/iOS: H.264 explícito — o f_auto entrega HEVC ao iPhone e o autoplay inline falha -->
+      <source src="https://res.cloudinary.com/dgun4lhkm/video/upload/q_auto,vc_h264/Website_videos/video_homepage_full.mp4" type="video/mp4">
     </video>
+    <script>
+    (function(){
+      var v = document.getElementById('heroVideo');
+      if(!v) return;
+      function tryPlay(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      v.addEventListener('loadeddata', tryPlay);
+      tryPlay();
+      // Fallback: se o autoplay ficar adiado (ex.: iOS), arranca ao primeiro toque
+      ['touchstart','click'].forEach(function(ev){
+        document.addEventListener(ev, function once(){ tryPlay(); document.removeEventListener(ev, once); }, {passive:true});
+      });
+    })();
+    </script>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">

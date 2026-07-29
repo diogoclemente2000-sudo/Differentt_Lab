@@ -541,8 +541,10 @@ function render(id) {
     const pos = typeof item === 'object' && item.position ? item.position : '';
     const isVideo = /\.(mp4|webm|mov|mkv)$/i.test(src);
     if (isVideo) {
-      const videoSrc = src.replace('/image/upload/', '/video/upload/').replace('work%20individual%20pages/', 'work%20individual%20pages%20light/');
-      return `<video src="${videoSrc}" autoplay muted loop playsinline style="width:100%;display:block;"></video>`;
+      const videoSrc = src.replace('/image/upload/', '/video/upload/').replace('work%20individual%20pages/', 'work%20individual%20pages%20light/')
+        // f_auto entrega HEVC ao iPhone e o autoplay inline falha — forçar H.264
+        .replace('q_auto,f_auto', 'q_auto,vc_h264');
+      return `<video src="${videoSrc}" autoplay muted loop playsinline webkit-playsinline preload="metadata" style="width:100%;display:block;"></video>`;
     }
     return `<img src="${src}" alt="${name}" loading="lazy"${pos ? ` style="object-position:${pos}"` : ''}>`;
   }
