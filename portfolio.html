@@ -67,30 +67,87 @@
     }
 
     /* HERO */
-    .page-hero { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 220px 48px 110px; background: linear-gradient(to bottom, #000 80%, transparent 100%); text-align: center; }
-    .page-hero::before { content: ''; position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%); width: 980px; height: 620px; max-width: 110%; background: radial-gradient(ellipse, rgba(158,123,182,0.20) 0%, rgba(197,133,184,0.06) 38%, transparent 68%); pointer-events: none; z-index: 0; }
-    .hero-inner { display: flex; justify-content: center; width: 100%; position: relative; z-index: 1; }
-    .hero-left { position: relative; z-index: 2; max-width: 800px; padding: 0; }
+    .page-hero { position: relative; overflow: hidden; padding: 210px 0 76px; background: linear-gradient(to bottom, #000 80%, transparent 100%); text-align: left; }
+    .page-hero::before { content: ''; position: absolute; top: 32%; left: 22%; transform: translate(-50%, -50%); width: 880px; height: 540px; max-width: 120%; background: radial-gradient(ellipse, rgba(158,123,182,0.17) 0%, rgba(197,133,184,0.05) 42%, transparent 70%); pointer-events: none; z-index: 0; }
+    .hero-inner { max-width: 1400px; margin: 0 auto; padding: 0 48px; width: 100%; position: relative; z-index: 1; }
+    .hero-left { position: relative; z-index: 2; max-width: 720px; padding: 0; }
     .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; }
     .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 28px; }
-    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 40px; }
-    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 28px; }
+    .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 520px; margin: 0 0 40px; }
+    .hero-actions { display: flex; align-items: center; justify-content: flex-start; gap: 30px; }
+    /* CTA do hero: mais pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve */
+    .hero-actions .hero-cta {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      padding: 14px 30px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-cta-label { position: relative; z-index: 2; }
+    /* preenchimento: brilho roxo suave e desfocado que floresce da esquerda no hover (sem aresta sólida) */
+    .hero-actions .hero-cta::after {
+      content: '';
+      position: absolute;
+      inset: -25%;
+      z-index: 1;
+      background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%);
+      filter: blur(11px);
+      opacity: 0.5;
+      transform: scale(0.88);
+      transform-origin: 88% 60%;
+      transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
+      pointer-events: none;
+    }
+    /* anel de gradiente (mask-composite — fiável no browser real, ao contrário do border-box) */
+    .hero-actions .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border-radius: 11px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+    /* hover: brilho suave floresce + levanta ligeiramente */
+    .hero-actions .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .hero-actions .hero-cta:hover::after { opacity: 1; transform: scale(1.05); }
     .hero-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .hero-link:hover { color: #9e7bb6; }
     @media (max-width: 1024px) {
-      .page-hero { padding: 170px 48px 80px; }
+      .page-hero { padding: 180px 0 60px; }
+      .hero-inner { padding: 0 32px; }
       .hero-left { width: 100%; }
+      .filter-bar { padding: 8px 32px 40px; }
     }
     @media (max-width: 600px) {
-      .page-hero { padding: 140px 24px 64px; }
-      .hero-actions { flex-direction: column; gap: 18px; }
+      .page-hero { padding: 132px 0 40px; }
+      .hero-inner { padding: 0 24px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
     }
 
-    /* FILTER BAR */
-    .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0 48px 48px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 5; }
-    .filter-tab { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 10px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: rgba(255,255,255,0.35); cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
-    .filter-tab:hover { border-color: rgba(158,123,182,0.4); color: rgba(255,255,255,0.7); }
-    .filter-tab.active { border-color: rgba(158,123,182,0.5); background: rgba(158,123,182,0.15); color: #9e7bb6; }
+    /* FILTER RAIL — editorial, alinhado à esquerda, indicador deslizante */
+    .filter-bar { max-width: 1400px; margin: 0 auto; padding: 8px 48px 44px; position: relative; z-index: 5; }
+    .filter-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+    .filter-rail { position: relative; display: flex; flex-wrap: nowrap; gap: 38px; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .filter-rail::-webkit-scrollbar { display: none; }
+    .filter-tab { position: relative; flex-shrink: 0; white-space: nowrap; font-family: 'Overpass', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 2px 20px; border: none; background: transparent; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.28s ease; display: inline-flex; align-items: flex-start; gap: 6px; }
+    .filter-tab:hover { color: rgba(255,255,255,0.82); }
+    .filter-tab.active { color: #fff; }
+    .filter-count { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; line-height: 1; position: relative; top: 1px; color: rgba(255,255,255,0.25); transition: color 0.28s ease; }
+    .filter-tab.active .filter-count { color: #c585b8; }
+    .filter-underline { position: absolute; bottom: -1px; left: 0; height: 2px; width: 0; background: linear-gradient(90deg, #9e7bb6, #c585b8); border-radius: 2px; transform: translateX(0); transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), width 0.45s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
 
     /* PORTFOLIO GRID */
     .portfolio-section { padding: 0 48px 120px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 5; }
@@ -135,8 +192,8 @@
       .proj-item.l-banner { aspect-ratio: 16/9; }
     }
     @media (max-width: 600px) {
-      .page-hero { padding: 120px 24px 48px; }
-      .filter-bar { padding: 0 8px 36px; }
+      .filter-bar { padding: 8px 24px 32px; }
+      .filter-rail { gap: 28px; }
       .portfolio-section { padding: 0 8px 80px; }
       .proj-item { border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 12px !important; overflow: hidden !important; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black); }
       .portfolio-grid { columns: 1; }
@@ -225,23 +282,27 @@
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-eyebrow">O Nosso Trabalho</div>
-      <h1 class="hero-title">Projetos<br>que falam<br>por si.</h1>
+      <h1 class="hero-title">Projetos da<br>nossa agência.</h1>
       <p class="hero-sub">Explore o portfólio da Differentt Lab: websites, redes sociais, branding e identidade visual. Criatividade que gera resultados reais, a partir do nosso escritório em Lisboa, Portugal.</p>
       <div class="hero-actions">
-        <a href="./contactos" class="btn-primary" style="padding:14px 36px;font-size:14px;">Trabalhar Connosco</a>
+        <a href="./contactos" class="btn-primary hero-cta"><span class="hero-cta-label">Trabalhar Connosco</span></a>
         <a href="./nos" class="hero-link">Sobre Nós →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FILTER BAR -->
+<!-- FILTER RAIL -->
 <div class="filter-bar">
-  <button class="filter-tab active" data-filter="all">Todos</button>
-  <button class="filter-tab" data-filter="branding">Branding</button>
-  <button class="filter-tab" data-filter="social">Redes Sociais</button>
-  <button class="filter-tab" data-filter="grafico">Gráfico</button>
-  <button class="filter-tab" data-filter="3d">Modelação 3D</button>
+  <div class="filter-eyebrow">Filtrar por</div>
+  <div class="filter-rail" id="filterRail">
+    <button class="filter-tab active" data-filter="all">Todos<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="branding">Branding<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="social">Redes Sociais<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="grafico">Gráfico<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="3d">Modelação 3D<span class="filter-count"></span></button>
+    <span class="filter-underline" id="filterUnderline"></span>
+  </div>
 </div>
 
 <!-- PORTFOLIO GRID -->
@@ -475,41 +536,69 @@
 
 <script>
   const grid = document.getElementById('portfolioGrid');
+  const rail = document.getElementById('filterRail');
+  const underline = document.getElementById('filterUnderline');
+  const tabs = Array.from(document.querySelectorAll('.filter-tab'));
+  const allItems = Array.from(document.querySelectorAll('.proj-item'));
+
+  // Contagem por categoria (dinâmica)
+  tabs.forEach(tab => {
+    const f = tab.dataset.filter;
+    const n = f === 'all'
+      ? allItems.length
+      : allItems.filter(i => i.dataset.category.split(' ').includes(f)).length;
+    const c = tab.querySelector('.filter-count');
+    if (c) c.textContent = n;
+  });
+
+  // Indicador deslizante
+  function moveUnderline(tab) {
+    if (!tab || !underline) return;
+    underline.style.width = tab.offsetWidth + 'px';
+    underline.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+  }
+  function setActive(tab) {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    moveUnderline(tab);
+    // manter o separador visível ao filtrar em ecrãs pequenos
+    if (tab.scrollIntoView) tab.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+  }
+
+  function filterItems(filter) {
+    allItems.forEach(item => {
+      const match = filter === 'all' || item.dataset.category.split(' ').includes(filter);
+      item.classList.toggle('hidden', !match);
+    });
+  }
 
   function applyFilter(filter) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    const activeTab = document.querySelector(`.filter-tab[data-filter="${filter}"]`) || document.querySelector('.filter-tab[data-filter="all"]');
-    if (activeTab) activeTab.classList.add('active');
-    document.querySelectorAll('.proj-item').forEach(item => {
-      if (filter === 'all' || item.dataset.category.split(' ').includes(filter)) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
+    const tab = document.querySelector(`.filter-tab[data-filter="${filter}"]`) || tabs[0];
+    setActive(tab);
+    filterItems(filter);
   }
 
   const urlFilter = new URLSearchParams(window.location.search).get('filter');
   if (urlFilter) applyFilter(urlFilter);
 
-  document.querySelectorAll('.filter-tab').forEach(tab => {
+  tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+      setActive(tab);
       const filter = tab.dataset.filter;
       grid.classList.add('is-filtering');
       setTimeout(() => {
-        document.querySelectorAll('.proj-item').forEach(item => {
-          if (filter === 'all' || item.dataset.category.split(' ').includes(filter)) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
-        });
+        filterItems(filter);
         grid.classList.remove('is-filtering');
       }, 220);
     });
   });
+
+  // Posicionar o indicador no arranque (e recalcular quando fontes/resize mudam larguras)
+  function initUnderline() { moveUnderline(document.querySelector('.filter-tab.active') || tabs[0]); }
+  initUnderline();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(initUnderline);
+  window.addEventListener('load', initUnderline);
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(initUnderline, 120); });
 </script>
 <script>
   const hamburger = document.getElementById('nav-hamburger');

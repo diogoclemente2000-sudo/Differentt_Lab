@@ -98,19 +98,14 @@
     }
 
     /* HERO */
-    .page-hero { padding: 160px 48px 80px; text-align: center; }
+    .page-hero { padding: 160px 48px 80px; text-align: left; }
     .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 28px; }
     .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; }
 
     /* METHODOLOGY BANNER */
-    .method-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 72px 48px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); align-items: start; }
-    .method-banner-left { font-family: 'Nunito Sans', sans-serif; font-size: clamp(22px, 2.8vw, 38px); font-weight: 300; line-height: 1.25; color: #fff; text-transform: uppercase; letter-spacing: -0.01em; }
-    .method-banner-left em { color: #9e7bb6; font-style: normal; }
-    .method-banner-right { display: flex; flex-direction: column; gap: 20px; padding-top: 6px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 80px; }
-    .method-banner-right p { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.4); }
-    .method-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .method-tag { display: inline-flex; align-items: center; gap: 7px; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 10px 14px; line-height: 1; }
-    .method-tag::before { content: ''; display: block; width: 7px; height: 7px; border-radius: 50%; background: #9e7bb6; flex-shrink: 0; position: relative; top: -0.5px; }
+    .method-banner { padding: 8px 48px 48px; }
+    .method-banner-sub { font-family: 'Nunito Sans', sans-serif; font-size: clamp(16px, 1.7vw, 20px); font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.5); max-width: 600px; }
+    .method-banner-sub em { color: #9e7bb6; font-style: normal; }
 
     /* STEPS LIST */
     .accordion { display: flex; flex-direction: column; gap: 8px; padding: 32px 48px 64px; }
@@ -142,13 +137,12 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .page-hero { padding: 160px 32px 64px; }
-      .method-banner { grid-template-columns: 1fr; gap: 32px; padding: 56px 32px; }
-      .method-banner-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
+      .method-banner { padding: 8px 32px 40px; }
     }
     @media (max-width: 600px) {
       .page-hero { padding: 140px 24px 56px; }
-      .method-banner { padding: 48px 24px; gap: 28px; }
-      .method-banner-right { padding-top: 28px; }
+      .method-banner { padding: 4px 24px 32px; }
+      .method-banner-sub { max-width: 285px; }
     }
 
     /* CTA CONTACT FORM */
@@ -277,21 +271,7 @@
 
 <!-- METHOD BANNER -->
 <div class="method-banner">
-  <div class="method-banner-left">
-    A nossa metodologia<br>divide-se em <em>4 etapas</em><br>essenciais.
-  </div>
-  <div class="method-banner-right">
-    <p>Cobrimos todo o projeto desde a sua execução até a aplicação final, na sua loja ou negócio.</p>
-    <p>A partir do conhecimento da marca somos capazes de desenvolver todo o conteúdo físico e digital com base em métodos otimizados com anos de estudo e experiência.</p>
-    <div class="method-tags">
-      <span class="method-tag">Compreensão</span>
-      <span class="method-tag">Detalhe</span>
-      <span class="method-tag">Estratégia</span>
-      <span class="method-tag">Entrega</span>
-      <span class="method-tag">Liderança</span>
-      <span class="method-tag">Diferenciação</span>
-    </div>
-  </div>
+  <p class="method-banner-sub">O nosso método divide-se em <em>4 etapas</em> — da ideia à aplicação final.</p>
 </div>
 
 <!-- STEPS LIST -->
@@ -332,7 +312,7 @@
     <div class="step-card-content">
       <div class="step-card-eyebrow">Colheita · O conhecimento é tudo</div>
       <h2 class="step-card-title">Colheita</h2>
-      <p class="step-card-desc">Coletamos e analisamos o perfil da marca, os consumidores e o mercado alvo em sincronia com o cliente de maneira a projetá-la da melhor maneira.</p>
+      <p class="step-card-desc">Analisamos a marca, os consumidores e o mercado — sempre em sincronia com o cliente.</p>
       <div class="step-card-note">Fase crucial de selecionamento.</div>
     </div>
   </div>
@@ -344,7 +324,7 @@
     <div class="step-card-content">
       <div class="step-card-eyebrow">Definição · Valores e identidade da marca</div>
       <h2 class="step-card-title">Definição & Conceito</h2>
-      <p class="step-card-desc">Definimos a identidade, o posicionamento e a linguagem visual da marca em alinhamento com os objetivos do negócio e as expectativas do público-alvo.</p>
+      <p class="step-card-desc">Definimos a identidade, o posicionamento e a linguagem visual, alinhados com os objetivos do negócio.</p>
       <div class="step-card-note">Estratégia e conceito da marca.</div>
     </div>
   </div>
@@ -368,7 +348,7 @@
     <div class="step-card-content">
       <div class="step-card-eyebrow">Implementação · Montras & vinil</div>
       <h2 class="step-card-title">Aplicação e Resultados</h2>
-      <p class="step-card-desc">Aplicamos toda a identidade nos suportes físicos e digitais do cliente, garantindo uma presença consistente e profissional em todos os pontos de contacto.</p>
+      <p class="step-card-desc">Aplicamos a identidade em todos os suportes, físicos e digitais — presença consistente em cada ponto de contacto.</p>
       <div class="step-card-note">Implementação e entrega final.</div>
     </div>
   </div>

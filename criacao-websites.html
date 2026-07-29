@@ -278,6 +278,31 @@
     /* BUTTONS */
     .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
     .btn-primary:hover { background: #000; color: #fff; }
+
+    /* CTA do hero: pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve (igual ao portfolio) */
+    .hero-actions .hero-cta {
+      position: relative; overflow: hidden;
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%);
+      color: #fff; border: none; border-radius: 11px;
+      padding: 14px 30px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; line-height: 1;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-cta-label { position: relative; z-index: 2; }
+    .hero-actions .hero-cta::after {
+      content: ''; position: absolute; inset: -25%; z-index: 1;
+      background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%);
+      filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%;
+      transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none;
+    }
+    .hero-actions .hero-cta::before {
+      content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px;
+      background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    }
+    .hero-actions .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .hero-actions .hero-cta:hover::after { opacity: 1; transform: scale(1.05); }
     .hero-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .hero-link:hover { color: #9e7bb6; }
 
@@ -745,7 +770,7 @@
   </div>
   <div class="hero-bottom-cta">
     <div class="hero-actions">
-      <a href="./contactos" class="btn-glow">Pedir Orçamento</a>
+      <a href="./contactos" class="btn-primary hero-cta"><span class="hero-cta-label">Pedir Orçamento</span></a>
       <a href="./portfolio" class="hero-link">Ver Portfólio →</a>
     </div>
     <div class="hero-trust">

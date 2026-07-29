@@ -112,11 +112,17 @@
     .meta-name { font-family: 'Overpass', sans-serif; font-size: 13px; font-weight: 700; }
     .meta-role { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
 
-    /* FILTER BAR */
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; padding: 48px 48px 24px; }
-    .filter-tab { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.04em; padding: 8px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: rgba(255,255,255,0.55); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
-    .filter-tab:hover { border-color: rgba(158,123,182,0.6); color: #fff; }
-    .filter-tab.active { border-color: #9e7bb6; background: rgba(158,123,182,0.15); color: #fff; }
+    /* FILTER RAIL — editorial, régua com indicador deslizante */
+    .filter-bar { padding: 48px 48px 24px; position: relative; }
+    .filter-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+    .filter-rail { position: relative; display: flex; flex-wrap: nowrap; gap: 38px; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .filter-rail::-webkit-scrollbar { display: none; }
+    .filter-tab { position: relative; flex-shrink: 0; white-space: nowrap; font-family: 'Overpass', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 2px 20px; border: none; background: transparent; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.28s ease; display: inline-flex; align-items: flex-start; gap: 6px; }
+    .filter-tab:hover { color: rgba(255,255,255,0.82); }
+    .filter-tab.active { color: #fff; }
+    .filter-count { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; line-height: 1; position: relative; top: 1px; color: rgba(255,255,255,0.25); transition: color 0.28s ease; }
+    .filter-tab.active .filter-count { color: #c585b8; }
+    .filter-underline { position: absolute; bottom: -1px; left: 0; height: 2px; width: 0; background: linear-gradient(90deg, #9e7bb6, #c585b8); border-radius: 2px; transform: translateX(0); transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), width 0.45s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
 
     /* SERVICE CARDS */
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 48px 120px; transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.25,0.46,0.45,0.94); }
@@ -133,7 +139,7 @@
     .service-link::after { content: '→'; font-size: 13px; }
     .service-card:hover .service-link { color: #c585b8; gap: 10px; }
     @media (max-width: 1024px) { .filter-bar { padding: 40px 32px 20px; } .services-grid { grid-template-columns: repeat(2, 1fr); padding: 0 32px 80px; } }
-    @media (max-width: 600px) { .filter-bar { padding: 32px 8px 16px; gap: 8px; } .services-grid { grid-template-columns: 1fr; padding: 24px 8px 80px; } .service-card { height: 360px; } }
+    @media (max-width: 600px) { .filter-bar { padding: 32px 20px 16px; } .filter-rail { gap: 28px; } .services-grid { grid-template-columns: 1fr; padding: 24px 8px 80px; } .service-card { height: 360px; } }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
@@ -177,7 +183,7 @@
 
     /* FAQ */
     .faq-section { padding: 100px 48px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .faq-inner { max-width: 1000px; margin: 0 auto; }
+    .faq-inner { max-width: 1000px; margin: 0; }
     .faq-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .faq-header-left { display: flex; flex-direction: column; gap: 14px; }
     .faq-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
@@ -297,14 +303,18 @@
 </div>
 </a>
 
-<!-- FILTER BAR -->
+<!-- FILTER RAIL -->
 <div class="filter-bar">
-  <button class="filter-tab active" data-filter="all">Todos</button>
-  <button class="filter-tab" data-filter="Redes Sociais">Redes Sociais</button>
-  <button class="filter-tab" data-filter="Branding">Branding</button>
-  <button class="filter-tab" data-filter="Web">Web</button>
-  <button class="filter-tab" data-filter="3D">3D</button>
-  <button class="filter-tab" data-filter="Marketing">Marketing</button>
+  <div class="filter-eyebrow">Filtrar por</div>
+  <div class="filter-rail" id="filterRail">
+    <button class="filter-tab active" data-filter="all">Todos<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="Redes Sociais">Redes Sociais<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="Branding">Branding<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="Web">Web<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="3D">3D<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="Marketing">Marketing<span class="filter-count"></span></button>
+    <span class="filter-underline" id="filterUnderline"></span>
+  </div>
 </div>
 
 <!-- SERVICES GRID -->
@@ -435,20 +445,47 @@
 
 <script>
   const grid = document.querySelector('.services-grid');
-  document.querySelectorAll('.filter-tab').forEach(tab => {
+  const underline = document.getElementById('filterUnderline');
+  const tabs = Array.from(document.querySelectorAll('.filter-tab'));
+  const cards = Array.from(document.querySelectorAll('.service-card'));
+
+  // contagem por categoria (dinâmica)
+  tabs.forEach(tab => {
+    const f = tab.dataset.filter;
+    const n = f === 'all' ? cards.length : cards.filter(c => c.dataset.category === f).length;
+    const c = tab.querySelector('.filter-count');
+    if (c) c.textContent = n;
+  });
+
+  function moveUnderline(tab) {
+    if (!tab || !underline) return;
+    underline.style.width = tab.offsetWidth + 'px';
+    underline.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+  }
+  function setActive(tab) {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    moveUnderline(tab);
+    if (tab.scrollIntoView) tab.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+  }
+
+  tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+      setActive(tab);
       const filter = tab.dataset.filter;
       grid.classList.add('is-filtering');
       setTimeout(() => {
-        document.querySelectorAll('.service-card').forEach(card => {
-          card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
-        });
+        cards.forEach(card => card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter));
         grid.classList.remove('is-filtering');
       }, 220);
     });
   });
+
+  function initUnderline() { moveUnderline(document.querySelector('.filter-tab.active') || tabs[0]); }
+  initUnderline();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(initUnderline);
+  window.addEventListener('load', initUnderline);
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(initUnderline, 120); });
 
   const hamburger = document.getElementById('nav-hamburger');
   const overlay = document.getElementById('nav-mobile-overlay');

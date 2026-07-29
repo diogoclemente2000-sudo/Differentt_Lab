@@ -515,7 +515,7 @@
 </div>
 
 <!-- LOGOS + SERVICES WRAPPER -->
-<div id="logos-services-wrap" style="position:relative;">
+<div id="logos-services-wrap" style="position:relative;overflow-x:clip;">
   <canvas id="logo3dCanvas" aria-hidden="true" style="position:absolute;left:50%;transform:translate(-50%,-50%);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;z-index:0;"></canvas>
 
 <!-- CLIENT LOGOS -->
@@ -577,7 +577,7 @@
     </a>
     <a class="service-card" href="servicos" style="text-decoration:none;">
       <div class="service-card-photo">
-        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1600,q_auto,f_auto/v1774954319/STAND_lateral.jpg'); background-size: 180%;"></div>
+        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1600,q_auto,f_auto/v1774954319/STAND_lateral.jpg'); background-position: center bottom; background-repeat: no-repeat;"></div>
       </div>
       <div class="service-card-content">
         <span class="service-cat-pill">3D</span>
@@ -1398,7 +1398,8 @@
       if (!s.isVideo) return;
       if (i === index) {
         if (!s.media.getAttribute('src')) {
-          s.media.setAttribute('src', s.media.dataset.src);
+          // f_auto entrega webm/VP9 que congela em alguns browsers (Windows/Safari); forçar H.264
+          s.media.setAttribute('src', s.media.dataset.src.replace('q_auto,f_auto', 'q_auto,vc_h264'));
           s.media.load();
         }
         var p = s.media.play();
