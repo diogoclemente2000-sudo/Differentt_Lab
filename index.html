@@ -515,8 +515,11 @@
 </div>
 
 <!-- LOGOS + SERVICES WRAPPER -->
-<div id="logos-services-wrap" style="position:relative;overflow-x:clip;">
-  <canvas id="logo3dCanvas" aria-hidden="true" style="position:absolute;left:50%;transform:translate(-50%,-50%);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;z-index:0;"></canvas>
+<div id="logos-services-wrap" style="position:relative;">
+  <!-- clipa apenas o canvas (evita overflow horizontal) sem cortar o fundo full-bleed das secções -->
+  <div style="position:absolute;inset:0;overflow-x:clip;pointer-events:none;z-index:0;">
+    <canvas id="logo3dCanvas" aria-hidden="true" style="position:absolute;left:50%;transform:translate(-50%,-50%);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;"></canvas>
+  </div>
 
 <!-- CLIENT LOGOS -->
 <div class="logos-section" style="position:relative;z-index:1;">
