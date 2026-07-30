@@ -303,7 +303,7 @@
 
   <!-- RIGHT: FORM -->
   <div class="contact-right">
-    <p class="form-intro">Por favor iluicide-nos sobre informações para que consigamos entregar as melhores soluções.</p>
+    <p class="form-intro">Elucide-nos sobre o seu projeto para entregarmos a melhor solução.</p>
 
     <!--
       CONTACT FORM SETUP:
@@ -312,7 +312,7 @@
       3. Copy your form endpoint (looks like https://formspree.io/f/abc123)
       4. Replace 'YOUR_FORM_ID' below with your actual form ID
     -->
-    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xgonpzjb" method="POST">
+    <form class="contact-form" id="contact-form" action="/.netlify/functions/send-email" method="POST">
 
       <div class="form-row">
         <div class="form-field">
@@ -331,12 +331,12 @@
       </div>
 
       <div class="form-field">
-        <label for="website">Website (company)</label>
-        <input type="text" id="website" name="website" placeholder="https://www.yourcompany.com">
+        <label for="website">Website (empresa)</label>
+        <input type="text" id="website" name="website" placeholder="https://www.aempresa.pt">
       </div>
 
       <div>
-        <div class="services-label">Select the services you need from us! <span class="services-required">(required)</span></div>
+        <div class="services-label">Selecione os serviços que precisa <span class="services-required">(obrigatório)</span></div>
         <div class="checkbox-group">
           <label class="checkbox-item">
             <input type="checkbox" name="services" value="redes-sociais">
@@ -361,6 +361,10 @@
           <label class="checkbox-item">
             <input type="checkbox" name="services" value="fotografia">
             <span>Fotografia & Conteúdo</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="software">
+            <span>Software para empresas</span>
           </label>
         </div>
       </div>
@@ -430,11 +434,22 @@
     submitBtn.textContent = 'A enviar...';
     submitBtn.disabled = true;
 
+    const fd = new FormData(form);
+    const payload = {
+      formType: 'contacto',
+      firstName: fd.get('firstName') || '',
+      lastName: fd.get('lastName') || '',
+      email: fd.get('email') || '',
+      website: fd.get('website') || '',
+      services: fd.getAll('services'),
+      message: fd.get('message') || ''
+    };
+
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
 
       if (res.ok) {

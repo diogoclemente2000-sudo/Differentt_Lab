@@ -360,7 +360,7 @@
   <div>
     <h2 class="contact-cta-title">Conte-nos<br class="br-desktop"> mais sobre<br><span>a sua ideia.</span></h2>
   </div>
-  <form class="mini-form" id="mini-contact-form" action="https://formspree.io/f/xgonpzjb" method="POST">
+  <form class="mini-form" id="mini-contact-form" action="/.netlify/functions/send-email" method="POST">
     <input type="text" name="name" placeholder="Primeiro nome" required>
     <input type="email" name="email" placeholder="Email" required>
     <textarea name="message" placeholder="Perguntas importantes"></textarea>
@@ -398,7 +398,9 @@
   const miniForm = document.getElementById('mini-contact-form');
   if(miniForm) miniForm.addEventListener('submit', async(e) => {
     e.preventDefault();
-    const res = await fetch(miniForm.action, { method: 'POST', body: new FormData(miniForm), headers: { 'Accept': 'application/json' } });
+    const fd = new FormData(miniForm);
+    const payload = { formType: 'ideia', name: fd.get('name') || '', email: fd.get('email') || '', message: fd.get('message') || '' };
+    const res = await fetch('/.netlify/functions/send-email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     if(res.ok) { document.getElementById('mini-success').style.display='block'; miniForm.reset(); }
   });
   const hamburger = document.getElementById('nav-hamburger');

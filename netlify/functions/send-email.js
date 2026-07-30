@@ -50,11 +50,6 @@ function replyHtml(nome) {
 }
 
 exports.handler = async (event) => {
-  // Sonda de diagnóstico (GET) — só reporta se a chave existe e o seu tamanho, NUNCA o valor. Temporária.
-  if (event.httpMethod === 'GET') {
-    const k = process.env.RESEND_API_KEY || '';
-    return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ keyPresent: !!k, keyLen: k.length, mailFrom: process.env.MAIL_FROM || '(default)', mailTo: process.env.MAIL_TO || '(default)' }) };
-  }
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ error: 'Método não permitido' }) };
   }

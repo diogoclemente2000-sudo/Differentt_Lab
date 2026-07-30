@@ -502,7 +502,7 @@
         <h3 class="newsletter-h3">Insights digitais direto na tua caixa de entrada.</h3>
         <p class="newsletter-sub">Sem spam. Apenas artigos úteis sobre design, websites e marketing digital — uma vez por mês.</p>
       </div>
-      <form class="newsletter-form" id="newsletter-form" action="https://formspree.io/f/xgonpzjb" method="POST">
+      <form class="newsletter-form" id="newsletter-form" action="/.netlify/functions/send-email" method="POST">
         <input type="hidden" name="_subject" value="Nova subscrição newsletter (blog)">
         <input type="email" class="newsletter-input" name="email" placeholder="O teu email" autocomplete="email" required>
         <button type="submit" class="newsletter-btn">Subscrever</button>
@@ -817,10 +817,11 @@
       btn.textContent = 'A enviar...';
       btn.disabled = true;
       try {
-        const res = await fetch(nlForm.action, {
+        const email = (new FormData(nlForm)).get('email') || '';
+        const res = await fetch('/.netlify/functions/send-email', {
           method: 'POST',
-          body: new FormData(nlForm),
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formType: 'newsletter', email })
         });
         if (res.ok) {
           nlForm.style.display = 'none';
