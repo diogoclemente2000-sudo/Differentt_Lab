@@ -106,8 +106,13 @@
     .hire-sub strong { color: rgba(255,255,255,0.85); font-weight: 700; }
 
     .contact-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
-    .btn-videocall { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: transparent; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 100px; border: 1.5px solid rgba(255,255,255,0.4); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
-    .btn-videocall:hover { border-color: #fff; transform: translateY(-2px); }
+    /* Botão gradiente (preto + outline branco), igual ao Submeter */
+    .btn-videocall { position: relative; overflow: hidden; display: inline-flex; align-items: center; padding: 14px 30px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .btn-videocall .btn-vc-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
+    .btn-videocall::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .btn-videocall::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .btn-videocall:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .btn-videocall:hover::after { opacity: 0.6; transform: scale(1.05); }
     .contact-email { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
     .contact-email-label { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
     .contact-email-addr { font-size: 15px; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
@@ -147,12 +152,12 @@
     .checkbox-item span { font-family: 'Nunito Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.78); }
 
     /* Botão gradiente (mesmo estilo dos heros) */
-    .btn-submit { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); margin-top: 8px; align-self: flex-start; }
+    .btn-submit { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); margin-top: 8px; align-self: flex-start; }
     .btn-submit .hero-cta-label { position: relative; z-index: 2; }
-    .btn-submit::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%); filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .btn-submit::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .btn-submit::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .btn-submit::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
-    .btn-submit:hover::after { opacity: 1; transform: scale(1.05); }
+    .btn-submit:hover::after { opacity: 0.6; transform: scale(1.05); }
     .btn-submit:disabled { opacity: 0.65; cursor: default; transform: none; }
 
     #form-success { color: #9e7bb6; font-size: 14px; padding: 16px; border: 1px solid rgba(158,123,182,0.3); border-radius: 10px; text-align: center; background: rgba(158,123,182,0.05); }
@@ -160,6 +165,7 @@
     @media (max-width: 1024px) {
       .contact-section { padding: 120px 0 72px; }
       .contact-inner { grid-template-columns: 1fr; gap: 56px; padding: 0 32px; }
+      .world-title { padding: 0 32px; }
       .checkbox-group { grid-template-columns: 1fr; }
       footer { padding: 48px 32px 24px; }
       .footer-top { flex-direction: column; gap: 40px; }
@@ -170,6 +176,7 @@
     @media (max-width: 600px) {
       .contact-section { padding: 100px 0 60px; }
       .contact-inner { padding: 0 24px; }
+      .world-title { padding: 0 24px; }
       .form-row { grid-template-columns: 1fr; }
       footer { padding: 40px 20px 20px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -178,7 +185,7 @@
 
     /* WORLD SECTION */
     .world-section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; background: #050505; }
-    .world-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(18px, 3vw, 36px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 40px; }
+    .world-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(18px, 3vw, 36px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; max-width: 1400px; margin: 0 auto 40px; padding: 0 48px; text-align: left; }
     .world-visual { position: relative; max-width: 700px; margin: 0 auto; }
     .world-dots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 8px; opacity: 0.2; }
     .world-dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
@@ -210,21 +217,7 @@
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
     }
   </style>
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '3066909863517847');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3066909863517847&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code -->
+  <script src="/meta-pixel.js"></script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -290,13 +283,15 @@
 
   <!-- LEFT: TRABALHA CONNOSCO -->
   <div class="contact-left">
-    <h1 class="hire-title">TRABALHE<br>CONNOSCO</h1>
+    <h1 class="hire-title">SEJA<br>NOSSO<br>CLIENTE</h1>
     <p class="hire-sub">Os seus concorrentes vão desejar ter chegado aqui primeiro. Tarde <strong>demais.</strong></p>
 
     <div class="contact-actions">
       <a href="https://web.whatsapp.com/" target="_blank" class="btn-videocall">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        Videocall
+        <span class="btn-vc-inner">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          Videochamada
+        </span>
       </a>
 
       <div>
@@ -344,31 +339,31 @@
         <div class="services-label">Selecione os serviços que precisa <span class="services-required">(obrigatório)</span></div>
         <div class="checkbox-group">
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="redes-sociais">
+            <input type="checkbox" name="services" value="REDES">
             <span>Gestão de redes sociais</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="branding">
+            <input type="checkbox" name="services" value="BRANDING">
             <span>Branding & comunicação</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="websites">
+            <input type="checkbox" name="services" value="WEBSITE">
             <span>Websites</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="3d">
+            <input type="checkbox" name="services" value="3D">
             <span>3D & interiores</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="motion">
+            <input type="checkbox" name="services" value="MOTION">
             <span>Motion & Vídeo</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="fotografia">
+            <input type="checkbox" name="services" value="FOTO">
             <span>Fotografia & Conteúdo</span>
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="services" value="software">
+            <input type="checkbox" name="services" value="SOFTWARE">
             <span>Software para empresas</span>
           </label>
         </div>
@@ -441,14 +436,21 @@
     submitBtn.disabled = true;
 
     const fd = new FormData(form);
+    const servicos = fd.getAll('services');            // códigos: REDES, BRANDING, WEBSITE, 3D, MOTION, FOTO, SOFTWARE
+    const attrib = (typeof window.getAttrib === 'function') ? window.getAttrib() : {};
     const payload = {
       formType: 'contacto',
       firstName: fd.get('firstName') || '',
       lastName: fd.get('lastName') || '',
       email: fd.get('email') || '',
       website: fd.get('website') || '',
-      services: fd.getAll('services'),
-      message: fd.get('message') || ''
+      services: servicos,
+      message: fd.get('message') || '',
+      // --- campos de rastreio (hidden) ---
+      servicos_selecionados: servicos,
+      pagina_origem: window.location.pathname,
+      timestamp: new Date().toISOString(),
+      attrib: attrib
     };
 
     try {
@@ -459,9 +461,16 @@
       });
 
       if (res.ok) {
-        document.getElementById('form-success').style.display = 'block';
-        form.reset();
-        submitBtn.style.display = 'none';
+        // Marca o Lead como pendente para o Píxel disparar em /obrigado (protegido contra refresh).
+        try {
+          sessionStorage.setItem('meta_lead_pending', JSON.stringify({
+            formulario: 'contactos-geral',
+            nServicos: servicos.length,
+            ts: Date.now()
+          }));
+        } catch (e) { /* sessionStorage indisponível — segue para /obrigado na mesma */ }
+        window.location.assign('/obrigado');
+        return;
       } else {
         submitLabel.textContent = 'Erro — tenta novamente';
         submitBtn.disabled = false;

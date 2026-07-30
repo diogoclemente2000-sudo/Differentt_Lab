@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <link rel="canonical" href="https://differenttlab.com/privacidade">
+  <link rel="canonical" href="https://differenttlab.com/obrigado">
+  <meta name="robots" content="noindex, nofollow">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RZ1CP73D5"></script>
   <script>
@@ -19,14 +20,17 @@
   <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidade e Cookies | Differentt Lab</title>
-  <meta name="description" content="Política de Privacidade e Cookies do Differentt Lab. Saiba que dados pessoais recolhemos, como os utilizamos e quais os seus direitos ao abrigo do RGPD.">
+  <title>Obrigado | Differentt Lab</title>
+  <meta name="description" content="Recebemos o teu pedido. A equipa do Differentt Lab responde normalmente em 24 a 48 horas úteis.">
+  <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: linear-gradient(45deg, #000 0%, #050505 25%, #020202 50%, #060606 75%, #000 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; }
+    * { box-sizing: border-box; }
+    body { background: #000; color: #fff; font-family: 'Nunito Sans', sans-serif; margin: 0; }
+    h1,h2,h3,h4 { font-family: 'Overpass', sans-serif; }
+    a { color: inherit; }
 
     /* NAV */
     .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
@@ -37,6 +41,8 @@
     .nav-icons { display: flex; gap: 18px; align-items: center; }
     .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; }
     .nav-icons a:hover { opacity: 1; }
+
+    /* MOBILE NAV */
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
     .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
@@ -47,7 +53,7 @@
     .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
     .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s; }
     .nav-mob-close:hover { opacity: 1; }
-    .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
+    .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px 28px; }
     .nav-mob-links a { color: #fff; text-decoration: none; font-family: 'Nunito Sans', sans-serif; font-size: 30px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0; }
     .nav-mob-links a:hover { color: #9e7bb6; }
     .nav-mobile-overlay.open .nav-mob-links a:nth-child(1) { animation: mob-link-in 0.4s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
@@ -65,58 +71,63 @@
       .nav-hamburger { display: flex !important; }
     }
 
-    /* PAGE HEAD */
-    .page-head { position: relative; padding: 200px 48px 60px; text-align: center; overflow: hidden; }
-    .page-head::before { content: ''; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 520px; max-width: 110%; background: radial-gradient(ellipse, rgba(158,123,182,0.18) 0%, rgba(197,133,184,0.05) 40%, transparent 68%); pointer-events: none; z-index: 0; }
-    .page-head-inner { position: relative; z-index: 1; }
-    .page-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
-    .page-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(36px, 5vw, 72px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1; color: #fff; }
-    .page-updated { margin-top: 20px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-
-    /* LEGAL CONTENT */
-    .legal-wrap { max-width: 860px; margin: 0 auto; padding: 24px 48px 120px; }
-    .legal-wrap section { margin-bottom: 44px; scroll-margin-top: 120px; }
-    .legal-wrap h2 { font-family: 'Overpass', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0.02em; color: #fff; margin-bottom: 14px; padding-top: 8px; }
-    .legal-wrap h2 span { color: #9e7bb6; margin-right: 10px; font-weight: 900; }
-    .legal-wrap h3 { font-family: 'Overpass', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #c585b8; margin: 20px 0 8px; }
-    .legal-wrap p { font-size: 14.5px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.62); margin-bottom: 12px; }
-    .legal-wrap ul { list-style: none; margin: 10px 0 16px; }
-    .legal-wrap ul li { position: relative; padding-left: 22px; font-size: 14.5px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.62); margin-bottom: 8px; }
-    .legal-wrap ul li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; border-radius: 50%; background: #9e7bb6; }
-    .legal-wrap a { color: #9e7bb6; text-decoration: none; }
-    .legal-wrap a:hover { text-decoration: underline; }
-    .legal-wrap strong { color: rgba(255,255,255,0.85); font-weight: 600; }
-    .legal-note { background: rgba(158,123,182,0.08); border: 1px solid rgba(158,123,182,0.25); border-radius: 12px; padding: 18px 22px; margin: 16px 0; }
-    .legal-note p { margin-bottom: 0; }
-    @media (max-width: 600px) {
-      .page-head { padding: 150px 24px 40px; }
-      .legal-wrap { padding: 16px 24px 80px; }
-    }
+    /* THANK YOU HERO */
+    .ty-section { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 160px 48px 96px; position: relative; overflow: hidden; }
+    .ty-glow { position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 720px; max-width: 120vw; height: 480px; background: radial-gradient(50% 50% at 50% 50%, rgba(158,123,182,0.22) 0%, rgba(197,133,184,0.08) 45%, transparent 72%); filter: blur(20px); pointer-events: none; z-index: 0; }
+    .ty-inner { position: relative; z-index: 1; max-width: 660px; text-align: center; }
+    .ty-check { width: 78px; height: 78px; border-radius: 50%; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; background: radial-gradient(120% 120% at 30% 20%, rgba(158,123,182,0.35), rgba(158,123,182,0.08)); border: 1.5px solid rgba(158,123,182,0.5); box-shadow: 0 18px 50px rgba(158,123,182,0.25); animation: ty-pop 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+    .ty-check svg { animation: ty-draw 0.5s ease 0.25s both; }
+    @keyframes ty-pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes ty-draw { from { opacity: 0; stroke-dashoffset: 26; } to { opacity: 1; stroke-dashoffset: 0; } }
+    .ty-eyebrow { font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 18px; }
+    .ty-title { font-size: clamp(34px, 6vw, 60px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.02; margin: 0 0 22px; }
+    .ty-title span { color: #9e7bb6; }
+    .ty-text { font-size: clamp(15px, 2vw, 18px); font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 40px; }
+    .ty-text strong { color: #fff; font-weight: 600; }
+    .ty-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .ty-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; border-radius: 100px; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.2s; }
+    .ty-btn-wa { background: #ffffff; color: #0a0a0a; box-shadow: 0 12px 30px rgba(255,255,255,0.12); }
+    .ty-btn-wa svg { color: #25D366; }
+    .ty-btn-wa:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(255,255,255,0.2); }
+    .ty-btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.28); }
+    .ty-btn-ghost:hover { transform: translateY(-3px); border-color: #9e7bb6; color: #9e7bb6; }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
     .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; }
-    .footer-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); max-width: 220px; margin: 16px 0 24px; }
+    .footer-brand-name { margin: 20px 0 12px; }
+    .footer-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); max-width: 220px; margin-bottom: 24px; }
     .social-links { display: flex; gap: 14px; }
-    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, color 0.2s; font-size: 13px; }
     .social-link:hover { border-color: #9e7bb6; color: #9e7bb6; }
     .footer-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
     .footer-col h3 { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .footer-col ul li a:hover { color: #9e7bb6; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: center; align-items: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
-    @media (max-width: 600px) {
-      footer { padding: 48px 24px 24px; }
+    @media (max-width: 1024px) {
+      footer { padding: 48px 48px 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
-      .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .ty-section { padding: 140px 24px 72px; }
+      footer { padding-left: 56px !important; padding-right: 56px !important; padding-top: 48px; padding-bottom: 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .ty-actions { flex-direction: column; }
+      .ty-btn { justify-content: center; }
     }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M66X7THV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <div class="nav-wrapper">
 <nav>
@@ -171,95 +182,25 @@
   </div>
 </div>
 
-<!-- HEAD -->
-<div class="page-head">
-  <div class="page-head-inner">
-    <div class="page-eyebrow">Legal</div>
-    <h1 class="page-title">Política de Privacidade</h1>
-    <p class="page-updated">Última atualização: Julho de 2026</p>
-  </div>
-</div>
-
-<!-- CONTENT -->
-<div class="legal-wrap">
-
-  <section>
-    <h2><span>01</span>Quem somos</h2>
-    <p>O <strong>Differentt Lab</strong> é uma agência digital sediada em Odivelas, Lisboa, Portugal, especializada em branding, criação de websites, design gráfico e gestão de redes sociais. Para efeitos do Regulamento Geral sobre a Proteção de Dados (RGPD), o Differentt Lab é o responsável pelo tratamento dos dados pessoais recolhidos através deste website.</p>
-    <ul>
-      <li><strong>Responsável:</strong> Differentt Lab</li>
-      <li><strong>Localização:</strong> Odivelas, Lisboa, Portugal</li>
-      <li><strong>Email de contacto:</strong> <a href="mailto:differenttdesignlab@gmail.com">differenttdesignlab@gmail.com</a></li>
-      <li><strong>Website:</strong> <a href="https://differenttlab.com">differenttlab.com</a></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2><span>02</span>Que dados pessoais recolhemos</h2>
-    <h3>Dados fornecidos por si</h3>
-    <p>Quando preenche o formulário de contacto, recolhemos o seu <strong>nome</strong>, <strong>endereço de email</strong>, o <strong>website da sua empresa</strong> (opcional), os <strong>serviços de interesse</strong> e a <strong>mensagem</strong> que nos envia. Quando nos contacta por email ou WhatsApp, tratamos os dados que decide partilhar connosco nessa comunicação.</p>
-    <h3>Dados recolhidos automaticamente</h3>
-    <p>Durante a navegação recolhemos, através de cookies e tecnologias semelhantes, dados de utilização como páginas visitadas, duração da visita, tipo de dispositivo, navegador e localização aproximada (ao nível da cidade). Estes dados são utilizados de forma agregada para fins estatísticos e de melhoria do website.</p>
-  </section>
-
-  <section>
-    <h2><span>03</span>Finalidades e fundamentos do tratamento</h2>
-    <ul>
-      <li><strong>Responder a pedidos de contacto e orçamentos</strong> — fundamento: diligências pré-contratuais a pedido do titular (art. 6.º, n.º 1, al. b) do RGPD).</li>
-      <li><strong>Estatísticas de utilização do website</strong> (Google Analytics) — fundamento: consentimento (art. 6.º, n.º 1, al. a) do RGPD), dado através do banner de cookies.</li>
-      <li><strong>Publicidade e medição de campanhas</strong> (Google Ads, Meta Pixel) — fundamento: consentimento (art. 6.º, n.º 1, al. a) do RGPD).</li>
-      <li><strong>Cumprimento de obrigações legais</strong> (faturação, contabilidade) — fundamento: obrigação legal (art. 6.º, n.º 1, al. c) do RGPD).</li>
-    </ul>
-  </section>
-
-  <section id="cookies">
-    <h2><span>04</span>Política de Cookies</h2>
-    <p>Cookies são pequenos ficheiros de texto guardados no seu dispositivo quando visita um website. Utilizamos as seguintes categorias:</p>
-    <h3>Cookies essenciais</h3>
-    <p>Necessários ao funcionamento do site — por exemplo, a memorização da sua escolha no banner de consentimento de cookies. Não requerem consentimento.</p>
-    <h3>Cookies analíticos</h3>
-    <p>Utilizamos o <strong>Google Analytics</strong> e o <strong>Google Tag Manager</strong> para perceber como os visitantes utilizam o website (páginas mais visitadas, origem do tráfego, tempo de permanência). Os dados são tratados de forma agregada.</p>
-    <h3>Cookies de marketing</h3>
-    <p>Utilizamos o <strong>Meta Pixel</strong> (Facebook/Instagram) e etiquetas do <strong>Google Ads</strong> para medir a eficácia das nossas campanhas e apresentar anúncios relevantes.</p>
-    <div class="legal-note">
-      <p><strong>Como gerir cookies:</strong> pode aceitar ou rejeitar cookies não essenciais no banner apresentado na primeira visita. Pode ainda, a qualquer momento, apagar ou bloquear cookies nas definições do seu navegador. Note que bloquear cookies essenciais pode afetar o funcionamento do site.</p>
+<!-- THANK YOU -->
+<section class="ty-section">
+  <div class="ty-glow"></div>
+  <div class="ty-inner">
+    <div class="ty-check">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#c9aee0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:26;"><path d="M20 6 9 17l-5-5"/></svg>
     </div>
-  </section>
-
-  <section>
-    <h2><span>05</span>Com quem partilhamos os seus dados</h2>
-    <p>Não vendemos os seus dados pessoais. Recorremos a prestadores de serviços que tratam dados por nossa conta, com as garantias adequadas:</p>
-    <ul>
-      <li><strong>Formspree</strong> — processamento dos formulários de contacto;</li>
-      <li><strong>Google</strong> (Analytics, Tag Manager, Ads) — estatísticas e publicidade;</li>
-      <li><strong>Meta</strong> (Facebook/Instagram) — medição de campanhas;</li>
-      <li><strong>Netlify</strong> — alojamento do website;</li>
-      <li><strong>Cloudinary</strong> — alojamento e otimização de imagens e vídeos.</li>
-    </ul>
-    <p>Alguns destes prestadores podem tratar dados fora do Espaço Económico Europeu. Nesses casos, a transferência assenta em decisões de adequação ou cláusulas contratuais-tipo aprovadas pela Comissão Europeia.</p>
-  </section>
-
-  <section>
-    <h2><span>06</span>Prazo de conservação</h2>
-    <p>Conservamos os dados de contacto apenas durante o tempo necessário para responder ao seu pedido e, existindo relação comercial, durante a vigência da mesma e os prazos legais aplicáveis (nomeadamente fiscais). Os dados analíticos são conservados pelos prazos definidos nas ferramentas utilizadas (por norma, até 14 meses no Google Analytics).</p>
-  </section>
-
-  <section>
-    <h2><span>07</span>Os seus direitos</h2>
-    <p>Enquanto titular dos dados, tem o direito de acesso, retificação, apagamento, limitação do tratamento, portabilidade e oposição, bem como o direito de retirar o consentimento a qualquer momento. Saiba mais na nossa página dedicada ao <a href="./rgpd">RGPD</a> ou contacte-nos através de <a href="mailto:differenttdesignlab@gmail.com">differenttdesignlab@gmail.com</a>.</p>
-  </section>
-
-  <section>
-    <h2><span>08</span>Segurança</h2>
-    <p>Adotamos medidas técnicas e organizativas adequadas para proteger os seus dados contra acessos não autorizados, perda ou destruição, incluindo comunicação encriptada (HTTPS) e acesso restrito aos dados.</p>
-  </section>
-
-  <section>
-    <h2><span>09</span>Alterações a esta política</h2>
-    <p>Esta política pode ser atualizada para refletir alterações legais ou nas ferramentas que utilizamos. A data da última atualização consta no topo da página. Recomendamos a consulta periódica.</p>
-  </section>
-
-</div>
+    <div class="ty-eyebrow">Pedido recebido</div>
+    <h1 class="ty-title">Obrigado.<br><span>Já estamos a tratar disto.</span></h1>
+    <p class="ty-text">Recebemos o teu pedido e a nossa equipa responde normalmente em <strong>24&ndash;48&nbsp;horas úteis</strong>. Vamos analisar o que precisas e voltamos com o próximo passo.</p>
+    <div class="ty-actions">
+      <a href="https://wa.me/351926283061" target="_blank" rel="noopener" class="ty-btn ty-btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="./portfolio" class="ty-btn ty-btn-ghost">Ver portfólio</a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -284,6 +225,28 @@
     <p class="footer-copy">De Lisboa para o mundo.</p>
   </div>
 </footer>
+
+<a href="https://wa.me/351926283061" target="_blank" rel="noopener" id="whatsapp-btn" title="Fala connosco no WhatsApp" style="position:fixed;bottom:40px;right:40px;z-index:9998;width:56px;height:56px;border-radius:50%;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;"><svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<style>#whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.2);}</style>
+
+<!-- Píxel da Meta — evento Lead (só após submissão válida do formulário) -->
+<script>
+  (function () {
+    try {
+      var raw = sessionStorage.getItem('meta_lead_pending');
+      if (!raw) return;                              // sem pending → refresh ou visita direta: não dispara nada
+      sessionStorage.removeItem('meta_lead_pending'); // consome já — protege contra refresh (não redispara)
+      var data = JSON.parse(raw);
+      var recente = data && typeof data.ts === 'number' && (Date.now() - data.ts) < 5 * 60 * 1000; // < 5 min
+      if (recente && typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: data.formulario,
+          num_items: data.nServicos
+        });
+      }
+    } catch (e) { /* ignora */ }
+  })();
+</script>
 
 <script>
   const hamburger = document.getElementById('nav-hamburger');

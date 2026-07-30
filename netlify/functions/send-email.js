@@ -85,7 +85,8 @@ exports.handler = async (event) => {
   } else {
     formLabel = 'Pedido de contacto';
     subject = `Novo contacto — ${nomeCompleto || email || 'sem nome'}`;
-    const servicos = Array.isArray(d.services) ? d.services.join(', ') : d.services;
+    const listaServicos = d.servicos_selecionados || d.services;
+    const servicos = Array.isArray(listaServicos) ? listaServicos.join(', ') : listaServicos;
     rows = [
       { k: 'Nome', v: nomeCompleto },
       { k: 'Email', v: email },
@@ -93,6 +94,20 @@ exports.handler = async (event) => {
       { k: 'Serviços', v: servicos },
       { k: 'Mensagem', v: d.message },
     ];
+  }
+
+  // --- Rastreio / atribuição de campanha (aplica-se a qualquer formulário) ---
+  const attrib = (d.attrib && typeof d.attrib === 'object') ? d.attrib : {};
+  const attribLabels = {
+    utm_source: 'UTM Source', utm_medium: 'UTM Medium', utm_campaign: 'UTM Campaign',
+    utm_content: 'UTM Content', utm_term: 'UTM Term', utm_id: 'UTM ID', fbclid: 'fbclid',
+  };
+  Object.keys(attribLabels).forEach((k) => rows.push({ k: attribLabels[k], v: attrib[k] }));
+  if (d.pagina_origem) rows.push({ k: 'Página origem', v: d.pagina_origem });
+  if (d.timestamp) {
+    let ts = d.timestamp;
+    try { ts = new Date(d.timestamp).toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' }); } catch (e) { /* usa o valor cru */ }
+    rows.push({ k: 'Data/hora', v: ts });
   }
 
   const send = (payload) => fetch(RESEND_ENDPOINT, {
