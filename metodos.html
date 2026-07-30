@@ -160,6 +160,14 @@
     .mini-form textarea { resize: vertical; min-height: 110px; }
     .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); cursor: pointer; transition: background 0.2s, color 0.2s; margin-top: 4px; align-self: flex-start; }
     .btn-primary:hover { background: #000; color: #fff; }
+
+    /* botao gradiente-quadrado (igual aos contactos/obrigado) — usado no Submeter do form */
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; margin-top: 4px; align-self: flex-start; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
+    .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     @media (max-width: 1024px) { .contact-cta { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; } }
     @media (max-width: 600px) { .contact-cta { padding: 64px 24px; } .contact-cta-title { width: 100%; max-width: 100%; } .br-desktop { display: none; } }
 
@@ -175,7 +183,7 @@
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .footer-col ul li a:hover { color: #9e7bb6; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: center; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
     @media (max-width: 1024px) {
       footer { padding: 48px 48px 24px; }
@@ -350,7 +358,7 @@
     <input type="text" name="name" placeholder="Primeiro nome" required>
     <input type="email" name="email" placeholder="Email" required>
     <textarea name="message" placeholder="Perguntas importantes"></textarea>
-    <button type="submit" class="btn-primary">Submeter</button>
+    <button type="submit" class="gx-btn"><span class="gx-btn-inner">Submeter</span></button>
     <p id="mini-success" style="display:none;color:#9e7bb6;font-size:13px;">Mensagem enviada! Entraremos em contacto em breve.</p>
   </form>
 </div>

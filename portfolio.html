@@ -89,6 +89,8 @@
       letter-spacing: 0.12em;
       line-height: 1;
       box-shadow: 0 10px 26px rgba(0,0,0,0.4);
+      /* will-change mantem o botao numa camada composta estavel — evita o flicker do anel de gradiente no hover */
+      will-change: transform;
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
     }
     .hero-cta-label { position: relative; z-index: 2; }
@@ -185,7 +187,15 @@
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .footer-col ul li a:hover { color: #9e7bb6; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; }
+
+    /* botao gradiente-quadrado (igual aos CTAs do site) */
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
+    .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 1024px) {
@@ -272,7 +282,6 @@
       <p class="hero-sub">Explore o portfólio da Differentt Lab: websites, redes sociais, branding e identidade visual. Criatividade que gera resultados reais, a partir do nosso escritório em Lisboa, Portugal.</p>
       <div class="hero-actions">
         <a href="./contactos" class="btn-primary hero-cta"><span class="hero-cta-label">Trabalhar Connosco</span></a>
-        <a href="./nos" class="hero-link">Sobre Nós →</a>
       </div>
     </div>
   </div>
@@ -493,7 +502,7 @@
 <!-- CTA -->
 <div class="cta-bar">
   <h2>Vamos criar o<br>teu próximo <span>projeto?</span></h2>
-  <a href="./contactos" class="btn-primary">Hire Us</a>
+  <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Hire Us</span></a>
 </div>
 
 <!-- FOOTER -->

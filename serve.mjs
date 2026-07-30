@@ -4,7 +4,6 @@ import { watch as fsWatch } from 'fs';
 import { join, extname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import Anthropic from '@anthropic-ai/sdk';
 
 // Load .env file if present
 try {
@@ -17,7 +16,6 @@ try {
   }
 } catch { /* no .env file */ }
 
-let anthropic = null;
 
 // Load system prompt from txt file
 let SYSTEM_PROMPT = '';
@@ -100,7 +98,9 @@ const server = createServer(async (req, res) => {
     req.on('end', async () => {
       try {
         if (bodyTooLarge) throw new Error('Request body too large');
-        if (!anthropic) anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+        const OR_KEY = process.env.OPENROUTER_API_KEY;
+        if (!OR_KEY) throw new Error('OPENROUTER_API_KEY em falta no .env');
+        const OR_MODEL = process.env.OPENROUTER_MODEL || 'google/gemini-2.5-flash-lite';
         const { messages } = JSON.parse(body);
         if (!Array.isArray(messages) || messages.length === 0 || messages.length > 10 ||
           messages.some(message => !message || !['user', 'assistant'].includes(message.role) || typeof message.content !== 'string' || message.content.length > 2_000)) {
@@ -108,13 +108,26 @@ const server = createServer(async (req, res) => {
           res.end(JSON.stringify({ reply: 'Pedido inválido.' }));
           return;
         }
-        const response = await anthropic.messages.create({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 150,
-          system: SYSTEM_PROMPT + '\n\nIMPORTANTE: Mantém SEMPRE as respostas curtas — máximo 2-3 frases. Nunca uses listas longas. Vai direto ao ponto.',
-          messages: messages.slice(-10), // keep last 10 turns
+        const orRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${OR_KEY}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://differenttlab.com',
+            'X-Title': 'Differentt Lab',
+          },
+          body: JSON.stringify({
+            model: OR_MODEL,
+            max_tokens: 300,
+            messages: [
+              { role: 'system', content: SYSTEM_PROMPT + '\n\nIMPORTANTE: Mantém SEMPRE as respostas curtas — máximo 2-3 frases. Nunca uses listas longas. Vai direto ao ponto.' },
+              ...messages.slice(-10), // últimos 10 turnos
+            ],
+          }),
         });
-        const reply = response.content[0]?.text || 'Desculpe, não consegui processar a sua mensagem.';
+        if (!orRes.ok) throw new Error('OpenRouter ' + orRes.status + ' ' + (await orRes.text().catch(() => '')));
+        const data = await orRes.json();
+        const reply = data.choices?.[0]?.message?.content || 'Desculpe, não consegui processar a sua mensagem.';
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ reply }));
       } catch (e) {

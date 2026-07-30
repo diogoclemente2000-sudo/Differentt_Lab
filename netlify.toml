@@ -1,0 +1,12 @@
+# Configuração Netlify — funções e redirects.
+# (não define publish/base para não interferir com as definições do painel Netlify)
+
+[functions]
+  # inclui o prompt do chatbot no bundle da função chat.js
+  included_files = ["chatbot information/**"]
+
+# o frontend chama /api/chat; em produção é servido pela função chat.js
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200

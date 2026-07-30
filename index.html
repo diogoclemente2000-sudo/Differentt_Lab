@@ -144,7 +144,20 @@
     /* botao secundario — emparelhado com o .btn-primary, mesmas dimensoes */
     .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.35); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
     .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
-    
+
+    /* botao gradiente-quadrado (igual aos contactos/obrigado) — usado no CTA final */
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
+    .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
+    /* variante roxa: gradiente roxo tambem no fundo (nao so no contorno) */
+    .gx-btn--purple { background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%); }
+    .gx-btn--purple::before { background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%); }
+    .gx-btn--purple::after { background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%); opacity: 0.5; }
+    .gx-btn--purple:hover::after { opacity: 1; }
+
 
     /* HERO */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
@@ -307,7 +320,7 @@
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .footer-col ul li a:hover { color: #9e7bb6; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: center; align-items: center; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
 
@@ -992,8 +1005,8 @@
   <div class="cta-inner">
     <h2 class="cta-title" style="text-align:left;">Pronto para criar algo <span>extraordinário?</span></h2>
     <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;flex-shrink:0;">
-      <a href="./contactos" class="btn-primary">Contacte-nos</a>
-      <a href="./portfolio" class="btn-outline">Ver Trabalhos</a>
+      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span></a>
+      <a href="./portfolio" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Ver Trabalhos</span></a>
     </div>
   </div>
 </section>
@@ -1077,8 +1090,8 @@
 <style>
   #chat-widget { position: fixed; bottom: 110px; right: 28px; z-index: 9999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; pointer-events: none; }
   #chat-panel, #chat-bubble { pointer-events: all; }
-  #chat-bubble { height: 48px; padding: 0 18px 0 14px; border-radius: 100px; background: linear-gradient(135deg, #9e7bb6 0%, #c585b8 100%); border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(158,123,182,0.5), 0 2px 8px rgba(0,0,0,0.35); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, padding 0.25s; flex-shrink: 0; position: relative; overflow: visible; }
-  #chat-bubble::before { content: ''; position: absolute; inset: -3px; border-radius: 100px; background: linear-gradient(135deg, #9e7bb6, #c585b8); opacity: 0.35; filter: blur(8px); z-index: -1; animation: chat-glow 2.5s ease-in-out infinite; }
+  #chat-bubble { height: 48px; padding: 0 18px 0 14px; border-radius: 11px; background: linear-gradient(135deg, #9e7bb6 0%, #c585b8 100%); border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(158,123,182,0.5), 0 2px 8px rgba(0,0,0,0.35); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, padding 0.25s; flex-shrink: 0; position: relative; overflow: visible; }
+  #chat-bubble::before { content: ''; position: absolute; inset: -3px; border-radius: 11px; background: linear-gradient(135deg, #9e7bb6, #c585b8); opacity: 0.35; filter: blur(8px); z-index: -1; animation: chat-glow 2.5s ease-in-out infinite; }
   @keyframes chat-glow { 0%,100%{opacity:0.35;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.06)} }
   #chat-bubble-text { font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; white-space: nowrap; transition: opacity 0.2s, max-width 0.3s; }
   #chat-bubble.open #chat-bubble-text { opacity: 0; max-width: 0; overflow: hidden; padding: 0; }
@@ -1087,8 +1100,9 @@
   #chat-bubble:active { transform: scale(0.96); }
   #chat-teaser { background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px 14px 2px 14px; padding: 10px 14px; font-size: 13px; font-family: 'Nunito Sans', sans-serif; color: rgba(255,255,255,0.8); max-width: 200px; line-height: 1.4; box-shadow: 0 4px 20px rgba(0,0,0,0.4); animation: teaser-in 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
   @keyframes teaser-in { from{opacity:0;transform:translateY(8px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
-  #chat-panel { width: 360px; height: 520px; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 8px 48px rgba(0,0,0,0.7), 0 2px 12px rgba(158,123,182,0.12); transform-origin: bottom right; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s; }
-  #chat-panel.hidden { transform: scale(0.85) translateY(20px); opacity: 0; pointer-events: none; }
+  /* painel abre ao LADO (esquerda) do botao, na horizontal — position absolute para nao ocupar espaco no layout quando escondido */
+  #chat-panel { position: absolute; bottom: 0; right: calc(100% + 14px); width: 360px; height: 520px; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 8px 48px rgba(0,0,0,0.7), 0 2px 12px rgba(158,123,182,0.12); transform-origin: bottom right; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s; }
+  #chat-panel.hidden { transform: scale(0.85) translateX(24px); opacity: 0; pointer-events: none; }
   .chat-header { padding: 14px 20px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .chat-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(158,123,182,0.4); flex-shrink: 0; }
   .chat-avatar-wrap { position: relative; flex-shrink: 0; }
@@ -1124,6 +1138,8 @@
   #chat-send:hover { background: #b08fca; }
   #chat-send:active { transform: scale(0.92); }
   #chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+  /* ecra estreito: nao cabe ao lado, volta a abrir por cima do botao */
+  @media (max-width: 520px) { #chat-panel { right: 0; bottom: calc(100% + 14px); } }
   @media (max-width: 420px) { #chat-panel { width: calc(100vw - 32px); height: 75vh; } #chat-widget { bottom: 16px; right: 16px; } }
 </style>
 
