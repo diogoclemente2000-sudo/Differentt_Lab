@@ -146,9 +146,14 @@
     .checkbox-item input[type="checkbox"]:checked { background: #9e7bb6; border-color: #9e7bb6; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23fff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
     .checkbox-item span { font-family: 'Nunito Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.78); }
 
-    .btn-submit { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s; margin-top: 8px; align-self: flex-start; }
-    .btn-submit:hover { background: transparent; color: #fff; transform: translateY(-2px); }
-    .btn-submit:active { transform: translateY(0); }
+    /* Botão gradiente (mesmo estilo dos heros) */
+    .btn-submit { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); margin-top: 8px; align-self: flex-start; }
+    .btn-submit .hero-cta-label { position: relative; z-index: 2; }
+    .btn-submit::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%); filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
+    .btn-submit::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
+    .btn-submit:hover::after { opacity: 1; transform: scale(1.05); }
+    .btn-submit:disabled { opacity: 0.65; cursor: default; transform: none; }
 
     #form-success { color: #9e7bb6; font-size: 14px; padding: 16px; border: 1px solid rgba(158,123,182,0.3); border-radius: 10px; text-align: center; background: rgba(158,123,182,0.05); }
 
@@ -374,7 +379,7 @@
         <textarea id="message" name="message" placeholder="Conta-nos sobre o teu projeto, objetivos e qualquer informação relevante..."></textarea>
       </div>
 
-      <button type="submit" class="btn-submit">Submeter</button>
+      <button type="submit" class="btn-submit"><span class="hero-cta-label">Submeter</span></button>
 
       <div id="form-success" style="display:none;">
         Mensagem recebida! Entraremos em contacto em breve. 🙌
@@ -431,7 +436,8 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const submitBtn = form.querySelector('.btn-submit');
-    submitBtn.textContent = 'A enviar...';
+    const submitLabel = submitBtn.querySelector('.hero-cta-label');
+    submitLabel.textContent = 'A enviar...';
     submitBtn.disabled = true;
 
     const fd = new FormData(form);
@@ -457,11 +463,11 @@
         form.reset();
         submitBtn.style.display = 'none';
       } else {
-        submitBtn.textContent = 'Erro — tenta novamente';
+        submitLabel.textContent = 'Erro — tenta novamente';
         submitBtn.disabled = false;
       }
     } catch {
-      submitBtn.textContent = 'Submeter';
+      submitLabel.textContent = 'Submeter';
       submitBtn.disabled = false;
     }
   });
