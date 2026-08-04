@@ -991,7 +991,7 @@
 
   function resize(){ var r=field.getBoundingClientRect(); W=r.width; H=r.height; portrait=H>W; DPR=Math.min(window.devicePixelRatio||1,2);
     cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-    var sz=W<520?78:(W<800?86:94); pad=sz*0.85; btns.forEach(function(b){ b.style.setProperty('--sz',sz+'px'); });
+    var sz=W<520?84:(W<800?92:102); pad=sz*0.85; btns.forEach(function(b){ b.style.setProperty('--sz',sz+'px'); });
     stars=[]; var n=Math.round(W*H/9000); for(var i=0;i<n;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.3,a:Math.random()*.35+.05}); }
   window.addEventListener('resize',resize);
 
@@ -1019,12 +1019,12 @@
       for(var p=pulses.length-1;p>=0;p--){ var pu=pulses[p]; pu.t+=dt*pu.sp; if(pu.t>=1){ pulses.splice(p,1); continue; }
         var Ap=P[pu.e[0]],Bp=P[pu.e[1]],px=Ap.x+(Bp.x-Ap.x)*pu.t,py=Ap.y+(Bp.y-Ap.y)*pu.t,pa=Math.sin(pu.t*Math.PI)*ep;
         var pg=ctx.createRadialGradient(px,py,0,px,py,7); pg.addColorStop(0,'rgba(230,205,240,'+pa+')'); pg.addColorStop(1,'rgba(230,205,240,0)'); ctx.fillStyle=pg; ctx.beginPath(); ctx.arc(px,py,7,0,6.29); ctx.fill(); } }
-    for(var i2=0;i2<P.length;i2++){ var n=C[i2],pt=P[i2],isA=(act===i2),R=(W<520?40:(W<800?44:48)),col=n.orange?'240,149,63':'158,123,182';
+    for(var i2=0;i2<P.length;i2++){ var n=C[i2],pt=P[i2],isA=(act===i2),R=(W<520?43:(W<800?47:52)),col=n.orange?'240,149,63':'158,123,182';
       var gr=R*2.4, ga=(isA?0.55:0.34)*ep; var gl=ctx.createRadialGradient(pt.x,pt.y,R*0.92,pt.x,pt.y,gr); gl.addColorStop(0,'rgba('+col+','+ga+')'); gl.addColorStop(0.18,'rgba('+col+','+(ga*0.6)+')'); gl.addColorStop(0.42,'rgba('+col+','+(ga*0.26)+')'); gl.addColorStop(0.7,'rgba('+col+','+(ga*0.08)+')'); gl.addColorStop(1,'rgba('+col+',0)'); ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(pt.x,pt.y,gr,0,6.29); ctx.fill();
       var bt=btns[i2]; bt.style.transform='translate('+pt.x+'px,'+pt.y+'px)'; bt.style.opacity=ep; bt.classList.toggle('on',isA); }
     if(act>=0){ var na=C[act],pa2=P[act],label=na.tag.toUpperCase();
       ctx.save();
-      ctx.font="700 12.5px 'Nunito Sans', sans-serif"; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.font="400 12.5px 'Nunito Sans', sans-serif"; ctx.textAlign='center'; ctx.textBaseline='middle';
       if('letterSpacing' in ctx) ctx.letterSpacing='1.6px';
       var tw=ctx.measureText(label).width, padX=17, h=30, w=tw+padX*2,
           x=pa2.x-w/2, cy=pa2.y+(W<520?50:60), y=cy-h/2, r=10;
