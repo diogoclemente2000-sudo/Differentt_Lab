@@ -11,6 +11,11 @@ Website_videos/*
 !Website_videos/4waves-reels-web.mp4
 !Website_videos/coffe-reels-web.mp4
 !Website_videos/mymoment-reels-web.mp4
+!Website_videos/moment-testemunho-web.mp4
+!Website_videos/villas-testemunho-web.mp4
+!Website_videos/aroma-testemunho-web.mp4
+!Website_videos/ines-testemunho-web.mp4
+!Website_videos/telma-testemunho-web.mp4
 Website_photos/
 upload-to-cloudinary.mjs
 test-upload.mjs
