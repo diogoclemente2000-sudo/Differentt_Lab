@@ -894,7 +894,7 @@
     #testemunhos-section .tst-head { max-width: 760px; margin: 0 auto clamp(36px, 5vw, 60px); text-align: center; position: relative; z-index: 2; }
     #testemunhos-section .tst-sub { font-family: 'Nunito Sans', sans-serif; font-size: clamp(14px, 1.6vw, 16.5px); font-weight: 300; color: rgba(255,255,255,0.55); max-width: 48ch; margin: 4px auto 0; line-height: 1.7; }
     #testemunhos-section .section-title span { color: #9e7bb6; }
-    #testemunhos-section .tst-field { position: relative; max-width: 1060px; margin: 0 auto; height: clamp(460px, 56vw, 620px); z-index: 1; }
+    #testemunhos-section .tst-field { position: relative; max-width: 1240px; margin: 0 auto; height: clamp(460px, 56vw, 620px); z-index: 1; }
     #testemunhos-section .tst-field canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     #testemunhos-section .tst-node { position: absolute; top: 0; left: 0; width: var(--sz, 74px); height: var(--sz, 74px); margin: calc(var(--sz,74px)/-2) 0 0 calc(var(--sz,74px)/-2); border-radius: 50%; padding: 0; opacity: 0; cursor: pointer; will-change: transform, opacity; -webkit-tap-highlight-color: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(120% 120% at 30% 22%, rgba(34,27,45,0.96), rgba(13,10,17,0.96)); border: 1px solid rgba(158,123,182,0.42); box-shadow: 0 0 0 6px rgba(158,123,182,0.045); transition: border-color 0.3s, box-shadow 0.3s; }
     #testemunhos-section .tst-node:hover, #testemunhos-section .tst-node.on { border-color: #c585b8; box-shadow: 0 0 0 8px rgba(197,133,184,0.1), 0 14px 34px rgba(158,123,182,0.35); }
@@ -1079,11 +1079,19 @@
   });
 
   function tvProgress(active){ tvSlides.forEach(function(s,i){ s.bar.classList.toggle('done',i<active); s.bar.querySelector('span').style.width=i<=active?'100%':'0%'; }); }
-  function tvActivate(index){ tvProgress(index);
-    tvSlides.forEach(function(s,i){ if(i===index){ if(!s.media.getAttribute('src')){ s.media.setAttribute('src',s.media.dataset.src); s.media.load(); } var p=s.media.play(); if(p&&p.catch) p.catch(function(){});
-        s.media.muted=!tvSound; if(tvSound) s.media.removeAttribute('muted'); s.mute.innerHTML=s.media.muted?mutedIcon:soundIcon; } else { s.media.pause(); } }); }
+  // carrega o vídeo à parte (lazy, uma vez) — usado para pré-carregar os vizinhos
+  function tvEnsureLoaded(i){ var s=tvSlides[i]; if(!s) return; if(!s.media.getAttribute('src')){ s.media.preload='auto'; s.media.setAttribute('src',s.media.dataset.src); s.media.load(); } }
+  var tvIndex=-1;
+  function tvActivate(index){ index=Math.max(0,Math.min(tvSlides.length-1,index)); tvIndex=index; tvProgress(index);
+    tvSlides.forEach(function(s,i){ if(i===index){ tvEnsureLoaded(i); var p=s.media.play(); if(p&&p.catch) p.catch(function(){});
+        s.media.muted=!tvSound; if(tvSound) s.media.removeAttribute('muted'); s.mute.innerHTML=s.media.muted?mutedIcon:soundIcon; } else { s.media.pause(); } });
+    tvEnsureLoaded(index+1); tvEnsureLoaded(index-1); } // pré-carrega vizinhos p/ o próximo tocar de imediato ao fazer scroll
   var tvObserver=new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting&&en.intersectionRatio>0.6) tvActivate(parseInt(en.target.dataset.index,10)); }); },{ root:tvTrack, threshold:[0,0.6] });
   tvSlides.forEach(function(s){ tvObserver.observe(s.el); });
+  // fallback fiável no iOS: ao parar o scroll, calcula o slide "encaixado" e ativa-o
+  var tvScrollT=null;
+  tvTrack.addEventListener('scroll', function(){ if(tvScrollT) clearTimeout(tvScrollT);
+    tvScrollT=setTimeout(function(){ var h=tvTrack.clientHeight; if(!h) return; var idx=Math.round(tvTrack.scrollTop/h); if(idx!==tvIndex) tvActivate(idx); }, 110); }, { passive:true });
 
   function tvHideHint(){ if(!tvHint) return; tvHint.classList.remove('show'); if(tvHintTimer){ clearTimeout(tvHintTimer); tvHintTimer=null; } tvTrack.removeEventListener('scroll',tvHideHint); }
   function openTstReels(index){ if(index<0||index==null) index=0; lastFocus=document.activeElement;
