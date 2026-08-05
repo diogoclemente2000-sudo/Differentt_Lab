@@ -190,7 +190,7 @@ exports.handler = async (event) => {
   // 3) Persistência no Supabase (best-effort). Leads (contacto/ideia) -> `leads`; newsletter -> `subscribers`.
   //    Se as env vars não existirem ou o Supabase falhar, a submissão NÃO falha.
   const SB_URL = process.env.SUPABASE_URL;
-  const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
   if (SB_URL && SB_KEY) {
     const col = (obj, p) => {
       obj = obj || {};
