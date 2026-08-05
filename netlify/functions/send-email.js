@@ -208,8 +208,10 @@ exports.handler = async (event) => {
       ? { email: email || null, page_origin: d.pagina_origem || null, raw: d }
       : { form_type: type, name: nomeCompleto || null, email: email || null, website: d.website || null, services: svc, message: d.message || null, page_origin: d.pagina_origem || null, raw: d };
     const record = Object.assign(base, col(first, 'first_'), col(last, 'last_'));
+    const sbTable = isNewsletter ? 'subscribers' : 'leads';
+    const sbEndpoint = SB_URL.replace(/\/+$/, '').replace(/\/rest\/v1$/, '') + '/rest/v1/' + sbTable;
     try {
-      await fetch(SB_URL.replace(/\/+$/, '').replace(/\/rest\/v1$/, '') + '/rest/v1/' + (isNewsletter ? 'subscribers' : 'leads'), {
+      const sbRes = await fetch(sbEndpoint, {
         method: 'POST',
         headers: {
           apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json',
@@ -217,7 +219,17 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify(record),
       });
-    } catch (_) { /* best-effort; não falha a submissão */ }
+      if (!sbRes.ok) {
+        const body = await sbRes.text().catch(() => '');
+        console.error('[supabase] INSERT falhou:', sbRes.status, 'tabela=' + sbTable, '| resposta:', body);
+      } else {
+        console.log('[supabase] gravado OK em', sbTable);
+      }
+    } catch (e) {
+      console.error('[supabase] EXCECAO:', (e && e.message) || e, '| endpoint=' + sbEndpoint);
+    }
+  } else {
+    console.error('[supabase] ENV VARS EM FALTA -> SUPABASE_URL presente:', !!SB_URL, '| SUPABASE_SERVICE_ROLE_KEY presente:', !!SB_KEY);
   }
 
   return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true }) };
