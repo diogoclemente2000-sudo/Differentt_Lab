@@ -19,27 +19,47 @@
   var ENV_ID = (typeof window.META_PIXEL_ID === 'string') ? window.META_PIXEL_ID.trim() : '';
   var META_PIXEL_ID = ENV_ID || '3066909863517847';
 
-  // ===== 1) Captura de atribuição — PRIMEIRO TOQUE GANHA =====
-  // Lê os parâmetros de campanha do URL e guarda em sessionStorage['attrib'] apenas se
-  // ainda não existirem — assim a navegação interna nunca sobrescreve a origem da visita.
+  // ===== 1) Captura de atribuição — FIRST-TOUCH + LAST-TOUCH (localStorage, ~90 dias) =====
+  // Guarda em localStorage (sobrevive ao fecho da aba). Regista o PRIMEIRO toque (nunca
+  // sobrescrito) e o ÚLTIMO toque (atualiza sempre). Expira 90 dias após o último toque.
   var ATTRIB_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid'];
-  try {
-    if (!sessionStorage.getItem('attrib')) {
-      var params = new URLSearchParams(window.location.search);
-      var attrib = {};
-      var hasAny = false;
-      for (var i = 0; i < ATTRIB_KEYS.length; i++) {
-        var val = params.get(ATTRIB_KEYS[i]);
-        if (val) { attrib[ATTRIB_KEYS[i]] = val; hasAny = true; }
-      }
-      if (hasAny) sessionStorage.setItem('attrib', JSON.stringify(attrib));
-    }
-  } catch (e) { /* sessionStorage indisponível (modo privado/embargado) — ignora */ }
+  var STORE_KEY = 'dl_attrib';
+  var MAX_AGE = 90 * 24 * 60 * 60 * 1000; // 90 dias
 
-  // Helper global: devolve a atribuição guardada (ou {} se não houver).
-  window.getAttrib = function () {
-    try { return JSON.parse(sessionStorage.getItem('attrib') || '{}'); }
-    catch (e) { return {}; }
+  function readStore() {
+    try {
+      var s = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+      var ref = (s.last && s.last.ts) || (s.first && s.first.ts);
+      if (ref && (Date.now() - new Date(ref).getTime()) > MAX_AGE) return {}; // expirou
+      return s && typeof s === 'object' ? s : {};
+    } catch (e) { return {}; }
+  }
+
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var now = {}, hasAny = false;
+    for (var i = 0; i < ATTRIB_KEYS.length; i++) {
+      var val = params.get(ATTRIB_KEYS[i]);
+      if (val) { now[ATTRIB_KEYS[i]] = val; hasAny = true; }
+    }
+    if (hasAny) {
+      now.ts = new Date().toISOString();
+      var store = readStore();
+      if (!store.first) store.first = now; // primeiro toque nunca é sobrescrito
+      store.last = now;                    // último toque atualiza sempre
+      localStorage.setItem(STORE_KEY, JSON.stringify(store));
+    }
+  } catch (e) { /* localStorage indisponível (modo privado/embargado) — ignora */ }
+
+  // Devolve { first:{...}, last:{...} } (ou {} se não houver atribuição guardada).
+  window.getAttrib = function () { return readStore(); };
+
+  // Helpers de evento (só disparam se o píxel estiver ativo; seguros se fbq não existir).
+  window.fireLead = function (tipo) {
+    try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: tipo || 'lead' }); } catch (e) {}
+  };
+  window.fireSubscribe = function () {
+    try { if (typeof fbq === 'function') fbq('track', 'Subscribe', { content_name: 'newsletter' }); } catch (e) {}
   };
 
   // ===== 2) Snippet base do Píxel da Meta (só corre quando há ID) =====

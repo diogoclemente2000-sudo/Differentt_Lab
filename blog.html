@@ -821,14 +821,16 @@
       btn.disabled = true;
       try {
         const email = (new FormData(nlForm)).get('email') || '';
+        const attrib = (typeof window.getAttrib === 'function') ? window.getAttrib() : {};
         const res = await fetch('/.netlify/functions/send-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ formType: 'newsletter', email })
+          body: JSON.stringify({ formType: 'newsletter', email, pagina_origem: window.location.pathname, timestamp: new Date().toISOString(), attrib })
         });
         if (res.ok) {
           nlForm.style.display = 'none';
           document.getElementById('newsletter-success').style.display = 'block';
+          if (typeof window.fireSubscribe === 'function') window.fireSubscribe();
         } else {
           btn.textContent = 'Erro — tenta novamente';
           btn.disabled = false;

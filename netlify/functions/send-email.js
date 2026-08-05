@@ -143,19 +143,23 @@ exports.handler = async (event) => {
     ];
   }
 
-  // --- Rastreio / atribuição de campanha (aplica-se a qualquer formulário) ---
-  const attrib = (d.attrib && typeof d.attrib === 'object') ? d.attrib : {};
-  const attribLabels = {
-    utm_source: 'UTM Source', utm_medium: 'UTM Medium', utm_campaign: 'UTM Campaign',
-    utm_content: 'UTM Content', utm_term: 'UTM Term', utm_id: 'UTM ID', fbclid: 'fbclid',
-  };
-  Object.keys(attribLabels).forEach((k) => rows.push({ k: attribLabels[k], v: attrib[k] }));
+  // --- Rastreio / atribuição: aceita { first, last } (novo) ou objeto plano (legado) ---
+  const ATTR_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid'];
+  const A = (d.attrib && typeof d.attrib === 'object') ? d.attrib : {};
+  let first = (A.first && typeof A.first === 'object') ? A.first : null;
+  let last = (A.last && typeof A.last === 'object') ? A.last : null;
+  if (!first && !last && ATTR_KEYS.some((k) => A[k])) last = A; // formato legado (plano) -> último toque
+
+  const fmtTs = (t) => { try { return new Date(t).toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' }); } catch (e) { return t; } };
+  const attribRows = (obj, prefix) => !obj ? [] : [
+    { k: prefix + 'Source', v: obj.utm_source }, { k: prefix + 'Medium', v: obj.utm_medium },
+    { k: prefix + 'Campaign', v: obj.utm_campaign }, { k: prefix + 'Content', v: obj.utm_content },
+    { k: prefix + 'Term', v: obj.utm_term }, { k: prefix + 'ID', v: obj.utm_id },
+    { k: prefix + 'fbclid', v: obj.fbclid }, { k: prefix + 'Data', v: obj.ts ? fmtTs(obj.ts) : '' },
+  ];
+  rows = rows.concat(attribRows(last, 'Último toque · '), attribRows(first, '1º toque · '));
   if (d.pagina_origem) rows.push({ k: 'Página origem', v: d.pagina_origem });
-  if (d.timestamp) {
-    let ts = d.timestamp;
-    try { ts = new Date(d.timestamp).toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' }); } catch (e) { /* usa o valor cru */ }
-    rows.push({ k: 'Data/hora', v: ts });
-  }
+  if (d.timestamp) rows.push({ k: 'Data/hora', v: fmtTs(d.timestamp) });
 
   const send = (payload) => fetch(RESEND_ENDPOINT, {
     method: 'POST',
@@ -181,6 +185,39 @@ exports.handler = async (event) => {
     try {
       await send({ from: FROM, to: [email], subject: 'Recebemos o teu pedido — Differentt Lab', html: replyHtml(nome) });
     } catch (_) { /* auto-resposta é best-effort; não falha a submissão */ }
+  }
+
+  // 3) Persistência no Supabase (best-effort). Leads (contacto/ideia) -> `leads`; newsletter -> `subscribers`.
+  //    Se as env vars não existirem ou o Supabase falhar, a submissão NÃO falha.
+  const SB_URL = process.env.SUPABASE_URL;
+  const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (SB_URL && SB_KEY) {
+    const col = (obj, p) => {
+      obj = obj || {};
+      return {
+        [p + 'source']: obj.utm_source || null, [p + 'medium']: obj.utm_medium || null,
+        [p + 'campaign']: obj.utm_campaign || null, [p + 'content']: obj.utm_content || null,
+        [p + 'term']: obj.utm_term || null, [p + 'id']: obj.utm_id || null,
+        [p + 'fbclid']: obj.fbclid || null, [p + 'ts']: obj.ts || null,
+      };
+    };
+    const isNewsletter = type === 'newsletter';
+    const svcList = d.servicos_selecionados || d.services;
+    const svc = Array.isArray(svcList) ? svcList : (svcList ? [svcList] : null);
+    const base = isNewsletter
+      ? { email: email || null, page_origin: d.pagina_origem || null, raw: d }
+      : { form_type: type, name: nomeCompleto || null, email: email || null, website: d.website || null, services: svc, message: d.message || null, page_origin: d.pagina_origem || null, raw: d };
+    const record = Object.assign(base, col(first, 'first_'), col(last, 'last_'));
+    try {
+      await fetch(SB_URL.replace(/\/+$/, '').replace(/\/rest\/v1$/, '') + '/rest/v1/' + (isNewsletter ? 'subscribers' : 'leads'), {
+        method: 'POST',
+        headers: {
+          apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json',
+          Prefer: isNewsletter ? 'resolution=merge-duplicates,return=minimal' : 'return=minimal',
+        },
+        body: JSON.stringify(record),
+      });
+    } catch (_) { /* best-effort; não falha a submissão */ }
   }
 
   return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true }) };

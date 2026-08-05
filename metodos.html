@@ -393,9 +393,10 @@
   if(miniForm) miniForm.addEventListener('submit', async(e) => {
     e.preventDefault();
     const fd = new FormData(miniForm);
-    const payload = { formType: 'ideia', name: fd.get('name') || '', email: fd.get('email') || '', message: fd.get('message') || '' };
+    const attrib = (typeof window.getAttrib === 'function') ? window.getAttrib() : {};
+    const payload = { formType: 'ideia', name: fd.get('name') || '', email: fd.get('email') || '', message: fd.get('message') || '', pagina_origem: window.location.pathname, timestamp: new Date().toISOString(), attrib: attrib };
     const res = await fetch('/.netlify/functions/send-email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    if(res.ok) { document.getElementById('mini-success').style.display='block'; miniForm.reset(); }
+    if(res.ok) { document.getElementById('mini-success').style.display='block'; miniForm.reset(); if(typeof window.fireLead === 'function') window.fireLead('pedido-ideia'); }
   });
   const hamburger = document.getElementById('nav-hamburger');
   const overlay = document.getElementById('nav-mobile-overlay');
