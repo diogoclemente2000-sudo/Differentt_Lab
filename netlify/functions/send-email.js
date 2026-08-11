@@ -62,7 +62,7 @@ function replyHtml(nome) {
 
       <!-- BOTÃO WHATSAPP -->
       <div style="margin:0 0 26px;">
-        <a href="https://wa.me/351926283061" style="display:inline-block;background:#0d0d0d;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:14px 28px;border-radius:100px;">É urgente? Fala connosco no WhatsApp</a>
+        <a href="https://wa.me/351910185220" style="display:inline-block;background:#0d0d0d;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:14px 28px;border-radius:100px;">É urgente? Fala connosco no WhatsApp</a>
       </div>
 
       <!-- ENQUANTO ESPERAS -->
@@ -81,7 +81,7 @@ function replyHtml(nome) {
       <p style="color:#9a9a9a;font-size:12px;line-height:1.7;margin:0 0 10px;">
         <a href="https://differenttlab.com" style="color:#9e7bb6;text-decoration:none;">differenttlab.com</a> &nbsp;&middot;&nbsp;
         <a href="mailto:differenttdesignlab@gmail.com" style="color:#9e7bb6;text-decoration:none;">Email</a> &nbsp;&middot;&nbsp;
-        <a href="tel:+351926283061" style="color:#9e7bb6;text-decoration:none;">+351&nbsp;926&nbsp;283&nbsp;061</a>
+        <a href="tel:+351910185220" style="color:#9e7bb6;text-decoration:none;">+351&nbsp;910&nbsp;185&nbsp;220</a>
       </p>
       <p style="color:#9a9a9a;font-size:12px;line-height:1.7;margin:0 0 16px;">
         <a href="https://www.instagram.com/differentt_lab/" style="color:#9e7bb6;text-decoration:none;">Instagram</a> &nbsp;&middot;&nbsp;

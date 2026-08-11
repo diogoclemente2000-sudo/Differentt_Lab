@@ -128,7 +128,7 @@ Mensagem padrão que o chatbot deve enviar:
 "Essa é uma ótima questão 🙂
 Para conseguirmos analisar o seu caso com mais detalhe e dar uma resposta personalizada, o ideal é falar diretamente com a nossa equipa.
 
-Pode enviar mensagem no WhatsApp para: +351 926 283 061
+Pode enviar mensagem no WhatsApp para: +351 910 185 220
 
 Assim conseguimos perceber melhor o seu projeto e apresentar a melhor solução."
 
@@ -214,7 +214,7 @@ Responde:
 
 "Para conseguirmos analisar o seu caso com mais detalhe e apresentar a melhor solução, o ideal é falar diretamente com a nossa equipa. Pode enviar mensagem no WhatsApp para:
 
-+351 926 283 061"
++351 910 185 220"
 
 Contacto por email
 

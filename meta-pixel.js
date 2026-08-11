@@ -54,6 +54,34 @@
   // Devolve { first:{...}, last:{...} } (ou {} se não houver atribuição guardada).
   window.getAttrib = function () { return readStore(); };
 
+  // ===== 1b) WhatsApp com atribuição — reescreve os links no runtime =====
+  // Todos os botões de WhatsApp passam a apontar para o número dedicado e levam a
+  // origem da lead na mensagem: "(ref: <utm_content|utm_campaign|utm_source|direto>)".
+  // A ref usa o ÚLTIMO toque (campanha mais recente), caindo para o primeiro toque.
+  var WHATSAPP_NUMBER = '351910185220';
+
+  function attribRef() {
+    var s = readStore();
+    var t = s.last || s.first || {};
+    return t.utm_content || t.utm_campaign || t.utm_source || 'direto';
+  }
+
+  // href do WhatsApp com a mensagem + ref (usado pelos botões e pelo chatbot).
+  window.whatsappHref = function () {
+    var texto = 'Olá! Vim do site da Differentt. (ref: ' + attribRef() + ')';
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+  };
+
+  function applyWhatsappLinks() {
+    try {
+      var links = document.querySelectorAll('a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href*="web.whatsapp.com"]');
+      var href = window.whatsappHref();
+      for (var i = 0; i < links.length; i++) links[i].setAttribute('href', href);
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyWhatsappLinks);
+  else applyWhatsappLinks();
+
   // Helpers de evento (só disparam se o píxel estiver ativo; seguros se fbq não existir).
   window.fireLead = function (tipo) {
     try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: tipo || 'lead' }); } catch (e) {}
