@@ -302,7 +302,7 @@
       .reels-slide-frame { width: auto; height: min(90vh, 90dvh); aspect-ratio: 9 / 16; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
       .reels-slide-info { max-width: none; margin: 0; align-items: flex-start; text-align: left; padding: 0 28px 34px; }
     }
-    @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: 16px; right: 16px; } .reels-progress { padding: 14px 16px 0; } }
+    @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: calc(54px + env(safe-area-inset-top, 0px)); right: 16px; } .reels-mute { top: calc(54px + env(safe-area-inset-top, 0px)); left: 16px; } .reels-progress { padding: 14px 16px 0; } }
 
     /* STEPS SECTION */
     .steps-section { padding: 180px 48px; background: transparent !important; }
@@ -1579,6 +1579,7 @@
 
   var muteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
   var unmuteIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+  var soundOn = false; // preferencia de som partilhada entre reels (arranca mudo p/ autoplay)
 
   var slides = reelsOrder.map(function(data, i){
     var slide = document.createElement('div');
@@ -1621,7 +1622,10 @@
       muteBtn.innerHTML = muteIcon;
       muteBtn.addEventListener('click', function(e){
         e.stopPropagation();
-        media.muted = !media.muted;
+        soundOn = media.muted;              // se estava mudo -> LIGAR som (partilhado entre slides)
+        media.muted = !soundOn;
+        if (soundOn) { media.removeAttribute('muted'); var pp = media.play(); if (pp && pp.catch) pp.catch(function(){}); } // iOS: re-play dentro do gesto
+        else { media.setAttribute('muted', ''); }
         muteBtn.innerHTML = media.muted ? muteIcon : unmuteIcon;
       });
       frame.appendChild(muteBtn);
@@ -1640,7 +1644,7 @@
     bar.innerHTML = '<span></span>';
     progressWrap.appendChild(bar);
 
-    return { el: slide, media: media, isVideo: isVideo, bar: bar };
+    return { el: slide, media: media, isVideo: isVideo, bar: bar, mute: muteBtn };
   });
 
   function updateProgress(activeIndex){
@@ -1662,6 +1666,8 @@
         }
         var p = s.media.play();
         if (p && p.catch) p.catch(function(){});
+        s.media.muted = !soundOn; if (soundOn) s.media.removeAttribute('muted'); // mantem o som ligado ao mudar de reel
+        if (s.mute) s.mute.innerHTML = s.media.muted ? muteIcon : unmuteIcon;
       } else {
         s.media.pause();
       }
