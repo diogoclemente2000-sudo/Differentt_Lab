@@ -601,9 +601,11 @@
     #reels-panels .rp-og{ font-family:'Overpass',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
     #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
     @media (max-width: 760px){
-      #reels-panels .rp-acc{ height:auto; gap:14px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 2px 16px; scrollbar-width:none; }
+      #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
+      #reels-panels .rp-head{ padding:0 18px; }                /* header mantem margem lateral */
+      #reels-panels .rp-acc{ height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
       #reels-panels .rp-acc::-webkit-scrollbar{ display:none; }
-      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:4/5; }
+      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:3/4; } /* cards mais altos no mobile */
       #reels-panels .rp-p.on{ flex:0 0 72%; }
       #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
       #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
