@@ -48,7 +48,7 @@
     "logo": "https://differenttlab.com/favicon-512.png",
     "image": "https://differenttlab.com/favicon-512.png",
     "description": "Differentt Lab é uma agência digital em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs em Lisboa e arredores.",
-    "telephone": "+351926283061",
+    "telephone": "+351910185220",
     "email": "differenttdesignlab@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -76,7 +76,7 @@
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+351926283061",
+      "telephone": "+351910185220",
       "email": "differenttdesignlab@gmail.com",
       "contactType": "customer service",
       "areaServed": "PT",
@@ -562,21 +562,98 @@
     <canvas id="logo3dCanvas" aria-hidden="true" style="display:none;position:absolute;left:50%;transform:translate(-50%,-50%);width:160%;max-width:2400px;mix-blend-mode:screen;opacity:0.95;pointer-events:none;"></canvas>
   </div>
 
-<!-- CLIENT LOGOS -->
-<div class="logos-section" style="position:relative;z-index:1;">
-  <h2 class="logos-label">Marcas que confiam em nós</h2>
-  <div class="logos-grid">
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt="Moment Laser – venda e aluguer de equipamentos de estética – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt="Aroma Boreal – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2010.svg" alt="Esthetic Solution – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2011.svg" alt="Wellness Devices – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2013.svg" alt="Film Ideia – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt="MyMoment – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – clínica de estética avançada – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+<!-- TESTEMUNHOS — PAINÉIS EXPANSÍVEIS (reels 9:16) -->
+<section id="reels-panels" style="position:relative;z-index:1;">
+  <style>
+    #reels-panels{ padding: clamp(90px,11vw,150px) clamp(16px,4vw,48px); }
+    #reels-panels .rp-head{ max-width:760px; margin:0 auto clamp(34px,5vw,54px); text-align:center; position:relative; z-index:2; }
+    #reels-panels .rp-eyebrow{ font-family:'Overpass',sans-serif; font-size:11px; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
+    #reels-panels .rp-title{ font-family:'Nunito Sans',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:300; letter-spacing:-0.02em; text-transform:uppercase; color:#fff; line-height:1; margin:0; }
+    #reels-panels .rp-title span{ color:#9e7bb6; }
+    #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
+    #reels-panels .rp-sub{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(14px,1.6vw,16px); color:rgba(255,255,255,.55); max-width:46ch; margin:14px auto 0; line-height:1.7; }
+    #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
+    #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:16px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
+    #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
+    #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
+    #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
+    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Overpass',sans-serif; font-weight:800; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
+    #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
+    #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
+    #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:0; transition:opacity .4s; }
+    #reels-panels .rp-p.on .rp-badge, #reels-panels .rp-p.on .rp-dur, #reels-panels .rp-p.on .rp-play, #reels-panels .rp-p.on .rp-cap{ opacity:1; transition-delay:.16s; }
+    #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
+    #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
+    #reels-panels .rp-badge b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
+    #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
+    #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
+    #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
+    #reels-panels .rp-av.mono b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:16px; color:#fff; letter-spacing:.02em; }
+    #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Overpass',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
+    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:60px; height:60px; border-radius:50%; border:0; padding:0; cursor:pointer; background:rgba(255,255,255,.95); display:grid; place-items:center; box-shadow:0 10px 28px rgba(0,0,0,.5); transition:transform .3s; }
+    #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ transform:translate(-50%,-50%) scale(1.08); outline:none; }
+    #reels-panels .rp-play::after{ content:""; position:absolute; inset:-8px; border-radius:50%; border:1.5px solid rgba(255,255,255,.5); animation:rpring 2.6s ease-out infinite; }
+    @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
+    #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
+    #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
+    #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+    #reels-panels .rp-nm{ font-family:'Overpass',sans-serif; font-weight:800; font-size:13px; color:#fff; }
+    #reels-panels .rp-og{ font-family:'Overpass',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
+    #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
+    @media (max-width: 760px){
+      #reels-panels .rp-acc{ height:auto; gap:14px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 2px 16px; scrollbar-width:none; }
+      #reels-panels .rp-acc::-webkit-scrollbar{ display:none; }
+      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:4/5; }
+      #reels-panels .rp-p.on{ flex:0 0 72%; }
+      #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
+      #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
+      #reels-panels .rp-fill{ filter:brightness(.82); }
+    }
+    @media (prefers-reduced-motion: reduce){ #reels-panels .rp-play::after{ animation:none; } #reels-panels .rp-p,#reels-panels .rp-fill{ transition:none; } }
+  </style>
+  <div class="rp-head">
+    <div class="section-label">Testemunhos</div>
+    <h2 class="section-title">Marcas que cresceram <span>connosco</span></h2>
   </div>
-</div>
+  <div class="rp-acc" id="rpAcc" aria-label="Testemunhos em vídeo"></div>
+</section>
+<script>
+(function(){
+  var IMG='https://res.cloudinary.com/dgun4lhkm/image/upload/';
+  function poster(f){ return IMG+'c_fill,w_640,h_800,g_auto,q_auto,f_auto/Website_photos/testemunhos/'+f; } /* capa 4:5 (Cloudinary comprime na entrega) */
+  function dot(f){ return IMG+'c_fill,w_90,h_90,g_face,q_auto,f_auto/Website_photos/testemunhos/'+f; }
+  // avatar redondo: ícone da marca (av) ou, se não houver, o rosto do cliente (capa com g_face)
+  function avatarUrl(c){ return c.av ? IMG+'c_fill,w_120,h_120,q_auto,f_auto/Website_photos/testemunhos/'+c.av
+                                     : IMG+'c_fill,w_120,h_120,g_face,q_auto,f_auto/Website_photos/testemunhos/'+c.f; }
+  // ordem alinhada com a constelação (C[0..4]) para o player de reels abrir o vídeo certo
+  var RP=[
+    { f:'capa-moment', av:'icon-moment', name:'Ruben Campos',  org:'Moment Laser',  dur:'0:18', quote:'Passámos a ter uma presença que finalmente parece nossa.' },
+    { f:'capa-aroma',  av:'icon-aroma',  name:'Alexandra',     org:'Aroma Boreal',  dur:'0:58', quote:'Mais alcance, mais reservas — e um feed de que temos orgulho.' },
+    { f:'capa-villas', av:'icon-villas', name:'Vera',          org:'Villas Gourmet',dur:'0:22', quote:'O site novo trouxe clientes que antes nem nos encontravam.' },
+    { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Crescemos no digital ao ritmo da clínica. Parceria a sério.' },
+    { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote:'Deram forma à minha marca pessoal. Notou-se logo.' }
+  ];
+  var PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="#160f1f"><path d="M8 5v14l11-7z"/></svg>';
+  var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+  var acc=document.getElementById('rpAcc'); if(!acc) return;
+  RP.forEach(function(c,k){
+    var p=document.createElement('div'); p.className='rp-p'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
+    p.innerHTML=
+      '<img class="rp-fill" src="'+poster(c.f)+'" alt="'+c.name+' — '+c.org+'" loading="lazy" decoding="async">'+
+      '<div class="rp-vig"></div>'+
+      '<span class="rp-vlabel">'+c.org+'</span>'+
+      '<span class="rp-mini">'+MINI+'</span>'+
+      '<div class="rp-badge">'+(c.mono?'<span class="rp-av mono"><b>'+c.mono+'</b></span>':'<span class="rp-av"><img src="'+avatarUrl(c)+'" alt="'+c.org+'" loading="lazy"></span>')+'</div>'+
+      '<div class="rp-dur">'+c.dur+'</div>'+
+      '<button class="rp-play" type="button" aria-label="Ver testemunho de '+c.name+'">'+PLAY+'</button>'+
+      '<div class="rp-cap"><div class="rp-q">'+c.quote+'</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
+    function activate(){ acc.querySelectorAll('.rp-p').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); }
+    p.addEventListener('mouseenter',activate); p.addEventListener('focus',activate); p.addEventListener('click',activate);
+    p.querySelector('.rp-play').addEventListener('click',function(e){ e.stopPropagation(); if(typeof window.openTstReels==='function') window.openTstReels(k); });
+    acc.appendChild(p);
+  });
+})();
+</script>
 
 <!-- SERVICES + STEPS WRAPPER -->
 <div style="position:relative;z-index:1;">
@@ -911,64 +988,22 @@
   </div>
 </section>
 
-<!-- TESTEMUNHOS — Constelação -->
-<section id="testemunhos-section">
-  <style>
-    #testemunhos-section { position: relative; padding: clamp(90px, 12vw, 160px) 24px; overflow: hidden; }
-    #testemunhos-section::before { content:''; position:absolute; top:-2%; left:50%; transform:translateX(-50%); width:760px; max-width:120vw; height:420px; background: radial-gradient(50% 50% at 50% 50%, rgba(158,123,182,0.14) 0%, rgba(197,133,184,0.05) 45%, transparent 72%); filter: blur(24px); pointer-events:none; }
-    #testemunhos-section .tst-head { max-width: 760px; margin: 0 auto clamp(36px, 5vw, 60px); text-align: center; position: relative; z-index: 2; }
-    #testemunhos-section .tst-sub { font-family: 'Nunito Sans', sans-serif; font-size: clamp(14px, 1.6vw, 16.5px); font-weight: 300; color: rgba(255,255,255,0.55); max-width: 48ch; margin: 4px auto 0; line-height: 1.7; }
-    #testemunhos-section .section-title span { color: #9e7bb6; }
-    #testemunhos-section .tst-field { position: relative; max-width: 1240px; margin: 0 auto; height: clamp(460px, 56vw, 620px); z-index: 1; }
-    #testemunhos-section .tst-field canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-    #testemunhos-section .tst-node { position: absolute; top: 0; left: 0; width: var(--sz, 74px); height: var(--sz, 74px); margin: calc(var(--sz,74px)/-2) 0 0 calc(var(--sz,74px)/-2); border-radius: 50%; padding: 0; opacity: 0; cursor: pointer; will-change: transform, opacity; -webkit-tap-highlight-color: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(120% 120% at 30% 22%, rgba(34,27,45,0.96), rgba(13,10,17,0.96)); border: 1px solid rgba(158,123,182,0.42); box-shadow: 0 0 0 6px rgba(158,123,182,0.045); transition: border-color 0.3s, box-shadow 0.3s; }
-    #testemunhos-section .tst-node:hover, #testemunhos-section .tst-node.on { border-color: #c585b8; box-shadow: 0 0 0 8px rgba(197,133,184,0.1), 0 14px 34px rgba(158,123,182,0.35); }
-    #testemunhos-section .tst-face { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; transition: opacity 0.4s ease; pointer-events: none; }
-    #testemunhos-section .tst-node:hover .tst-face, #testemunhos-section .tst-node.on .tst-face { opacity: 0; }
-    #testemunhos-section .tst-brand { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
-    #testemunhos-section .tst-node:hover .tst-brand, #testemunhos-section .tst-node.on .tst-brand { opacity: 1; }
-    #testemunhos-section .tst-brand img { width: 60%; height: 60%; object-fit: contain; filter: brightness(0) invert(1); }
-    #testemunhos-section .tst-brand.big img { width: 82%; height: 82%; }
-    #testemunhos-section .tst-node .tst-mono { font-family: 'Overpass', sans-serif; font-weight: 800; font-size: calc(var(--sz,74px) * 0.3); color: #fff; letter-spacing: 0.02em; }
-    #testemunhos-section .tst-node.tst-orange { background: radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); border-color: rgba(255,190,140,0.65); }
-    #testemunhos-section .tst-node.tst-orange:hover, #testemunhos-section .tst-node.tst-orange.on { border-color: #ffd9b0; box-shadow: 0 0 0 8px rgba(240,149,63,0.14), 0 14px 34px rgba(217,110,24,0.4); }
-    #testemunhos-section .tst-node:focus-visible { outline: 2px solid #9e7bb6; outline-offset: 4px; }
-    #testemunhos-section .tst-hint { display: block; text-align: center; margin-top: clamp(26px, 4vw, 42px); font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); position: relative; z-index: 2; }
-    #testemunhos-section .tst-hint span { color: inherit; }
-
-    .tst-lb { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(3,2,5,0.88); backdrop-filter: blur(7px); }
-    .tst-lb.open { display: flex; }
-    .tst-lb-card { display: flex; align-items: center; gap: 34px; max-width: 640px; width: 100%; justify-content: center; position: relative; animation: tstpop 0.45s cubic-bezier(0.22,1,0.36,1); }
-    @keyframes tstpop { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: none; } }
-    .tst-lb-video { width: min(300px, 62vw); flex-shrink: 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(158,123,182,0.3); background: #000; box-shadow: 0 30px 70px rgba(0,0,0,0.6); }
-    .tst-lb-video video { display: block; width: 100%; aspect-ratio: 9/16; height: auto; background: #000; }
-    .tst-lb-meta { min-width: 0; }
-    .tst-lb-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 12px; }
-    .tst-lb-name { font-family: 'Nunito Sans', sans-serif; font-size: clamp(24px, 3.2vw, 34px); font-weight: 300; letter-spacing: -0.01em; line-height: 1.1; color: #fff; }
-    .tst-lb-org { font-family: 'Overpass', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c585b8; margin-top: 12px; }
-    .tst-lb-close { position: absolute; top: -8px; right: -8px; background: rgba(21,17,25,0.9); border: 1px solid rgba(158,123,182,0.3); color: rgba(255,255,255,0.7); width: 38px; height: 38px; border-radius: 50%; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .tst-lb-close:hover { color: #fff; border-color: #c585b8; }
-    @media (max-width: 620px) {
-      #testemunhos-section .tst-field { height: min(74vh, 560px); }
-      .tst-lb-card { flex-direction: column; gap: 22px; }
-      .tst-lb-video { width: min(210px, 58vw); }
-      .tst-lb-meta { text-align: center; }
-      .tst-lb-close { top: 4px; right: 4px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .tst-lb-card { animation: none; } }
-  </style>
-
-  <div class="tst-head">
-    <div class="section-label">Testemunhos</div>
-    <h2 class="section-title">Marcas que cresceram <span>connosco</span></h2>
+<!-- CLIENT LOGOS (movido para junto da constelação) -->
+<div class="logos-section" style="position:relative;z-index:1;">
+  <h2 class="logos-label">Marcas que confiam em nós</h2>
+  <div class="logos-grid">
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt="Moment Laser – venda e aluguer de equipamentos de estética – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt="Aroma Boreal – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2010.svg" alt="Esthetic Solution – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2011.svg" alt="Wellness Devices – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2013.svg" alt="Film Ideia – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt="MyMoment – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – clínica de estética avançada – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
+    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
   </div>
+</div>
 
-  <div class="tst-field" id="tstField" aria-label="Constelação de clientes">
-    <canvas id="tstCanvas"></canvas>
-  </div>
-
-  <span class="tst-hint">Passa o rato pela rede · <span>clica para ver o testemunho</span></span>
-</section>
 
 <!-- Testemunhos — player reels vertical (mesma mecânica do portfólio) -->
 <div class="reels-viewer" id="tstReelsViewer">
@@ -995,80 +1030,6 @@
     { face:F+'evo-clinic.png',     logo:A+'evo-clinic.svg',     tag:'Evo Clinic',     name:'Inês Campos',  org:'Evo Clinic',               v:V+'ines-testemunho-web.mp4',   x:67, y:52, mx:70, my:56 },
     { face:F+'telma-fonseca.png',  mono:'TF', orange:true,      tag:'Telma Fonseca',  name:'Telma Fonseca',org:'Marca pessoal · Estética', v:V+'telma-testemunho-web.mp4',  x:85, y:31, mx:88, my:30 }
   ];
-  var EDGES = [[0,1],[0,2],[1,2],[1,3],[2,3],[3,4],[1,4]];
-  C.forEach(function(n,k){ n.ph=k*1.7; n.sp=0.24+(k%3)*0.07; n.ax=9+(k%4)*3; n.ay=7+(k%3)*4; });
-
-  var field=document.getElementById('tstField'), cv=document.getElementById('tstCanvas'), ctx=cv.getContext('2d');
-  var W=0,H=0,DPR=1,pad=60,portrait=false,hoverIdx=-1,focusIdx=-1,mouse={x:-999,y:-999,inside:false},par={x:0,y:0},parT={x:0,y:0};
-  var intro=REDUCE?1:0, pulses=[], stars=[], visible=false, running=false, revealed=REDUCE, startT=null,last=0,pulseTimer=0;
-
-  var btns=C.map(function(n,k){ var b=document.createElement('button'); b.className='tst-node'+(n.orange?' tst-orange':'');
-    b.setAttribute('aria-label','Ver testemunho: '+n.tag);
-    if(n.face){ var fc=document.createElement('img'); fc.className='tst-face'; fc.src=n.face; fc.alt=n.name; b.appendChild(fc); }
-    var brand=document.createElement('span'); brand.className='tst-brand'+(n.big?' big':'');
-    if(n.logo){ var im=document.createElement('img'); im.src=n.logo; im.alt=n.tag; brand.appendChild(im); }
-    else if(n.mono){ var sp=document.createElement('span'); sp.className='tst-mono'; sp.textContent=n.mono; brand.appendChild(sp); }
-    b.appendChild(brand);
-    b.addEventListener('click',function(){ openTstReels(k); });
-    b.addEventListener('mouseenter',function(){ hoverIdx=k; }); b.addEventListener('mouseleave',function(){ if(hoverIdx===k) hoverIdx=-1; });
-    b.addEventListener('focus',function(){ focusIdx=k; }); b.addEventListener('blur',function(){ if(focusIdx===k) focusIdx=-1; });
-    field.appendChild(b); return b; });
-
-  function resize(){ var r=field.getBoundingClientRect(); W=r.width; H=r.height; portrait=H>W; DPR=Math.min(window.devicePixelRatio||1,2);
-    cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-    var sz=W<520?84:(W<800?92:102); pad=sz*0.85; btns.forEach(function(b){ b.style.setProperty('--sz',sz+'px'); });
-    stars=[]; var n=Math.round(W*H/9000); for(var i=0;i<n;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.3,a:Math.random()*.35+.05}); }
-  window.addEventListener('resize',resize);
-
-  function pos(n,t){ var nx=(portrait&&n.mx!=null)?n.mx:n.x, ny=(portrait&&n.my!=null)?n.my:n.y;
-    var bx=pad+(nx/100)*(W-2*pad),by=pad+(ny/100)*(H-2*pad);
-    var dx=REDUCE?0:Math.sin(t*n.sp+n.ph)*n.ax*intro, dy=REDUCE?0:Math.cos(t*n.sp*0.9+n.ph)*n.ay*intro;
-    return { x:bx+dx+par.x*(0.4+(n.ph%1)*0.5), y:by+dy+par.y*(0.4+(n.ph%1)*0.5) }; }
-
-  field.addEventListener('pointermove',function(e){ var r=field.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; mouse.inside=true; parT.x=(mouse.x/W-0.5)*16; parT.y=(mouse.y/H-0.5)*12; });
-  field.addEventListener('pointerleave',function(){ mouse.inside=false; parT.x=0; parT.y=0; });
-
-  function frame(now){ if(!running) return; if(startT===null) startT=now;
-    var t=(now-startT)/1000, dt=Math.min((now-last)/1000,.05); last=now;
-    if(revealed && intro<1) intro=Math.min(1,intro+dt/1.1);
-    var ep = intro<1 ? (intro*intro*(3-2*intro)) : 1;
-    par.x+=(parT.x-par.x)*0.09; par.y+=(parT.y-par.y)*0.09;
-    var P=C.map(function(n){ return pos(n,t); });
-    var act = hoverIdx>=0?hoverIdx:focusIdx; field.style.cursor=act>=0?'pointer':'default';
-    ctx.clearRect(0,0,W,H);
-    for(var s=0;s<stars.length;s++){ ctx.globalAlpha=stars[s].a*ep; ctx.fillStyle='#c9b6dd'; ctx.beginPath(); ctx.arc(stars[s].x,stars[s].y,stars[s].r,0,6.29); ctx.fill(); } ctx.globalAlpha=1;
-    for(var e=0;e<EDGES.length;e++){ var a=EDGES[e][0],b=EDGES[e][1],A=P[a],B=P[b],on=(act===a||act===b),al=(on?0.55:0.15)*ep;
-      var g=ctx.createLinearGradient(A.x,A.y,B.x,B.y); g.addColorStop(0,'rgba(158,123,182,'+al+')'); g.addColorStop(0.5,'rgba(197,133,184,'+(al*1.15)+')'); g.addColorStop(1,'rgba(158,123,182,'+al+')');
-      ctx.strokeStyle=g; ctx.lineWidth=on?1.6:1; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke(); }
-    if(!REDUCE){ pulseTimer-=dt; if(pulseTimer<=0 && revealed){ pulseTimer=1+Math.random()*1.1; pulses.push({e:EDGES[(Math.random()*EDGES.length)|0],t:0,sp:0.5+Math.random()*0.4}); }
-      for(var p=pulses.length-1;p>=0;p--){ var pu=pulses[p]; pu.t+=dt*pu.sp; if(pu.t>=1){ pulses.splice(p,1); continue; }
-        var Ap=P[pu.e[0]],Bp=P[pu.e[1]],px=Ap.x+(Bp.x-Ap.x)*pu.t,py=Ap.y+(Bp.y-Ap.y)*pu.t,pa=Math.sin(pu.t*Math.PI)*ep;
-        var pg=ctx.createRadialGradient(px,py,0,px,py,7); pg.addColorStop(0,'rgba(230,205,240,'+pa+')'); pg.addColorStop(1,'rgba(230,205,240,0)'); ctx.fillStyle=pg; ctx.beginPath(); ctx.arc(px,py,7,0,6.29); ctx.fill(); } }
-    for(var i2=0;i2<P.length;i2++){ var n=C[i2],pt=P[i2],isA=(act===i2),R=(W<520?43:(W<800?47:52)),col=n.orange?'240,149,63':'158,123,182';
-      var gr=R*2.4, ga=(isA?0.55:0.34)*ep; var gl=ctx.createRadialGradient(pt.x,pt.y,R*0.92,pt.x,pt.y,gr); gl.addColorStop(0,'rgba('+col+','+ga+')'); gl.addColorStop(0.18,'rgba('+col+','+(ga*0.6)+')'); gl.addColorStop(0.42,'rgba('+col+','+(ga*0.26)+')'); gl.addColorStop(0.7,'rgba('+col+','+(ga*0.08)+')'); gl.addColorStop(1,'rgba('+col+',0)'); ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(pt.x,pt.y,gr,0,6.29); ctx.fill();
-      var bt=btns[i2]; bt.style.transform='translate('+pt.x+'px,'+pt.y+'px)'; bt.style.opacity=ep; bt.classList.toggle('on',isA); }
-    if(act>=0){ var na=C[act],pa2=P[act],label=na.tag.toUpperCase();
-      ctx.save();
-      ctx.font="400 12.5px 'Nunito Sans', sans-serif"; ctx.textAlign='center'; ctx.textBaseline='middle';
-      if('letterSpacing' in ctx) ctx.letterSpacing='1.6px';
-      var tw=ctx.measureText(label).width, padX=17, h=30, w=tw+padX*2,
-          x=pa2.x-w/2, cy=pa2.y+(W<520?50:60), y=cy-h/2, r=10;
-      // fundo escuro→roxo + brilho roxo (imita .gx-btn--purple da secção CTA)
-      var bg=ctx.createLinearGradient(x,y,x+w,y+h);
-      bg.addColorStop(0,'#060608'); bg.addColorStop(0.52,'#0c0912'); bg.addColorStop(1,'rgba(158,123,182,0.42)');
-      ctx.shadowColor='rgba(158,123,182,0.5)'; ctx.shadowBlur=16; ctx.shadowOffsetY=7;
-      ctx.fillStyle=bg; rr(ctx,x,y,w,h,r); ctx.fill();
-      ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
-      // borda gradiente roxo 1.5px
-      var bd=ctx.createLinearGradient(x,y,x+w,y+h);
-      bd.addColorStop(0,'#c585b8'); bd.addColorStop(1,'#9e7bb6');
-      ctx.strokeStyle=bd; ctx.lineWidth=1.5; rr(ctx,x,y,w,h,r); ctx.stroke();
-      ctx.fillStyle='#fff'; ctx.fillText(label,pa2.x,cy);
-      ctx.restore(); }
-    requestAnimationFrame(frame); }
-  function rr(c,x,y,w,h,r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
-  function startLoop(){ if(running) return; running=true; last=performance.now(); requestAnimationFrame(frame); }
-  function stopLoop(){ running=false; }
 
   // ---- Player de testemunhos: reels vertical fullscreen (mesma mecânica do portfólio) ----
   var tvViewer=document.getElementById('tstReelsViewer'), tvTrack=document.getElementById('tstReelsTrack'),
@@ -1124,15 +1085,13 @@
     tvTrack.scrollTop=tvSlides[index].el.offsetTop; setTimeout(function(){ tvActivate(index); },50);
     if(tvHint&&tvSlides.length>1){ tvHint.classList.add('show'); tvTrack.addEventListener('scroll',tvHideHint,{passive:true}); tvHintTimer=setTimeout(tvHideHint,5000); }
     history.pushState({ tstReelsOpen:true },''); }
+  window.openTstReels = openTstReels; // exposto para os Painéis expansíveis (secção reels-panels) abrirem o mesmo player
   function closeTstReels(){ tvHideHint(); tvViewer.classList.remove('open'); document.body.style.overflow='';
     tvSlides.forEach(function(s){ s.media.pause(); }); if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
   tvClose.addEventListener('click',function(){ if(history.state&&history.state.tstReelsOpen) history.back(); else closeTstReels(); });
   window.addEventListener('popstate',function(){ if(tvViewer.classList.contains('open')) closeTstReels(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&tvViewer.classList.contains('open')){ if(history.state&&history.state.tstReelsOpen) history.back(); else closeTstReels(); } });
 
-  var io=new IntersectionObserver(function(es){ es.forEach(function(en){ visible=en.isIntersecting; if(visible){ revealed=true; startLoop(); } else stopLoop(); }); },{threshold:.08});
-  io.observe(field);
-  resize();
 })();
 </script>
 
@@ -1304,7 +1263,7 @@
       <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
       <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
       <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
-      <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://wa.me/351926283061" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+      <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://wa.me/351910185220" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1526,7 +1485,7 @@
         .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, (email) => {
           return `<a href="mailto:${email}" target="_blank" rel="noopener" style="color:#9e7bb6;text-decoration:underline;font-weight:600;">${email}</a>`;
         })
-        .replace(/(\+351[\s\d]{9,14}|\+351\s*926\s*2\d{2}\s*\d{3})/g, (match) => {
+        .replace(/(\+351[\s\d]{9,14})/g, (match) => {
         const num = match.replace(/\s/g, '');
         return `<a href="https://wa.me/${num.replace('+','')}" target="_blank" rel="noopener" style="color:#9e7bb6;text-decoration:underline;font-weight:600;">${match}<svg style="display:inline-block;vertical-align:middle;margin-left:2px;margin-right:8px" width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>`;
       });
