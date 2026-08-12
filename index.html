@@ -207,12 +207,12 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* CLIENT LOGOS */
-    .logos-section { padding: 180px 48px; }
-    .logos-label { font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; color: #fff; margin-bottom: 56px; text-align: center; line-height: 0.95; }
-    .logos-grid { display: flex; align-items: center; justify-content: center; gap: 80px; flex-wrap: wrap; }
-    .logo-client { opacity: 0.35; transition: opacity 0.2s; filter: brightness(10); }
-    .logo-client:hover { opacity: 0.7; }
-    .logo-client img, .logo-client svg { height: 28px; width: auto; }
+    .logos-section { padding: 160px 48px; }
+    .logos-label { font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; color: #fff; margin-bottom: 72px; text-align: center; line-height: 0.95; }
+    .logos-grid { display: flex; align-items: center; justify-content: center; gap: 48px 40px; flex-wrap: wrap; max-width: 1120px; margin: 0 auto; }
+    .logo-client { flex: 0 0 180px; height: 60px; display: flex; align-items: center; justify-content: center; opacity: 0.4; transition: opacity 0.25s; filter: brightness(10); }
+    .logo-client:hover { opacity: 0.75; }
+    .logo-client img, .logo-client svg { height: auto !important; max-height: 38px; max-width: 150px; width: auto; object-fit: contain; }
 
     /* SERVICES SECTION */
     .section { padding: 180px 48px; }
@@ -565,99 +565,6 @@
   </div>
 
 <!-- TESTEMUNHOS — PAINÉIS EXPANSÍVEIS (reels 9:16) -->
-<section id="reels-panels" style="position:relative;z-index:1;">
-  <style>
-    #reels-panels{ padding: clamp(90px,11vw,150px) clamp(16px,4vw,48px); }
-    #reels-panels .rp-head{ max-width:760px; margin:0 auto clamp(34px,5vw,54px); text-align:center; position:relative; z-index:2; }
-    #reels-panels .rp-eyebrow{ font-family:'Overpass',sans-serif; font-size:11px; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
-    #reels-panels .rp-title{ font-family:'Nunito Sans',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:300; letter-spacing:-0.02em; text-transform:uppercase; color:#fff; line-height:1; margin:0; }
-    #reels-panels .rp-title span{ color:#9e7bb6; }
-    #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
-    #reels-panels .rp-sub{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(14px,1.6vw,16px); color:rgba(255,255,255,.55); max-width:46ch; margin:14px auto 0; line-height:1.7; }
-    #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
-    #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:16px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
-    #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
-    #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
-    #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
-    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Overpass',sans-serif; font-weight:800; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
-    #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
-    #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
-    #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:0; transition:opacity .4s; }
-    #reels-panels .rp-p.on .rp-badge, #reels-panels .rp-p.on .rp-dur, #reels-panels .rp-p.on .rp-play, #reels-panels .rp-p.on .rp-cap{ opacity:1; transition-delay:.16s; }
-    #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
-    #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
-    #reels-panels .rp-badge b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
-    #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
-    #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
-    #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
-    #reels-panels .rp-av.mono b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:16px; color:#fff; letter-spacing:.02em; }
-    #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Overpass',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
-    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:60px; height:60px; border-radius:50%; border:0; padding:0; cursor:pointer; background:rgba(255,255,255,.95); display:grid; place-items:center; box-shadow:0 10px 28px rgba(0,0,0,.5); transition:transform .3s; }
-    #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ transform:translate(-50%,-50%) scale(1.08); outline:none; }
-    #reels-panels .rp-play::after{ content:""; position:absolute; inset:-8px; border-radius:50%; border:1.5px solid rgba(255,255,255,.5); animation:rpring 2.6s ease-out infinite; }
-    @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
-    #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
-    #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
-    #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-    #reels-panels .rp-nm{ font-family:'Overpass',sans-serif; font-weight:800; font-size:13px; color:#fff; }
-    #reels-panels .rp-og{ font-family:'Overpass',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
-    #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
-    @media (max-width: 760px){
-      #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
-      #reels-panels .rp-head{ padding:0 18px; }                /* header mantem margem lateral */
-      #reels-panels .rp-acc{ height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
-      #reels-panels .rp-acc::-webkit-scrollbar{ display:none; }
-      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:3/4; } /* cards mais altos no mobile */
-      #reels-panels .rp-p.on{ flex:0 0 72%; }
-      #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
-      #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
-      #reels-panels .rp-fill{ filter:brightness(.82); }
-    }
-    @media (prefers-reduced-motion: reduce){ #reels-panels .rp-play::after{ animation:none; } #reels-panels .rp-p,#reels-panels .rp-fill{ transition:none; } }
-  </style>
-  <div class="rp-head">
-    <div class="section-label">Testemunhos</div>
-    <h2 class="section-title">Marcas que cresceram <span>connosco</span></h2>
-  </div>
-  <div class="rp-acc" id="rpAcc" aria-label="Testemunhos em vídeo"></div>
-</section>
-<script>
-(function(){
-  var IMG='https://res.cloudinary.com/dgun4lhkm/image/upload/';
-  function poster(f){ return IMG+'c_fill,w_640,h_800,g_auto,q_auto,f_auto/Website_photos/testemunhos/'+f; } /* capa 4:5 (Cloudinary comprime na entrega) */
-  function dot(f){ return IMG+'c_fill,w_90,h_90,g_face,q_auto,f_auto/Website_photos/testemunhos/'+f; }
-  // avatar redondo: ícone da marca (av) ou, se não houver, o rosto do cliente (capa com g_face)
-  function avatarUrl(c){ return c.av ? IMG+'c_fill,w_120,h_120,q_auto,f_auto/Website_photos/testemunhos/'+c.av
-                                     : IMG+'c_fill,w_120,h_120,g_face,q_auto,f_auto/Website_photos/testemunhos/'+c.f; }
-  // ordem alinhada com a constelação (C[0..4]) para o player de reels abrir o vídeo certo
-  var RP=[
-    { f:'capa-moment', av:'icon-moment', name:'Ruben Campos',  org:'Moment Laser',  dur:'0:18', quote:'Criaram-nos um CRM à medida para a agenda e as despesas. Deixámos o Excel e passámos a ter tudo num dashboard.' },
-    { f:'capa-aroma',  av:'icon-aroma',  name:'Alexandra',     org:'Aroma Boreal',  dur:'0:58', quote:'Tratam de tudo — catálogos, loja online e os conteúdos das redes. A nossa imagem nunca foi tão coerente.' },
-    { f:'capa-villas', av:'icon-villas', name:'Vera',          org:'Villas Gourmet',dur:'0:22', quote:'Fizeram-nos o site com reservas próprias e a app do Clube dos Vinhos, exclusiva para os clientes Gold, com pagamentos integrados.' },
-    { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. A agenda de tratamentos cresceu de verdade.' },
-    { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote:'Deram forma à minha marca pessoal — vídeos de posicionamento, mais interação e um programa próprio para clientes.' }
-  ];
-  var PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="#160f1f"><path d="M8 5v14l11-7z"/></svg>';
-  var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
-  var acc=document.getElementById('rpAcc'); if(!acc) return;
-  RP.forEach(function(c,k){
-    var p=document.createElement('div'); p.className='rp-p'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
-    p.innerHTML=
-      '<img class="rp-fill" src="'+poster(c.f)+'" alt="'+c.name+' — '+c.org+'" loading="lazy" decoding="async">'+
-      '<div class="rp-vig"></div>'+
-      '<span class="rp-vlabel">'+c.org+'</span>'+
-      '<span class="rp-mini">'+MINI+'</span>'+
-      '<div class="rp-badge">'+(c.mono?'<span class="rp-av mono"><b>'+c.mono+'</b></span>':'<span class="rp-av"><img src="'+avatarUrl(c)+'" alt="'+c.org+'" loading="lazy"></span>')+'</div>'+
-      '<div class="rp-dur">'+c.dur+'</div>'+
-      '<button class="rp-play" type="button" aria-label="Ver testemunho de '+c.name+'">'+PLAY+'</button>'+
-      '<div class="rp-cap"><div class="rp-q">'+c.quote+'</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
-    function activate(){ acc.querySelectorAll('.rp-p').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); }
-    p.addEventListener('mouseenter',activate); p.addEventListener('focus',activate); p.addEventListener('click',activate);
-    p.querySelector('.rp-play').addEventListener('click',function(e){ e.stopPropagation(); if(typeof window.openTstReels==='function') window.openTstReels(k); });
-    acc.appendChild(p);
-  });
-})();
-</script>
 
 <!-- SERVICES + STEPS WRAPPER -->
 <div style="position:relative;z-index:1;">
@@ -793,6 +700,100 @@
   })();
   </script>
 </section>
+
+<!-- TESTEMUNHOS (paineis expansiveis) -->
+<section id="reels-panels" style="position:relative;z-index:1;">
+  <style>
+    #reels-panels{ padding: clamp(90px,11vw,150px) clamp(16px,4vw,48px); }
+    #reels-panels .rp-head{ max-width:760px; margin:0 auto clamp(34px,5vw,54px); text-align:center; position:relative; z-index:2; }
+    #reels-panels .rp-eyebrow{ font-family:'Overpass',sans-serif; font-size:11px; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
+    #reels-panels .rp-title{ font-family:'Nunito Sans',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:300; letter-spacing:-0.02em; text-transform:uppercase; color:#fff; line-height:1; margin:0; }
+    #reels-panels .rp-title span{ color:#9e7bb6; }
+    #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
+    #reels-panels .rp-sub{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(14px,1.6vw,16px); color:rgba(255,255,255,.55); max-width:46ch; margin:14px auto 0; line-height:1.7; }
+    #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
+    #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:16px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
+    #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
+    #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
+    #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
+    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Overpass',sans-serif; font-weight:800; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
+    #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
+    #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
+    #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:0; transition:opacity .4s; }
+    #reels-panels .rp-p.on .rp-badge, #reels-panels .rp-p.on .rp-dur, #reels-panels .rp-p.on .rp-play, #reels-panels .rp-p.on .rp-cap{ opacity:1; transition-delay:.16s; }
+    #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
+    #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
+    #reels-panels .rp-badge b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
+    #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
+    #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
+    #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
+    #reels-panels .rp-av.mono b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:16px; color:#fff; letter-spacing:.02em; }
+    #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Overpass',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
+    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:60px; height:60px; border-radius:50%; border:0; padding:0; cursor:pointer; background:rgba(255,255,255,.95); display:grid; place-items:center; box-shadow:0 10px 28px rgba(0,0,0,.5); transition:transform .3s; }
+    #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ transform:translate(-50%,-50%) scale(1.08); outline:none; }
+    #reels-panels .rp-play::after{ content:""; position:absolute; inset:-8px; border-radius:50%; border:1.5px solid rgba(255,255,255,.5); animation:rpring 2.6s ease-out infinite; }
+    @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
+    #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
+    #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
+    #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+    #reels-panels .rp-nm{ font-family:'Overpass',sans-serif; font-weight:800; font-size:13px; color:#fff; }
+    #reels-panels .rp-og{ font-family:'Overpass',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
+    #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
+    @media (max-width: 760px){
+      #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
+      #reels-panels .rp-head{ padding:0 18px; }                /* header mantem margem lateral */
+      #reels-panels .rp-acc{ height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
+      #reels-panels .rp-acc::-webkit-scrollbar{ display:none; }
+      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:3/4; } /* cards mais altos no mobile */
+      #reels-panels .rp-p.on{ flex:0 0 72%; }
+      #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
+      #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
+      #reels-panels .rp-fill{ filter:brightness(.82); }
+    }
+    @media (prefers-reduced-motion: reduce){ #reels-panels .rp-play::after{ animation:none; } #reels-panels .rp-p,#reels-panels .rp-fill{ transition:none; } }
+  </style>
+  <div class="rp-head">
+    <h2 class="section-title">Pessoas que cresceram connosco</h2>
+  </div>
+  <div class="rp-acc" id="rpAcc" aria-label="Testemunhos em vídeo"></div>
+</section>
+<script>
+(function(){
+  var IMG='https://res.cloudinary.com/dgun4lhkm/image/upload/';
+  function poster(f){ return IMG+'c_fill,w_640,h_800,g_auto,q_auto,f_auto/Website_photos/testemunhos/'+f; } /* capa 4:5 (Cloudinary comprime na entrega) */
+  function dot(f){ return IMG+'c_fill,w_90,h_90,g_face,q_auto,f_auto/Website_photos/testemunhos/'+f; }
+  // avatar redondo: ícone da marca (av) ou, se não houver, o rosto do cliente (capa com g_face)
+  function avatarUrl(c){ return c.av ? IMG+'c_fill,w_120,h_120,q_auto,f_auto/Website_photos/testemunhos/'+c.av
+                                     : IMG+'c_fill,w_120,h_120,g_face,q_auto,f_auto/Website_photos/testemunhos/'+c.f; }
+  // ordem alinhada com a constelação (C[0..4]) para o player de reels abrir o vídeo certo
+  var RP=[
+    { f:'capa-moment', av:'icon-moment', name:'Ruben Campos',  org:'Moment Laser',  dur:'0:18', quote:'Criaram-nos um CRM à medida para a agenda e as despesas. Deixámos o Excel e passámos a ter tudo num dashboard.' },
+    { f:'capa-aroma',  av:'icon-aroma',  name:'Alexandra',     org:'Aroma Boreal',  dur:'0:58', quote:'Tratam de tudo — catálogos, loja online e os conteúdos das redes. A nossa imagem nunca foi tão coerente.' },
+    { f:'capa-villas', av:'icon-villas', name:'Vera',          org:'Villas Gourmet',dur:'0:22', quote:'Fizeram-nos o site com reservas próprias e a app do Clube dos Vinhos, exclusiva para os clientes Gold, com pagamentos integrados.' },
+    { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. A agenda de tratamentos cresceu de verdade.' },
+    { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote:'Deram forma à minha marca pessoal — vídeos de posicionamento, mais interação e um programa próprio para clientes.' }
+  ];
+  var PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="#160f1f"><path d="M8 5v14l11-7z"/></svg>';
+  var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+  var acc=document.getElementById('rpAcc'); if(!acc) return;
+  RP.forEach(function(c,k){
+    var p=document.createElement('div'); p.className='rp-p'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
+    p.innerHTML=
+      '<img class="rp-fill" src="'+poster(c.f)+'" alt="'+c.name+' — '+c.org+'" loading="lazy" decoding="async">'+
+      '<div class="rp-vig"></div>'+
+      '<span class="rp-vlabel">'+c.org+'</span>'+
+      '<span class="rp-mini">'+MINI+'</span>'+
+      '<div class="rp-badge">'+(c.mono?'<span class="rp-av mono"><b>'+c.mono+'</b></span>':'<span class="rp-av"><img src="'+avatarUrl(c)+'" alt="'+c.org+'" loading="lazy"></span>')+'</div>'+
+      '<div class="rp-dur">'+c.dur+'</div>'+
+      '<button class="rp-play" type="button" aria-label="Ver testemunho de '+c.name+'">'+PLAY+'</button>'+
+      '<div class="rp-cap"><div class="rp-q">'+c.quote+'</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
+    function activate(){ acc.querySelectorAll('.rp-p').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); }
+    p.addEventListener('mouseenter',activate); p.addEventListener('focus',activate); p.addEventListener('click',activate);
+    p.querySelector('.rp-play').addEventListener('click',function(e){ e.stopPropagation(); if(typeof window.openTstReels==='function') window.openTstReels(k); });
+    acc.appendChild(p);
+  });
+})();
+</script>
 
 <!-- 4 STEPS -->
 <section class="steps-section">
