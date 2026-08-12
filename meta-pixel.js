@@ -89,6 +89,11 @@
   window.fireSubscribe = function () {
     try { if (typeof fbq === 'function') fbq('track', 'Subscribe', { content_name: 'newsletter' }); } catch (e) {}
   };
+  // "Schedule" = marcação de videochamada (botão da página de contactos → Google Calendar).
+  // Evento standard próprio, separado de "Lead" (formulários) para não misturar a contagem.
+  window.fireSchedule = function () {
+    try { if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: 'videochamada' }); } catch (e) {}
+  };
 
   // ===== 2) Snippet base do Píxel da Meta (só corre quando há ID) =====
   if (META_PIXEL_ID) {
