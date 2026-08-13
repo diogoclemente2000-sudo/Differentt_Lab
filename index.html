@@ -729,9 +729,9 @@
     #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
     #reels-panels .rp-av.mono b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:16px; color:#fff; letter-spacing:.02em; }
     #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Overpass',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
-    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:60px; height:60px; border-radius:50%; border:0; padding:0; cursor:pointer; background:rgba(255,255,255,.95); display:grid; place-items:center; box-shadow:0 10px 28px rgba(0,0,0,.5); transition:transform .3s; }
-    #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ transform:translate(-50%,-50%) scale(1.08); outline:none; }
-    #reels-panels .rp-play::after{ content:""; position:absolute; inset:-8px; border-radius:50%; border:1.5px solid rgba(255,255,255,.5); animation:rpring 2.6s ease-out infinite; }
+    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:64px; height:64px; border-radius:50%; border:1px solid rgba(255,255,255,.28); padding:0; cursor:pointer; background:radial-gradient(120% 120% at 32% 26%, #c7a2df 0%, #9e7bb6 46%, #7a5794 100%); display:grid; place-items:center; box-shadow:0 12px 30px rgba(120,74,163,.5), 0 3px 10px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.4); transition:transform .3s, box-shadow .3s; }
+    #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ transform:translate(-50%,-50%) scale(1.08); box-shadow:0 16px 40px rgba(120,74,163,.62), 0 4px 12px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5); outline:none; }
+    #reels-panels .rp-play::after{ content:""; position:absolute; inset:-8px; border-radius:50%; border:1.5px solid rgba(197,133,184,.6); animation:rpring 2.6s ease-out infinite; }
     @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
     #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
     #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
@@ -773,8 +773,8 @@
     { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. A agenda de tratamentos cresceu de verdade.' },
     { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote:'Deram forma à minha marca pessoal — vídeos de posicionamento, mais interação e um programa próprio para clientes.' }
   ];
-  var PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="#160f1f"><path d="M8 5v14l11-7z"/></svg>';
-  var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+  var PLAY='<svg width="21" height="21" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" style="margin-left:2px"><path d="M8 5v14l11-7z"/></svg>';
+  var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg>';
   var acc=document.getElementById('rpAcc'); if(!acc) return;
   RP.forEach(function(c,k){
     var p=document.createElement('div'); p.className='rp-p'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
