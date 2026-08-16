@@ -128,23 +128,40 @@
       .nav-hamburger { display: flex !important; }
     }
 
-    /* HERO — stacked: compact text top, full-width dominant mockups below */
-    .page-hero {
-      position:relative; width:100%; background:#000; overflow:hidden;
-      padding:140px max(48px, calc((100% - 1300px)/2)) 0;
-      display:flex; flex-direction:column; align-items:center;
+    /* HERO — iguais às regras e cores da home page */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    /* swap do vídeo de fundo: desktop por defeito, portrait no mobile */
+    .hero-v-mobile { display: none; }
+    @media (max-width: 768px) {
+      .hero-v-desktop { display: none; }
+      .hero-v-mobile { display: block; }
     }
-
-    /* TEXT — centered, compact */
-    .hero-text {
-      text-align:center; max-width:680px; width:100%; margin-bottom:48px;
-      animation:hFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.05s both;
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,1) 100%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; padding: 0 clamp(48px, 6vw, 104px) 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
+    .hero-label { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
+    /* hero da home: frase, nao titulo display */
+    .home-hero-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: 36px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 24px; color: #fff; }
+    .home-hero-title span { color: #9e7bb6; }
+    /* título principal com mais força — Overpass pesado */
+    .home-hero-title .hero-strong { display: inline-block; font-family: 'Overpass', sans-serif; font-weight: 900; font-size: clamp(34px, 4.8vw, 60px); letter-spacing: -0.02em; line-height: 1.04; text-transform: uppercase; text-shadow: 0 2px 26px rgba(0,0,0,0.6); }
+    /* 3 ícones redondos à frente da frase complementar */
+    .hero-align-icons { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .hero-pill { display: inline-flex; align-items: center; font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: rgba(255,255,255,0.92); padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.10); -webkit-backdrop-filter: blur(16px) saturate(130%); backdrop-filter: blur(16px) saturate(130%); border: 1px solid rgba(255,255,255,0.26); box-shadow: 0 4px 14px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18); }
+    @keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .home-hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+    .hero-btns { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+    .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 480px; }
+    @media (max-width: 1199px) {
+      .hero-content { text-align: left; padding: 0 48px 80px; }
+      .hero-content h1 { text-align: left !important; max-width: 100% !important; font-size: 22px !important; }
+      .hero-content h1 span { font-size: 16px !important; }
+      .hero-content div { justify-content: flex-start !important; flex-direction: column !important; align-items: flex-start !important; }
     }
-    .hero-eyebrow { font-family:'Overpass',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:#9e7bb6; margin-bottom:16px; }
-    .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 18px; }
-    .hero-title span { color:#9e7bb6; }
-    .hero-sub { font-family:'Nunito Sans',sans-serif; font-size:16px; font-weight:300; line-height:1.72; color:rgba(255,255,255,0.48); max-width:520px; margin:0 auto 28px; }
-    .hero-actions { display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:0; }
+    @media (max-width: 600px) {
+      .hero-content { padding: 0 28px 60px !important; }
+    }
     .btn-glow {
       display:inline-flex; align-items:center; justify-content:center;
       padding:17px 48px; background:#fff; color:#000;
@@ -267,6 +284,31 @@
       pointer-events:none; z-index:0;
     }
 
+    /* NEW HERO VISUAL — card retangular com vídeo de apresentação */
+    .hero-video-wrap {
+      position:relative; width:100%; max-width:1120px; margin:0 auto; z-index:2;
+      animation:hFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.18s both;
+    }
+    .hero-video-card {
+      position:relative; width:100%; aspect-ratio:2 / 1; border-radius:20px; overflow:hidden;
+      background:#0a0a0a; border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 0 0 1px rgba(255,255,255,0.04), 0 40px 120px rgba(0,0,0,0.92), 0 0 90px rgba(158,123,182,0.16), inset 0 1px 0 rgba(255,255,255,0.07);
+      transition:filter 0.3s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-video-wrap:hover .hero-video-card { filter:brightness(1.03); transform:translateY(-3px); }
+    .hero-video-card video {
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+    }
+    /* velatura para unificar (vinheta subtil topo/base + tinta de marca) */
+    .hero-video-card::after {
+      content:''; position:absolute; inset:0; pointer-events:none; z-index:2;
+      background:linear-gradient(180deg, rgba(0,0,0,0.12) 0%, transparent 20%, transparent 84%, rgba(0,0,0,0.2) 100%);
+    }
+    /* pills flutuantes sobre o card */
+    .hero-video-wrap .hero-badge { position:absolute; }
+    .hv-badge-1 { top:22px; left:-14px; animation:badgeIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.7s both, badgeBob 3.6s ease-in-out 1.4s infinite; }
+    .hv-badge-2 { bottom:20px; right:-14px; animation:badgeIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.95s both, badgeBob 4.1s ease-in-out 1.7s infinite; }
+
     /* Animations */
     @keyframes hFadeUp     { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes badgeIn     { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -277,7 +319,10 @@
 
     /* BUTTONS */
     .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: #fff; color: #000; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
-    .btn-primary:hover { background: #000; color: #fff; }
+    .btn-primary:hover { background: #000; color: #fff; border-color: rgba(255,255,255,0.3); }
+    /* botao secundario — emparelhado com o .btn-primary, mesmas dimensoes (igual à home) */
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.35); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
+    .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
 
     /* CTA do hero: pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve (igual ao portfolio) */
     .hero-actions .hero-cta {
@@ -311,7 +356,7 @@
     .section { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
     .section-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
     .section-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; color: #fff; margin-bottom: 28px; }
-    .section-title span { color: #9e7bb6; }
+    .section-title span { color: #fff; }
     .section-body { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 680px; }
 
     /* DIVIDER */
@@ -323,10 +368,10 @@
 
     /* CARDS GRID */
     .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
-    .card { background: linear-gradient(140deg, rgba(158,123,182,.08) 0%, rgba(10,10,10,1) 65%); border: 1px solid rgba(158,123,182,.22); border-radius: 16px; padding: 24px 22px; box-shadow: 0 4px 32px rgba(158,123,182,.06), inset 0 1px 0 rgba(255,255,255,.04); transition: border-color .2s, box-shadow .2s; }
-    .card:hover { border-color: rgba(158,123,182,.4); box-shadow: 0 8px 40px rgba(158,123,182,.12), inset 0 1px 0 rgba(255,255,255,.06); }
-    .card-icon { width: 36px; height: 36px; background: rgba(158,123,182,0.14); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: #9e7bb6; }
-    .card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 0; }
+    .card { background: linear-gradient(140deg, rgba(255,255,255,.06) 0%, rgba(10,10,10,1) 65%); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 24px 22px; box-shadow: 0 4px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05); transition: border-color .2s, box-shadow .2s; }
+    .card:hover { border-color: rgba(255,255,255,.3); box-shadow: 0 8px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08); }
+    .card-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.09); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: #cfcfcf; }
+    .card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #b3b3b3; margin-bottom: 0; }
     .card p { display: none; }
 
     /* BENEFITS */
@@ -524,7 +569,6 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 1024px) {
-      .page-hero { padding: 130px 40px 0; }
       .hero-visuals { height: 480px; }
       .browser-frame { width: 500px; }
       .browser-screen { height: 340px; }
@@ -547,7 +591,6 @@
       .cta-bar { padding: 60px 48px; }
     }
     @media (max-width: 768px) {
-      .page-hero { padding: 110px 24px 0; }
       .hero-visuals { height: 360px; }
       .browser-frame { width: 340px; }
       .browser-screen { height: 240px; }
@@ -564,9 +607,6 @@
       .hero-proof { gap: 16px; }
     }
     @media (max-width: 600px) {
-      .page-hero { padding: 100px 16px 0; }
-      /* sem override: o clamp de .hero-title ja trata do mobile */
-      .hero-sub { font-size: 14px; }
 
       /* Mobile hero: stack browser on top, phones side by side below */
       .hero-visuals {
@@ -677,80 +717,59 @@
   </div>
 </div>
 
-<!-- HERO -->
-<section class="page-hero">
-
-  <!-- LEFT: Text + CTA -->
-  <div class="hero-text">
-    <div class="hero-eyebrow">Web Design · Lisboa · Portugal</div>
-    <h1 class="hero-title">Criamos<br>Websites que<br><span>Geram Clientes</span></h1>
-    <p class="hero-sub">Aumenta a tua visibilidade no Google, gera leads qualificados e faz crescer o teu negócio — com um website criado para converter.</p>
+<!-- HERO — mesma estrutura/regras da home page -->
+<section class="hero">
+  <div class="hero-bg">
+    <video id="heroVideo" class="hero-v-desktop" muted loop playsinline webkit-playsinline preload="none"
+           poster="./Website_videos/zeetelecom-hero-poster.jpg"
+           aria-label="Website desenvolvido pela Differentt Lab para a ZeeTelecom">
+      <source src="./Website_videos/zeetelecom-hero-web.mp4" type="video/mp4">
+    </video>
+    <video id="heroVideoMobile" class="hero-v-mobile" muted loop playsinline webkit-playsinline preload="none"
+           poster="./Website_videos/zeetelecom-hero-mobile-poster.jpg"
+           aria-label="Website ZeeTelecom — vista mobile">
+      <source src="./Website_videos/zeetelecom-hero-mobile.mp4" type="video/mp4">
+    </video>
+    <script>
+    (function(){
+      // escolhe o vídeo conforme o ecrã — só esse é carregado (preload=none)
+      var isMob = window.matchMedia('(max-width: 768px)').matches;
+      var v = document.getElementById(isMob ? 'heroVideoMobile' : 'heroVideo');
+      if(!v) return;
+      function tryPlay(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      v.addEventListener('loadeddata', tryPlay);
+      v.load(); tryPlay();
+      ['touchstart','click'].forEach(function(ev){
+        document.addEventListener(ev, function once(){ tryPlay(); document.removeEventListener(ev, once); }, {passive:true});
+      });
+      if('IntersectionObserver' in window){
+        var heroIO = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.intersectionRatio < 0.35){ if(!v.paused) v.pause(); }
+            else { tryPlay(); }
+          });
+        }, { threshold: [0, 0.35, 1] });
+        heroIO.observe(v);
+      }
+    })();
+    </script>
   </div>
-
-  <!-- RIGHT: Mockups (dominant visual) -->
-  <div class="hero-visuals">
-
-    <!-- Left phone: dental clinic -->
-    <div class="hero-phone hero-phone-left">
-      <div class="phone-frame">
-        <div class="phone-urlbar">
-          <div class="phone-urlbar-inner">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="phone-urlbar-url">dental.pt</span>
-          </div>
-        </div>
-        <div class="phone-screen">
-          <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/clinica_dentaria.jpg" alt="Website Clínica Dentária" loading="eager">
-        </div>
-      </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="home-hero-title" style="text-align:left;max-width:900px;"><strong class="hero-strong">TRANSFORMAÇÃO<br>DIGITAL</strong><br><br><span style="font-size:25px;line-height:1.3;display:inline-block;color:#fff;">Alinhamos as tuas equipas, dados e ferramentas.<br>Automatizamos processos e eliminamos o trabalho manual.</span></h1>
+    <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-start;margin-top:48px;">
+      <a href="./contactos" class="btn-primary">Pedir Orçamento</a>
+      <a href="./portfolio" class="btn-outline">Ver Portfólio</a>
     </div>
-
-    <!-- Center browser: iPhone repair (MAIN) -->
-    <div class="hero-browser-wrap">
-      <div class="browser-frame">
-        <div class="browser-bar">
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <div class="browser-url">zeetelecom.pt</div>
-        </div>
-        <div class="browser-screen">
-          <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/repara%C3%A7ao_iphone.png" alt="Website Reparação iPhone" loading="eager">
-        </div>
-      </div>
-    </div>
-
-    <!-- Right phone: real estate -->
-    <div class="hero-phone hero-phone-right">
-      <div class="phone-frame">
-        <div class="phone-urlbar">
-          <div class="phone-urlbar-inner">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="phone-urlbar-url">carlosmobiliario.pt</span>
-          </div>
-        </div>
-        <div class="phone-screen">
-          <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/imobiliario.jpg" alt="Website Imobiliário" loading="eager">
-        </div>
-      </div>
-    </div>
-
-    <!-- Floating trust badges -->
-    <div class="hero-badge badge-1"><span class="bdot g"></span> High Converting</div>
-    <div class="hero-badge badge-2"><span class="bdot b"></span> SEO Optimized</div>
-    <div class="hero-badge badge-3"><span class="bdot"></span> Mobile First</div>
-
   </div>
-
-
 </section>
 
-<!-- BOTTOM: stats + CTA + trust -->
+<!-- BOTTOM: prova social + trust -->
 <div class="hero-bottom">
   <div class="hero-proof">
     <div class="hero-proof-item">
       <span class="hero-proof-stat">+120</span>
-      <span class="hero-proof-label">websites<br>entregues</span>
+      <span class="hero-proof-label">projetos<br>entregues</span>
     </div>
     <div class="hero-proof-divider"></div>
     <div class="hero-proof-item">
@@ -763,16 +782,10 @@
       <span class="hero-proof-label">tempo médio<br>de entrega</span>
     </div>
   </div>
-  <div class="hero-bottom-cta">
-    <div class="hero-actions">
-      <a href="./contactos" class="btn-primary hero-cta"><span class="hero-cta-label">Pedir Orçamento</span></a>
-      <a href="./portfolio" class="hero-link">Ver Portfólio →</a>
-    </div>
-    <div class="hero-trust">
-      <span>✓ SEO integrado</span>
-      <span>✓ Mobile-first</span>
-      <span>✓ Entrega em 4 dias</span>
-    </div>
+  <div class="hero-trust">
+    <span>✓ CRM</span>
+    <span>✓ Automações</span>
+    <span>✓ Software</span>
   </div>
 </div>
 

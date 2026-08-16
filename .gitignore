@@ -16,6 +16,10 @@ Website_videos/*
 !Website_videos/aroma-testemunho-web.mp4
 !Website_videos/ines-testemunho-web.mp4
 !Website_videos/telma-testemunho-web.mp4
+!Website_videos/zeetelecom-hero-web.mp4
+!Website_videos/zeetelecom-hero-poster.jpg
+!Website_videos/zeetelecom-hero-mobile.mp4
+!Website_videos/zeetelecom-hero-mobile-poster.jpg
 Website_photos/
 upload-to-cloudinary.mjs
 test-upload.mjs
