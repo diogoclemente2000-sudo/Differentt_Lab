@@ -199,11 +199,11 @@
     .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 480px; }
 
     /* MARQUEE */
-    .marquee-section { background: #000; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 14px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
-    .marquee-track { display: flex; gap: 60px; animation: marquee 30s linear infinite; white-space: nowrap; }
+    .marquee-section { background: #000; padding: 14px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
+    .marquee-track { display: flex; gap: 60px; animation: marquee 50s linear infinite; white-space: nowrap; }
     .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
-    .marquee-dot { width: 4px; height: 4px; background: #9e7bb6; border-radius: 50%; flex-shrink: 0; }
+    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .marquee-item .mq-check { width: 12px; height: 12px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* CLIENT LOGOS */
@@ -554,18 +554,18 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot"></span>Branding</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Web Development</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Motion Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>3D Art</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Social Media</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Identidade Visual</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Branding</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Web Development</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Motion Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>3D Art</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Social Media</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Identidade Visual</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Branding</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Web Development</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Motion Design</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3D Art</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Social Media</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identidade Visual</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Branding</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Web Development</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Motion Design</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3D Art</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Social Media</span>
+    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identidade Visual</span>
   </div>
 </div>
 
@@ -759,6 +759,8 @@
       #reels-panels .rp-p.on{ flex:0 0 72%; }
       #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
       #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
+      #reels-panels .rp-play{ width:44px; height:44px; }          /* botao de play mais pequeno no mobile */
+      #reels-panels .rp-play svg{ width:16px; height:16px; }
       #reels-panels .rp-fill{ filter:brightness(.82); }
     }
     @media (prefers-reduced-motion: reduce){ #reels-panels .rp-play::after{ animation:none; } #reels-panels .rp-p,#reels-panels .rp-fill{ transition:none; } }
