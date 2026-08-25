@@ -205,7 +205,7 @@
     @media (hover: hover) { .reel-card:hover .reel-card-expand { opacity: 1; transform: translateY(0); } }
     /* mobile: flex horizontal com swipe (mesmo padrão da home) */
     @media (max-width: 600px) {
-      .pf-grid { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
+      .pf-grid { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
       .pf-grid::-webkit-scrollbar { display: none; }
       .pf-grid .reel-card { flex: 0 0 72%; scroll-snap-align: center; }
     }
