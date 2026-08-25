@@ -820,27 +820,38 @@
   var v0=acc.querySelector('.rp-p video.rp-fill');
   var snd=acc.querySelector('.rp-sound');
   if(v0){
-    var paint=function(){ if(snd) snd.innerHTML = v0.muted ? SND_OFF : SND_ON; };
-    var go=function(){ var pr=v0.play(); if(pr && pr.catch) pr.catch(function(){}); };
+    v0.removeAttribute('autoplay');          // nada arranca no load — só quando a secção aparece
+    var visivel=false, jaTentou=false;
     var evs=['pointerdown','touchstart','keydown'];
-    var unmute=function(){ v0.muted=false; paint(); go(); evs.forEach(function(ev){ document.removeEventListener(ev, unmute); }); };
+    var paint=function(){ if(snd) snd.innerHTML = v0.muted ? SND_OFF : SND_ON; };
+    var go=function(){ if(!visivel) return; var pr=v0.play(); if(pr && pr.catch) pr.catch(function(){}); };
+    var unmute=function(){ if(visivel){ v0.muted=false; paint(); go(); } evs.forEach(function(ev){ document.removeEventListener(ev, unmute); }); };
 
-    v0.muted=false;
-    var first=v0.play();
-    if(first && first.catch) first.catch(function(){
-      v0.muted=true; paint(); go();                                   // fallback: mudo
-      evs.forEach(function(ev){ document.addEventListener(ev, unmute, {passive:true}); });
-    });
+    // 1ª vez que a secção fica à vista: tenta com som; se o browser bloquear,
+    // arranca mudo e liga o som ao primeiro toque/clique.
+    var arrancar=function(){
+      if(jaTentou){ go(); return; }
+      jaTentou=true;
+      v0.muted=false;
+      var pr=v0.play();
+      if(pr && pr.catch) pr.catch(function(){
+        v0.muted=true; paint(); go();
+        evs.forEach(function(ev){ document.addEventListener(ev, unmute, {passive:true}); });
+      });
+      paint();
+    };
     paint();
 
     if(snd) snd.addEventListener('click', function(e){ e.stopPropagation(); v0.muted=!v0.muted; paint(); go(); });
 
-    // só reproduz enquanto a secção está à vista (evita som a tocar fora do ecrã)
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ go(); } else { v0.pause(); } });
+        es.forEach(function(e){
+          visivel = e.isIntersecting;
+          if(visivel) arrancar(); else v0.pause();
+        });
       }, { threshold: 0.35 }).observe(v0);
-    }
+    } else { visivel=true; arrancar(); }
   }
 })();
 </script>
