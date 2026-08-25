@@ -2,18 +2,30 @@
 <html lang="pt">
 <head>
   <link rel="canonical" href="https://differenttlab.com/faq">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RZ1CP73D5"></script>
+  <!-- Google tag (gtag.js) + GTM — carregados só após interação ou 3s.
+       O dataLayer e o gtag() existem desde já, por isso nenhum evento se perde:
+       fica em fila e dispara assim que os scripts carregam. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-0RZ1CP73D5');
     gtag('config', 'AW-18057133811');
+    (function(){
+      var carregado = false;
+      var evs = ['pointerdown','touchstart','keydown','scroll','mousemove'];
+      function carregar(){
+        if (carregado) return; carregado = true;
+        evs.forEach(function(e){ window.removeEventListener(e, carregar); });
+        var s = document.createElement('script');
+        s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0RZ1CP73D5';
+        document.head.appendChild(s);
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M66X7THV');
+      }
+      evs.forEach(function(e){ window.addEventListener(e, carregar, {once:true, passive:true}); });
+      setTimeout(carregar, 3000);
+    })();
   </script>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M66X7THV');</script>
-  <!-- End Google Tag Manager -->
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="icon" type="image/png" sizes="512x512" href="./favicon-512.png">
   <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">

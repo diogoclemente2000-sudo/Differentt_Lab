@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RZ1CP73D5"></script>
+  <!-- Google tag (gtag.js) + GTM — carregados só após interação ou 3s.
+       O dataLayer e o gtag() existem desde já, por isso nenhum evento se perde:
+       fica em fila e dispara assim que os scripts carregam. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-0RZ1CP73D5');
     gtag('config', 'AW-18057133811');
+    (function(){
+      var carregado = false;
+      var evs = ['pointerdown','touchstart','keydown','scroll','mousemove'];
+      function carregar(){
+        if (carregado) return; carregado = true;
+        evs.forEach(function(e){ window.removeEventListener(e, carregar); });
+        var s = document.createElement('script');
+        s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0RZ1CP73D5';
+        document.head.appendChild(s);
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M66X7THV');
+      }
+      evs.forEach(function(e){ window.addEventListener(e, carregar, {once:true, passive:true}); });
+      setTimeout(carregar, 3000);
+    })();
   </script>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M66X7THV');</script>
-  <!-- End Google Tag Manager -->
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="icon" type="image/png" sizes="512x512" href="./favicon-512.png">
   <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
@@ -270,20 +282,40 @@
     .proof-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.5; }
 
     /* STATS */
-    .stats-wrap { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
-    .mini-stats { display: flex; flex-wrap: wrap; column-gap: 48px; row-gap: 32px; margin-top: 48px; }
-    .mini-stat { display: flex; flex-direction: column; }
-    .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; }
+    .stats-wrap { display: block; }
+    .stats-intro { text-align: center; max-width: 620px; margin: 18px auto 0; }
+    /* destaque: número grande + barra horizontal com gradiente */
+    .stat-hero { max-width: 620px; margin: 60px auto 0; text-align: center; }
+    .stat-hero-top { display: flex; align-items: baseline; justify-content: center; gap: 3px; }
+    .stat-hero-val { font-family: 'Overpass', sans-serif; font-size: clamp(58px, 8vw, 86px); font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-hero-sym { font-family: 'Overpass', sans-serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; color: #fff; line-height: 1; }
+    .stat-hero-label { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.16em; margin-top: 14px; }
+    .stat-bar { position: relative; height: 8px; border-radius: 100px; background: rgba(255,255,255,0.07); overflow: hidden; margin-top: 26px; }
+    .stat-bar-fill { position: absolute; top: 0; left: 0; bottom: 0; width: 0; border-radius: 100px;
+      background: linear-gradient(90deg, #9e7bb6 0%, #c585b8 100%);
+      box-shadow: 0 0 18px rgba(158,123,182,0.45);
+      transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    /* INFOGRÁFICO — percentagens em barras (comparáveis) · volumes em números */
+    .infografico { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 980px; margin: 72px auto 0; align-items: start; }
+    .ig-bloco { background: linear-gradient(150deg, rgba(255,255,255,.045), rgba(10,10,10,1) 72%); border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 28px 26px; }
+    .ig-titulo { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 24px; }
+    .ig-linha + .ig-linha { margin-top: 26px; }
+    .ig-linha-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+    .ig-linha-label { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,.62); }
+    .ig-linha-val { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 900; color: #fff; line-height: 1; }
+    .ig-card { display: flex; align-items: center; gap: 14px; }
+    .ig-card + .ig-card { margin-top: 22px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.07); }
+    .ig-icone { width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px; background: rgba(158,123,182,.14); display: grid; place-items: center; color: #9e7bb6; }
+    .ig-card-val { font-family: 'Overpass', sans-serif; font-size: 30px; font-weight: 900; color: #fff; line-height: 1; }
+    .ig-card-val i { font-size: 15px; font-weight: 700; font-style: normal; margin-left: 3px; }
+    .ig-card-label { font-family: 'Nunito Sans', sans-serif; font-size: 11.5px; font-weight: 300; color: rgba(255,255,255,.42); margin-top: 6px; }
+    @media (max-width: 760px) { .infografico { grid-template-columns: 1fr; gap: 16px; } }
+    .mini-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); column-gap: 24px; row-gap: 40px; margin: 72px auto 0; max-width: 1040px; }
+    .mini-stat { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: clamp(32px, 3.4vw, 42px); font-weight: 900; color: #fff; line-height: 1; }
     .mini-stat-unit { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #fff; }
-    .mini-stat-val-wrap { display: flex; align-items: baseline; gap: 2px; }
+    .mini-stat-val-wrap { display: flex; align-items: baseline; justify-content: center; gap: 2px; }
     .mini-stat-label { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
-    .donut-wrap { position: relative; width: 260px; height: 260px; flex-shrink: 0; }
-    .donut-svg { display: block; }
-    .donut-fill { transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1); }
-    .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .donut-pct { font-family: 'Overpass', sans-serif; font-size: 52px; font-weight: 900; color: #fff; line-height: 1; }
-    .donut-sym { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #fff; line-height: 1; margin-left: 2px; }
-    .donut-label { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px; line-height: 1.5; }
 
     /* FAQ */
     .faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; max-width: 800px; }
@@ -326,8 +358,6 @@
     @media (max-width: 1024px) {
       .hero-layout { padding: 110px 48px 110px; }
       .cards-grid, .benefits-grid, .who-grid, .proof-grid, .process-grid { grid-template-columns: 1fr 1fr; }
-      .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
-      .donut-wrap { margin: 0 auto; }
       .two-col { grid-template-columns: 1fr; gap: 40px; }
       .section { padding: 80px 48px; }
       .divider { margin: 0 48px; }
@@ -390,8 +420,13 @@
 
     @media (max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
-      /* scroll lateral: mesma regra do portfólio da criação de websites */
-      .reels-grid { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
+      /* scroll lateral: mesma regra do portfólio da criação de websites.
+         overflow-y hidden: sem isto o contentor tambem scrolla na vertical
+         (overflow-x auto faz o eixo y passar a auto) e prende a roda/dedo. */
+      .reels-grid { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
+      /* no carrossel os cards aparecem logo: o reveal deixava-os 26px abaixo
+         (e invisiveis), criando a sobra vertical que prendia o scroll */
+      .reels-grid .reveal { opacity: 1 !important; transform: none !important; }
       .reels-grid::-webkit-scrollbar { display: none; }
       .reels-grid .reel-item { flex: 0 0 72%; scroll-snap-align: center; }
       .reel-card-metric { font-size: 11px; }
@@ -501,11 +536,11 @@
 <section class="page-hero">
 
   <!-- Vídeo de fundo: bastidores (desktop) / reel Moment Laser (mobile) -->
-  <video id="socHeroD" class="hero-v hero-v-desktop" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+  <video id="socHeroD" class="hero-v hero-v-desktop" autoplay muted loop playsinline webkit-playsinline preload="auto"
          poster="./Website_videos/sociais-hero-poster.jpg"
          src="./Website_videos/sociais-hero-web.mp4"
          aria-label="Bastidores de produção de conteúdo — Differentt Lab"></video>
-  <video id="socHeroM" class="hero-v hero-v-mobile" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+  <video id="socHeroM" class="hero-v hero-v-mobile" autoplay muted loop playsinline webkit-playsinline preload="auto"
          src="./Website_videos/moment-reels-web.mp4"
          aria-label="Reel de redes sociais — Moment Laser"></video>
   <div class="hero-scrim"></div>
@@ -669,44 +704,62 @@
 <section class="section">
   <div class="stats-wrap">
     <div class="stats-left">
-      <div class="section-eyebrow">Resultados mensuráveis</div>
-      <h2 class="section-title">Números que<br><span>falam por si</span></h2>
-      <p class="section-body">Números reais dos nossos clientes. Evo Clinic, Moment Laser e Esthetic Solution — marcas de estética geridas pela Differentt Lab.</p>
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="900">0</span><span class="mini-stat-unit">mil</span></div>
-          <span class="mini-stat-label">Visualizações/mês (2 clínicas)</span>
+      <h2 class="section-title" style="text-align:center;">O que mudou<br><span>nestas marcas</span></h2>
+      <p class="section-body stats-intro">Números reais dos nossos clientes. Evo Clinic, Moment Laser e Esthetic Solution — marcas de estética geridas pela Differentt Lab.</p>
+
+      <!-- destaque: barra horizontal com gradiente -->
+      <div class="stat-hero">
+        <div class="stat-hero-top"><span class="stat-hero-val" data-target="87">0</span><span class="stat-hero-sym">%</span></div>
+        <div class="stat-hero-label">Clientes que renovam o plano</div>
+        <div class="stat-bar"><span class="stat-bar-fill" data-pct="87"></span></div>
+      </div>
+
+      <!-- INFOGRÁFICO: percentagens em barras · volumes em números -->
+      <div class="infografico">
+        <div class="ig-bloco">
+          <div class="ig-titulo">Crescimento</div>
+          <div class="ig-linha">
+            <div class="ig-linha-topo">
+              <span class="ig-linha-label">Mais ligações telefónicas</span>
+              <span class="ig-linha-val"><span class="mini-stat-val" data-target="70">0</span>%</span>
+            </div>
+            <div class="stat-bar"><span class="stat-bar-fill" data-pct="70"></span></div>
+          </div>
+          <div class="ig-linha">
+            <div class="ig-linha-topo">
+              <span class="ig-linha-label">Mais marcações · Evo Clinic</span>
+              <span class="ig-linha-val"><span class="mini-stat-val" data-target="30">0</span>%</span>
+            </div>
+            <div class="stat-bar"><span class="stat-bar-fill" data-pct="30"></span></div>
+          </div>
         </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="70">0</span><span class="mini-stat-unit">%</span></div>
-          <span class="mini-stat-label">Mais ligações telefónicas</span>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="30">0</span><span class="mini-stat-unit">%</span></div>
-          <span class="mini-stat-label">Mais marcações (Evo Clinic)</span>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="400">0</span></div>
-          <span class="mini-stat-label">Clientes/mês (Esthetic Solution)</span>
-        </div>
-        <div class="mini-stat">
-          <div class="mini-stat-val-wrap"><span class="mini-stat-val" data-target="127">0</span><span class="mini-stat-unit">mil</span></div>
-          <span class="mini-stat-label">Visualizações/mês (Esthetic Solution)</span>
+
+        <div class="ig-bloco">
+          <div class="ig-titulo">Alcance mensal</div>
+          <div class="ig-card">
+            <span class="ig-icone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <div>
+              <div class="ig-card-val"><span class="mini-stat-val" data-target="900">0</span><i>mil</i></div>
+              <div class="ig-card-label">Visualizações · 2 clínicas</div>
+            </div>
+          </div>
+          <div class="ig-card">
+            <span class="ig-icone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <div>
+              <div class="ig-card-val"><span class="mini-stat-val" data-target="127">0</span><i>mil</i></div>
+              <div class="ig-card-label">Visualizações · Esthetic Solution</div>
+            </div>
+          </div>
+          <div class="ig-card">
+            <span class="ig-icone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+            <div>
+              <div class="ig-card-val"><span class="mini-stat-val" data-target="400">0</span></div>
+              <div class="ig-card-label">Clientes · Esthetic Solution</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="stats-right">
-      <div class="donut-wrap">
-        <svg class="donut-svg" viewBox="0 0 120 120" width="260" height="260">
-          <circle class="donut-bg" cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
-          <circle class="donut-fill" cx="60" cy="60" r="50" fill="none" stroke="#9e7bb6" stroke-width="10"
-            stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" transform="rotate(-90 60 60)"/>
-        </svg>
-        <div class="donut-center">
-          <span class="donut-pct" data-target="87">0</span><span class="donut-sym">%</span>
-          <span class="donut-label">Clientes que<br>renovam o plano</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -787,7 +840,6 @@
 </footer>
 
 <script>
-  const CIRCUMFERENCE = 314.16;
 
   function animateCounter(el, target, duration) {
     let start = 0;
@@ -799,18 +851,19 @@
     }, 16);
   }
 
-  function animateDonut(pct) {
-    const fill = document.querySelector('.donut-fill');
-    if (!fill) return;
-    fill.style.strokeDashoffset = CIRCUMFERENCE - (pct / 100) * CIRCUMFERENCE;
+  function animateBars() {
+    document.querySelectorAll('.stat-bar-fill').forEach((fill, i) => {
+      const pct = parseInt(fill.dataset.pct || 0);
+      setTimeout(() => { fill.style.width = pct + '%'; }, i * 120);   // entram em cascata
+    });
   }
 
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      animateDonut(87);
-      const donutPct = document.querySelector('.donut-pct');
-      if (donutPct) animateCounter(donutPct, 87, 1600);
+      animateBars();
+      const heroVal = document.querySelector('.stat-hero-val');
+      if (heroVal) animateCounter(heroVal, 87, 1600);
       document.querySelectorAll('.mini-stat-val').forEach(el => {
         animateCounter(el, parseInt(el.dataset.target), 1400);
       });
@@ -818,7 +871,7 @@
     });
   }, { threshold: 0.3 });
 
-  const statsSection = document.querySelector('.donut-wrap');
+  const statsSection = document.querySelector('.stat-hero');
   if (statsSection) statsObserver.observe(statsSection);
 
   // Nav
