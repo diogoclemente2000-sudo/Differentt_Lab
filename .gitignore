@@ -20,6 +20,11 @@ Website_videos/*
 !Website_videos/zeetelecom-hero-poster.jpg
 !Website_videos/zeetelecom-hero-mobile.mp4
 !Website_videos/zeetelecom-hero-mobile-poster.jpg
+!Website_videos/gym-time-web.mp4
+!Website_videos/gym-time-mobile.mp4
+!Website_videos/gym-time-mobile-poster.jpg
+!Website_videos/sociais-hero-web.mp4
+!Website_videos/sociais-hero-poster.jpg
 Website_photos/
 upload-to-cloudinary.mjs
 test-upload.mjs

@@ -131,12 +131,13 @@
     /* HERO — iguais às regras e cores da home page */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
     .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-    .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
+    .hero-bg video.is-on { opacity: 1; }
     /* swap do vídeo de fundo: desktop por defeito, portrait no mobile */
-    .hero-v-mobile { display: none; }
+    .hv-mobile { display: none; }
     @media (max-width: 768px) {
-      .hero-v-desktop { display: none; }
-      .hero-v-mobile { display: block; }
+      .hv-desktop { display: none; }
+      .hv-mobile { display: block; }
       /* filtro escuro subtil só no mobile, vindo da esquerda: 30% -> 0% ao meio */
       .hero-overlay {
         background:
@@ -183,11 +184,29 @@
     .hero-trust span { font-family:'Nunito Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.06em; color:rgba(255,255,255,0.28); }
     /* MARQUEE de serviços (igual à home) */
     .marquee-section { background: #000; padding: 14px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
-    .marquee-track { display: flex; gap: 60px; animation: marquee 69s linear infinite; white-space: nowrap; width: max-content; }
+    .marquee-track { display: flex; gap: 60px; animation: marquee 73s linear infinite; white-space: nowrap; width: max-content; }
     .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
-    .marquee-item .mq-check { width: 12px; height: 12px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
+    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .marquee-item .mq-check { width: 13px; height: 13px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* PORTFOLIO — cards estilo home (capa em vídeo, 9:16) */
+    .pf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 320px)); gap: 20px; justify-content: center; margin-top: 40px; }
+    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; display: block; text-decoration: none; }
+    .reel-card-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .reel-card:hover .reel-card-vid { transform: scale(1.06); }
+    .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, transparent 70%); pointer-events: none; }
+    .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
+    .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reel-card-expand { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(-4px); transition: opacity 0.2s, transform 0.2s; }
+    .reel-card:hover .reel-card-expand { opacity: 1; transform: translateY(0); }
+    /* mobile: flex horizontal com swipe (mesmo padrão da home) */
+    @media (max-width: 600px) {
+      .pf-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
+      .pf-grid::-webkit-scrollbar { display: none; }
+      .pf-grid .reel-card { flex: 0 0 72%; scroll-snap-align: center; }
+    }
 
     /* BOTTOM BAR */
     .hero-bottom {
@@ -340,8 +359,8 @@
     /* CTA do hero: pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve (igual ao portfolio) */
     .hero-actions .hero-cta {
       position: relative; overflow: hidden;
-      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%);
-      color: #fff; border: none; border-radius: 11px;
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box;
+      color: #fff; border: 1.5px solid transparent; border-radius: 11px;
       padding: 14px 30px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; line-height: 1;
       box-shadow: 0 10px 26px rgba(0,0,0,0.4);
       will-change: transform;
@@ -353,12 +372,6 @@
       background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%);
       filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%;
       transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none;
-    }
-    .hero-actions .hero-cta::before {
-      content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px;
-      background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
     }
     .hero-actions .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .hero-actions .hero-cta:hover::after { opacity: 1; transform: scale(1.05); }
@@ -572,10 +585,9 @@
     .footer-col ul li a:hover { color: #9e7bb6; }
 
     /* botao gradiente-quadrado (igual aos CTAs do site) */
-    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
@@ -670,6 +682,26 @@
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .faq-list { max-width: 100%; }
     }
+    /* VISUALIZADOR DE REELS (mesmo formato da home) */
+    .reels-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
+    .reels-viewer.open { display: block; }
+    .reels-track { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
+    .reels-track::-webkit-scrollbar { display: none; }
+    .reels-slide { position: relative; height: 100dvh; width: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #050505; }
+    .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
+    .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
+    .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
+    .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .reels-slide-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.26); }
+    .reels-slide-cta-text { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+    .reels-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-mute { position: absolute; top: 24px; left: 24px; z-index: 3; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
+    .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
+    .reels-progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
+    .reels-progress-bar span { display: block; height: 100%; width: 0%; background: #fff; }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -733,36 +765,60 @@
 <!-- HERO — mesma estrutura/regras da home page -->
 <section class="hero">
   <div class="hero-bg">
-    <video id="heroVideo" class="hero-v-desktop" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+    <!-- desktop: dois vídeos empilhados, crossfade sem reload -->
+    <video id="hvD1" class="hv-desktop is-on" autoplay muted playsinline webkit-playsinline preload="metadata"
            poster="./Website_videos/zeetelecom-hero-poster.jpg"
-           aria-label="Website desenvolvido pela Differentt Lab para a ZeeTelecom">
-      <source src="./Website_videos/zeetelecom-hero-web.mp4" type="video/mp4">
-    </video>
-    <video id="heroVideoMobile" class="hero-v-mobile" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+           src="./Website_videos/zeetelecom-hero-web.mp4"
+           aria-label="Website desenvolvido pela Differentt Lab para a ZeeTelecom"></video>
+    <video id="hvD2" class="hv-desktop" muted playsinline webkit-playsinline preload="metadata"
+           src="./Website_videos/gym-time-web.mp4"
+           aria-label="App de fitness desenvolvida pela Differentt Lab"></video>
+    <!-- mobile: par equivalente em portrait -->
+    <video id="hvM1" class="hv-mobile is-on" autoplay muted playsinline webkit-playsinline preload="metadata"
            poster="./Website_videos/zeetelecom-hero-mobile-poster.jpg"
-           aria-label="Website ZeeTelecom — vista mobile">
-      <source src="./Website_videos/zeetelecom-hero-mobile.mp4" type="video/mp4">
-    </video>
+           src="./Website_videos/zeetelecom-hero-mobile.mp4"
+           aria-label="Website ZeeTelecom — vista mobile"></video>
+    <video id="hvM2" class="hv-mobile" muted playsinline webkit-playsinline preload="metadata"
+           src="./Website_videos/gym-time-mobile.mp4"
+           aria-label="App de fitness — vista mobile"></video>
     <script>
     (function(){
-      // escolhe o vídeo conforme o ecrã — só esse é carregado (preload=none)
+      // par de vídeos do viewport atual: alterna com crossfade (ambos ficam carregados — sem flash de reload)
       var isMob = window.matchMedia('(max-width: 768px)').matches;
-      var v = document.getElementById(isMob ? 'heroVideoMobile' : 'heroVideo');
-      if(!v) return;
-      function tryPlay(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
-      v.addEventListener('loadeddata', tryPlay);
-      v.load(); tryPlay();
+      var vids = isMob ? [document.getElementById('hvM1'), document.getElementById('hvM2')]
+                       : [document.getElementById('hvD1'), document.getElementById('hvD2')];
+      var off  = isMob ? [document.getElementById('hvD1'), document.getElementById('hvD2')]
+                       : [document.getElementById('hvM1'), document.getElementById('hvM2')];
+      if(!vids[0] || !vids[1]) return;
+      // o par do viewport inativo não deve tocar nem descarregar (autoplay ignora display:none)
+      off.forEach(function(v){ if(v){ v.removeAttribute('autoplay'); v.pause(); v.preload='none'; } });
+      var cur = 0;
+      function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      function swap(){
+        var oldV = vids[cur];
+        cur = 1 - cur;
+        var newV = vids[cur];
+        newV.currentTime = 0;
+        tryPlay(newV);
+        newV.classList.add('is-on');    // fade-in por cima
+        oldV.classList.remove('is-on'); // fade-out
+        setTimeout(function(){ oldV.pause(); }, 600); // pausa depois do fade
+      }
+      vids.forEach(function(v){ v.addEventListener('ended', swap); });
+      tryPlay(vids[0]);
+      // pré-aquece o segundo (fica pronto para o crossfade)
+      vids[1].load();
       ['touchstart','click'].forEach(function(ev){
-        document.addEventListener(ev, function once(){ tryPlay(); document.removeEventListener(ev, once); }, {passive:true});
+        document.addEventListener(ev, function once(){ tryPlay(vids[cur]); document.removeEventListener(ev, once); }, {passive:true});
       });
       if('IntersectionObserver' in window){
         var heroIO = new IntersectionObserver(function(entries){
           entries.forEach(function(e){
-            if(e.intersectionRatio < 0.35){ if(!v.paused) v.pause(); }
-            else { tryPlay(); }
+            if(e.intersectionRatio < 0.35){ if(!vids[cur].paused) vids[cur].pause(); }
+            else { tryPlay(vids[cur]); }
           });
         }, { threshold: [0, 0.35, 1] });
-        heroIO.observe(v);
+        heroIO.observe(vids[0].parentElement);
       }
     })();
     </script>
@@ -801,8 +857,7 @@
 
 <!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
 <section class="section">
-  <div class="section-eyebrow">Construído para crescer</div>
-  <h2 class="section-title">Websites com <span>SEO integrado</span><br>desde o primeiro dia</h2>
+  <h2 class="section-title" style="text-align:center;">Websites com <span>SEO integrado</span><br>desde o primeiro dia</h2>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
@@ -861,6 +916,47 @@
       <p>Guardamos e organizamos os dados do teu negócio numa base de dados segura — clientes, produtos, encomendas e métricas, prontos a consultar, cruzar e integrar com o resto do sistema.</p>
     </div>
   </div>
+</section>
+
+<hr class="divider">
+
+<!-- PORTFOLIO — projetos web/software (layout dos reels da home) -->
+<section class="section">
+  <h2 class="section-title" style="text-align:center;">Portfólio</h2>
+  <div class="pf-grid">
+    <a class="reel-card" href="./projeto?p=zeetelecom">
+      <video class="reel-card-vid" muted loop playsinline webkit-playsinline preload="none"
+             poster="./Website_videos/zeetelecom-hero-mobile-poster.jpg"
+             src="./Website_videos/zeetelecom-hero-mobile.mp4"
+             aria-label="Website ZeeTelecom — Differentt Lab"></video>
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">Website</span><span class="reel-card-name">ZeeTelecom</span></div>
+    </a>
+    <a class="reel-card" href="./projeto?p=gymtime-app">
+      <video class="reel-card-vid" muted loop playsinline webkit-playsinline preload="none"
+             poster="./Website_videos/gym-time-mobile-poster.jpg"
+             src="./Website_videos/gym-time-mobile.mp4"
+             aria-label="App GYMTIME — Differentt Lab"></video>
+      <div class="reel-card-overlay"></div>
+      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-info"><span class="reel-card-cat">App & Software</span><span class="reel-card-name">Gym Time</span></div>
+    </a>
+  </div>
+  <script>
+  (function(){
+    // capas em vídeo: tocam só quando visíveis (poupam dados fora do ecrã)
+    var vids = document.querySelectorAll('.pf-grid .reel-card-vid');
+    if(!vids.length) return;
+    function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ tryPlay(e.target); } else { e.target.pause(); } });
+      }, { threshold: 0.25 });
+      vids.forEach(function(v){ io.observe(v); });
+    } else { vids.forEach(tryPlay); }
+  })();
+  </script>
 </section>
 
 <hr class="divider">
@@ -1455,6 +1551,90 @@
 <script>
   (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='flex'; })();
   function cookieConsent(v){ localStorage.setItem('cookie_consent',v); document.getElementById('cookie-banner').style.display='none'; }
+</script>
+<!-- VISUALIZADOR DE REELS — abre ao clicar nos cards do portfólio -->
+<div class="reels-viewer" id="cwReels" aria-hidden="true">
+  <div class="reels-progress" id="cwReelsProgress"></div>
+  <button type="button" class="reels-close" id="cwReelsClose" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <div class="reels-track" id="cwReelsTrack"></div>
+</div>
+<script>
+(function(){
+  var cards = Array.from(document.querySelectorAll('.pf-grid .reel-card'));
+  var viewer = document.getElementById('cwReels');
+  var track  = document.getElementById('cwReelsTrack');
+  var prog   = document.getElementById('cwReelsProgress');
+  var closeB = document.getElementById('cwReelsClose');
+  if(!cards.length || !viewer) return;
+
+  var ICO_OFF='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  var ICO_ON ='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+
+  var current = 0, soundOn = false;
+  var vids = cards.map(function(c){
+    var cv = c.querySelector('.reel-card-vid');
+    var slide = document.createElement('div'); slide.className = 'reels-slide';
+
+    var v = document.createElement('video');
+    v.className='reels-slide-media'; v.src=cv.getAttribute('src'); v.poster=cv.getAttribute('poster');
+    v.loop=true; v.muted=true; v.playsInline=true; v.preload='none';
+    v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+    slide.appendChild(v);
+
+    var ov=document.createElement('div'); ov.className='reels-slide-overlay'; slide.appendChild(ov);
+
+    var mute=document.createElement('button'); mute.type='button'; mute.className='reels-mute';
+    mute.setAttribute('aria-label','Ligar ou desligar o som'); mute.innerHTML=ICO_OFF;
+    mute.addEventListener('click', function(e){ e.stopPropagation(); soundOn=!soundOn; applySound(); });
+    slide.appendChild(mute);
+
+    var info=document.createElement('div'); info.className='reels-slide-info';
+    info.innerHTML='<span class="reels-slide-cat">'+c.querySelector('.reel-card-cat').textContent+'</span>'+
+                   '<span class="reels-slide-name">'+c.querySelector('.reel-card-name').textContent+'</span>'+
+                   '<a class="reels-slide-cta" href="'+c.getAttribute('href')+'"><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
+    slide.appendChild(info);
+
+    var bar=document.createElement('div'); bar.className='reels-progress-bar'; bar.innerHTML='<span></span>'; prog.appendChild(bar);
+    v.addEventListener('timeupdate', function(){ if(v.duration) bar.firstChild.style.width=(v.currentTime/v.duration*100)+'%'; });
+
+    track.appendChild(slide);
+    return v;
+  });
+
+  function applySound(){
+    vids.forEach(function(v,i){ v.muted = !(soundOn && i===current); });
+    Array.prototype.forEach.call(track.querySelectorAll('.reels-mute'), function(b){ b.innerHTML = soundOn ? ICO_ON : ICO_OFF; });
+  }
+  function playOnly(i){
+    current=i;
+    vids.forEach(function(v,k){
+      if(k===i){ if(v.preload==='none') v.preload='auto'; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else { v.pause(); }
+    });
+    applySound();
+  }
+  track.addEventListener('scroll', function(){
+    var i=Math.round(track.scrollTop / (window.innerHeight||1));
+    if(i!==current && vids[i]) playOnly(i);
+  }, {passive:true});
+
+  function open(i){
+    viewer.classList.add('open'); viewer.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    document.querySelectorAll('.pf-grid .reel-card-vid').forEach(function(v){ v.pause(); });  // pausa as capas
+    track.scrollTop = i * window.innerHeight;
+    playOnly(i);
+  }
+  function close(){
+    viewer.classList.remove('open'); viewer.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    vids.forEach(function(v){ v.pause(); });
+    document.querySelectorAll('.pf-grid .reel-card-vid').forEach(function(v){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); });
+  }
+  cards.forEach(function(c,i){ c.addEventListener('click', function(e){ e.preventDefault(); open(i); }); });
+  closeB.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && viewer.classList.contains('open')) close(); });
+})();
 </script>
 </body>
 </html>

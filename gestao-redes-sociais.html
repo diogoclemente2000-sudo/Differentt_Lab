@@ -85,7 +85,7 @@
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Familjen+Grotesk:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: linear-gradient(45deg, #000 0%, #050505 25%, #020202 50%, #060606 75%, #000 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; }
@@ -129,24 +129,51 @@
 
     /* HERO */
     .page-hero {
-      position: relative; width: 100%; background: #000; overflow: hidden;
-      padding: 0;
+      position: relative; width: 100%; min-height: 100vh; background: #000; overflow: hidden;
+      padding: 0; display: flex; align-items: center;
     }
     .page-hero::after {
       content: ''; position: absolute; top: 44%; left: 27%; transform: translate(-50%, -50%);
       width: 720px; height: 720px;
       background: radial-gradient(ellipse, rgba(158,123,182,0.17) 0%, transparent 68%);
-      pointer-events: none; z-index: 0;
+      pointer-events: none; z-index: 1;
+    }
+    /* vídeo de fundo (desktop landscape / mobile portrait) */
+    .hero-v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+    .hero-v-mobile { display: none; }
+    @media (max-width: 768px) {
+      .hero-v-desktop { display: none; }
+      .hero-v-mobile { display: block; }
+    }
+    .hero-scrim {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.66) 38%, rgba(0,0,0,0.3) 72%, rgba(0,0,0,0.55) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.9) 100%);
     }
     .hero-layout {
       width: 100%; max-width: 1400px; margin: 0 auto;
-      padding: 200px 48px 120px; text-align: left;
-      position: relative; z-index: 1;
+      padding: 120px clamp(48px, 6vw, 104px) 120px; text-align: left;
+      position: relative; z-index: 3;
     }
     .hero-inner-wrap { }
     .hero-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; }
+    /* fica no HTML (indexável pelo Google) mas não é mostrado */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    /* quebra de linha do título só no mobile: REDES / SOCIAIS */
+    .br-mobile { display: none; }
+    @media (max-width: 768px) { .br-mobile { display: inline; } }
     .hero-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; color: #fff; margin-bottom: 28px; }
-    .hero-title span { color: #9e7bb6; }
+    .hero-title span { color: #fff; }
+    /* hero coerente com a da criação de websites: mesma fonte, tamanhos e pills */
+    .page-hero .hero-title { font-family: 'Familjen Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 4.8vw, 60px); letter-spacing: -0.02em; line-height: 1.04; text-shadow: 0 2px 26px rgba(0,0,0,0.6); margin-bottom: 24px; }
+    .page-hero .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: clamp(17px, 1.7vw, 25px); font-weight: 300; line-height: 1.3; color: #fff; max-width: 640px; margin: 0 0 48px; text-shadow: 0 1px 16px rgba(0,0,0,0.55); }
+    .page-hero .hero-actions { gap: 16px; }
+    /* botao secundario — emparelhado com o .btn-primary, mesmas dimensoes (igual à criação) */
+    .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 18px 56px; background: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; border: 1px solid rgba(255,255,255,0.35); text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; flex-shrink: 0; }
+    .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
+    /* título um pouco maior só no mobile (fica em duas linhas: REDES / SOCIAIS) */
+    @media (max-width: 768px) { .page-hero .hero-title { font-size: 46px; line-height: 1.0; } }
     .hero-sub { font-family: 'Nunito Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 0 44px; }
     .hero-actions { display: flex; align-items: center; justify-content: flex-start; gap: 30px; flex-wrap: wrap; }
 
@@ -157,8 +184,8 @@
     /* CTA do hero: pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve (igual ao portfolio) */
     .hero-actions .hero-cta {
       position: relative; overflow: hidden;
-      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%);
-      color: #fff; border: none; border-radius: 11px;
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box;
+      color: #fff; border: 1.5px solid transparent; border-radius: 11px;
       padding: 14px 30px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; line-height: 1;
       box-shadow: 0 10px 26px rgba(0,0,0,0.4);
       will-change: transform;
@@ -172,13 +199,6 @@
       filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%;
       transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none;
     }
-    /* anel de gradiente (mask-composite — fiável no browser real) */
-    .hero-actions .hero-cta::before {
-      content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px;
-      background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
     .hero-actions .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .hero-actions .hero-cta:hover::after { opacity: 1; transform: scale(1.05); }
 
@@ -187,9 +207,9 @@
 
     /* SECTIONS */
     .section { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
-    .section-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
+    .section-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
     .section-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05; color: #fff; margin-bottom: 28px; }
-    .section-title span { color: #9e7bb6; }
+    .section-title span { color: #fff; }
     .section-body { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 680px; }
 
     /* DIVIDER */
@@ -213,19 +233,19 @@
     .process-card:hover { border-color: rgba(158,123,182,0.35); background: linear-gradient(135deg, rgba(158,123,182,0.14) 0%, rgba(0,0,0,0.45) 100%); }
     .process-card-num { position: absolute; top: 14px; right: 18px; font-family: 'Nunito Sans', sans-serif; font-size: 44px; font-weight: 900; color: rgba(255,255,255,0.07); line-height: 1; pointer-events: none; }
     .process-card-icon { width: 44px; height: 44px; margin: 0 auto 18px; background: rgba(158,123,182,0.12); border: 1px solid rgba(158,123,182,0.25); border-radius: 13px; display: flex; align-items: center; justify-content: center; color: #9e7bb6; }
-    .process-card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 10px; }
+    .process-card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
     .process-card p { font-size: 13.5px; font-weight: 300; line-height: 1.65; color: rgba(255,255,255,0.5); }
     .process-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; }
     .process-step { display: flex; gap: 40px; align-items: flex-start; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .process-step:last-child { border-bottom: none; }
-    .step-num { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: #9e7bb6; flex-shrink: 0; width: 48px; padding-top: 4px; }
+    .step-num { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); flex-shrink: 0; width: 48px; padding-top: 4px; }
     .step-content h3 { font-family: 'Nunito Sans', sans-serif; font-size: 20px; font-weight: 300; text-transform: uppercase; letter-spacing: -0.01em; color: #fff; margin-bottom: 10px; }
     .step-content p { font-size: 14px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 600px; }
 
     /* BENEFITS */
     .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; margin-top: 56px; }
     .benefit { background: #000; padding: 48px 36px; }
-    .benefit-num { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #9e7bb6; line-height: 1; margin-bottom: 12px; opacity: 0.6; }
+    .benefit-num { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 12px; opacity: 0.6; }
     .benefit h3 { font-family: 'Nunito Sans', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; margin-bottom: 10px; }
     .benefit p { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.4); }
 
@@ -244,7 +264,7 @@
     .proof-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .proof-card:hover .proof-img img { transform: scale(1.04); }
     .proof-meta { padding: 20px 24px; }
-    .proof-tag { font-family: 'Overpass', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 6px; display: block; }
+    .proof-tag { font-family: 'Overpass', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; display: block; }
     .proof-name { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 300; color: #fff; margin-bottom: 4px; }
     .proof-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.5; }
 
@@ -253,7 +273,7 @@
     .mini-stats { display: flex; flex-wrap: wrap; column-gap: 48px; row-gap: 32px; margin-top: 48px; }
     .mini-stat { display: flex; flex-direction: column; }
     .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; }
-    .mini-stat-unit { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #9e7bb6; }
+    .mini-stat-unit { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #fff; }
     .mini-stat-val-wrap { display: flex; align-items: baseline; gap: 2px; }
     .mini-stat-label { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
     .donut-wrap { position: relative; width: 260px; height: 260px; flex-shrink: 0; }
@@ -261,7 +281,7 @@
     .donut-fill { transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1); }
     .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     .donut-pct { font-family: 'Overpass', sans-serif; font-size: 52px; font-weight: 900; color: #fff; line-height: 1; }
-    .donut-sym { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #9e7bb6; line-height: 1; margin-left: 2px; }
+    .donut-sym { font-family: 'Overpass', sans-serif; font-size: 28px; font-weight: 700; color: #fff; line-height: 1; margin-left: 2px; }
     .donut-label { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px; line-height: 1.5; }
 
     /* FAQ */
@@ -275,9 +295,9 @@
     .faq-item.open .faq-a { display: block; }
 
     /* CTA */
-    .cta-bar { padding: 80px max(48px, calc((100% - 1400px) / 2)); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+    .cta-bar { padding: 80px max(48px, calc((100% - 1400px) / 2)); border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; align-items: flex-start; gap: 36px; }
     .cta-bar h2 { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.1; }
-    .cta-bar h2 span { color: #9e7bb6; }
+    .cta-bar h2 span { color: #fff; }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
@@ -294,17 +314,16 @@
     .footer-col ul li a:hover { color: #9e7bb6; }
 
     /* botao gradiente-quadrado (igual aos CTAs do site) */
-    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 1024px) {
-      .hero-layout { padding: 120px 48px 40px; }
+      .hero-layout { padding: 110px 48px 110px; }
       .cards-grid, .benefits-grid, .who-grid, .proof-grid, .process-grid { grid-template-columns: 1fr 1fr; }
       .stats-wrap { grid-template-columns: 1fr; gap: 48px; }
       .donut-wrap { margin: 0 auto; }
@@ -317,7 +336,7 @@
       .cta-bar { padding: 60px 48px; }
     }
     @media (max-width: 600px) {
-      .hero-layout { padding: 110px 16px 32px; }
+      .hero-layout { padding: 100px 28px 100px; }
       .section { padding: 56px 8px; }
       .divider { margin: 0 8px; }
       .benefits-grid, .who-grid, .proof-grid { grid-template-columns: 1fr; }
@@ -352,7 +371,7 @@
     .reel-card:hover .reel-card-img { transform: scale(1.06); }
     .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 48%, transparent 70%); pointer-events: none; }
     .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; display: flex; flex-direction: column; gap: 5px; }
-    .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
+    .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
     .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
     .reel-card-metric { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); line-height: 1.4; }
     .reel-card-play { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
@@ -366,11 +385,17 @@
     .reel-pill-logo img { width: 100%; height: 100%; object-fit: cover; }
     .reel-pill-name { font-family: 'Overpass', sans-serif; font-size: 13.5px; font-weight: 800; letter-spacing: -0.01em; color: #fff; white-space: nowrap; }
     /* o nome passou para a pill — fica no DOM porque o viewer de reels o lê */
-    .reels-grid .reel-card-name { display: none; }
 
     @media (max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
-      .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      /* scroll lateral: os cards mantêm tamanho em vez de encolherem */
+      .reels-grid {
+        display: flex; grid-template-columns: none; gap: 12px;
+        overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; padding: 4px 16px 16px; margin-left: -16px; margin-right: -16px;
+      }
+      .reels-grid::-webkit-scrollbar { display: none; }
+      .reels-grid .reel-item { flex: 0 0 72%; scroll-snap-align: center; }
       .reel-card-metric { font-size: 11px; }
       .reel-item { gap: 8px; }
       .reel-pill { gap: 7px; padding: 4px 11px 4px 4px; }
@@ -388,7 +413,7 @@
     .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
     .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
+    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
     .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
     .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
     .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
@@ -476,16 +501,47 @@
 
 <!-- HERO -->
 <section class="page-hero">
+
+  <!-- Vídeo de fundo: bastidores (desktop) / reel Moment Laser (mobile) -->
+  <video id="socHeroD" class="hero-v hero-v-desktop" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+         poster="./Website_videos/sociais-hero-poster.jpg"
+         src="./Website_videos/sociais-hero-web.mp4"
+         aria-label="Bastidores de produção de conteúdo — Differentt Lab"></video>
+  <video id="socHeroM" class="hero-v hero-v-mobile" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+         src="./Website_videos/moment-reels-web.mp4"
+         aria-label="Reel de redes sociais — Moment Laser"></video>
+  <div class="hero-scrim"></div>
+  <script>
+  (function(){
+    // só carrega/reproduz o vídeo do ecrã atual; pausa fora de vista
+    var isMob = window.matchMedia('(max-width: 768px)').matches;
+    var v   = document.getElementById(isMob ? 'socHeroM' : 'socHeroD');
+    var off = document.getElementById(isMob ? 'socHeroD' : 'socHeroM');
+    if(off){ off.removeAttribute('autoplay'); off.pause(); off.preload='none'; off.removeAttribute('src'); }
+    if(!v) return;
+    function go(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    v.addEventListener('loadeddata', go); go();
+    ['touchstart','click'].forEach(function(ev){
+      document.addEventListener(ev, function once(){ go(); document.removeEventListener(ev, once); }, {passive:true});
+    });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.intersectionRatio < 0.3){ if(!v.paused) v.pause(); } else { go(); } });
+      }, { threshold:[0,0.3,1] }).observe(v);
+    }
+  })();
+  </script>
+
   <div class="hero-layout">
 
     <!-- LEFT: Text -->
     <div class="hero-inner-wrap">
-      <div class="hero-eyebrow">Social Media · Lisboa · Portugal</div>
-      <h1 class="hero-title">Gestão de<br><span>Redes Sociais</span><br>que Convertem</h1>
-      <p class="hero-sub">Não publicamos apenas conteúdo — construímos audiências, geramos leads e fazemos crescer o teu negócio. Para pequenas e médias empresas em todo Portugal.</p>
+      <div class="hero-eyebrow sr-only">Social Media · Lisboa · Portugal</div>
+      <h1 class="hero-title">Redes<br class="br-mobile"> Sociais</h1>
+      <p class="hero-sub">Construímos audiências, geramos leads e fazemos crescer o teu negócio. Para pequenas e médias empresas.</p>
       <div class="hero-actions">
-        <a href="./contactos" class="btn-primary hero-cta"><span class="hero-cta-label">Pedir Proposta</span></a>
-        <a href="./portfolio?filter=social" class="hero-link">Ver Casos Reais →</a>
+        <a href="./contactos" class="btn-primary">Pedir Proposta</a>
+        <a href="./portfolio?filter=social" class="btn-outline">Ver Casos Reais</a>
       </div>
     </div>
 
@@ -496,9 +552,7 @@
 
 <!-- SECTION 2: STRATEGIC MANAGEMENT -->
 <section class="section">
-  <div class="section-eyebrow">A nossa abordagem</div>
-  <h2 class="section-title">Mais do que publicar —<br><span>uma estratégia</span> com objetivo</h2>
-  <p class="section-body" style="margin-top:16px;">Cada post, story e campanha serve um objetivo concreto: mais seguidores qualificados, mais mensagens, mais vendas.</p>
+  <h2 class="section-title" style="text-align:center;">Mais do que publicar —<br><span>uma estratégia</span> com objetivo</h2>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
@@ -530,13 +584,6 @@
     </div>
     <div class="card">
       <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
-      <h3>Gestão de comunidade</h3>
-      <p>Respondemos a comentários e mensagens e construímos uma comunidade ativa à volta da marca.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3>Objetivos de negócio</h3>
@@ -547,6 +594,47 @@
 
 <hr class="divider">
 
+<!-- SECTION 5: REELS SHOWCASE -->
+<section class="section reels-section-center">
+  <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
+  <div class="reels-grid" id="reelsGrid">
+    <div class="reel-item">
+      <div class="reel-card" data-project="aroma-boreal" data-video="./Website_videos/aroma-reels-web.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
+      </div>
+    </div>
+    <div class="reel-item">
+      <div class="reel-card" data-project="evo-clinic" data-video="./Website_videos/evo-reels-web.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Estética Avançada</span><span class="reel-card-name">Evo Clinic</span><span class="reel-card-metric">+70% ligações · +30% marcações</span></div>
+      </div>
+    </div>
+    <div class="reel-item">
+      <div class="reel-card" data-project="moment-laser" data-video="./Website_videos/moment-reels-web.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos de Estética</span><span class="reel-card-name">Moment Laser</span><span class="reel-card-metric">7.000 → 10.000 seguidores · +813 mil views</span></div>
+      </div>
+    </div>
+    <div class="reel-item">
+      <div class="reel-card" data-project="esthetic-solution" data-video="./Website_videos/esthetic-reels-web.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
+        <div class="reel-card-overlay"></div>
+        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">+6.000 seguidores · 400 clientes/mês · +127 mil views/mês</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<hr class="divider">
 <!-- SECTION 3: PROCESS -->
 <section class="section process-section">
   <div class="section-eyebrow">Como trabalhamos</div>
@@ -579,66 +667,6 @@
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- SECTION 5: REELS SHOWCASE -->
-<section class="section reels-section-center">
-  <div class="section-eyebrow">Casos reais</div>
-  <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
-  <p class="section-body">Vê o conteúdo que criamos. Toca num vídeo e desliza — como nos reels.</p>
-  <div class="reels-grid" id="reelsGrid">
-    <div class="reel-item">
-      <div class="reel-pill">
-        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-aroma-boreal.jpg" alt="Logo Aroma Boreal"></span>
-        <span class="reel-pill-name">Aroma Boreal</span>
-      </div>
-      <div class="reel-card" data-project="aroma-boreal" data-video="./Website_videos/aroma-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
-        <div class="reel-card-overlay"></div>
-        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
-      </div>
-    </div>
-    <div class="reel-item">
-      <div class="reel-pill">
-        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-evo-clinic.png" alt="Logo Evo Clinic"></span>
-        <span class="reel-pill-name">Evo Clinic</span>
-      </div>
-      <div class="reel-card" data-project="evo-clinic" data-video="./Website_videos/evo-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – clínica de estética avançada em Lisboa – Gestão de Redes Sociais pela Differentt Lab">
-        <div class="reel-card-overlay"></div>
-        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="reel-card-info"><span class="reel-card-cat">Estética Avançada</span><span class="reel-card-name">Evo Clinic</span><span class="reel-card-metric">+70% ligações · +30% marcações</span></div>
-      </div>
-    </div>
-    <div class="reel-item">
-      <div class="reel-pill">
-        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-moment-laser.jpg" alt="Logo Moment Laser"></span>
-        <span class="reel-pill-name">Moment Laser</span>
-      </div>
-      <div class="reel-card" data-project="moment-laser" data-video="./Website_videos/moment-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – venda e aluguer de equipamentos de estética – Gestão de Redes Sociais pela Differentt Lab">
-        <div class="reel-card-overlay"></div>
-        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos de Estética</span><span class="reel-card-name">Moment Laser</span><span class="reel-card-metric">7.000 → 10.000 seguidores · +813 mil views</span></div>
-      </div>
-    </div>
-    <div class="reel-item">
-      <div class="reel-pill">
-        <span class="reel-pill-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/logo-esthetic-solution.jpg" alt="Logo Esthetic Solution"></span>
-        <span class="reel-pill-name">Esthetic Solution</span>
-      </div>
-      <div class="reel-card" data-project="esthetic-solution" data-video="./Website_videos/esthetic-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
-        <div class="reel-card-overlay"></div>
-        <div class="reel-card-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
-        <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">+6.000 seguidores · 400 clientes/mês · +127 mil views/mês</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
 <hr class="divider">
 <section class="section">
   <div class="stats-wrap">

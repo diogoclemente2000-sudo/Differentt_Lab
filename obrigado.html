@@ -86,16 +86,14 @@
     .ty-text strong { color: #fff; font-weight: 600; }
     .ty-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     /* botões iguais aos dos contactos: gradiente escuro, contorno em gradiente, cantos mais quadrados */
-    .ty-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; padding: 16px 32px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .ty-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; padding: 16px 32px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .ty-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .ty-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .ty-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .ty-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .ty-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     .ty-btn-wa svg { color: #25D366; }
     /* botão secundário: gradiente roxo no fundo + contorno roxo */
-    .ty-btn-ghost { background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%); }
-    .ty-btn-ghost::before { background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%); }
+    .ty-btn-ghost { background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box; }
     .ty-btn-ghost::after { background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%); }
 
     /* FOOTER */

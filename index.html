@@ -170,15 +170,13 @@
     .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
 
     /* botao gradiente-quadrado (igual aos contactos/obrigado) — usado no CTA final */
-    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     /* variante roxa: gradiente roxo tambem no fundo (nao so no contorno) */
-    .gx-btn--purple { background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%); }
-    .gx-btn--purple::before { background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%); }
+    .gx-btn--purple { background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box; }
     .gx-btn--purple::after { background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%); opacity: 0.5; }
     .gx-btn--purple:hover::after { opacity: 1; }
 
@@ -200,10 +198,10 @@
 
     /* MARQUEE */
     .marquee-section { background: #000; padding: 14px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
-    .marquee-track { display: flex; gap: 60px; animation: marquee 50s linear infinite; white-space: nowrap; }
+    .marquee-track { display: flex; gap: 60px; animation: marquee 53s linear infinite; white-space: nowrap; }
     .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
-    .marquee-item .mq-check { width: 12px; height: 12px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
+    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .marquee-item .mq-check { width: 13px; height: 13px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* CLIENT LOGOS */
@@ -599,7 +597,7 @@
         <span class="service-link">Saber mais</span>
       </div>
     </a>
-    <a class="service-card" href="servicos" style="text-decoration:none;">
+    <a class="service-card" href="portfolio?filter=branding" style="text-decoration:none;">
       <div class="service-card-photo">
         <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/uhfWOL7YF7Po3G3w2ZfUdosDGgg.jpg');"></div>
       </div>
@@ -619,9 +617,9 @@
         <span class="service-link">Saber mais</span>
       </div>
     </a>
-    <a class="service-card" href="servicos" style="text-decoration:none;">
+    <a class="service-card" href="portfolio?filter=3d" style="text-decoration:none;">
       <div class="service-card-photo">
-        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1600,q_auto,f_auto/v1774954319/STAND_lateral.jpg'); background-position: center bottom; background-repeat: no-repeat;"></div>
+        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1600,q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/3123.png'); background-position: center; background-repeat: no-repeat;"></div>
       </div>
       <div class="service-card-content">
         <span class="service-cat-pill">3D</span>
@@ -728,6 +726,10 @@
     #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
     #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
     #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
+    /* botão de som do primeiro card (vídeo em auto-play) */
+    #reels-panels .rp-sound{ position:absolute; top:14px; right:14px; z-index:6; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.5); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); display:grid; place-items:center; cursor:pointer; color:#fff; padding:0; }
+    #reels-panels .rp-sound:hover{ background:rgba(0,0,0,.7); }
+    #reels-panels .rp-p.has-video .rp-dur{ display:none; }  /* o card em vídeo não mostra a duração */
     #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Overpass',sans-serif; font-weight:800; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
     #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
@@ -753,9 +755,9 @@
     @media (max-width: 760px){
       #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
       #reels-panels .rp-head{ padding:0 18px; }                /* header mantem margem lateral */
-      #reels-panels .rp-acc{ height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
+      #reels-panels .rp-acc{ display:flex; flex-wrap:nowrap; height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
       #reels-panels .rp-acc::-webkit-scrollbar{ display:none; }
-      #reels-panels .rp-p{ flex:0 0 72%; scroll-snap-align:center; aspect-ratio:3/4; } /* cards mais altos no mobile */
+      #reels-panels .rp-p{ flex:0 0 72%; max-width:none; scroll-snap-align:center; aspect-ratio:9/16; }
       #reels-panels .rp-p.on{ flex:0 0 72%; }
       #reels-panels .rp-vlabel, #reels-panels .rp-mini{ display:none; }
       #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
@@ -789,10 +791,17 @@
   var PLAY='<svg width="23" height="23" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" style="margin-left:2px"><path d="M8 5.2v13.6l11-6.8z"/></svg>';
   var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg>';
   var acc=document.getElementById('rpAcc'); if(!acc) return;
+  // vídeos dos testemunhos (mesma ordem do RP) — o primeiro card reproduz em auto-play
+  var VID=['moment-testemunho-web.mp4','aroma-testemunho-web.mp4','villas-testemunho-web.mp4','ines-testemunho-web.mp4','telma-testemunho-web.mp4'];
+  var SND_ON='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+  var SND_OFF='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
   RP.forEach(function(c,k){
-    var p=document.createElement('div'); p.className='rp-p'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
+    var p=document.createElement('div'); p.className='rp-p'+(k===0?' on has-video':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
     p.innerHTML=
-      '<img class="rp-fill" src="'+poster(c.f)+'" alt="'+c.name+' — '+c.org+'" loading="lazy" decoding="async">'+
+      (k===0
+        ? '<video class="rp-fill" src="./Website_videos/'+VID[k]+'" poster="'+poster(c.f)+'" autoplay loop playsinline webkit-playsinline preload="metadata" aria-label="Testemunho de '+c.name+' — '+c.org+'"></video>'+
+          '<button class="rp-sound" type="button" aria-label="Ligar ou desligar o som">'+SND_OFF+'</button>'
+        : '<img class="rp-fill" src="'+poster(c.f)+'" alt="'+c.name+' — '+c.org+'" loading="lazy" decoding="async">')+
       '<div class="rp-vig"></div>'+
       '<span class="rp-vlabel">'+c.org+'</span>'+
       '<span class="rp-mini">'+MINI+'</span>'+
@@ -805,6 +814,34 @@
     p.querySelector('.rp-play').addEventListener('click',function(e){ e.stopPropagation(); if(typeof window.openTstReels==='function') window.openTstReels(k); });
     acc.appendChild(p);
   });
+
+  // Primeiro card em auto-play COM SOM. Os browsers bloqueiam áudio automático sem
+  // interação — se isso acontecer, arranca mudo e liga o som ao primeiro toque/clique.
+  var v0=acc.querySelector('.rp-p video.rp-fill');
+  var snd=acc.querySelector('.rp-sound');
+  if(v0){
+    var paint=function(){ if(snd) snd.innerHTML = v0.muted ? SND_OFF : SND_ON; };
+    var go=function(){ var pr=v0.play(); if(pr && pr.catch) pr.catch(function(){}); };
+    var evs=['pointerdown','touchstart','keydown'];
+    var unmute=function(){ v0.muted=false; paint(); go(); evs.forEach(function(ev){ document.removeEventListener(ev, unmute); }); };
+
+    v0.muted=false;
+    var first=v0.play();
+    if(first && first.catch) first.catch(function(){
+      v0.muted=true; paint(); go();                                   // fallback: mudo
+      evs.forEach(function(ev){ document.addEventListener(ev, unmute, {passive:true}); });
+    });
+    paint();
+
+    if(snd) snd.addEventListener('click', function(e){ e.stopPropagation(); v0.muted=!v0.muted; paint(); go(); });
+
+    // só reproduz enquanto a secção está à vista (evita som a tocar fora do ecrã)
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ go(); } else { v0.pause(); } });
+      }, { threshold: 0.35 }).observe(v0);
+    }
+  }
 })();
 </script>
 

@@ -79,9 +79,9 @@
     .hero-actions .hero-cta {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%);
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box;
       color: #fff;
-      border: none;
+      border: 1.5px solid transparent;
       border-radius: 11px;
       padding: 14px 30px;
       font-size: 12.5px;
@@ -106,20 +106,6 @@
       transform: scale(0.88);
       transform-origin: 88% 60%;
       transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
-      pointer-events: none;
-    }
-    /* anel de gradiente (mask-composite — fiável no browser real, ao contrário do border-box) */
-    .hero-actions .hero-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      border-radius: 11px;
-      padding: 1.5px;
-      background: linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
       pointer-events: none;
     }
     /* hover: brilho suave floresce + levanta ligeiramente */
@@ -189,10 +175,9 @@
     .footer-col ul li a:hover { color: #9e7bb6; }
 
     /* botao gradiente-quadrado (igual aos CTAs do site) */
-    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: none; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-    .gx-btn::before { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
     .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
     .gx-btn:hover::after { opacity: 0.6; transform: scale(1.05); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
@@ -292,6 +277,7 @@
   <div class="filter-eyebrow">Filtrar por</div>
   <div class="filter-rail" id="filterRail">
     <button class="filter-tab active" data-filter="all">Todos<span class="filter-count"></span></button>
+    <button class="filter-tab" data-filter="web">Desenvolvimento Web<span class="filter-count"></span></button>
     <button class="filter-tab" data-filter="branding">Branding<span class="filter-count"></span></button>
     <button class="filter-tab" data-filter="social">Redes Sociais<span class="filter-count"></span></button>
     <button class="filter-tab" data-filter="grafico">Gráfico<span class="filter-count"></span></button>
@@ -305,6 +291,24 @@
   <div class="portfolio-grid" id="portfolioGrid">
 
     <!-- Row 1: wide + normal -->
+    <!-- Remodelação de Apartamento — Modelação 3D -->
+    <a class="proj-item l-landscape" data-category="3d" href="./projeto?p=remodelacao-3d">
+      <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_crop,x_970,y_550,w_1850,h_1041/c_scale,w_1200/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/32.jpg" alt="Remodelação de Apartamento – Renders 3D de Interiores | Differentt Lab">
+      <div class="proj-item-overlay"></div>
+      <div class="proj-item-info">
+        <div class="proj-item-cat">Modelação 3D</div>
+        <div class="proj-item-name">Remodelação de Apartamento</div>
+      </div>
+    </a>
+    <!-- ZeeTelecom — Desenvolvimento Web -->
+    <a class="proj-item l-portrait" data-category="web" href="./projeto?p=zeetelecom">
+      <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/zeetelecom/final.jpg" alt="ZeeTelecom – Desenvolvimento Web | Differentt Lab">
+      <div class="proj-item-overlay"></div>
+      <div class="proj-item-info">
+        <div class="proj-item-cat">Desenvolvimento Web</div>
+        <div class="proj-item-name">ZeeTelecom</div>
+      </div>
+    </a>
     <a class="proj-item l-portrait" data-category="social" href="./projeto?p=moment-laser">
       <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HAudCUpgz64V7Ty2yht9XMJbyY.jpg" alt="Moment Laser – Gestão de Redes Sociais | Differentt Lab">
       <div class="proj-item-overlay"></div>
@@ -402,7 +406,7 @@
     </a>
 
     <!-- Row 5 -->
-    <a class="proj-item l-portrait" data-category="3d grafico" href="./projeto?p=gymtime-app">
+    <a class="proj-item l-portrait" data-category="3d grafico web" href="./projeto?p=gymtime-app">
       <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages light/time gym/Advertising_3.jpg" alt="Time Gym – Criação de Website | Differentt Lab">
       <div class="proj-item-overlay"></div>
       <div class="proj-item-info">

@@ -177,8 +177,7 @@
     .newsletter-input::placeholder { color: rgba(255,255,255,.25); }
     .newsletter-input:focus { border-color: rgba(158,123,182,.5); }
     /* botao gradiente-quadrado (igual aos contactos/obrigado); sem glow interior porque o JS reescreve o textContent */
-    .newsletter-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 15px 32px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%); border: none; border-radius: 11px; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; cursor: pointer; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,0.4); will-change: transform; transition: transform .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s ease; }
-    .newsletter-btn::before { content: ''; position: absolute; inset: 0; border-radius: 11px; padding: 1.5px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+    .newsletter-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 15px 32px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; border: 1.5px solid transparent; border-radius: 11px; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; cursor: pointer; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,0.4); will-change: transform; transition: transform .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s ease; }
     .newsletter-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
 
     /* ── LOAD MORE ── */
