@@ -390,12 +390,8 @@
 
     @media (max-width: 1024px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
-      /* scroll lateral: os cards mantêm tamanho em vez de encolherem */
-      .reels-grid {
-        display: flex; grid-template-columns: none; gap: 12px;
-        overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; padding: 4px 8px 16px; margin-left: -8px; margin-right: -8px;
-      }
+      /* scroll lateral: mesma regra do portfólio da criação de websites */
+      .reels-grid { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
       .reels-grid::-webkit-scrollbar { display: none; }
       .reels-grid .reel-item { flex: 0 0 72%; scroll-snap-align: center; }
       .reel-card-metric { font-size: 11px; }
