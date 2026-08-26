@@ -525,6 +525,17 @@
     }
     .example-card--clickable:hover .example-hover-hint { opacity:1; }
     .example-card--clickable:hover { border-color:rgba(158,123,182,0.5); }
+    /* em ecras de toque nao ha hover: a pista tem de estar sempre visivel */
+    @media (hover: none) {
+      .example-hover-hint { opacity:1; bottom:10px; right:10px; background:rgba(0,0,0,0.6); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-color:rgba(255,255,255,0.22); color:#fff; }
+      .example-card--clickable { border-color:rgba(158,123,182,0.28); }
+    }
+    /* tag e nome deixam de disputar a mesma linha em ecras estreitos */
+    @media (max-width: 600px) {
+      .example-meta { flex-direction:column; align-items:flex-start; gap:6px; padding:16px 18px; }
+      .example-tag { font-size:10px; letter-spacing:0.16em; }
+      .example-name { font-size:15px; color:rgba(255,255,255,0.85); }
+    }
 
     /* MODAL */
     .lp-modal-overlay {
@@ -534,18 +545,29 @@
     }
     .lp-modal-overlay.open { display:flex; animation:modalBgIn 0.25s ease both; }
     @keyframes modalBgIn { from{opacity:0} to{opacity:1} }
+    @media (max-width: 600px) {
+      .lp-modal-overlay { padding:16px; }
+      .lp-modal { padding:28px 22px; border-radius:20px; max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); }
+      .lp-modal-close { margin:-8px -8px 0 12px; }
+      .lp-modal-title { font-size:19px; margin-bottom:22px; }
+    }
     .lp-modal {
       background:#0d0d0d; border:1px solid rgba(255,255,255,0.1); border-radius:24px;
       padding:40px; max-width:480px; width:100%; position:relative;
       animation:modalIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
       box-shadow:0 40px 100px rgba(0,0,0,0.8), 0 0 60px rgba(158,123,182,0.08);
+      /* o conteudo pode ser mais alto do que o ecra — scrolla dentro do modal */
+      max-height:calc(100vh - 48px); max-height:calc(100dvh - 48px);
+      overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
     }
     @keyframes modalIn { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    /* o X acompanha o scroll do modal: num modal longo ficava fora do ecra e nao dava para fechar */
     .lp-modal-close {
-      position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.06);
-      border:none; border-radius:50%; width:32px; height:32px; display:flex;
-      align-items:center; justify-content:center; color:rgba(255,255,255,0.5);
-      cursor:pointer; transition:background 0.2s, color 0.2s;
+      position:sticky; top:0; float:right; margin:-16px -16px 0 16px;
+      background:rgba(26,26,26,0.92); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,0.12); border-radius:50%; width:36px; height:36px; display:flex;
+      align-items:center; justify-content:center; color:rgba(255,255,255,0.7);
+      cursor:pointer; transition:background 0.2s, color 0.2s; z-index:5; flex-shrink:0;
     }
     .lp-modal-close:hover { background:rgba(255,255,255,0.12); color:#fff; }
     /* 2º grupo dentro do modal ("O que ganhas") */
@@ -979,7 +1001,7 @@
   <h2 class="section-title" style="text-align:center;">Portfólio</h2>
   <div class="pf-grid">
     <a class="reel-card" href="./projeto?p=zeetelecom">
-      <video class="reel-card-vid" muted loop playsinline webkit-playsinline preload="none"
+      <video class="reel-card-vid" muted loop autoplay playsinline webkit-playsinline preload="metadata"
              poster="./Website_videos/zeetelecom-hero-mobile-poster.jpg"
              src="./Website_videos/zeetelecom-hero-mobile.mp4"
              aria-label="Website ZeeTelecom — Differentt Lab"></video>
@@ -988,7 +1010,7 @@
       <div class="reel-card-info"><span class="reel-card-cat">Website</span><span class="reel-card-name">ZeeTelecom</span></div>
     </a>
     <a class="reel-card" href="./projeto?p=gymtime-app">
-      <video class="reel-card-vid" muted loop playsinline webkit-playsinline preload="none"
+      <video class="reel-card-vid" muted loop autoplay playsinline webkit-playsinline preload="metadata"
              poster="./Website_videos/gym-time-mobile-poster.jpg"
              src="./Website_videos/gym-time-mobile.mp4"
              aria-label="App GYMTIME — Differentt Lab"></video>
@@ -998,17 +1020,41 @@
     </a>
   </div>
   <script>
+  // Escape fecha o modal aberto
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape') return;
+    var m = document.querySelector('.lp-modal-overlay.open');
+    if(m) m.classList.remove('open');
+  });
   (function(){
     // capas em vídeo: tocam só quando visíveis (poupam dados fora do ecrã)
     var vids = document.querySelectorAll('.pf-grid .reel-card-vid');
     if(!vids.length) return;
-    function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+    // iOS so deixa arrancar sozinho se o elemento estiver mesmo mudo e inline — garantimos
+    // isso por JS (o atributo sozinho nem sempre chega) e voltamos a tentar quando ha dados
+    function tryPlay(v){
+      v.muted = true; v.setAttribute('muted',''); v.playsInline = true;
+      var p = v.play(); if(p && p.catch) p.catch(function(){});
+    }
+    vids.forEach(function(v){
+      v.addEventListener('loadeddata', function(){ if(v.dataset.visivel === '1') tryPlay(v); });
+    });
+    // ultimo recurso (ex.: modo de poupanca de energia no iPhone): arrancam ao primeiro toque
+    var aoToque = function(){
+      vids.forEach(function(v){ if(v.dataset.visivel === '1') tryPlay(v); });
+      ['touchstart','pointerdown'].forEach(function(ev){ document.removeEventListener(ev, aoToque); });
+    };
+    ['touchstart','pointerdown'].forEach(function(ev){ document.addEventListener(ev, aoToque, {passive:true, once:false}); });
+
     if('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ tryPlay(e.target); } else { e.target.pause(); } });
+        es.forEach(function(e){
+          e.target.dataset.visivel = e.isIntersecting ? '1' : '0';
+          if(e.isIntersecting){ tryPlay(e.target); } else { e.target.pause(); }
+        });
       }, { threshold: 0.25 });
       vids.forEach(function(v){ io.observe(v); });
-    } else { vids.forEach(tryPlay); }
+    } else { vids.forEach(function(v){ v.dataset.visivel='1'; tryPlay(v); }); }
   })();
   </script>
 </section>
@@ -1483,7 +1529,7 @@
       </div>
     </div>
     <div class="footer-nav">
-      <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfolio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
+      <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfólio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
       <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
       <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
       <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://wa.me/351910185220" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
