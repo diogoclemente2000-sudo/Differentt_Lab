@@ -67,6 +67,10 @@
 
     /* ── NAV ── */
     .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+    /* ao fazer scroll a nav fica fosca (vidro) em vez de preto sólido */
+    nav { transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease; }
+    nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
+
     nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,.45), 0 1px 4px rgba(69,69,69,.2); }
     .nav-links { display: flex; gap: 50px; }
     .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: .85; transition: opacity .2s, color .2s; }
@@ -75,13 +79,13 @@
     .nav-icons a { color: #fff; opacity: .75; transition: opacity .2s; display: flex; align-items: center; }
     .nav-icons a:hover { opacity: 1; }
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
-    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 24px 64px rgba(0,0,0,.7); }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 28px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 24px 64px rgba(0,0,0,.7); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in .35s cubic-bezier(.22,1,.36,1) forwards; }
     .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out .22s cubic-bezier(.4,0,1,1) forwards; }
     @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes mob-nav-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
     @keyframes mob-link-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 63px; }
     .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: .7; transition: opacity .2s; }
     .nav-mob-close:hover { opacity: 1; }
     .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
@@ -96,6 +100,7 @@
     .nav-mob-icons a { color: #fff; opacity: .6; transition: opacity .2s; display: flex; align-items: center; }
     .nav-mob-icons a:hover { opacity: 1; }
     @media (max-width: 1199px) {
+      nav { padding: 16px 24px; }
       .nav-links { display: none !important; }
       .nav-icons { display: none !important; }
       .nav-hamburger { display: flex !important; }
@@ -109,25 +114,21 @@
     .blog-header { padding: 160px 0 80px; position: relative; overflow: hidden; }
     .blog-header::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-30%); width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(158,123,182,.14) 0%, transparent 65%); pointer-events: none; }
     .blog-header-inner { position: relative; z-index: 1; }
-    .blog-eyebrow { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; display: block; }
-    .blog-title { font-family: 'Overpass', sans-serif; font-size: clamp(56px, 8vw, 120px); font-weight: 900; letter-spacing: -.04em; text-transform: uppercase; line-height: .88; color: #fff; margin-bottom: 28px; }
-    .blog-title span { color: transparent; -webkit-text-stroke: 2px #9e7bb6; }
-    .blog-desc { font-size: 17px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.7; max-width: 520px; }
+    .blog-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; display: block; }
+    .blog-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -.02em; text-transform: uppercase; line-height: .95; color: #fff; margin-bottom: 28px; }
+    .blog-title span { color: #9e7bb6; }
+    .blog-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 520px; }
 
     /* ── CATEGORY FILTER ── */
     .filter-bar { padding: 0 0 64px; position: sticky; top: 85px; z-index: 50; }
     .filter-bar-inner { display: flex; gap: 10px; flex-wrap: wrap; }
     .filter-pill { font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 10px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); background: transparent; color: rgba(255,255,255,.45); cursor: pointer; transition: border-color .2s, color .2s, background .2s; white-space: nowrap; }
-    .filter-pill:hover { border-color: rgba(158,123,182,.5); color: rgba(255,255,255,.8); }
-    .filter-pill.active { background: linear-gradient(135deg,#9e7bb6,#c585b8); border-color: transparent; color: #fff; }
+    .filter-pill:hover { border-color: rgba(255,255,255,.35); color: rgba(255,255,255,.85); }
+    .filter-pill.active { background: #fff; border-color: rgba(255,255,255,.1); color: #000; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
 
     /* ── CATEGORY BADGES ── */
     .cat { display: inline-block; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; }
-    .cat-websites { background: rgba(158,123,182,.18); color: #b99acc; border: 1px solid rgba(158,123,182,.3); }
-    .cat-social { background: rgba(197,133,184,.18); color: #d4a4c8; border: 1px solid rgba(197,133,184,.3); }
-    .cat-seo { background: rgba(123,182,160,.18); color: #8ecbb4; border: 1px solid rgba(123,182,160,.3); }
-    .cat-design { background: rgba(182,160,123,.18); color: #c9b48a; border: 1px solid rgba(182,160,123,.3); }
-    .cat-branding { background: rgba(182,123,150,.18); color: #c98aab; border: 1px solid rgba(182,123,150,.3); }
+    .cat-websites, .cat-social, .cat-seo, .cat-design, .cat-branding { background: rgba(0,0,0,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.18); }
 
     /* ── FEATURED ARTICLE ── */
     .featured-wrap { margin-bottom: 80px; }
@@ -142,7 +143,7 @@
     .featured-excerpt { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.75; margin-bottom: 40px; flex: 1; }
     .featured-footer { display: flex; align-items: center; justify-content: space-between; }
     .featured-author { display: flex; align-items: center; gap: 12px; }
-    .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,#9e7bb6,#c585b8); display: flex; align-items: center; justify-content: center; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 100%); border: 1px solid rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
     .author-info { display: flex; flex-direction: column; gap: 2px; }
     .author-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
     .author-date { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); }
@@ -172,7 +173,7 @@
     .card-cat-wrap { position: absolute; top: 16px; left: 16px; }
     .card-body { padding: 28px 28px 24px; display: flex; flex-direction: column; flex: 1; }
     .card-title { font-family: 'Overpass', sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; color: #fff; margin-bottom: 12px; transition: color .2s; }
-    .article-card:hover .card-title { color: #c5a8d9; }
+    .article-card:hover .card-title { color: #fff; }
     .card-excerpt { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.38); line-height: 1.7; flex: 1; margin-bottom: 24px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.05); }
     .card-meta { display: flex; align-items: center; gap: 8px; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.22); }
@@ -181,7 +182,7 @@
     .article-card:hover .card-arrow { color: #9e7bb6; transform: translateX(4px); }
 
     /* ── NEWSLETTER CTA ── */
-    .newsletter-card { grid-column: 1 / -1; border-radius: 20px; padding: 64px 80px; background: linear-gradient(135deg, rgba(158,123,182,.1) 0%, rgba(197,133,184,.06) 100%); border: 1px solid rgba(158,123,182,.18); display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+    .newsletter-card { grid-column: 1 / -1; border-radius: 20px; padding: 64px 80px; background: linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; gap: 48px; }
     .newsletter-text { flex: 1; }
     .newsletter-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 14px; display: block; }
     .newsletter-h3 { font-family: 'Overpass', sans-serif; font-size: clamp(22px, 2.5vw, 36px); font-weight: 900; letter-spacing: -.03em; line-height: 1.1; color: #fff; margin-bottom: 12px; }
@@ -189,7 +190,7 @@
     .newsletter-form { display: flex; gap: 12px; flex-shrink: 0; }
     .newsletter-input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 11px; padding: 14px 24px; font-family: 'Nunito Sans', sans-serif; font-size: 14px; color: #fff; outline: none; width: 280px; transition: border-color .2s; }
     .newsletter-input::placeholder { color: rgba(255,255,255,.25); }
-    .newsletter-input:focus { border-color: rgba(158,123,182,.5); }
+    .newsletter-input:focus { border-color: rgba(255,255,255,.35); }
     /* botao gradiente-quadrado (igual aos contactos/obrigado); sem glow interior porque o JS reescreve o textContent */
     .newsletter-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 15px 32px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; border: 1.5px solid transparent; border-radius: 11px; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #fff; cursor: pointer; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,0.4); will-change: transform; transition: transform .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s ease; }
     .newsletter-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
@@ -197,7 +198,7 @@
     /* ── LOAD MORE ── */
     .load-more-wrap { display: flex; justify-content: center; padding: 0 0 120px; }
     .btn-load { display: flex; align-items: center; gap: 10px; padding: 18px 56px; background: transparent; border: 1px solid rgba(255,255,255,.12); border-radius: 100px; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.5); cursor: pointer; transition: border-color .2s, color .2s; }
-    .btn-load:hover { border-color: rgba(158,123,182,.5); color: #fff; }
+    .btn-load:hover { border-color: rgba(255,255,255,.35); color: #fff; }
 
     /* ── FOOTER ── */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
@@ -249,7 +250,7 @@
     }
     @media (max-width: 480px) {
       .blog-header { padding: 118px 0 36px; }
-      .blog-title { letter-spacing: -.03em; }
+      .blog-title { letter-spacing: -.02em; }
       .featured-content { padding: 24px 20px; }
       .featured-h2 { font-size: clamp(22px, 6vw, 32px); }
       .featured-footer { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -296,7 +297,7 @@
 <!-- MOBILE NAV -->
 <div class="nav-mobile-overlay" id="nav-mobile-overlay">
   <div class="nav-mob-top">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
     <button class="nav-mob-close" id="nav-mob-close" aria-label="Fechar menu">
       <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -388,7 +389,7 @@
     <!-- Card 1 -->
     <a href="./blog/quanto-custa-gestao-redes-sociais-portugal.html" class="article-card" data-cat="social">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/c585b8?text=Preços+2026" alt="Quanto Custa Gestão de Redes Sociais em Portugal" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Preços+2026" alt="Quanto Custa Gestão de Redes Sociais em Portugal" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-social">Redes Sociais</span></div>
       </div>
@@ -529,7 +530,7 @@
     <!-- Card 7 -->
     <article class="article-card" data-cat="websites">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/9e7bb6?text=Conversão" alt="Como Aumentar a Taxa de Conversão" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Conversão" alt="Como Aumentar a Taxa de Conversão" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-websites">Websites</span></div>
       </div>
@@ -550,7 +551,7 @@
     <!-- Card 8 -->
     <a href="./blog/como-escolher-agencia-redes-sociais.html" class="article-card" data-cat="social">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/c585b8?text=Escolher+Agência" alt="Como Escolher uma Agência de Redes Sociais" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Escolher+Agência" alt="Como Escolher uma Agência de Redes Sociais" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-social">Redes Sociais</span></div>
       </div>
@@ -571,7 +572,7 @@
     <!-- Card 9 -->
     <article class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7bb6a0?text=GA4" alt="Google Analytics 4" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=GA4" alt="Google Analytics 4" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -609,7 +610,7 @@
     <!-- Card SEO 3 -->
     <a href="./blog/google-business-profile-lisboa.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7bb6a0?text=GBP" alt="Google Business Profile Lisboa" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=GBP" alt="Google Business Profile Lisboa" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -626,7 +627,7 @@
     <!-- Card SEO 4 -->
     <a href="./blog/negocio-nao-aparece-google.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7bb6a0?text=Invisível%3F" alt="Negócio não aparece no Google" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Invisível%3F" alt="Negócio não aparece no Google" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -677,7 +678,7 @@
     <!-- Card SEO 7 -->
     <a href="./blog/website-seo-local-lisboa.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7bb6a0?text=Leads" alt="Website SEO Local Lisboa" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Leads" alt="Website SEO Local Lisboa" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -694,7 +695,7 @@
     <!-- Card Design WD1 — Neo-Brutalismo -->
     <a href="./blog/neo-brutalismo-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/c585b8?text=Neo-Brutalismo" alt="Neo-Brutalismo Web Design" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Neo-Brutalismo" alt="Neo-Brutalismo Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -711,7 +712,7 @@
     <!-- Card Design WD2 — Microinterações -->
     <a href="./blog/microinteracoes-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/9e7bb6?text=Microinterações" alt="Microinterações Web Design" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Microinterações" alt="Microinterações Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -728,7 +729,7 @@
     <!-- Card Design WD3 — Inteligência Artificial -->
     <a href="./blog/inteligencia-artificial-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7ba0b6?text=IA+Web+Design" alt="Inteligência Artificial Web Design" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=IA+Web+Design" alt="Inteligência Artificial Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -745,7 +746,7 @@
     <!-- Card Design WD4 — Websites 3D -->
     <a href="./blog/websites-3d-experiencias-imersivas.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/7bb6a0?text=Websites+3D" alt="Websites 3D Experiências Imersivas" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Websites+3D" alt="Websites 3D Experiências Imersivas" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -762,7 +763,7 @@
     <!-- Card Design WD5 — Landing Pages -->
     <a href="./blog/landing-pages-vantagens-2025.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/b6b07b?text=Landing+Pages" alt="Landing Pages Vantagens 2025" loading="lazy">
+        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Landing+Pages" alt="Landing Pages Vantagens 2025" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -882,6 +883,18 @@
       }
     });
   });
+</script>
+<script>
+(function(){
+  var nav = document.querySelector('.nav-wrapper nav');
+  if(!nav) return;
+  var tick = false;
+  function upd(){ nav.classList.toggle('scrolled', window.scrollY > 40); tick = false; }
+  upd();
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(upd); }
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>

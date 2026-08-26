@@ -158,6 +158,23 @@
     .footer-copy{font-size:12px;color:rgba(255,255,255,.2)}
     @media(max-width:1024px){.article-layout{grid-template-columns:1fr;gap:0;padding:48px 24px}.toc-wrap{display:none}.article-hero{padding:130px 24px 56px}.related-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:640px){.related-grid{grid-template-columns:1fr}.article-cta{padding:40px 28px}.footer-top{grid-template-columns:1fr;gap:32px}.footer-nav{grid-template-columns:repeat(2,1fr);gap:20px}}
+  
+    /* ── IDENTIDADE GRAFICA — alinhada com as restantes paginas: branco dominante, roxo so como acento ── */
+    nav{transition:background .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;box-shadow:1px 3px 12px rgba(69,69,69,.45),0 1px 4px rgba(69,69,69,.2)}
+    nav.scrolled{background:rgba(0,0,0,.55)!important;-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 8px 32px rgba(0,0,0,.45)!important}
+    .nav-mobile-overlay{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%)}
+    /* tag do artigo: mesmo vidro branco das tags do indice do blog */
+    .art-cat{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.16)}
+    .byline-avatar,.author-box-avatar{background:linear-gradient(135deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 100%);border:1px solid rgba(255,255,255,.16);color:#fff}
+    /* halo do hero: sempre o roxo de marca, nunca o rosa */
+    .article-hero::before{background:radial-gradient(ellipse,rgba(158,123,182,.13) 0%,transparent 65%)}
+    /* caixas de conteudo: superficie neutra (o acento roxo fica no insight-box e nos h2) */
+    .highlight-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+    th{background:rgba(255,255,255,.05)}
+    /* CTA: superficie neutra + botao branco, como o .btn-primary das outras paginas */
+    .article-cta{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid rgba(255,255,255,.1)}
+    .btn-cta{background:#fff;color:#000!important;border:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)!important;box-shadow:0 24px 64px rgba(0,0,0,.7);font-family:'Nunito Sans',sans-serif;font-size:16px;font-weight:300;letter-spacing:.04em;transition:background .2s,color .2s,transform .2s}
+    .btn-cta:hover{background:#000;color:#fff!important;border-color:rgba(255,255,255,.3)!important;opacity:1}
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -443,5 +460,6 @@
   close.addEventListener('click', () => { overlay.classList.add('closing'); setTimeout(() => { overlay.classList.remove('open','closing'); }, 220); });
   document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => { const item = q.parentElement; const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').classList.remove('open'); }); if (!isOpen) { item.classList.add('open'); item.querySelector('.faq-a').classList.add('open'); } }));
 </script>
+<script>(function(){var n=document.querySelector('.nav-wrapper nav');if(!n)return;var t=function(){n.classList.toggle('scrolled',window.scrollY>10)};t();window.addEventListener('scroll',t,{passive:true});})();</script>
 </body>
 </html>
