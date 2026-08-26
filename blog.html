@@ -116,15 +116,21 @@
     .blog-header-inner { position: relative; z-index: 1; }
     .blog-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 24px; display: block; }
     .blog-title { font-family: 'Nunito Sans', sans-serif; font-size: clamp(38px, 6vw, 96px); font-weight: 300; letter-spacing: -.02em; text-transform: uppercase; line-height: .95; color: #fff; margin-bottom: 28px; }
-    .blog-title span { color: #9e7bb6; }
+    .blog-title span { color: #fff; }
     .blog-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 520px; }
 
-    /* ── CATEGORY FILTER ── */
-    .filter-bar { padding: 0 0 64px; position: sticky; top: 85px; z-index: 50; }
-    .filter-bar-inner { display: flex; gap: 10px; flex-wrap: wrap; }
-    .filter-pill { font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 10px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); background: transparent; color: rgba(255,255,255,.45); cursor: pointer; transition: border-color .2s, color .2s, background .2s; white-space: nowrap; }
-    .filter-pill:hover { border-color: rgba(255,255,255,.35); color: rgba(255,255,255,.85); }
-    .filter-pill.active { background: #fff; border-color: rgba(255,255,255,.1); color: #000; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+    /* ── CATEGORY FILTER — mesmo rail editorial do portfolio ── */
+    .filter-bar { padding: 8px 0 44px; position: relative; z-index: 5; }
+    .filter-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+    /* barra fina: o gesto fica preso ao eixo horizontal (pan-x) e nunca scrolla na vertical */
+    .filter-rail { position: relative; display: flex; flex-wrap: nowrap; gap: 38px; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; overflow-y: hidden; touch-action: pan-x; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; }
+    .filter-rail::-webkit-scrollbar { display: none; }
+    .filter-tab { position: relative; flex-shrink: 0; white-space: nowrap; font-family: 'Overpass', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 2px 20px; border: none; background: transparent; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.28s ease; display: inline-flex; align-items: flex-start; gap: 6px; }
+    .filter-tab:hover { color: rgba(255,255,255,0.82); }
+    .filter-tab.active { color: #fff; }
+    .filter-count { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; line-height: 1; position: relative; top: 1px; color: rgba(255,255,255,0.25); transition: color 0.28s ease; }
+    .filter-tab.active .filter-count { color: #c585b8; }
+    .filter-underline { position: absolute; bottom: -1px; left: 0; height: 2px; width: 0; background: linear-gradient(90deg, #9e7bb6, #c585b8); border-radius: 2px; transform: translateX(0); transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), width 0.45s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
 
     /* ── CATEGORY BADGES ── */
     .cat { display: inline-block; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; }
@@ -143,7 +149,8 @@
     .featured-excerpt { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.75; margin-bottom: 40px; flex: 1; }
     .featured-footer { display: flex; align-items: center; justify-content: space-between; }
     .featured-author { display: flex; align-items: center; gap: 12px; }
-    .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 100%); border: 1px solid rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-family: 'Overpass', sans-serif; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .author-avatar { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); flex-shrink: 0; overflow: hidden; }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .author-info { display: flex; flex-direction: column; gap: 2px; }
     .author-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
     .author-date { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); }
@@ -229,9 +236,9 @@
       .container { padding: 0 20px; }
       .blog-header { padding: 130px 0 48px; }
       .blog-desc { font-size: 15px; }
-      .filter-bar { padding: 0 0 40px; }
-      .filter-bar-inner { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; scrollbar-width: none; -ms-overflow-style: none; }
-      .filter-bar-inner::-webkit-scrollbar { display: none; }
+      .filter-bar { padding: 4px 0 32px; }
+      .filter-rail { gap: 26px; }
+      .filter-tab { font-size: 13px; padding: 0 2px 16px; }
       .featured-wrap { margin-bottom: 48px; }
       .featured-content { padding: 32px 28px; }
       .featured-meta-top { margin-bottom: 20px; }
@@ -330,13 +337,15 @@
 <!-- CATEGORY FILTER -->
 <div class="container">
   <div class="filter-bar">
-    <div class="filter-bar-inner">
-      <button class="filter-pill active" data-filter="all">Todos</button>
-      <button class="filter-pill" data-filter="websites">Websites</button>
-      <button class="filter-pill" data-filter="social">Redes Sociais</button>
-      <button class="filter-pill" data-filter="seo">SEO</button>
-      <button class="filter-pill" data-filter="design">Design</button>
-      <button class="filter-pill" data-filter="branding">Branding</button>
+    <div class="filter-eyebrow">Filtrar por</div>
+    <div class="filter-rail" id="filterRail">
+      <button class="filter-tab active" data-filter="all">Todos<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="websites">Websites<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="social">Redes Sociais<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="seo">SEO<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="design">Design<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="branding">Branding<span class="filter-count"></span></button>
+      <span class="filter-underline" id="filterUnderline"></span>
     </div>
   </div>
 </div>
@@ -357,7 +366,7 @@
         </div>
         <div class="featured-footer">
           <div class="featured-author">
-            <div class="author-avatar">DL</div>
+            <div class="author-avatar"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_thumb,g_face,z_0.8,w_120,h_120,q_auto,f_auto/Website_photos/BLOG/diogo.png" alt="Diogo Clemente, Differentt Lab" width="36" height="36" loading="lazy"></div>
             <div class="author-info">
               <span class="author-name">Differentt Lab</span>
               <span class="author-date">Janeiro 2026</span>
@@ -856,16 +865,39 @@
     });
   }
 
-  // Category filter
-  const pills = document.querySelectorAll('.filter-pill');
+  // Category filter — rail com indicador deslizante (igual ao portfolio)
+  const underline = document.getElementById('filterUnderline');
+  const tabs = Array.from(document.querySelectorAll('.filter-tab'));
   const cards = [...document.querySelectorAll('.article-card')];
   const grid = cards[0]?.parentElement;
   const originalOrder = [...cards];
 
-  pills.forEach(pill => {
+  // Contagem por categoria (dinamica)
+  tabs.forEach(tab => {
+    const fl = tab.dataset.filter;
+    const n = fl === 'all' ? cards.length : cards.filter(c => c.dataset.cat === fl).length;
+    const c = tab.querySelector('.filter-count');
+    if (c) c.textContent = n;
+  });
+
+  // Indicador deslizante
+  function moveUnderline(tab) {
+    if (!tab || !underline) return;
+    underline.style.width = tab.offsetWidth + 'px';
+    underline.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+  }
+  function initUnderline() { moveUnderline(document.querySelector('.filter-tab.active') || tabs[0]); }
+  initUnderline();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(initUnderline);
+  window.addEventListener('load', initUnderline);
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(initUnderline, 120); });
+
+  tabs.forEach(pill => {
     pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
+      tabs.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
+      moveUnderline(pill);
+      if (pill.scrollIntoView) pill.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
       const filter = pill.dataset.filter;
 
       if (filter === 'all') {
