@@ -242,8 +242,12 @@
     .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
     .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
     .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
-    .reel-card-expand { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(-4px); transition: opacity 0.2s, transform 0.2s; }
-    .reel-card:hover .reel-card-expand { opacity: 1; transform: translateY(0); }
+    /* simbolo de play centrado no card — mesmo tratamento na home, em /criacao-websites e em /gestao-redes-sociais */
+    .reel-card-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; width: 56px; height: 56px; border-radius: 50%; background: rgba(0,0,0,0.42); -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%); border: 1px solid rgba(255,255,255,0.28); display: grid; place-items: center; box-shadow: 0 10px 26px rgba(0,0,0,0.35); pointer-events: none; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.3s; }
+    /* o triangulo tem o centro optico a esquerda do geometrico — 2px para a direita acertam-no */
+    .reel-card-play svg { margin-left: 2px; }
+    .reel-card:hover .reel-card-play, .reel-featured:hover .reel-card-play { transform: translate(-50%, -50%) scale(1.08); background: rgba(0,0,0,0.58); }
+    @media (max-width: 640px) { .reel-card-play { width: 46px; height: 46px; } }
     @media (max-width: 1199px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
 
     /* MOBILE — product-style gallery: 1 featured card + thumbnail circles */
@@ -914,73 +918,73 @@
     <div class="reel-card" data-project="evo-clinic" data-video="./Website_videos/evo-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29%281%29.jpg" alt="Evo Clinic – Gestão de Redes Sociais | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Evo Clinic</span></div>
     </div>
     <div class="reel-card" data-project="moment-laser" data-video="./Website_videos/moment-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/0702%20%281%29.jpg" alt="Moment Laser – Gestão de Redes Sociais | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Moment Laser</span></div>
     </div>
     <div class="reel-card" data-project="aroma-boreal" data-video="./Website_videos/aroma-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/aroma-capa.jpg" alt="Aroma Boreal – Gestão de Redes Sociais | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Aroma Boreal</span></div>
     </div>
     <div class="reel-card" data-project="esthetic-solution" data-video="./Website_videos/esthetic-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/esthetic-capa.jpg" alt="Esthetic Solution – Gestão de Redes Sociais | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Redes Sociais</span><span class="reel-card-name">Esthetic Solution</span></div>
     </div>
     <div class="reel-card" data-project="4-waves-lite" data-video="./Website_videos/4waves-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/0FcpNdg9d7Pu1qe0CHvc8AXak.jpg" alt="4 Waves Lite – Visualização 3D | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">3D & Produto</span><span class="reel-card-name">4 Waves Lite</span></div>
     </div>
     <div class="reel-card" data-project="coffe-sergio" data-video="./Website_videos/coffe-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/HZH8lwwLlBTsq0MxtEykVNAUb4I.jpg" alt="Coffe Sergio – Visualização 3D | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">3D & Produto</span><span class="reel-card-name">Coffe Sergio</span></div>
     </div>
     <div class="reel-card" data-project="shroom-fest">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/SHROOMFEST/7.jpg" alt="Shroomfest – Branding | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Shroomfest</span></div>
     </div>
     <div class="reel-card" data-project="raizes">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/RAIZES/3d.jpg" alt="Raízes – Modelação 3D | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Modelação 3D</span><span class="reel-card-name">Raízes</span></div>
     </div>
     <div class="reel-card" data-project="madaline">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/madaline/design-01j5xj2n80-1724671147-6.jpg" alt="Madaline – Branding | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Madaline</span></div>
     </div>
     <div class="reel-card" data-project="kioto">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages light/KIOTO/design-01jaxcah65-1773943831.jpg" alt="Kioto – Branding | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Branding</span><span class="reel-card-name">Kioto</span></div>
     </div>
     <div class="reel-card" data-project="mymoment" data-video="./Website_videos/mymoment-reels-web.mp4">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/mymoment/hero_bg_2.jpg" alt="MyMoment – Modelação 3D | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Modelação 3D</span><span class="reel-card-name">MyMoment</span></div>
     </div>
     <div class="reel-card" data-project="rean">
       <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages light/REAN/WhatsApp Image 2022-03-27 at 21.01.20.jpeg" alt="REAN – Gráfico | Differentt Lab">
       <div class="reel-card-overlay"></div>
-      <div class="reel-card-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat">Gráfico</span><span class="reel-card-name">REAN</span></div>
     </div>
   </div>
@@ -990,6 +994,7 @@
     <div class="reel-featured" id="reelFeatured">
       <img class="reel-featured-img" id="reelFeaturedImg" src="" alt="" loading="lazy" decoding="async">
       <div class="reel-card-overlay"></div>
+      <div class="reel-card-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
       <div class="reel-card-info"><span class="reel-card-cat" id="reelFeaturedCat"></span><span class="reel-card-name" id="reelFeaturedName"></span></div>
     </div>
     <div class="reel-thumbs" id="reelThumbs"></div>
