@@ -201,7 +201,7 @@
     /* CTA do hero: pequeno e quadrado, outline gradiente roxo + interior preto→roxo leve (igual ao portfolio) */
     .hero-actions .hero-cta {
       position: relative; overflow: hidden;
-      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.30) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box;
+      background: linear-gradient(145deg, #060608 0%, #0c0912 52%, rgba(158,123,182,0.17) 128%) padding-box, linear-gradient(135deg, #c585b8 0%, #9e7bb6 100%) border-box;
       color: #fff; border: 1.5px solid transparent; border-radius: 11px;
       padding: 14px 30px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; line-height: 1;
       box-shadow: 0 10px 26px rgba(0,0,0,0.4);
@@ -212,7 +212,7 @@
     /* preenchimento: brilho roxo suave e desfocado, presente em repouso à direita, intensifica no hover */
     .hero-actions .hero-cta::after {
       content: ''; position: absolute; inset: -25%; z-index: 1;
-      background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.20) 45%, transparent 78%);
+      background: radial-gradient(80% 130% at 88% 60%, rgba(197,133,184,0.26) 0%, rgba(158,123,182,0.12) 45%, transparent 78%);
       filter: blur(11px); opacity: 0.5; transform: scale(0.88); transform-origin: 88% 60%;
       transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none;
     }
