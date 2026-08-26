@@ -497,6 +497,12 @@
       .faq-answer { padding-left: 34px; }
     }
 
+  
+    /* iPhone: quando o auto-play fica adiado (tipicamente com o modo de poupanca de energia
+       ligado) o Safari desenha um botao de play nativo por cima do video. Nenhum video do site
+       usa controlos nativos, portanto escondemo-lo — ate arrancar fica so o poster. */
+    video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+    video::-webkit-media-controls { display: none !important; }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -577,11 +583,12 @@
     var off = document.getElementById(isMob ? 'socHeroD' : 'socHeroM');
     if(off){ off.removeAttribute('autoplay'); off.pause(); off.preload='none'; off.removeAttribute('src'); }
     if(!v) return;
-    function go(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    function go(){ v.muted = true; v.setAttribute('muted',''); v.playsInline = true; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
     v.addEventListener('loadeddata', go); go();
-    ['touchstart','click'].forEach(function(ev){
-      document.addEventListener(ev, function once(){ go(); document.removeEventListener(ev, once); }, {passive:true});
-    });
+    // insiste a cada gesto ate arrancar (iPhone em poupanca de energia adia o auto-play)
+    var gestos = ['touchstart','touchend','pointerdown','click'];
+    function noGesto(){ go(); if(!v.paused) gestos.forEach(function(ev){ document.removeEventListener(ev, noGesto); }); }
+    gestos.forEach(function(ev){ document.addEventListener(ev, noGesto, {passive:true}); });
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){
         es.forEach(function(e){ if(e.intersectionRatio < 0.3){ if(!v.paused) v.pause(); } else { go(); } });

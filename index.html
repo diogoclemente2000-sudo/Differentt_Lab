@@ -445,6 +445,12 @@
     .hero-content { padding: 0 28px 60px !important; }
   }
 
+  
+    /* iPhone: quando o auto-play fica adiado (tipicamente com o modo de poupanca de energia
+       ligado) o Safari desenha um botao de play nativo por cima do video. Nenhum video do site
+       usa controlos nativos, portanto escondemo-lo — ate arrancar fica so o poster. */
+    video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+    video::-webkit-media-controls { display: none !important; }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -466,13 +472,15 @@
     (function(){
       var v = document.getElementById('heroVideo');
       if(!v) return;
-      function tryPlay(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      function tryPlay(){ v.muted = true; v.setAttribute('muted',''); v.playsInline = true; var p = v.play(); if(p && p.catch) p.catch(function(){}); }
       v.addEventListener('loadeddata', tryPlay);
       tryPlay();
-      // Fallback: se o autoplay ficar adiado (ex.: iOS), arranca ao primeiro toque
-      ['touchstart','click'].forEach(function(ev){
-        document.addEventListener(ev, function once(){ tryPlay(); document.removeEventListener(ev, once); }, {passive:true});
-      });
+      // Fallback: no iPhone o auto-play fica adiado (poupanca de energia) e o Safari so arranca
+      // com um gesto. Insistimos a CADA gesto ate o video estar mesmo a tocar — antes tentava-se
+      // uma unica vez por tipo de evento, e se essa falhasse ficava parado.
+      var gestos = ['touchstart','touchend','pointerdown','click'];
+      function noGesto(){ tryPlay(); if(!v.paused) gestos.forEach(function(ev){ document.removeEventListener(ev, noGesto); }); }
+      gestos.forEach(function(ev){ document.addEventListener(ev, noGesto, {passive:true}); });
       // Perf de scroll (desktop): pausa o video quando o hero sai de vista, para o
       // browser deixar de descodificar/compor o video durante o scroll pela 2a seccao.
       // O mobile/tablet ja faz isto sozinho — aqui replicamos esse comportamento.

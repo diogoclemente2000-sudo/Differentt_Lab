@@ -777,6 +777,12 @@
       .faq-answer { padding-left: 34px; }
     }
 
+  
+    /* iPhone: quando o auto-play fica adiado (tipicamente com o modo de poupanca de energia
+       ligado) o Safari desenha um botao de play nativo por cima do video. Nenhum video do site
+       usa controlos nativos, portanto escondemo-lo — ate arrancar fica so o poster. */
+    video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+    video::-webkit-media-controls { display: none !important; }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -869,7 +875,7 @@
       // o par do viewport inativo não deve tocar nem descarregar (autoplay ignora display:none)
       off.forEach(function(v){ if(v){ v.removeAttribute('autoplay'); v.pause(); v.preload='none'; } });
       var cur = 0;
-      function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      function tryPlay(v){ v.muted = true; v.setAttribute('muted',''); v.playsInline = true; var p = v.play(); if(p && p.catch) p.catch(function(){}); }
       function swap(){
         var oldV = vids[cur];
         cur = 1 - cur;
@@ -884,9 +890,10 @@
       tryPlay(vids[0]);
       // pré-aquece o segundo (fica pronto para o crossfade)
       vids[1].load();
-      ['touchstart','click'].forEach(function(ev){
-        document.addEventListener(ev, function once(){ tryPlay(vids[cur]); document.removeEventListener(ev, once); }, {passive:true});
-      });
+      // insiste a cada gesto ate arrancar (iPhone em poupanca de energia adia o auto-play)
+      var gestos = ['touchstart','touchend','pointerdown','click'];
+      function noGesto(){ tryPlay(vids[cur]); if(!vids[cur].paused) gestos.forEach(function(ev){ document.removeEventListener(ev, noGesto); }); }
+      gestos.forEach(function(ev){ document.addEventListener(ev, noGesto, {passive:true}); });
       if('IntersectionObserver' in window){
         var heroIO = new IntersectionObserver(function(entries){
           entries.forEach(function(e){
