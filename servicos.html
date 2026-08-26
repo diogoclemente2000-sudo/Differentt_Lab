@@ -71,6 +71,10 @@
 
     /* NAV */
     .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+    /* ao fazer scroll a nav fica fosca (vidro) em vez de preto sólido */
+    nav { transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease; }
+    nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
+
     nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
     .nav-links { display: flex; gap: 50px; }
     .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
@@ -79,13 +83,13 @@
     .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; }
     .nav-icons a:hover { opacity: 1; }
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
-    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 28px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
     .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out 0.22s cubic-bezier(0.4,0,1,1) forwards; }
     @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes mob-nav-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
     @keyframes mob-link-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 63px; }
     .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; opacity: 0.7; transition: opacity 0.2s; }
     .nav-mob-close:hover { opacity: 1; }
     .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
@@ -100,6 +104,7 @@
     .nav-mob-icons a { color: #fff; opacity: 0.6; transition: opacity 0.2s; display: flex; align-items: center; }
     .nav-mob-icons a:hover { opacity: 1; }
     @media (max-width: 1199px) {
+      nav { padding: 16px 24px; }
       .nav-links { display: none !important; }
       .nav-icons { display: none !important; }
       .nav-hamburger { display: flex !important; }
@@ -127,7 +132,8 @@
     /* FILTER RAIL — editorial, régua com indicador deslizante */
     .filter-bar { padding: 48px 48px 24px; position: relative; }
     .filter-eyebrow { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
-    .filter-rail { position: relative; display: flex; flex-wrap: nowrap; gap: 38px; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    /* barra fina: gesto preso ao eixo horizontal e sem scroll vertical interno */
+    .filter-rail { position: relative; display: flex; flex-wrap: nowrap; gap: 38px; border-bottom: 1px solid rgba(255,255,255,0.1); overflow-x: auto; overflow-y: hidden; touch-action: pan-x; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; }
     .filter-rail::-webkit-scrollbar { display: none; }
     .filter-tab { position: relative; flex-shrink: 0; white-space: nowrap; font-family: 'Overpass', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 2px 20px; border: none; background: transparent; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.28s ease; display: inline-flex; align-items: flex-start; gap: 6px; }
     .filter-tab:hover { color: rgba(255,255,255,0.82); }
@@ -255,7 +261,7 @@
 <div class="nav-mobile-overlay" id="nav-mobile-overlay">
   <div class="nav-mob-top">
     <a href="./index" style="display:flex;align-items:center;text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="32" height="32"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
     </a>
     <button class="nav-mob-close" id="nav-mob-close"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   </div>
@@ -269,6 +275,7 @@
   <div class="nav-mob-icons">
     <a href="mailto:differenttdesignlab@gmail.com"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
     <a href="https://www.instagram.com/differentt_lab/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+      <a href="https://www.tiktok.com/@differentt_lab" target="_blank" title="TikTok"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
   </div>
 </div>
 
@@ -279,22 +286,22 @@
 </section>
 
 <!-- FEATURED -->
-<a href="./portfolio?filter=grafico" style="text-decoration:none;color:inherit;display:block;">
+<a href="./criacao-websites" style="text-decoration:none;color:inherit;display:block;">
 <div class="featured" style="cursor:pointer;">
   <div class="featured-img">
-    <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work individual pages/SHROOMFEST/Festival_Shrum Fest_-_page-0011.jpg" alt="Projeto Branding">
+    <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/V9qkn3A4cW9VBqmn1I9Io5kZfb8.jpg" alt="Websites e software à medida">
     <div class="featured-img-overlay"></div>
   </div>
   <div class="featured-info">
     <div>
       <div class="featured-label">Em destaque</div>
-      <p class="featured-title">Projetos creativos & visuais inpactantes</p>
-      <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-top:12px;">Dentro do design gráfico fornecemos serviços de design editorial como capas, ilustrações e catálogos. Fazemos também visuais para campanhas e anúncios, assim como para projetos criativos de maior escala.</p>
+      <p class="featured-title">Websites e software à medida</p>
+      <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-top:12px;">Websites rápidos e pensados para converter, e software feito de raiz para a tua empresa — CRM, bases de dados, gestão de recursos humanos e inventário. Ligamos tudo com automações que eliminam o trabalho manual.</p>
       <div class="featured-meta" style="margin-top:24px;">
-        <a href="./portfolio?filter=grafico" style="display:inline-flex;align-items:center;gap:10px;background:rgba(158,123,182,0.12);border:1px solid rgba(158,123,182,0.3);border-radius:100px;padding:10px 18px;text-decoration:none;transition:background 0.2s,border-color 0.2s;" onmouseover="this.style.background='rgba(158,123,182,0.25)';this.style.borderColor='rgba(158,123,182,0.7)'" onmouseout="this.style.background='rgba(158,123,182,0.12)';this.style.borderColor='rgba(158,123,182,0.3)'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e7bb6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l11 11"/><circle cx="11" cy="11" r="2"/></svg>
-          <span style="font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9e7bb6;">Graphic Design</span>
-        </a>
+        <span style="display:inline-flex;align-items:center;gap:10px;background:rgba(158,123,182,0.12);border:1px solid rgba(158,123,182,0.3);border-radius:100px;padding:10px 18px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e7bb6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span style="font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9e7bb6;">Web &amp; Software</span>
+        </span>
       </div>
     </div>
   </div>
@@ -353,7 +360,7 @@
 
   <div class="service-card" data-category="3D">
     <div class="service-card-photo">
-      <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/iU2o5TRM1MueU9o2LsK4EKVBET8.jpg');"></div>
+      <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1600,q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/3123.png'); background-position: center; background-repeat: no-repeat;"></div>
     </div>
     <div class="service-card-content">
       <span class="service-cat-pill">3D</span>
@@ -386,7 +393,6 @@
       <span class="faq-eyebrow">Perguntas Frequentes</span>
       <h2 class="faq-heading">FAQs</h2>
     </div>
-    <span class="faq-count">06 Questões</span>
   </div>
   <div class="faq-list">
     <div class="faq-item">
@@ -524,6 +530,18 @@
 <script>
   (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='flex'; })();
   function cookieConsent(v){ localStorage.setItem('cookie_consent',v); document.getElementById('cookie-banner').style.display='none'; }
+</script>
+<script>
+(function(){
+  var nav = document.querySelector('.nav-wrapper nav');
+  if(!nav) return;
+  var tick = false;
+  function upd(){ nav.classList.toggle('scrolled', window.scrollY > 40); tick = false; }
+  upd();
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(upd); }
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>

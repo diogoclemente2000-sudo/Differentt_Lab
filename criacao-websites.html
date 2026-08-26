@@ -106,6 +106,10 @@
 
     /* NAV */
     .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+    /* ao fazer scroll a nav fica fosca (vidro) em vez de preto sólido */
+    nav { transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease; }
+    nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
+
     nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
     .nav-links { display: flex; gap: 50px; }
     .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
@@ -114,13 +118,13 @@
     .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; }
     .nav-icons a:hover { opacity: 1; }
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
-    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: #000; border-radius: 28px; padding: 16px 24px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 28px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
     .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out 0.22s cubic-bezier(0.4,0,1,1) forwards; }
     @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes mob-nav-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
     @keyframes mob-link-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+    .nav-mob-top { display: flex; align-items: center; justify-content: space-between; height: 63px; }
     .nav-mob-close { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s; }
     .nav-mob-close:hover { opacity: 1; }
     .nav-mob-links { display: flex; flex-direction: column; gap: 4px; padding: 28px 4px; }
@@ -199,8 +203,8 @@
     .marquee-section { background: #000; padding: 14px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
     .marquee-track { display: flex; gap: 60px; animation: marquee 73s linear infinite; white-space: nowrap; width: max-content; }
     .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .marquee-item .mq-check { width: 13px; height: 13px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
+    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 14.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .marquee-item .mq-check { width: 15px; height: 15px; color: rgba(255,255,255,0.28); flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* PORTFOLIO — cards estilo home (capa em vídeo, 9:16) */
@@ -586,19 +590,11 @@
     .mini-stat-label { font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; }
 
     /* FAQ */
-    .faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 0; max-width: 800px; }
-    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .faq-q { font-family: 'Nunito Sans', sans-serif; font-size: 17px; font-weight: 300; color: #fff; padding: 28px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; user-select: none; }
-    .faq-q:hover { color: #9e7bb6; }
-    .faq-icon { flex-shrink: 0; color: rgba(255,255,255,0.35); transition: transform 0.3s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); color: #9e7bb6; }
-    .faq-a { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); padding-bottom: 28px; display: none; }
-    .faq-item.open .faq-a { display: block; }
 
     /* CTA */
     .cta-bar { padding: 80px max(48px, calc((100% - 1400px) / 2)); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; gap: 40px; }
     .cta-bar h2 { font-family: 'Nunito Sans', sans-serif; font-size: clamp(28px, 4vw, 56px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.1; }
-    .cta-bar h2 span { color: #9e7bb6; }
+    .cta-bar h2 span { color: #fff; }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
@@ -642,7 +638,8 @@
       footer { padding: 48px 48px 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-      .cta-bar { padding: 60px 48px; }
+      /* tablet e abaixo: botao empilhado por baixo do texto (senao o titulo espreme-se) */
+      .cta-bar { flex-direction: column; align-items: flex-start; gap: 32px; padding: 60px 48px; }
     }
     @media (max-width: 768px) {
       .hero-visuals { height: 360px; }
@@ -709,7 +706,6 @@
       footer { padding-top: 48px; padding-bottom: 24px; padding-left: 24px; padding-right: 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .faq-list { max-width: 100%; }
     }
     /* VISUALIZADOR DE REELS (mesmo formato da home) */
     .reels-viewer { position: fixed; inset: 0; z-index: 10500; background: #000; display: none; }
@@ -731,6 +727,30 @@
     .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
     .reels-progress-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
     .reels-progress-bar span { display: block; height: 100%; width: 0%; background: #fff; }
+    /* FAQ — mesmo estilo da pagina de servicos */
+    .faq-list { display: flex; flex-direction: column; max-width: 860px; margin: 56px auto 0; }
+    .faq-item { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; cursor: pointer; gap: 32px; }
+    .faq-question-left { display: flex; align-items: center; gap: 32px; }
+    .faq-num { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); min-width: 24px; }
+    .faq-question span { font-family: 'Nunito Sans', sans-serif; font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.4; }
+    .faq-item.open .faq-question span { color: rgba(255,255,255,0.85); }
+    .faq-icon { flex-shrink: 0; width: 36px; height: 36px; border: 1.8px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; transition: border-color 0.3s; }
+    .faq-item.open .faq-icon { border-color: #9e7bb6; }
+    .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: rgba(255,255,255,0.5); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .faq-icon::before { width: 13px; height: 2px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .faq-icon::after { width: 2px; height: 13px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) scaleY(0); opacity: 0; }
+    .faq-item.open .faq-icon::before { background: #9e7bb6; }
+    .faq-answer { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.4); max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s; padding-left: 56px; }
+    .faq-item.open .faq-answer { max-height: 460px; padding-bottom: 28px; }
+    @media (max-width: 600px) {
+      .faq-question, .faq-question-left { gap: 16px; }
+      .faq-num { min-width: 18px; }
+      .faq-answer { padding-left: 34px; }
+    }
+
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -769,7 +789,7 @@
 <!-- MOBILE NAV -->
 <div class="nav-mobile-overlay" id="nav-mobile-overlay">
   <div class="nav-mob-top">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="30" height="30"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.18 71.18" width="36" height="36"><path fill="#fff" d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z"/></svg>
     <button class="nav-mob-close" id="nav-mob-close" aria-label="Fechar menu">
       <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -788,6 +808,7 @@
     <a href="https://www.instagram.com/differentt_lab/" target="_blank" title="Instagram">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
     </a>
+      <a href="https://www.tiktok.com/@differentt_lab" target="_blank" title="TikTok"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
   </div>
 </div>
 
@@ -1386,95 +1407,56 @@
   <h2 class="section-title"><span>FAQ</span></h2>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q">
-        Quanto custa criar um website em Portugal?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">O custo de criação de um website depende da complexidade do projeto, do número de páginas e das funcionalidades necessárias. Na Differentt Lab, trabalhamos com orçamentos personalizados para cada cliente — não existem pacotes genéricos. Entra em contacto e recebe uma proposta sem compromisso.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">01</span><span>Quanto custa criar um website em Portugal?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">O custo de criação de um website depende da complexidade do projeto, do número de páginas e das funcionalidades necessárias. Na Differentt Lab, trabalhamos com orçamentos personalizados para cada cliente — não existem pacotes genéricos. Entra em contacto e recebe uma proposta sem compromisso.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Só fazem websites ou também desenvolvem software para empresas?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Fazemos muito mais do que websites. Desenvolvemos software à medida para empresas — CRM para gerir clientes e vendas, bases de dados centralizadas, gestão de recursos humanos (colaboradores, férias e assiduidade), gestão de inventário e stock, faturação e plataformas internas. Tudo construído para a forma como a tua empresa trabalha, em vez de a obrigares a adaptar-se a um programa genérico.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">02</span><span>Só fazem websites ou também desenvolvem software para empresas?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Fazemos muito mais do que websites. Desenvolvemos software à medida para empresas — CRM para gerir clientes e vendas, bases de dados centralizadas, gestão de recursos humanos (colaboradores, férias e assiduidade), gestão de inventário e stock, faturação e plataformas internas. Tudo construído para a forma como a tua empresa trabalha, em vez de a obrigares a adaptar-se a um programa genérico.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Conseguem substituir as nossas folhas de Excel?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim — é um dos pedidos mais frequentes. Passamos o que está em Excel para um sistema próprio, onde várias pessoas trabalham ao mesmo tempo, há histórico de alterações e deixa de existir o risco de ficheiros duplicados ou fórmulas partidas. A informação fica num só sítio e sempre atualizada.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">03</span><span>Conseguem substituir as nossas folhas de Excel?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim — é um dos pedidos mais frequentes. Passamos o que está em Excel para um sistema próprio, onde várias pessoas trabalham ao mesmo tempo, há histórico de alterações e deixa de existir o risco de ficheiros duplicados ou fórmulas partidas. A informação fica num só sítio e sempre atualizada.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Fazem automações de mensagens e lembretes?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim. Automatizamos a comunicação com clientes — confirmações e lembretes de marcação por WhatsApp, SMS ou email, seguimento pós-venda e reativação de clientes antigos. Também automatizamos fluxos entre sistemas: por exemplo, um pedido feito no site entra diretamente no CRM, sem ninguém copiar nada à mão.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">04</span><span>Fazem automações de mensagens e lembretes?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim. Automatizamos a comunicação com clientes — confirmações e lembretes de marcação por WhatsApp, SMS ou email, seguimento pós-venda e reativação de clientes antigos. Também automatizamos fluxos entre sistemas: por exemplo, um pedido feito no site entra diretamente no CRM, sem ninguém copiar nada à mão.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        O software consegue ligar-se às ferramentas que já usamos?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Na maioria dos casos sim, através de integrações e APIs. Ligamos o sistema novo às ferramentas que já utilizas para a informação circular sozinha entre elas. Antes de avançar, verificamos sempre que integrações é que cada ferramenta permite.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">05</span><span>O software consegue ligar-se às ferramentas que já usamos?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Na maioria dos casos sim, através de integrações e APIs. Ligamos o sistema novo às ferramentas que já utilizas para a informação circular sozinha entre elas. Antes de avançar, verificamos sempre que integrações é que cada ferramenta permite.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Quanto tempo demora a desenvolver um software à medida?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Depende do número de áreas envolvidas e das integrações necessárias — não é comparável a um website. Costumamos começar por um módulo essencial (por exemplo, o CRM ou o inventário), colocá-lo a funcionar e crescer a partir daí. Assim começas a ver resultados sem esperar pelo sistema completo.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">06</span><span>Quanto tempo demora a desenvolver um software à medida?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Depende do número de áreas envolvidas e das integrações necessárias — não é comparável a um website. Costumamos começar por um módulo essencial (por exemplo, o CRM ou o inventário), colocá-lo a funcionar e crescer a partir daí. Assim começas a ver resultados sem esperar pelo sistema completo.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Os dados da empresa ficam nossos?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim. Os dados são da tua empresa e o sistema é feito para ti. Definimos contigo onde fica alojado, quem tem acesso a quê e como são feitas as cópias de segurança, cumprindo o RGPD.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">07</span><span>Os dados da empresa ficam nossos?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim. Os dados são da tua empresa e o sistema é feito para ti. Definimos contigo onde fica alojado, quem tem acesso a quê e como são feitas as cópias de segurança, cumprindo o RGPD.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Quanto tempo demora a criar um website?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Um website institucional simples pode estar pronto em 3 a 4 semanas. Projetos mais complexos, com funcionalidades específicas ou loja online, podem levar entre 6 a 10 semanas. O prazo é sempre definido em conjunto antes do início do projeto.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">08</span><span>Quanto tempo demora a criar um website?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Um website institucional simples pode estar pronto em 3 a 4 semanas. Projetos mais complexos, com funcionalidades específicas ou loja online, podem levar entre 6 a 10 semanas. O prazo é sempre definido em conjunto antes do início do projeto.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Um website ajuda a aparecer no Google?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim — mas apenas se for construído com SEO em mente. Um website bonito sem otimização para motores de busca é praticamente invisível. Na Differentt Lab, integramos SEO on-page desde a primeira linha de código, o que significa que o teu site começa a ser indexado e a ganhar posições no Google desde o lançamento.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">09</span><span>Um website ajuda a aparecer no Google?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim — mas apenas se for construído com SEO em mente. Um website bonito sem otimização para motores de busca é praticamente invisível. Na Differentt Lab, integramos SEO on-page desde a primeira linha de código, o que significa que o teu site começa a ser indexado e a ganhar posições no Google desde o lançamento.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Trabalham apenas em Lisboa ou também noutras zonas de Portugal?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Embora estejamos sediados em Odivelas, Lisboa, trabalhamos com clientes em todo Portugal e também internacionalmente. Todos os projetos são geridos remotamente, sem perda de qualidade ou comunicação.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">10</span><span>Trabalham apenas em Lisboa ou também noutras zonas de Portugal?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Embora estejamos sediados em Odivelas, Lisboa, trabalhamos com clientes em todo Portugal e também internacionalmente. Todos os projetos são geridos remotamente, sem perda de qualidade ou comunicação.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Posso gerir o website sozinho depois do lançamento?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim. Dependendo da solução utilizada, fornecemos formação e documentação para que possas atualizar conteúdos de forma autónoma. Oferecemos também planos de manutenção mensal para quem prefere que tratemos de tudo.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">11</span><span>Posso gerir o website sozinho depois do lançamento?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim. Dependendo da solução utilizada, fornecemos formação e documentação para que possas atualizar conteúdos de forma autónoma. Oferecemos também planos de manutenção mensal para quem prefere que tratemos de tudo.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        Fazem criação de websites em WordPress?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim, desenvolvemos websites em WordPress para clientes que pretendem gerir o conteúdo de forma autónoma. Dependendo do projeto, trabalhamos também com soluções custom em HTML/CSS ou outras plataformas. Em qualquer caso, garantimos design profissional, SEO integrado e performance otimizada.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">12</span><span>Fazem criação de websites em WordPress?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim, desenvolvemos websites em WordPress para clientes que pretendem gerir o conteúdo de forma autónoma. Dependendo do projeto, trabalhamos também com soluções custom em HTML/CSS ou outras plataformas. Em qualquer caso, garantimos design profissional, SEO integrado e performance otimizada.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">
-        A Differentt Lab faz websites para pequenas empresas em Lisboa?
-        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </div>
-      <div class="faq-a">Sim. A Differentt Lab, sediada em Odivelas, Lisboa, é especializada em criação de websites para PMEs e pequenos negócios portugueses. Trabalhamos com restaurantes, clínicas, comércios locais, startups e profissionais liberais que querem marcar presença no digital com um site profissional e otimizado para o Google.</div>
+      <div class="faq-question"><div class="faq-question-left"><span class="faq-num">13</span><span>A Differentt Lab faz websites para pequenas empresas em Lisboa?</span></div><div class="faq-icon"></div></div>
+      <div class="faq-answer">Sim. A Differentt Lab, sediada em Odivelas, Lisboa, é especializada em criação de websites para PMEs e pequenos negócios portugueses. Trabalhamos com restaurantes, clínicas, comércios locais, startups e profissionais liberais que querem marcar presença no digital com um site profissional e otimizado para o Google.</div>
     </div>
   </div>
 </section>
@@ -1554,7 +1536,7 @@
   closeBtn.addEventListener('click', () => { overlay.classList.add('closing'); overlay.addEventListener('animationend', () => { overlay.classList.remove('open', 'closing'); document.body.style.overflow = ''; }, { once: true }); });
 
   // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(q => {
+  document.querySelectorAll('.faq-question').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
       const isOpen = item.classList.contains('open');
@@ -1725,6 +1707,18 @@
   cards.forEach(function(c,i){ c.addEventListener('click', function(e){ e.preventDefault(); open(i); }); });
   closeB.addEventListener('click', close);
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && viewer.classList.contains('open')) close(); });
+})();
+</script>
+<script>
+(function(){
+  var nav = document.querySelector('.nav-wrapper nav');
+  if(!nav) return;
+  var tick = false;
+  function upd(){ nav.classList.toggle('scrolled', window.scrollY > 40); tick = false; }
+  upd();
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(upd); }
+  }, {passive:true});
 })();
 </script>
 </body>
