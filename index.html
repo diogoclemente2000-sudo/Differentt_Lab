@@ -829,20 +829,24 @@
   var snd=acc.querySelector('.rp-sound');
   if(v0){
     v0.removeAttribute('autoplay');          // nada arranca no load — só quando a secção aparece
-    var visivel=false, jaTentou=false;
+    var visivel=false, jaTentou=false, emReels=false;   // emReels: o player de ecra completo esta aberto
     var evs=['pointerdown','touchstart','keydown'];
     var paint=function(){ if(snd) snd.innerHTML = v0.muted ? SND_OFF : SND_ON; };
-    var go=function(){ if(!visivel) return; var pr=v0.play(); if(pr && pr.catch) pr.catch(function(){}); };
+    var go=function(){ if(!visivel || emReels) return; var pr=v0.play(); if(pr && pr.catch) pr.catch(function(){}); };
     var unmute=function(){ if(visivel){ v0.muted=false; paint(); go(); } evs.forEach(function(ev){ document.removeEventListener(ev, unmute); }); };
 
     // 1ª vez que a secção fica à vista: tenta com som; se o browser bloquear,
     // arranca mudo e liga o som ao primeiro toque/clique.
     var arrancar=function(){
+      if(emReels) return;
       if(jaTentou){ go(); return; }
       jaTentou=true;
       v0.muted=false;
       var pr=v0.play();
-      if(pr && pr.catch) pr.catch(function(){
+      if(pr && pr.catch) pr.catch(function(err){
+        // se fomos nos a pausar (abrir o player), a promessa rejeita com AbortError —
+        // isso nao e bloqueio de auto-play, portanto nao ha que passar a mudo
+        if(emReels || (err && err.name==='AbortError')) return;
         v0.muted=true; paint(); go();
         evs.forEach(function(ev){ document.addEventListener(ev, unmute, {passive:true}); });
       });
@@ -851,6 +855,12 @@
     paint();
 
     if(snd) snd.addEventListener('click', function(e){ e.stopPropagation(); v0.muted=!v0.muted; paint(); go(); });
+
+    // este card e o player de ecra completo nunca tocam ao mesmo tempo (senao os audios sobrepoem-se)
+    window.tstCardVideo = {
+      pause: function(){ emReels=true; v0.pause(); },
+      resume: function(){ emReels=false; go(); }
+    };
 
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){
@@ -1155,13 +1165,16 @@
 
   function tvHideHint(){ if(!tvHint) return; tvHint.classList.remove('show'); if(tvHintTimer){ clearTimeout(tvHintTimer); tvHintTimer=null; } tvTrack.removeEventListener('scroll',tvHideHint); }
   function openTstReels(index){ if(index<0||index==null) index=0; lastFocus=document.activeElement;
+    if(window.tstCardVideo) window.tstCardVideo.pause();   // cala o card em auto-play
     tvViewer.classList.add('open'); document.body.style.overflow='hidden';
     tvTrack.scrollTop=tvSlides[index].el.offsetTop; setTimeout(function(){ tvActivate(index); },50);
     if(tvHint&&tvSlides.length>1){ tvHint.classList.add('show'); tvTrack.addEventListener('scroll',tvHideHint,{passive:true}); tvHintTimer=setTimeout(tvHideHint,5000); }
     history.pushState({ tstReelsOpen:true },''); }
   window.openTstReels = openTstReels; // exposto para os Painéis expansíveis (secção reels-panels) abrirem o mesmo player
   function closeTstReels(){ tvHideHint(); tvViewer.classList.remove('open'); document.body.style.overflow='';
-    tvSlides.forEach(function(s){ s.media.pause(); }); if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+    tvSlides.forEach(function(s){ s.media.pause(); });
+    if(window.tstCardVideo) window.tstCardVideo.resume();  // devolve o auto-play ao card
+    if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
   tvClose.addEventListener('click',function(){ if(history.state&&history.state.tstReelsOpen) history.back(); else closeTstReels(); });
   window.addEventListener('popstate',function(){ if(tvViewer.classList.contains('open')) closeTstReels(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&tvViewer.classList.contains('open')){ if(history.state&&history.state.tstReelsOpen) history.back(); else closeTstReels(); } });
@@ -1770,6 +1783,7 @@
   function openReels(projectId){
     var startIndex = reelsOrder.findIndex(function(d){ return d.project === projectId; });
     if (startIndex < 0) startIndex = 0;
+    if (window.tstCardVideo) window.tstCardVideo.pause();   // cala o card de testemunho em auto-play
     viewer.classList.add('open');
     document.body.style.overflow = 'hidden';
     track.scrollTop = slides[startIndex].el.offsetTop;
@@ -1788,6 +1802,7 @@
     viewer.classList.remove('open');
     document.body.style.overflow = '';
     slides.forEach(function(s){ if (s.isVideo) s.media.pause(); });
+    if (window.tstCardVideo) window.tstCardVideo.resume();  // devolve o auto-play ao card
   }
 
   closeBtn.addEventListener('click', function(){
