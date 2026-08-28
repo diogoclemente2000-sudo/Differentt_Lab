@@ -838,7 +838,7 @@
   // que fica ao centro (mobile) manda tocar e para o anterior — sem ter de abrir nada.
   var VBASE = 'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/';
   var paineis = [];
-  var somLigado = true;    // preferencia partilhada; passa a false se o browser bloquear
+  var somLigado = true;    // preferencia do utilizador — so o botao de som a muda
   var emReels = false;     // o player de ecra completo esta aberto
   var seccaoVisivel = false;
   var activo = -1;
@@ -863,8 +863,7 @@
     botaoSom.addEventListener('click', function(e){
       e.stopPropagation();
       somLigado = video.muted;                 // estava mudo -> ligar o som
-      video.muted = !somLigado;
-      if(somLigado) video.removeAttribute('muted'); else video.setAttribute('muted','');
+      aplicarSom(video);
       pintarSom();
       var q = video.play(); if(q && q.catch) q.catch(function(){});
     });
@@ -884,6 +883,30 @@
     paineis.forEach(function(pn,i){ pn.som.innerHTML = (i===activo && !pn.video.muted) ? SND_ON : SND_OFF; });
   }
 
+  function aplicarSom(v){
+    v.muted = !somLigado;
+    if(somLigado) v.removeAttribute('muted'); else v.setAttribute('muted','');
+  }
+
+  // sem interacao na pagina o browser recusa tocar com som. Ficamos a espera do primeiro
+  // gesto (um clique/toque em qualquer sitio) e ligamos o som ao painel que estiver a tocar.
+  var aEsperaDeGesto = false;
+  var EVS_GESTO = ['pointerdown','touchstart','keydown'];
+  function ligarSomNoPrimeiroGesto(){
+    if(aEsperaDeGesto || !somLigado) return;
+    aEsperaDeGesto = true;
+    var f = function(){
+      EVS_GESTO.forEach(function(e){ document.removeEventListener(e, f); });
+      aEsperaDeGesto = false;
+      if(activo<0 || !somLigado || emReels || !seccaoVisivel) return;
+      var v = paineis[activo].video;
+      aplicarSom(v);
+      var q = v.play(); if(q && q.catch) q.catch(function(){});
+      pintarSom();
+    };
+    EVS_GESTO.forEach(function(e){ document.addEventListener(e, f, { passive:true }); });
+  }
+
   // carrega o ficheiro so quando e preciso (os cinco videos nao sao descarregados a entrada)
   function garantirSrc(v){ if(!v.getAttribute('src')){ v.preload='auto'; v.setAttribute('src', v.dataset.src); v.load(); } }
 
@@ -897,16 +920,17 @@
     if(!seccaoVisivel || emReels) { pintarSom(); return; }
     var v = paineis[k].video;
     garantirSrc(v);
-    v.muted = !somLigado;
-    if(somLigado) v.removeAttribute('muted'); else v.setAttribute('muted','');
+    aplicarSom(v);
     var pr = v.play();
     if(pr && pr.catch) pr.catch(function(err){
       // AbortError = fomos nos a pausar/trocar de painel, nao e bloqueio do browser
       if(emReels || (err && err.name==='AbortError')) return;
-      // o browser recusou tocar com som (sem interacao previa): repete mudo
-      somLigado = false; v.muted = true; v.setAttribute('muted','');
+      // o browser recusou tocar com som (ainda nao houve interacao na pagina): toca mudo,
+      // MAS nao desiste do som — volta a liga-lo assim que houver um gesto
+      v.muted = true; v.setAttribute('muted','');
       pintarSom();
       var q = v.play(); if(q && q.catch) q.catch(function(){});
+      ligarSomNoPrimeiroGesto();
     });
     pintarSom();
   }
