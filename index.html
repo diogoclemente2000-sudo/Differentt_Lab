@@ -322,9 +322,9 @@
     .steps-argo .st-base { stroke: rgba(255,255,255,0.07); }
     .steps-argo .st-fio { stroke: url(#stepsGrad); stroke-linecap: round; }
     .steps-orbe { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #08060b; border: 1px solid rgba(158,123,182,0.16); box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 80px rgba(158,123,182,0.10), inset 0 0 60px rgba(0,0,0,0.55); }
-    .steps-grupo { position: absolute; inset: -12%; transition: opacity 1.6s ease; }
-    .steps-grupo.fora { opacity: 0; }
-    .steps-grupo > i { position: absolute; display: block; border-radius: 50%; filter: blur(34px); mix-blend-mode: screen; will-change: transform; }
+    .steps-grupo { position: absolute; inset: -12%; transition: opacity 1.6s ease, visibility 0s; }
+    .steps-grupo.fora { opacity: 0; visibility: hidden; transition: opacity 1.6s ease, visibility 0s linear 1.6s; }
+    .steps-grupo > i { position: absolute; display: block; border-radius: 50%; filter: blur(16px); mix-blend-mode: screen; will-change: transform; }
     .steps-grupo .st-b1 { width: 62%; height: 62%; left: 6%; top: 10%; animation: stepsNv1 17s ease-in-out infinite alternate; }
     .steps-grupo .st-b2 { width: 56%; height: 56%; right: 2%; top: 26%; animation: stepsNv2 23s ease-in-out infinite alternate; }
     .steps-grupo .st-b3 { width: 48%; height: 48%; left: 24%; bottom: 2%; animation: stepsNv3 29s ease-in-out infinite alternate; }
@@ -1047,9 +1047,9 @@
     fio.style.strokeDasharray=C; fio.style.strokeDashoffset=C;
 
     function vestir(g,p){
-      g.innerHTML='<i class="st-b1" style="background:radial-gradient(circle at 38% 36%,'+p[2]+' 0%,'+p[1]+' 42%,transparent 68%)"></i>'+
-                  '<i class="st-b2" style="background:radial-gradient(circle at 60% 40%,'+p[1]+' 0%,'+p[0]+' 48%,transparent 70%)"></i>'+
-                  '<i class="st-b3" style="background:radial-gradient(circle at 50% 55%,'+p[2]+' 0%,'+p[0]+' 55%,transparent 72%)"></i>';
+      g.innerHTML='<i class="st-b1" style="background:radial-gradient(circle at 38% 36%,'+p[2]+' 0%,'+p[1]+' 40%,transparent 76%)"></i>'+
+                  '<i class="st-b2" style="background:radial-gradient(circle at 60% 40%,'+p[1]+' 0%,'+p[0]+' 46%,transparent 78%)"></i>'+
+                  '<i class="st-b3" style="background:radial-gradient(circle at 50% 55%,'+p[2]+' 0%,'+p[0]+' 52%,transparent 80%)"></i>';
     }
     var frente=gA, tras=gB, passo=-1, acum=0, ultimo=null, vivo=false, parado=false, raf=null;
     function pintar(i,anim){
