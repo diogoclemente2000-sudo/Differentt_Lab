@@ -226,11 +226,9 @@
     @media (max-width: 640px) { .reel-card-play { width: 46px; height: 46px; } }
     /* mobile: flex horizontal com swipe (mesmo padrão da home) */
     @media (max-width: 600px) {
-      /* era um carrossel horizontal: com tres cards o terceiro ficava fora do ecra e
-         nada indicava que havia mais para o lado. Passa a grelha de 2 colunas. */
-      .pf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 4px 0 8px; }
-      .pf-grid .reel-card-info { padding: 12px; }
-      .pf-grid .reel-card-name { font-size: 15px; }
+      .pf-grid { display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
+      .pf-grid::-webkit-scrollbar { display: none; }
+      .pf-grid .reel-card { flex: 0 0 72%; scroll-snap-align: center; }
     }
 
     /* BOTTOM BAR */
