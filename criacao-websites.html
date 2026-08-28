@@ -742,8 +742,14 @@
     .reels-viewer.open { display: block; }
     .reels-track { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; }
     .reels-track::-webkit-scrollbar { display: none; }
-    .reels-slide { position: relative; height: 100dvh; width: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #050505; }
+    .reels-slide { position: relative; height: 100dvh; width: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #050505; }
+    /* moldura do slide: em ecra grande fica 9:16 no meio, em vez de o video 9:16
+       ser esticado por um ecra 16:9 (as outras duas paginas ja faziam isto) */
+    .reels-slide-frame { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
     .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    @media (min-width: 601px) {
+      .reels-slide-frame { width: auto; height: min(90vh, 90dvh); aspect-ratio: 9 / 16; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
+    }
     .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
     .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
     .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
@@ -1739,25 +1745,27 @@
   var vids = cards.map(function(c){
     var cv = c.querySelector('.reel-card-vid');
     var slide = document.createElement('div'); slide.className = 'reels-slide';
+    var frame = document.createElement('div'); frame.className = 'reels-slide-frame';
 
     var v = document.createElement('video');
     v.className='reels-slide-media'; v.src=cv.getAttribute('src'); v.poster=cv.getAttribute('poster');
     v.loop=true; v.muted=true; v.playsInline=true; v.preload='none';
     v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
-    slide.appendChild(v);
+    frame.appendChild(v);
 
-    var ov=document.createElement('div'); ov.className='reels-slide-overlay'; slide.appendChild(ov);
+    var ov=document.createElement('div'); ov.className='reels-slide-overlay'; frame.appendChild(ov);
 
     var mute=document.createElement('button'); mute.type='button'; mute.className='reels-mute';
     mute.setAttribute('aria-label','Ligar ou desligar o som'); mute.innerHTML=ICO_OFF;
     mute.addEventListener('click', function(e){ e.stopPropagation(); soundOn=!soundOn; applySound(); });
-    slide.appendChild(mute);
+    frame.appendChild(mute);
 
     var info=document.createElement('div'); info.className='reels-slide-info';
     info.innerHTML='<span class="reels-slide-cat">'+c.querySelector('.reel-card-cat').textContent+'</span>'+
                    '<span class="reels-slide-name">'+c.querySelector('.reel-card-name').textContent+'</span>'+
                    '<a class="reels-slide-cta" href="'+c.getAttribute('href')+'"><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
-    slide.appendChild(info);
+    frame.appendChild(info);
+    slide.appendChild(frame);
 
     var bar=document.createElement('div'); bar.className='reels-progress-bar'; bar.innerHTML='<span></span>'; prog.appendChild(bar);
     v.addEventListener('timeupdate', function(){ if(v.duration) bar.firstChild.style.width=(v.currentTime/v.duration*100)+'%'; });
