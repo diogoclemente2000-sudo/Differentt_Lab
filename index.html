@@ -838,7 +838,10 @@
   // que fica ao centro (mobile) manda tocar e para o anterior — sem ter de abrir nada.
   var VBASE = 'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/';
   var paineis = [];
-  var somLigado = true;    // preferencia do utilizador — so o botao de som a muda
+  // preferencia de som partilhada entre o acordeao e o player de ecra completo.
+  // Viviam em variaveis separadas (somLigado / tvSound) e desencontravam-se: mutar
+  // num nao afetava o outro, e cada um apagava a preferencia por sua conta.
+  window.dlSom = window.dlSom || { ligado: true };
   var emReels = false;     // o player de ecra completo esta aberto
   var seccaoVisivel = false;
   var activo = -1;
@@ -862,7 +865,7 @@
 
     botaoSom.addEventListener('click', function(e){
       e.stopPropagation();
-      somLigado = video.muted;                 // estava mudo -> ligar o som
+      window.dlSom.ligado = video.muted;       // estava mudo -> ligar o som
       aplicarSom(video);
       pintarSom();
       var q = video.play(); if(q && q.catch) q.catch(function(){});
@@ -884,8 +887,8 @@
   }
 
   function aplicarSom(v){
-    v.muted = !somLigado;
-    if(somLigado) v.removeAttribute('muted'); else v.setAttribute('muted','');
+    v.muted = !window.dlSom.ligado;
+    if(window.dlSom.ligado) v.removeAttribute('muted'); else v.setAttribute('muted','');
   }
 
   // sem interacao na pagina o browser recusa tocar com som. Ficamos a espera do primeiro
@@ -893,12 +896,12 @@
   var aEsperaDeGesto = false;
   var EVS_GESTO = ['pointerdown','touchstart','keydown'];
   function ligarSomNoPrimeiroGesto(){
-    if(aEsperaDeGesto || !somLigado) return;
+    if(aEsperaDeGesto || !window.dlSom.ligado) return;
     aEsperaDeGesto = true;
     var f = function(){
       EVS_GESTO.forEach(function(e){ document.removeEventListener(e, f); });
       aEsperaDeGesto = false;
-      if(activo<0 || !somLigado || emReels || !seccaoVisivel) return;
+      if(activo<0 || !window.dlSom.ligado || emReels || !seccaoVisivel) return;
       var v = paineis[activo].video;
       aplicarSom(v);
       var q = v.play(); if(q && q.catch) q.catch(function(){});
@@ -1215,7 +1218,8 @@
   // ---- Player de testemunhos: reels vertical fullscreen (mesma mecânica do portfólio) ----
   var tvViewer=document.getElementById('tstReelsViewer'), tvTrack=document.getElementById('tstReelsTrack'),
       tvClose=document.getElementById('tstReelsClose'), tvProg=document.getElementById('tstReelsProgress'),
-      tvHint=document.getElementById('tstReelsScrollHint'), tvHintTimer=null, lastFocus=null, tvSound=false;
+      tvHint=document.getElementById('tstReelsScrollHint'), tvHintTimer=null, lastFocus=null;
+  window.dlSom = window.dlSom || { ligado: true };
   var mutedIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
   var soundIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
 
@@ -1231,9 +1235,9 @@
     var muteBtn=document.createElement('button'); muteBtn.type='button'; muteBtn.className='reels-mute';
     muteBtn.setAttribute('aria-label','Ativar/desativar som'); muteBtn.innerHTML=mutedIcon;
     muteBtn.addEventListener('click',function(e){ e.stopPropagation();
-      tvSound=media.muted;                 // se estava mudo -> LIGAR som (preferência partilhada entre slides)
-      media.muted=!tvSound;
-      if(tvSound){ media.removeAttribute('muted'); var p=media.play(); if(p&&p.catch) p.catch(function(){}); } // iOS: re-play + tirar attr dentro do gesto
+      window.dlSom.ligado=media.muted;     // se estava mudo -> LIGAR som (preferência partilhada com o acordeão)
+      media.muted=!window.dlSom.ligado;
+      if(window.dlSom.ligado){ media.removeAttribute('muted'); var p=media.play(); if(p&&p.catch) p.catch(function(){}); } // iOS: re-play + tirar attr dentro do gesto
       else { media.setAttribute('muted',''); }
       muteBtn.innerHTML=media.muted?mutedIcon:soundIcon; });
     frame.appendChild(muteBtn);
@@ -1254,17 +1258,19 @@
       if(i===index){
         tvEnsureLoaded(i);
         // o som e definido ANTES do play: se so o fizermos depois, o video arranca mudo
-        s.media.muted=!tvSound;
-        if(tvSound) s.media.removeAttribute('muted'); else s.media.setAttribute('muted','');
+        s.media.muted=!window.dlSom.ligado;
+        if(window.dlSom.ligado) s.media.removeAttribute('muted'); else s.media.setAttribute('muted','');
         s.mute.innerHTML=s.media.muted?mutedIcon:soundIcon;
         var p=s.media.play();
         if(p&&p.catch) p.catch(function(err){
           // AbortError = fomos nos a pausar/trocar de slide, nao e bloqueio do browser
           if(err && err.name==='AbortError') return;
-          // o browser recusou tocar com som: repete mudo e acerta o icone
-          tvSound=false; s.media.muted=true; s.media.setAttribute('muted','');
+          // o browser recusou tocar com som: toca mudo, mas NAO desiste da preferencia —
+          // fica a espera do proximo gesto para voltar a ligar
+          s.media.muted=true; s.media.setAttribute('muted','');
           s.mute.innerHTML=mutedIcon;
           var q=s.media.play(); if(q&&q.catch) q.catch(function(){});
+          tvSomNoProximoGesto();
         });
       } else {
         s.media.pause();   // so um testemunho toca de cada vez
@@ -1278,10 +1284,30 @@
   tvTrack.addEventListener('scroll', function(){ if(tvScrollT) clearTimeout(tvScrollT);
     tvScrollT=setTimeout(function(){ var h=tvTrack.clientHeight; if(!h) return; var idx=Math.round(tvTrack.scrollTop/h); if(idx!==tvIndex) tvActivate(idx); }, 110); }, { passive:true });
 
+  // o browser so deixa tocar com som depois de haver interacao: se recusar, voltamos
+  // a tentar no gesto seguinte em vez de ficar mudo o resto da sessao
+  var tvAEsperaGesto=false;
+  function tvSomNoProximoGesto(){
+    if(tvAEsperaGesto || !window.dlSom.ligado) return;
+    tvAEsperaGesto=true;
+    var evs=['pointerdown','touchstart','keydown'];
+    var f=function(){
+      evs.forEach(function(e){ document.removeEventListener(e,f); });
+      tvAEsperaGesto=false;
+      if(!tvViewer.classList.contains('open') || !window.dlSom.ligado) return;
+      var s=tvSlides[tvIndex]; if(!s) return;
+      s.media.muted=false; s.media.removeAttribute('muted');
+      s.mute.innerHTML=soundIcon;
+      var q=s.media.play(); if(q&&q.catch) q.catch(function(){});
+    };
+    evs.forEach(function(e){ document.addEventListener(e,f,{passive:true}); });
+  }
+
   function tvHideHint(){ if(!tvHint) return; tvHint.classList.remove('show'); if(tvHintTimer){ clearTimeout(tvHintTimer); tvHintTimer=null; } tvTrack.removeEventListener('scroll',tvHideHint); }
   function openTstReels(index){ if(index<0||index==null) index=0; lastFocus=document.activeElement;
     if(window.tstCardVideo) window.tstCardVideo.pause();   // cala o card em auto-play
-    tvSound=true;                                          // abre sempre com som
+    // NAO forcamos o som aqui: a preferencia e partilhada com o acordeao e comeca
+    // ligada. Se o utilizador tiver silenciado, abrir o ecra completo respeita isso.
     tvViewer.classList.add('open'); document.body.style.overflow='hidden';
     tvTrack.scrollTop=tvSlides[index].el.offsetTop;
     // ativa ja aqui, ainda dentro do gesto que abriu o player: fora dele o browser
