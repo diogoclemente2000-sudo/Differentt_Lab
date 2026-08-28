@@ -146,9 +146,13 @@
 
     /* HERO */
     .page-hero {
-      position: relative; width: 100%; min-height: 100vh; background: #000; overflow: hidden;
+      position: relative; width: 100%; min-height: 100vh; overflow: hidden;
       padding: 0; display: flex; align-items: center;
+      /* a capa fica no contentor: enquanto o video nao arranca ve-se a capa, sem o
+         botao de play nativo do iOS por cima */
+      background: #000 url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/sociais-hero-poster.jpg') center/cover no-repeat;
     }
+    @media (max-width: 768px) { .page-hero { background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg'); } }
     .page-hero::after {
       content: ''; position: absolute; top: 44%; left: 27%; transform: translate(-50%, -50%);
       width: 720px; height: 720px;
@@ -156,7 +160,8 @@
       pointer-events: none; z-index: 1;
     }
     /* vídeo de fundo (desktop landscape / mobile portrait) */
-    .hero-v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+    .hero-v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .45s ease; }
+    .hero-v.tocando { opacity: 1; }
     .hero-v-mobile { display: none; }
     @media (max-width: 768px) {
       .hero-v-desktop { display: none; }
@@ -596,6 +601,19 @@
     }
   })();
   </script>
+    <script>
+    (function(){
+      var vs = document.querySelectorAll('.hero-v');
+      if(!vs.length) return;
+      Array.prototype.forEach.call(vs, function(v){
+        var mostrar = function(){ v.classList.add('tocando'); };
+        v.addEventListener('playing', mostrar);
+        v.addEventListener('timeupdate', function(){ if(!v.paused && v.currentTime > 0) mostrar(); });
+        v.addEventListener('pause', function(){ if(v.paused) v.classList.remove('tocando'); });
+        if(!v.paused && v.currentTime > 0) mostrar();
+      });
+    })();
+    </script>
 
   <div class="hero-layout">
 

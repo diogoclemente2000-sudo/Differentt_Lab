@@ -147,9 +147,11 @@
 
     /* HERO — iguais às regras e cores da home page */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
-    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    /* idem: a capa fica no contentor e o video so aparece quando esta a tocar */
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: #000 url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-poster.jpg') center/cover no-repeat; }
     .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
-    .hero-bg video.is-on { opacity: 1; }
+    .hero-bg video.is-on.tocando { opacity: 1; }
+    @media (max-width: 768px) { .hero-bg { background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg'); } }
     /* swap do vídeo de fundo: desktop por defeito, portrait no mobile */
     .hv-mobile { display: none; }
     @media (max-width: 768px) {
@@ -913,6 +915,19 @@
         }, { threshold: [0, 0.35, 1] });
         heroIO.observe(vids[0].parentElement);
       }
+    })();
+    </script>
+    <script>
+    (function(){
+      var vs = document.querySelectorAll('.hero-bg video');
+      if(!vs.length) return;
+      Array.prototype.forEach.call(vs, function(v){
+        var mostrar = function(){ v.classList.add('tocando'); };
+        v.addEventListener('playing', mostrar);
+        v.addEventListener('timeupdate', function(){ if(!v.paused && v.currentTime > 0) mostrar(); });
+        v.addEventListener('pause', function(){ if(v.paused) v.classList.remove('tocando'); });
+        if(!v.paused && v.currentTime > 0) mostrar();
+      });
     })();
     </script>
   </div>
