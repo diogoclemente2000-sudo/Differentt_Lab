@@ -208,7 +208,8 @@
 
     /* CLIENT LOGOS */
     .logos-section { padding: 160px 48px; }
-    .logos-label { font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; color: #fff; margin-bottom: 72px; text-align: center; line-height: 0.95; }
+    .logos-label { font-family: 'Nunito Sans', sans-serif; font-size: clamp(26px, 3.2vw, 42px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; color: #fff; margin-bottom: 14px; text-align: center; line-height: 0.95; }
+    .logos-sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto 64px; text-align: center; }
     .logos-grid { display: flex; align-items: center; justify-content: center; gap: 48px 40px; flex-wrap: wrap; max-width: 1120px; margin: 0 auto; }
     .logo-client { flex: 0 0 180px; height: 60px; display: flex; align-items: center; justify-content: center; opacity: 0.4; transition: opacity 0.25s; filter: brightness(10); }
     .logo-client:hover { opacity: 0.75; }
@@ -217,6 +218,8 @@
     /* SERVICES SECTION */
     .section { padding: 180px 48px; }
     .section-label { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 16px; text-align: center; }
+    .team-section .section-title { font-size: clamp(26px, 3.2vw, 42px); margin-bottom: 14px; }
+    .team-sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto 48px; text-align: center; }
     .section-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; margin-bottom: 20px; }
     .section-sub { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 480px; margin-bottom: 60px; text-align: center; margin-left: auto; margin-right: auto; }
 
@@ -403,7 +406,7 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     .section { padding: 100px 48px; }
-    .logos-label { font-size: clamp(28px, 4vw, 48px); }
+    .logos-label { font-size: clamp(26px, 3.2vw, 42px); }
   }
 
   /* ── TABLET 3D CANVAS (769px–1024px) ── */
@@ -463,7 +466,7 @@
 
     /* Typography */
     .section-title { font-size: clamp(26px, 7vw, 42px) !important; }
-    .logos-label   { font-size: clamp(26px, 7vw, 42px) !important; margin-bottom: 40px; }
+    .logos-label   { font-size: clamp(26px, 7vw, 42px) !important; margin-bottom: 14px; }
 
     /* Buttons */
     .btn-primary, .btn-outline { max-width: 320px; }
@@ -1294,8 +1297,8 @@
 
 <!-- TEAM SECTION -->
 <section class="team-section">
-  <div class="section-label" id="team-label">A nossa metodologia projetual divide-se em 4 etapas essenciais.</div>
   <h2 class="section-title">Conheça a equipa</h2>
+  <p class="team-sub" id="team-label">A nossa metodologia projetual divide-se em 4 etapas essenciais.</p>
 
   <div class="team-grid">
     <a href="./portfolio" class="team-card" style="text-decoration:none;color:inherit;">
@@ -1315,7 +1318,8 @@
 
 <!-- CLIENT LOGOS (movido para junto da constelação) -->
 <div class="logos-section" style="position:relative;z-index:1;">
-  <h2 class="logos-label">Marcas que confiam em nós</h2>
+  <h2 class="logos-label">Marcas que confiam</h2>
+  <p class="logos-sub">Os nossos clientes.</p>
   <div class="logos-grid">
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt="Moment Laser – venda e aluguer de equipamentos de estética – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
     <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt="Aroma Boreal – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
