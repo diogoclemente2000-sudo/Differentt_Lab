@@ -338,6 +338,11 @@
     .steps-fluxo .st-mini { font-family: 'Overpass', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: #d9b8d3; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
     .steps-fluxo .st-nome { font-family: 'Overpass', sans-serif; font-weight: 900; font-size: clamp(20px, 4.2vw, 28px); text-transform: uppercase; letter-spacing: 0.02em; color: #fff; margin: 0.7em 0 0.55em; text-shadow: 0 3px 18px rgba(0,0,0,0.9); }
     .steps-fluxo .st-desc { font-size: clamp(12px, 2.5vw, 13.5px); line-height: 1.62; color: rgba(255,255,255,0.84); text-shadow: 0 2px 12px rgba(0,0,0,0.92); }
+    /* botao "passo seguinte" — dentro do circulo, ao fundo */
+    .st-seg { position: absolute; left: 50%; bottom: 8.5%; transform: translateX(-50%); z-index: 4; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.22); background: rgba(8,6,11,0.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; display: grid; place-items: center; cursor: pointer; padding: 0; transition: border-color 0.25s, background 0.25s, transform 0.25s; }
+    .st-seg:hover { border-color: rgba(197,133,184,0.65); background: rgba(8,6,11,0.65); transform: translateX(-50%) scale(1.06); }
+    .st-seg:active { transform: translateX(-50%) scale(0.96); }
+    .st-seg:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
     .steps-fluxo.troca > * { animation: stepsFluir 1s cubic-bezier(0.22,1,0.36,1) both; }
     .steps-fluxo.troca > *:nth-child(2) { animation-delay: 0.06s; }
     .steps-fluxo.troca > *:nth-child(3) { animation-delay: 0.12s; }
@@ -1048,6 +1053,7 @@
       <div class="st-nome"></div>
       <p class="st-desc"></p>
     </div>
+    <button class="st-seg" type="button" aria-label="Passo seguinte"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
   </div>
   <div class="steps-saber">
     <a href="./metodos" style="display:inline-flex;align-items:center;font-family:'Overpass',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#9e7bb6;text-decoration:none;gap:6px;">Saber mais →</a>
@@ -1112,6 +1118,17 @@
 
     palco.addEventListener('mouseenter',function(){parado=true;});
     palco.addEventListener('mouseleave',function(){parado=false;});
+
+    // avancar sem esperar: sincroniza o relogio com o inicio do passo seguinte —
+    // o proximo frame troca a paleta/texto e o fio salta para a fracao certa
+    palco.querySelector('.st-seg').addEventListener('click',function(){
+      var i=(passo+1)%PASSOS.length;
+      if(vivo){ acum=i*POR_PASSO; ultimo=null; }
+      else { // sem motor (reduced-motion ou fora de vista): troca estatica
+        vestir(frente,PALETAS[i]); pintar(i,!reduzido); passo=i;
+        fio.style.strokeDashoffset=C*(1-(i+1)/PASSOS.length);
+      }
+    });
 
     vestir(frente,PALETAS[0]); pintar(0,false); passo=0;
     if(reduzido){ fio.style.strokeDashoffset=C*0.75; return; }
