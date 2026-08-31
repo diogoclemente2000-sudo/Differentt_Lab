@@ -895,7 +895,8 @@
 
     p.addEventListener('mouseenter', function(){ mostrar(k); });
     p.addEventListener('focus', function(){ mostrar(k); });
-    p.addEventListener('touchstart', function(){ mostrar(k); }, { passive:true });
+    // (sem touchstart aqui: ativava o painel debaixo do dedo a meio do swipe e
+    // entrava em corrida com o debounce de scroll — o som ficava num estado aleatorio)
     // o card inteiro abre o ecrã completo (não só o botão de play) — essencial no toque
     var abrir = function(){ mostrar(k); if(typeof window.openTstReels==='function') window.openTstReels(k); };
     p.addEventListener('click', abrir);
@@ -916,17 +917,22 @@
   // sem interacao na pagina o browser recusa tocar com som. Ficamos a espera do primeiro
   // gesto (um clique/toque em qualquer sitio) e ligamos o som ao painel que estiver a tocar.
   var aEsperaDeGesto = false;
-  var EVS_GESTO = ['pointerdown','touchstart','keydown'];
+  // pointerup (nao pointerdown): no fim do gesto ja se sabe onde o clique/toque foi
+  // parar, e nao disparamos a meio de um swipe contra o painel antigo
+  var EVS_GESTO = ['pointerup','keydown'];
   function ligarSomNoPrimeiroGesto(){
     if(aEsperaDeGesto || !window.dlSom.ligado) return;
     aEsperaDeGesto = true;
-    var f = function(){
+    var f = function(ev){
+      // um clique num botao de som decide sozinho: se este handler ligasse o som
+      // primeiro, o click do botao lia "ja tem som" e desligava-o (toggle invertido)
+      if(ev && ev.target && ev.target.closest && ev.target.closest('.rp-sound,.reels-mute')) return;
       EVS_GESTO.forEach(function(e){ document.removeEventListener(e, f); });
       aEsperaDeGesto = false;
       if(activo<0 || !window.dlSom.ligado || emReels || !seccaoVisivel) return;
       var v = paineis[activo].video;
       aplicarSom(v);
-      var q = v.play(); if(q && q.catch) q.catch(function(){});
+      var q = v.play(); if(q && q.catch) q.catch(function(){ ligarSomNoPrimeiroGesto(); });
       pintarSom();
     };
     EVS_GESTO.forEach(function(e){ document.addEventListener(e, f, { passive:true }); });
@@ -935,8 +941,30 @@
   // carrega o ficheiro so quando e preciso (os cinco videos nao sao descarregados a entrada)
   function garantirSrc(v){ if(!v.getAttribute('src')){ v.preload='auto'; v.setAttribute('src', v.dataset.src); v.load(); } }
 
+  // O iOS so deixa um <video> tocar com som se ESSE elemento ja tiver tocado dentro de
+  // um gesto. Os paineis 2-5 sao ativados pelo debounce de scroll (fora do gesto), por
+  // isso arrancavam sempre mudos. Ao primeiro toque no carrossel "benzemos" os cinco de
+  // uma vez (play mudo + pause imediato) — a partir dai o slide ja pode tocar com som.
+  var desbloqueado = false;
+  function desbloquearVideos(){
+    if(desbloqueado) return;
+    desbloqueado = true;
+    ['pointerdown','touchstart'].forEach(function(e){ acc.removeEventListener(e, desbloquearVideos); });
+    paineis.forEach(function(pn,i){
+      var v = pn.video;
+      if(i===activo || !v.paused) return;   // o que ja esta a tocar fica como esta
+      garantirSrc(v);
+      v.muted = true;
+      var q = v.play();
+      if(q && q.then) q.then(function(){ if(i!==activo) v.pause(); }).catch(function(){});
+    });
+  }
+  ['pointerdown','touchstart'].forEach(function(e){ acc.addEventListener(e, desbloquearVideos, { passive:true }); });
+
   function mostrar(k){
-    if(k===activo && !paineis[k].video.paused) return;
+    // so e um no-op se nada ha a fazer: mesmo painel, a tocar, e com o som conforme a
+    // preferencia — se tocar mudo com o som suposto ligado, cai para baixo e reaplica
+    if(k===activo && !paineis[k].video.paused && paineis[k].video.muted === !window.dlSom.ligado) return;
     activo = k;
     paineis.forEach(function(pn,i){
       pn.el.classList.toggle('on', i===k);
@@ -978,7 +1006,7 @@
         var d = Math.abs(c - meio);
         if(d < dist){ dist = d; melhor = i; }
       });
-      if(melhor !== activo) mostrar(melhor);
+      mostrar(melhor);   // mesmo que seja o mesmo painel, reaplica o som se estiver trocado
     }, 110);
   }, { passive:true });
 
@@ -1376,19 +1404,22 @@
 
   // o browser so deixa tocar com som depois de haver interacao: se recusar, voltamos
   // a tentar no gesto seguinte em vez de ficar mudo o resto da sessao
-  var tvAEsperaGesto=false;
+  var tvAEsperaGesto=false, tvDesbloqueado=false;
   function tvSomNoProximoGesto(){
     if(tvAEsperaGesto || !window.dlSom.ligado) return;
     tvAEsperaGesto=true;
-    var evs=['pointerdown','touchstart','keydown'];
-    var f=function(){
+    var evs=['pointerup','keydown'];
+    var f=function(ev){
+      // o botao de som decide sozinho — se ligassemos aqui primeiro, o click dele
+      // lia "ja tem som" e desligava (toggle invertido)
+      if(ev && ev.target && ev.target.closest && ev.target.closest('.reels-mute,.rp-sound')) return;
       evs.forEach(function(e){ document.removeEventListener(e,f); });
       tvAEsperaGesto=false;
       if(!tvViewer.classList.contains('open') || !window.dlSom.ligado) return;
       var s=tvSlides[tvIndex]; if(!s) return;
       s.media.muted=false; s.media.removeAttribute('muted');
       s.mute.innerHTML=soundIcon;
-      var q=s.media.play(); if(q&&q.catch) q.catch(function(){});
+      var q=s.media.play(); if(q&&q.catch) q.catch(function(){ tvSomNoProximoGesto(); });
     };
     evs.forEach(function(e){ document.addEventListener(e,f,{passive:true}); });
   }
@@ -1399,6 +1430,14 @@
     // NAO forcamos o som aqui: a preferencia e partilhada com o acordeao e comeca
     // ligada. Se o utilizador tiver silenciado, abrir o ecra completo respeita isso.
     tvViewer.classList.add('open'); document.body.style.overflow='hidden';
+    // benze os cinco videos ainda dentro do gesto que abriu o player (play mudo +
+    // pause): no iOS, sem isto, o slide seguinte — ativado fora do gesto pelo
+    // scroll — recusava tocar com som e caia para mudo
+    if(!tvDesbloqueado){ tvDesbloqueado=true;
+      tvSlides.forEach(function(s,i){ if(i===index) return;
+        tvEnsureLoaded(i); s.media.muted=true;
+        var q=s.media.play(); if(q&&q.then) q.then(function(){ if(i!==tvIndex) s.media.pause(); }).catch(function(){}); });
+    }
     tvTrack.scrollTop=tvSlides[index].el.offsetTop;
     // ativa ja aqui, ainda dentro do gesto que abriu o player: fora dele o browser
     // recusa o play com som e cairia para mudo
