@@ -787,9 +787,6 @@
     /* botão de som do primeiro card (vídeo em auto-play) */
     #reels-panels .rp-sound{ position:absolute; top:14px; right:14px; z-index:6; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.5); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); display:grid; place-items:center; cursor:pointer; color:#fff; padding:0; }
     #reels-panels .rp-sound:hover{ background:rgba(0,0,0,.7); }
-    /* dica visivel enquanto o browser bloqueia o som (antes do 1o clique na pagina) */
-    #reels-panels .rp-som-dica{ position:absolute; top:20px; right:56px; z-index:6; font-family:'Overpass',sans-serif; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.18); border-radius:100px; padding:6px 11px; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); opacity:0; pointer-events:none; transition:opacity .3s; white-space:nowrap; cursor:pointer; }
-    #reels-panels .rp-p.on.som-bloqueado .rp-som-dica{ opacity:1; pointer-events:auto; transition-delay:.16s; }
     /* o botao de som so faz sentido no painel que esta a tocar */
     #reels-panels .rp-p .rp-sound{ opacity:0; pointer-events:none; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-sound{ opacity:1; pointer-events:auto; transition-delay:.16s; }
@@ -876,7 +873,6 @@
     p.innerHTML=
       '<video class="rp-fill" data-src="'+VBASE+VID[k]+'" poster="'+poster(c.f)+'" loop playsinline webkit-playsinline preload="none" aria-label="Testemunho de '+c.name+' — '+c.org+'"></video>'+
       '<button class="rp-sound" type="button" aria-label="Ligar ou desligar o som">'+SND_OFF+'</button>'+
-      '<span class="rp-som-dica" role="button" tabindex="-1">Ativar som</span>'+
       '<div class="rp-vig"></div>'+
       '<span class="rp-vlabel">'+c.org+'</span>'+
       '<span class="rp-mini">'+MINI+'</span>'+
@@ -897,15 +893,6 @@
       var q = video.play(); if(q && q.catch) q.catch(function(){});
     });
 
-    // a dica so LIGA (nunca faz toggle): clicar nela e o proprio gesto que o browser exige
-    p.querySelector('.rp-som-dica').addEventListener('click', function(e){
-      e.stopPropagation();
-      window.dlSom.ligado = true;
-      aplicarSom(video);
-      pintarSom();
-      var q = video.play(); if(q && q.catch) q.catch(function(){});
-    });
-
     p.addEventListener('mouseenter', function(){ mostrar(k); });
     p.addEventListener('focus', function(){ mostrar(k); });
     // (sem touchstart aqui: ativava o painel debaixo do dedo a meio do swipe e
@@ -919,12 +906,7 @@
   });
 
   function pintarSom(){
-    paineis.forEach(function(pn,i){
-      var aqui = (i===activo);
-      pn.som.innerHTML = (aqui && !pn.video.muted) ? SND_ON : SND_OFF;
-      // mostra a dica quando o utilizador QUER som mas o browser ainda o bloqueia
-      pn.el.classList.toggle('som-bloqueado', aqui && pn.video.muted && window.dlSom.ligado && !emReels);
-    });
+    paineis.forEach(function(pn,i){ pn.som.innerHTML = (i===activo && !pn.video.muted) ? SND_ON : SND_OFF; });
   }
 
   function aplicarSom(v){
@@ -932,29 +914,33 @@
     if(window.dlSom.ligado) v.removeAttribute('muted'); else v.setAttribute('muted','');
   }
 
-  // sem interacao na pagina o browser recusa tocar com som. Ficamos a espera do primeiro
-  // gesto (um clique/toque em qualquer sitio) e ligamos o som ao painel que estiver a tocar.
-  var aEsperaDeGesto = false;
-  // pointerup (nao pointerdown): no fim do gesto ja se sabe onde o clique/toque foi
-  // parar, e nao disparamos a meio de um swipe contra o painel antigo
-  var EVS_GESTO = ['pointerup','keydown'];
-  function ligarSomNoPrimeiroGesto(){
-    if(aEsperaDeGesto || !window.dlSom.ligado) return;
-    aEsperaDeGesto = true;
-    var f = function(ev){
-      // um clique num botao de som decide sozinho: se este handler ligasse o som
-      // primeiro, o click do botao lia "ja tem som" e desligava-o (toggle invertido)
-      if(ev && ev.target && ev.target.closest && ev.target.closest('.rp-sound,.reels-mute,.rp-som-dica')) return;
-      EVS_GESTO.forEach(function(e){ document.removeEventListener(e, f); });
-      aEsperaDeGesto = false;
-      if(activo<0 || !window.dlSom.ligado || emReels || !seccaoVisivel) return;
-      var v = paineis[activo].video;
-      aplicarSom(v);
-      var q = v.play(); if(q && q.catch) q.catch(function(){ ligarSomNoPrimeiroGesto(); });
+  // sem interacao na pagina o browser recusa tocar com som. Em vez de esperar por UM
+  // primeiro gesto, tentamos ligar o som dentro de CADA gesto enquanto estiver bloqueado:
+  // - touchend: dispara no fim de cada flick de scroll no telemovel (o pointerup nao —
+  //   um scroll por toque acaba em pointercancel) e o iOS aceita play() com som
+  //   chamado sincronamente dentro dele -> o som liga durante o proprio scroll
+  // - pointerdown/pointerup: cliques e arrasto da barra de scroll no desktop
+  // Os listeners sao permanentes; quando o som ja esta ligado saem logo no inicio.
+  var EVS_GESTO = ['pointerdown','pointerup','touchend','keydown'];
+  function tentarLigarSom(ev){
+    if(!window.dlSom.ligado || emReels || !seccaoVisivel || activo<0) return;
+    // um clique num botao de som decide sozinho: se ligassemos aqui primeiro, o click
+    // do botao lia "ja tem som" e desligava-o (toggle invertido)
+    if(ev && ev.target && ev.target.closest && ev.target.closest('.rp-sound,.reels-mute')) return;
+    var v = paineis[activo].video;
+    if(!v.muted && !v.paused) return;   // ja toca com som — nada a fazer
+    garantirSrc(v);
+    aplicarSom(v);
+    var q = v.play();
+    if(q && q.catch) q.catch(function(err){
+      if(err && err.name==='AbortError') return;
+      v.muted = true; v.setAttribute('muted','');
+      var r = v.play(); if(r && r.catch) r.catch(function(){});
       pintarSom();
-    };
-    EVS_GESTO.forEach(function(e){ document.addEventListener(e, f, { passive:true }); });
+    });
+    pintarSom();
   }
+  EVS_GESTO.forEach(function(e){ document.addEventListener(e, tentarLigarSom, { passive:true }); });
 
   // carrega o ficheiro so quando e preciso (os cinco videos nao sao descarregados a entrada)
   function garantirSrc(v){ if(!v.getAttribute('src')){ v.preload='auto'; v.setAttribute('src', v.dataset.src); v.load(); } }
@@ -996,12 +982,11 @@
     if(pr && pr.catch) pr.catch(function(err){
       // AbortError = fomos nos a pausar/trocar de painel, nao e bloqueio do browser
       if(emReels || (err && err.name==='AbortError')) return;
-      // o browser recusou tocar com som (ainda nao houve interacao na pagina): toca mudo,
-      // MAS nao desiste do som — volta a liga-lo assim que houver um gesto
+      // o browser recusou tocar com som (ainda nao houve interacao na pagina): toca mudo;
+      // os listeners permanentes de gesto (tentarLigarSom) religam-no assim que puderem
       v.muted = true; v.setAttribute('muted','');
       pintarSom();
       var q = v.play(); if(q && q.catch) q.catch(function(){});
-      ligarSomNoPrimeiroGesto();
     });
     pintarSom();
   }
@@ -1426,11 +1411,11 @@
   function tvSomNoProximoGesto(){
     if(tvAEsperaGesto || !window.dlSom.ligado) return;
     tvAEsperaGesto=true;
-    var evs=['pointerup','keydown'];
+    var evs=['pointerup','touchend','keydown'];
     var f=function(ev){
       // o botao de som decide sozinho — se ligassemos aqui primeiro, o click dele
       // lia "ja tem som" e desligava (toggle invertido)
-      if(ev && ev.target && ev.target.closest && ev.target.closest('.reels-mute,.rp-sound,.rp-som-dica')) return;
+      if(ev && ev.target && ev.target.closest && ev.target.closest('.reels-mute,.rp-sound')) return;
       evs.forEach(function(e){ document.removeEventListener(e,f); });
       tvAEsperaGesto=false;
       if(!tvViewer.classList.contains('open') || !window.dlSom.ligado) return;
