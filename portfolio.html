@@ -170,6 +170,9 @@
     .proj-item-cat { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
     .proj-item-cat::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: #9e7bb6; flex-shrink: 0; }
     .proj-item-name { font-family: 'Nunito Sans', sans-serif; font-size: clamp(20px, 2.2vw, 30px); font-weight: 300; text-transform: uppercase; letter-spacing: 0.02em; color: #fff; line-height: 1; }
+    /* tag Desenvolvimento Web: cards com tamanho uniforme (so nesta vista) */
+    #portfolioGrid[data-filter="web"] .proj-item { aspect-ratio: 4 / 5; }
+    #portfolioGrid[data-filter="web"] .proj-item-img { height: 100%; object-fit: cover; object-position: center; }
 
     /* CTA */
     .cta-bar { padding: 80px 48px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; gap: 40px; }
@@ -330,7 +333,7 @@
       </div>
     </a>
     <a class="proj-item l-portrait" data-category="web" href="./projeto?p=zeetelecom">
-      <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1200,q_auto:eco,f_auto/Website_photos/work%20individual%20pages/zeetelecom/Proposta4.png" alt="ZeeTelecom – Desenvolvimento Web | Differentt Lab">
+      <img loading="lazy" decoding="async" class="proj-item-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1200,q_auto:eco,f_auto/Website_photos/work%20individual%20pages/zeetelecom/Proposta4-11.png" alt="ZeeTelecom – Desenvolvimento Web | Differentt Lab">
       <div class="proj-item-overlay"></div>
       <div class="proj-item-info">
         <div class="proj-item-cat">Desenvolvimento Web</div>
@@ -602,6 +605,7 @@
   }
 
   function filterItems(filter) {
+    grid.dataset.filter = filter;
     allItems.forEach(item => {
       const match = filter === 'all' || item.dataset.category.split(' ').includes(filter);
       item.classList.toggle('hidden', !match);
