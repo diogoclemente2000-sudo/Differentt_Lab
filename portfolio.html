@@ -170,9 +170,6 @@
     .proj-item-cat { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
     .proj-item-cat::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: #9e7bb6; flex-shrink: 0; }
     .proj-item-name { font-family: 'Nunito Sans', sans-serif; font-size: clamp(20px, 2.2vw, 30px); font-weight: 300; text-transform: uppercase; letter-spacing: 0.02em; color: #fff; line-height: 1; }
-    /* tag Desenvolvimento Web: cards com tamanho uniforme (so nesta vista) */
-    #portfolioGrid[data-filter="web"] .proj-item { aspect-ratio: 16 / 9; }
-    #portfolioGrid[data-filter="web"] .proj-item-img { height: 100%; object-fit: cover; object-position: center; }
 
     /* CTA */
     .cta-bar { padding: 80px 48px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; gap: 40px; }
@@ -213,6 +210,9 @@
       .portfolio-section { padding: 0 8px 80px; }
       .proj-item { border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 12px !important; overflow: hidden !important; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black); }
       .portfolio-grid { columns: 1; }
+      /* mobile: todos os cards em 16:9 uniforme (mais pratico em coluna unica) */
+      .proj-item { aspect-ratio: 16 / 9; }
+      .proj-item-img { height: 100%; object-fit: cover; }
       .cta-bar { flex-direction: column; align-items: flex-start; padding: 60px 24px; }
       footer { padding: 48px 24px 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
