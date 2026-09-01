@@ -366,7 +366,14 @@
       .steps-grid4 .step-orb4:nth-child(2) .steps-grupo > i { animation-delay: -4s; }
       .steps-grid4 .step-orb4:nth-child(3) .steps-grupo > i { animation-delay: -8s; }
       .steps-grid4 .step-orb4:nth-child(4) .steps-grupo > i { animation-delay: -12s; }
+      /* entrada: os orbes saem do primeiro e deslizam na horizontal, em cascata */
+      .steps-grid4 .step-orb4 { opacity: 0; transform: translateX(-30px) scale(0.93); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+      .steps-grid4 .step-orb4:nth-child(2) { transform: translateX(-62px) scale(0.93); transition-delay: 0.1s; }
+      .steps-grid4 .step-orb4:nth-child(3) { transform: translateX(-94px) scale(0.93); transition-delay: 0.2s; }
+      .steps-grid4 .step-orb4:nth-child(4) { transform: translateX(-126px) scale(0.93); transition-delay: 0.3s; }
+      .steps-grid4.in .step-orb4 { opacity: 1; transform: none; }
     }
+    @media (prefers-reduced-motion: reduce) { .steps-grid4 .step-orb4 { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
     /* TEAM SECTION */
     .team-section { padding: 180px 48px; }
@@ -1199,6 +1206,14 @@
             '</div>';
     }
     grid.innerHTML=html;
+    // entrada em cascata quando a seccao aparece (uma vez)
+    var reduz=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if('IntersectionObserver' in window && !reduz){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting){ grid.classList.add('in'); io.disconnect(); }
+      });},{threshold:0.3});
+      io.observe(grid);
+    } else { grid.classList.add('in'); }
   })();
   </script>
 </section>
