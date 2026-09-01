@@ -884,7 +884,7 @@
     { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. A agenda de tratamentos cresceu de verdade.' },
     { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote:'Deram forma à minha marca pessoal — vídeos de posicionamento, mais interação e um programa próprio para clientes.' }
   ];
-  var PLAY='<svg width="23" height="23" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" style="margin-left:2px"><path d="M8 5.2v13.6l11-6.8z"/></svg>';
+  var PLAY='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
   var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg>';
   var acc=document.getElementById('rpAcc'); if(!acc) return;
   // vídeos dos testemunhos (mesma ordem do RP) — o primeiro card reproduz em auto-play
@@ -913,7 +913,7 @@
       '<span class="rp-mini">'+MINI+'</span>'+
       '<div class="rp-badge">'+(c.mono?'<span class="rp-av mono"><b>'+c.mono+'</b></span>':'<span class="rp-av"><img src="'+avatarUrl(c)+'" alt="'+c.org+'" loading="lazy"></span>')+'<b>'+c.org+'</b></div>'+
       '<div class="rp-dur">'+c.dur+'</div>'+
-      '<button class="rp-play" type="button" aria-label="Ver testemunho de '+c.name+'">'+PLAY+'</button>'+
+      '<button class="rp-play" type="button" aria-label="Ver em ecrã completo — '+c.name+'">'+PLAY+'</button>'+
       '<div class="rp-cap"><div class="rp-q">'+c.quote+'</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
 
     var video = p.querySelector('video.rp-fill');
