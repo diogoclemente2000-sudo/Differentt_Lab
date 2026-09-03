@@ -1572,22 +1572,24 @@
     #reviews-section .grev-eyebrow::before, #reviews-section .grev-eyebrow::after { content:''; display:block; width:32px; height:1px; background:rgba(255,255,255,0.25); }
     #reviews-section .grev-pill { display:inline-flex; align-items:center; gap:14px; background:transparent; padding:0; box-shadow:none; }
     #reviews-section .grev-avatars { display:flex; align-items:center; }
-    #reviews-section .grev-av { width:40px; height:40px; border-radius:50%; overflow:hidden; margin-left:-11px; box-shadow:0 0 0 2px #0a0a0a, 0 3px 8px rgba(0,0,0,0.45); background:#fff; flex-shrink:0; }
+    #reviews-section .grev-av { width:40px; height:40px; border-radius:50%; overflow:hidden; margin-left:-11px; box-shadow:0 0 0 1px rgba(255,255,255,0.55), 0 0 0 3px #0a0a0a, 0 3px 8px rgba(0,0,0,0.45); background:#fff; flex-shrink:0; }
     #reviews-section .grev-av:first-child { margin-left:0; }
     #reviews-section .grev-av img { width:100%; height:100%; object-fit:cover; display:block; }
     #reviews-section .grev-av--g { display:grid; place-items:center; }
     #reviews-section .grev-rating { display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
-    #reviews-section .grev-stars { display:inline-flex; flex-direction:row; flex-wrap:nowrap; align-items:center; gap:1.5px; line-height:0; flex-shrink:0; }
+    #reviews-section .grev-stars { display:inline-flex; flex-direction:row; flex-wrap:nowrap; align-items:center; gap:1.5px; line-height:0; flex-shrink:0; position:relative; }
+    #reviews-section .grev-stars::before { content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:118%; height:240%; background:radial-gradient(ellipse at center, rgba(251,188,5,0.5) 0%, rgba(251,188,5,0.15) 45%, transparent 72%); filter:blur(6px); z-index:0; pointer-events:none; }
+    #reviews-section .grev-stars svg { position:relative; z-index:1; }
     #reviews-section .grev-stars svg, #reviews-section .rc-stars svg { display:block; flex-shrink:0; }
     #reviews-section .grev-count { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:600; color:#fff; }
-    #reviews-section .rc { background:#fff; border-radius: 16px; padding: 22px 24px; width: 350px; flex-shrink:0; box-shadow: 0 14px 40px rgba(0,0,0,0.4); display:flex; flex-direction:column; text-decoration:none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    #reviews-section .rc { background: linear-gradient(150deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.04) 100%); border:1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 22px 24px; width: 350px; flex-shrink:0; box-shadow: 0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12); display:flex; flex-direction:column; text-decoration:none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
     #reviews-section .rc:hover { transform: translateY(-4px); box-shadow: 0 20px 52px rgba(0,0,0,0.5); }
     #reviews-section .rc-top { display:flex; align-items:center; gap:12px; }
     #reviews-section .rc-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Nunito Sans',sans-serif; font-weight:700; font-size:17px; flex-shrink:0; }
     #reviews-section .rc-meta { min-width:0; flex:1; }
-    #reviews-section .rc-name { font-family:'Nunito Sans',sans-serif; font-size:14px; font-weight:700; color:#202124; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #reviews-section .rc-name { font-family:'Nunito Sans',sans-serif; font-size:14px; font-weight:700; color:#fff; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     #reviews-section .rc-stars { display:inline-flex; align-items:center; gap:1px; line-height:0; margin-top:5px; }
-    #reviews-section .rc-text { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:400; line-height:1.65; color:#5F6368; margin:15px 0 0; }
+    #reviews-section .rc-text { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:400; line-height:1.65; color:rgba(255,255,255,0.72); margin:15px 0 0; }
     #reviews-section .row-left, #reviews-section .row-right { display:flex; gap:20px; width:max-content; }
     #reviews-section .grev-cta { text-align:center; margin-top:44px; padding: 0 24px; }
     #reviews-section .grev-cta a { display:inline-flex; align-items:center; gap:10px; font-family:'Overpass',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color: rgba(255,255,255,0.7); text-decoration:none; transition: color 0.2s; }
