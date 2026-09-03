@@ -67,7 +67,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-x: hidden; }
-    body { background: linear-gradient(45deg, #000000 0%, #080808 25%, #030303 50%, #0a0a0a 75%, #000000 100%); min-height: 100vh; color: #fff; font-family: 'Nunito Sans', sans-serif; }
+    body { background: linear-gradient(45deg, #000000 0%, #030303 25%, #010101 50%, #040404 75%, #000000 100%); min-height: 100vh; color: #fff; font-family: 'Nunito Sans', sans-serif; }
     .site-wrap { max-width: 1750px; margin: 0 auto; overflow: visible; }
 
     /* NAV */
@@ -219,7 +219,7 @@
     }
       /* FOOTER NOVO — grelha estilo referencia (desktop compacto; tablet/mobile maior) */
     .ft-grid { display: grid; grid-template-columns: 1.35fr 0.9fr 0.9fr; gap: 56px; max-width: 1160px; margin: 0 auto; padding: 12px 0 44px; }
-    .ft-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.7); max-width: 420px; margin: 20px 0 4px; }
+    .ft-desc { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.84); max-width: 420px; margin: 20px 0 4px; }
     .ft-contacts { list-style: none; padding: 0; margin: 0; }
     .ft-contacts li { display: flex; align-items: flex-start; gap: 13px; margin-top: 16px; }
     .ft-ico { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
@@ -242,8 +242,8 @@
     .ft-bottom a:hover { color: #9e7bb6; }
     .ft-social--mob { display: none; }
     @media (max-width: 1024px) {
-      footer { padding-left: clamp(40px, 8vw, 88px); padding-right: clamp(40px, 8vw, 88px); }
-      .ft-desc { font-size: 15.5px; margin: 22px 0 6px; }
+      footer { padding-left: clamp(56px, 11vw, 120px); padding-right: clamp(56px, 11vw, 120px); }
+      .ft-desc { font-size: 15.5px; line-height: 1.5; margin: 22px 0 6px; }
       .ft-contacts li { margin-top: 22px; gap: 14px; }
       .ft-ico { width: 46px; height: 46px; border-radius: 12px; }
       .ft-ico svg { width: 20px; height: 20px; }
@@ -258,6 +258,26 @@
       .ft-bottom p { font-size: 14px; }
     }
     @media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
+    /* FOOTER — ajustes estilo referencia: Satoshi Regular, icons menores, mais respiro, texto estreito */
+    .ft-desc, .ft-c-main, .ft-c-main a, .ft-c-sub, .ft-links a, .ft-bottom p, .ft-bottom a { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; }
+    .ft-desc { color: rgba(255,255,255,0.92); }
+    @media (max-width: 1024px) {
+      .ft-ico { width: 32px; height: 32px; border-radius: 9px; }
+      .ft-ico svg { width: 15px; height: 15px; }
+      .ft-social a { width: 32px; height: 32px; border-radius: 9px; }
+      .ft-social a svg { width: 15px; height: 15px; }
+      .ft-desc { margin: 26px 0 0; line-height: 1.35; }
+      .ft-contacts { margin-top: 26px; }
+      .ft-contacts li { margin-top: 22px; gap: 9px; }
+      .ft-social { margin-top: 34px; }
+      .ft-c-main, .ft-c-main a { font-size: 14px; }
+      .ft-c-sub { font-size: 11.5px; }
+    }
+    @media (max-width: 900px) {
+      .ft-grid { gap: 60px; }
+      .ft-desc { max-width: 250px; }
+      .ft-c-main { max-width: 230px; }
+    }
   </style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -568,16 +588,30 @@
 <!-- COOKIE CONSENT -->
 <a href="https://wa.me/351910185220" target="_blank" rel="noopener" id="whatsapp-btn" title="Fala connosco no WhatsApp" style="position:fixed;bottom:40px;right:40px;z-index:9998;width:48px;height:48px;border-radius:50%;background:rgba(10,10,10,0.5);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);border:1.5px solid rgba(255,255,255,0.42);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,0.4);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;"><svg width="23" height="23" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 <style>#whatsapp-btn:hover{transform:translateY(-3px);background:rgba(14,14,14,0.62);border-color:rgba(255,255,255,0.55);box-shadow:0 16px 34px rgba(0,0,0,0.45);}</style>
-<style>#cookie-banner .ck-rej,#cookie-banner .ck-acc{transition:background .3s ease,transform .3s ease}#cookie-banner .ck-rej:hover,#cookie-banner .ck-rej:focus-visible{background:transparent padding-box,linear-gradient(135deg,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.4) 100%) border-box!important;transform:translateY(-2px)}#cookie-banner .ck-acc:hover,#cookie-banner .ck-acc:focus-visible{transform:translateY(-2px)}</style>
-<div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 28px;align-items:center;gap:24px;max-width:700px;width:calc(100% - 48px);box-shadow:0 8px 40px rgba(0,0,0,0.6);">
-  <p style="font-family:'Nunito Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;flex:1;">Usamos cookies para melhorar a tua experiência. <a href="./privacidade#cookies" style="color:#9e7bb6;text-decoration:none;">Saber mais</a></p>
-  <div style="display:flex;gap:10px;flex-shrink:0;">
-    <button class="ck-rej" onclick="cookieConsent('reject')" style="font-family:'Overpass',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:12px 24px;border-radius:11px;border:1.5px solid transparent;background:linear-gradient(145deg,#070707 0%,#0d0d0d 100%) padding-box,linear-gradient(135deg,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.4) 100%) border-box;color:#fff;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,0.4);">Rejeitar</button>
-    <button class="ck-acc" onclick="cookieConsent('accept')" style="font-family:'Overpass',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:12px 24px;border-radius:11px;border:1.5px solid transparent;background:linear-gradient(145deg,#060608 0%,#0c0912 52%,rgba(158,123,182,0.17) 128%) padding-box,linear-gradient(135deg,#c585b8 0%,#9e7bb6 100%) border-box;color:#fff;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,0.4);">Aceitar</button>
+<style>/* cookies — cartao no canto inferior direito */
+#cookie-banner{display:none;position:fixed;bottom:24px;right:24px;z-index:10001;max-width:390px;background:#151515;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,0.6);font-family:'Satoshi','Nunito Sans',sans-serif;}
+#cookie-banner h4{font-family:'Satoshi','Nunito Sans',sans-serif;font-size:17px;font-weight:700;color:#fff;margin:0 0 10px;}
+#cookie-banner p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.65);margin:0 0 16px;}
+#cookie-banner p a{color:#c585b8;text-decoration:none;font-weight:700;}
+#cookie-banner p a:hover{text-decoration:underline;}
+.ck-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.ck-btn{font-family:'Satoshi','Nunito Sans',sans-serif;font-size:13px;font-weight:700;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;line-height:1;transition:transform .2s, filter .2s;}
+.ck-btn:hover,.ck-btn:focus-visible{transform:translateY(-1px);filter:brightness(1.07);outline:none;}
+.ck-light{background:#ececec;color:#141414;}
+.ck-pink{background:#c585b8;color:#fff;}
+@media (max-width:600px){#cookie-banner{left:16px;right:16px;bottom:16px;max-width:none;}}
+</style>
+<div id="cookie-banner">
+  <h4>Definições de Cookies</h4>
+  <p>Usamos cookies para melhorar a tua experiência, analisar o tráfego do site e personalizar conteúdos. Sabe mais na nossa <a href="./privacidade#cookies">Política de Cookies</a>.</p>
+  <div class="ck-btns">
+    <button class="ck-btn ck-light" onclick="cookieConsent('reject')">Rejeitar todos</button>
+    <a class="ck-btn ck-light" href="./privacidade#cookies" style="text-decoration:none;display:inline-block;">Personalizar</a>
+    <button class="ck-btn ck-pink" onclick="cookieConsent('accept')">Aceitar todos</button>
   </div>
 </div>
 <script>
-  (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='flex'; })();
+  (function(){ if(!localStorage.getItem('cookie_consent')) document.getElementById('cookie-banner').style.display='block'; })();
   function cookieConsent(v){ localStorage.setItem('cookie_consent',v); document.getElementById('cookie-banner').style.display='none'; }
 </script>
 <script>
