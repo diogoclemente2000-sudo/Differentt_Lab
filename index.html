@@ -1582,12 +1582,12 @@
     #reviews-section .grev-rating { display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
     #reviews-section .grev-stars { display:inline-flex; flex-direction:row; flex-wrap:nowrap; align-items:center; gap:1.5px; line-height:0; flex-shrink:0; }
     /* blur amarelo atras de cada estrela (glow individual, suave) */
-    #reviews-section .grev-stars svg { filter: drop-shadow(0 0 2px rgba(251,188,5,0.55)) drop-shadow(0 0 5px rgba(251,188,5,0.22)); opacity:0; transform:scale(0.4); transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1); }
+    #reviews-section .grev-stars svg { filter: drop-shadow(0 0 2px rgba(251,188,5,0.55)) drop-shadow(0 0 5px rgba(251,188,5,0.22)); opacity:0; transform:scale(0.4); transition:opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
     /* entrada: as estrelas aparecem uma de cada vez */
-    #reviews-section .grev-stars svg:nth-child(2){ transition-delay:.12s; }
-    #reviews-section .grev-stars svg:nth-child(3){ transition-delay:.24s; }
-    #reviews-section .grev-stars svg:nth-child(4){ transition-delay:.36s; }
-    #reviews-section .grev-stars svg:nth-child(5){ transition-delay:.48s; }
+    #reviews-section .grev-stars svg:nth-child(2){ transition-delay:.22s; }
+    #reviews-section .grev-stars svg:nth-child(3){ transition-delay:.44s; }
+    #reviews-section .grev-stars svg:nth-child(4){ transition-delay:.66s; }
+    #reviews-section .grev-stars svg:nth-child(5){ transition-delay:.88s; }
     #reviews-section .grev-stars.in svg{ opacity:1; transform:scale(1); }
     @media (prefers-reduced-motion: reduce){ #reviews-section .grev-stars svg{ opacity:1 !important; transform:none !important; transition:none !important; } }
     #reviews-section .grev-stars svg, #reviews-section .rc-stars svg { display:block; flex-shrink:0; }
