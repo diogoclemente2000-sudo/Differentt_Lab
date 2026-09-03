@@ -218,8 +218,52 @@
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-nav { grid-template-columns: repeat(2, 1fr); }
     }
+      /* FOOTER NOVO — grelha estilo referencia (desktop compacto; tablet/mobile maior) */
+    .ft-grid { display: grid; grid-template-columns: 1.35fr 0.9fr 0.9fr; gap: 56px; max-width: 1160px; margin: 0 auto; padding: 12px 0 44px; }
+    .ft-desc { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.7); max-width: 420px; margin: 20px 0 4px; }
+    .ft-contacts { list-style: none; padding: 0; margin: 0; }
+    .ft-contacts li { display: flex; align-items: flex-start; gap: 13px; margin-top: 16px; }
+    .ft-ico { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+    .ft-ico svg { width: 17px; height: 17px; }
+    .ft-c-main, .ft-c-main a { font-size: 14.5px; color: #fff; line-height: 1.5; text-decoration: none; }
+    .ft-c-main a:hover { color: #c585b8; }
+    .ft-c-sub { font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 16.5px; font-weight: 700; color: #9e7bb6; margin: 4px 0; }
+    .ft-links { list-style: none; padding: 0; margin: 0; }
+    .ft-links li { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-links a { display: block; padding: 11px 0; font-size: 14.5px; color: rgba(255,255,255,0.78); text-decoration: none; transition: color .2s; }
+    .ft-links a:hover { color: #fff; }
+    .ft-social { display: flex; gap: 9px; margin-top: 22px; }
+    .ft-social a { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; transition: background .2s, transform .2s; }
+    .ft-social a svg { width: 17px; height: 17px; }
+    .ft-social a:hover, .ft-social a:focus-visible { background: rgba(255,255,255,0.16); transform: translateY(-2px); outline: none; }
+    .ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); margin: 0 auto; padding: 24px 0 0; text-align: center; }
+    .ft-bottom p { font-size: 13px; color: rgba(255,255,255,0.5); margin: 0 0 6px; }
+    .ft-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .ft-bottom a:hover { color: #9e7bb6; }
+    .ft-social--mob { display: none; }
+    @media (max-width: 1024px) {
+      footer { padding-left: clamp(40px, 8vw, 88px); padding-right: clamp(40px, 8vw, 88px); }
+      .ft-desc { font-size: 15.5px; margin: 22px 0 6px; }
+      .ft-contacts li { margin-top: 22px; gap: 14px; }
+      .ft-ico { width: 46px; height: 46px; border-radius: 12px; }
+      .ft-ico svg { width: 20px; height: 20px; }
+      .ft-c-main, .ft-c-main a { font-size: 16px; }
+      .ft-c-sub { font-size: 12.5px; margin-top: 3px; }
+      .ft-col h3 { font-size: 19px; margin: 6px 0; }
+      .ft-links a { padding: 14px 0; font-size: 16px; }
+      .ft-social { gap: 10px; margin-top: 26px; }
+      .ft-social a { width: 44px; height: 44px; border-radius: 12px; }
+      .ft-social a svg { width: 20px; height: 20px; }
+      .ft-bottom { text-align: left; }
+      .ft-bottom p { font-size: 14px; }
+    }
+    @media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
   </style>
   <script src="/meta-pixel.js"></script>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -551,25 +595,48 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
+  <div class="ft-grid">
+    <div class="ft-brand">
       <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full logo.svg" alt="Differentt Lab" style="height:20px;width:auto;">
-      <p class="footer-desc" style="margin-top:16px;">Differentt Lab é uma agência digital sediada em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs portuguesas.</p>
-      <div class="social-links">
-        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" class="social-link" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" class="social-link" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-        <a href="https://www.instagram.com/differentt_lab/" target="_blank" class="social-link" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+      <p class="ft-desc">Differentt Lab é uma agência digital sediada em Odivelas, Lisboa, especializada em branding, websites, design gráfico e gestão de redes sociais para PMEs portuguesas.</p>
+      <ul class="ft-contacts">
+        <li><span class="ft-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><div><div class="ft-c-main">Av. Miguel Torga 20A<br>2675-664 Odivelas — Portugal</div></div></li>
+        <li><span class="ft-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></span><div><div class="ft-c-main"><a href="tel:+351910185220">+351 910 185 220</a></div><div class="ft-c-sub">Chamada para rede móvel nacional</div></div></li>
+        <li><span class="ft-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><div><div class="ft-c-main"><a href="mailto:differenttdesignlab@gmail.com">differenttdesignlab@gmail.com</a></div><div class="ft-c-sub">Respondemos em 24h úteis</div></div></li>
+      </ul>
+      <div class="ft-social ft-social--mob">
+        <a href="https://www.instagram.com/differentt_lab/" target="_blank" title="Instagram"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
       </div>
     </div>
-    <div class="footer-nav">
-      <div class="footer-col"><h3>Recursos</h3><ul><li><a href="./blog">Blog</a></li><li><a href="./portfolio">Portfólio</a></li><li><a href="./criacao-websites">Criação de Websites</a></li><li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li><li><a href="./faq">FAQ</a></li></ul></div>
-      <div class="footer-col"><h3>Agência</h3><ul><li><a href="./nos">Sobre Nós</a></li><li><a href="./metodos">Metodologia</a></li><li><a href="./servicos">Serviços</a></li><li><a href="./portfolio">Trabalhos</a></li><li><a href="./contactos">Contacto</a></li></ul></div>
-      <div class="footer-col"><h3>Legal</h3><ul><li><a href="./privacidade">Privacidade</a></li><li><a href="./termos">Termos</a></li><li><a href="./privacidade#cookies">Cookies</a></li><li><a href="./rgpd">RGPD</a></li></ul></div>
-      <div class="footer-col"><h3>Social</h3><ul><li><a href="https://www.instagram.com/differentt_lab/" target="_blank">Instagram</a></li><li><a href="https://www.tiktok.com/@differentt_lab" target="_blank">TikTok</a></li><li><a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank">Facebook</a></li><li><a href="https://wa.me/351910185220" target="_blank">WhatsApp</a></li><li><a href="mailto:differenttdesignlab@gmail.com">Email</a></li></ul></div>
+    <div class="ft-col">
+      <h3>Agência</h3>
+      <ul class="ft-links">
+        <li><a href="./nos">Sobre Nós</a></li>
+        <li><a href="./metodos">Metodologia</a></li>
+        <li><a href="./servicos">Serviços</a></li>
+        <li><a href="./portfolio">Trabalhos</a></li>
+        <li><a href="./contactos">Contacto</a></li>
+      </ul>
+      <div class="ft-social ft-social--desk">
+        <a href="https://www.instagram.com/differentt_lab/" target="_blank" title="Instagram"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61566459876656&locale=pt_PT" target="_blank" title="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.tiktok.com/@differentt_lab" target="_blank" title="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31z"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h3>Serviços</h3>
+      <ul class="ft-links">
+        <li><a href="./criacao-websites">Criação de Websites</a></li>
+        <li><a href="./gestao-redes-sociais">Gestão de Redes Sociais</a></li>
+        <li><a href="./blog">Blog</a></li>
+        <li><a href="./faq">FAQ</a></li>
+      </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">Todos os direitos reservados. Differentt Lab 2026.</p>
-    <p class="footer-copy">De Lisboa para o mundo.</p>
+  <div class="ft-bottom">
+    <p>© Differentt Lab 2026. Todos os direitos reservados&nbsp;&nbsp;|&nbsp;&nbsp;<a href="./privacidade">Privacidade</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="./termos">Termos</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="./rgpd">RGPD</a></p>
   </div>
 </footer>
 
