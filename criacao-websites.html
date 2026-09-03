@@ -454,6 +454,18 @@
     .who-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent 0%, rgba(158,123,182,0.9) 16%, rgba(158,123,182,0.25) 48%, transparent 76%); }
     .who-card h3 { font-family: 'Nunito Sans', sans-serif; font-size: 18px; font-weight: 300; text-transform: uppercase; letter-spacing: -0.01em; color: #fff; margin-bottom: 12px; }
     .who-card p { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.4); }
+    /* entrada em cascata dos cards ("Implementacoes incluidas" + "Feito para negocios") */
+    .cards-grid .card { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1), border-color .2s, box-shadow .2s; }
+    .who-grid .who-card { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
+    .cards-grid.in .card, .who-grid.in .who-card { opacity: 1; transform: none; }
+    .cards-grid .card:nth-child(2), .who-grid .who-card:nth-child(2) { transition-delay: .08s; }
+    .cards-grid .card:nth-child(3), .who-grid .who-card:nth-child(3) { transition-delay: .16s; }
+    .cards-grid .card:nth-child(4) { transition-delay: .24s; }
+    .cards-grid .card:nth-child(5) { transition-delay: .32s; }
+    .cards-grid .card:nth-child(6) { transition-delay: .4s; }
+    .cards-grid .card:nth-child(7) { transition-delay: .48s; }
+    .cards-grid .card:nth-child(8) { transition-delay: .56s; }
+    @media (prefers-reduced-motion: reduce) { .cards-grid .card, .who-grid .who-card { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
     /* OFFER BANNER */
     .offer-banner {
@@ -1820,6 +1832,19 @@
   window.addEventListener('scroll', function(){
     if(!tick){ tick = true; requestAnimationFrame(upd); }
   }, {passive:true});
+})();
+</script>
+<script>
+// entrada em cascata dos cards (Implementacoes incluidas + Feito para negocios)
+(function(){
+  var grids=document.querySelectorAll('.cards-grid, .who-grid');
+  if(!grids.length) return;
+  var reduz=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduz||!('IntersectionObserver' in window)){ grids.forEach(function(g){ g.classList.add('in'); }); return; }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });},{threshold:0.15});
+  grids.forEach(function(g){ io.observe(g); });
 })();
 </script>
 </body>
