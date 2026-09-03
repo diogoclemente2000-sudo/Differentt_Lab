@@ -1581,8 +1581,15 @@
     #reviews-section .grev-av--g::after { background:radial-gradient(circle at 50% 38%, transparent 62%, rgba(0,0,0,0.12) 100%); }
     #reviews-section .grev-rating { display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
     #reviews-section .grev-stars { display:inline-flex; flex-direction:row; flex-wrap:nowrap; align-items:center; gap:1.5px; line-height:0; flex-shrink:0; }
-    /* blur amarelo atras de cada estrela (glow individual) */
-    #reviews-section .grev-stars svg { filter: drop-shadow(0 0 3px rgba(251,188,5,0.9)) drop-shadow(0 0 7px rgba(251,188,5,0.45)); }
+    /* blur amarelo atras de cada estrela (glow individual, suave) */
+    #reviews-section .grev-stars svg { filter: drop-shadow(0 0 2px rgba(251,188,5,0.55)) drop-shadow(0 0 5px rgba(251,188,5,0.22)); opacity:0; transform:scale(0.4); transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1); }
+    /* entrada: as estrelas aparecem uma de cada vez */
+    #reviews-section .grev-stars svg:nth-child(2){ transition-delay:.12s; }
+    #reviews-section .grev-stars svg:nth-child(3){ transition-delay:.24s; }
+    #reviews-section .grev-stars svg:nth-child(4){ transition-delay:.36s; }
+    #reviews-section .grev-stars svg:nth-child(5){ transition-delay:.48s; }
+    #reviews-section .grev-stars.in svg{ opacity:1; transform:scale(1); }
+    @media (prefers-reduced-motion: reduce){ #reviews-section .grev-stars svg{ opacity:1 !important; transform:none !important; transition:none !important; } }
     #reviews-section .grev-stars svg, #reviews-section .rc-stars svg { display:block; flex-shrink:0; }
     #reviews-section .grev-count { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:600; color:#fff; }
     #reviews-section .rc { background: linear-gradient(150deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.04) 100%); border:1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 22px 24px; width: 350px; flex-shrink:0; box-shadow: 0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12); display:flex; flex-direction:column; text-decoration:none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
@@ -1616,6 +1623,19 @@
       </div>
     </div>
   </div>
+  <script>
+  // dispara a entrada das estrelas (uma de cada vez) quando o badge entra em vista
+  (function(){
+    var st=document.querySelector('#reviews-section .grev-stars');
+    if(!st) return;
+    var reduz=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduz||!('IntersectionObserver' in window)){ st.classList.add('in'); return; }
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){ st.classList.add('in'); io.disconnect(); }
+    });},{threshold:0.6});
+    io.observe(st);
+  })();
+  </script>
 
   <div style="overflow-x:clip;overflow-y:visible;padding:12px 0;margin-bottom:8px;">
     <div class="row-left">
