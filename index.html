@@ -208,7 +208,11 @@
     /* reflexo de luz no topo do marquee — linha brilhante + feixe difuso (tinta da marca) */
     .marquee-section { position: relative; }
     @supports (overflow-x: clip) { .marquee-section { overflow-x: clip; overflow-y: visible; } }
-    .marquee-section::before { content: ''; position: absolute; top: -1px; left: 12%; right: 28%; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent 0%, rgba(158,123,182,0.25) 20%, rgba(197,133,184,0.95) 50%, rgba(158,123,182,0.25) 80%, transparent 100%); filter: drop-shadow(0 0 6px rgba(197,133,184,0.75)); pointer-events: none; z-index: 2; }
+    .marquee-section::before { content: ''; position: absolute; top: -1px; left: 12%; right: 28%; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent 0%, rgba(158,123,182,0.25) 20%, rgba(197,133,184,0.95) 50%, rgba(158,123,182,0.25) 80%, transparent 100%); filter: drop-shadow(0 0 6px rgba(197,133,184,0.75)); pointer-events: none; z-index: 2; transform: scaleX(0); opacity: 0; transform-origin: 50% 50%; }
+    .marquee-section.lit::before { animation: mlineGrow 2.4s cubic-bezier(0.22,1,0.36,1) forwards, mlineGlow 3s ease-out forwards; }
+    @keyframes mlineGrow { 0% { transform: scaleX(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: scaleX(1); opacity: 1; } }
+    @keyframes mlineGlow { 0%, 55% { filter: drop-shadow(0 0 2px rgba(197,133,184,0.25)); } 78% { filter: drop-shadow(0 0 11px rgba(197,133,184,0.95)); } 100% { filter: drop-shadow(0 0 6px rgba(197,133,184,0.75)); } }
+    @media (prefers-reduced-motion: reduce) { .marquee-section::before { transform: none !important; opacity: 1 !important; animation: none !important; } }
 
     /* CLIENT LOGOS */
     .logos-section { padding: 160px 48px; }
@@ -2247,6 +2251,18 @@
       openReels(mobileFeatured.dataset.project || cardEls[0].getAttribute('data-project'));
     });
   }
+})();
+</script>
+<script>
+// linha do marquee expande a partir de zero quando entra em vista
+(function(){
+  var m=document.querySelector('.marquee-section'); if(!m) return;
+  var reduz=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduz||!('IntersectionObserver' in window)){ m.classList.add('lit'); return; }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){ m.classList.add('lit'); io.disconnect(); }
+  });},{threshold:0.4});
+  io.observe(m);
 })();
 </script>
 </body>
