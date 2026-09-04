@@ -105,7 +105,7 @@
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@
     body { background: linear-gradient(45deg, #000000 0%, #030303 25%, #010101 50%, #040404 75%, #000000 100%); background-attachment: scroll; min-height: 100vh; color: #fff; font-family: 'Nunito Sans', sans-serif; margin: 0; }
     html { overflow-x: hidden; }
     .site-wrap { max-width: 1750px; margin: 0 auto; overflow: visible; }
-    h1, h2, h3, h4, .heading { font-family: 'Overpass', sans-serif; }
+    h1, h2, h3, h4, .heading { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
 
     /* NAV */
     .nav-wrapper { position: fixed; top: 20px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
@@ -123,7 +123,7 @@
     nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
     nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
     .nav-links { display: flex; gap: 50px; }
-    .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a { color: #fff; text-decoration: none; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
     .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
     .nav-icons { display: flex; gap: 20px; align-items: center; }
     .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; display: flex; align-items: center; }
@@ -172,7 +172,7 @@
     .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
 
     /* botao gradiente-quadrado (igual aos contactos/obrigado) — usado no CTA final */
-    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Overpass', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .gx-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: linear-gradient(145deg, #070707 0%, #0d0d0d 100%) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%) border-box; color: #fff; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; border: 1.5px solid transparent; border-radius: 11px; box-shadow: 0 10px 26px rgba(0,0,0,0.4); text-decoration: none; cursor: pointer; will-change: transform; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1); }
     .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
     .gx-btn::after { content: ''; position: absolute; inset: -25%; z-index: 1; background: radial-gradient(80% 130% at 88% 60%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 45%, transparent 78%); filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%; transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
     .gx-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(0,0,0,0.45); }
@@ -192,7 +192,7 @@
     .hero-bg video.tocando { opacity: 1; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,1) 100%); pointer-events: none; }
     .hero-content { position: relative; z-index: 2; padding: 0 48px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
-    .hero-label { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
+    .hero-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
     /* hero da homepage: frase, nao titulo display — por isso nao usa .hero-title das outras paginas */
     .home-hero-title { text-align: left; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(31px, 4.1vw, 54px); font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 20px; max-width: none; }
     .hero-lead { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.32; color: rgba(255,255,255,0.85); max-width: 42ch; margin: 0; animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
@@ -233,7 +233,7 @@
 
     /* SERVICES SECTION */
     .section { padding: 180px 48px; }
-    .section-label { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 16px; text-align: center; }
+    .section-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 16px; text-align: center; }
     /* regra unica de tamanho para os titulos de seccao da home (inclui o das marcas) */
     .section-title, .logos-label { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: clamp(29px, 3.6vw, 48px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; margin-bottom: 4px; color: #fff; }
     /* regra unica para as frases de apoio por baixo dos titulos */
@@ -247,9 +247,10 @@
     .service-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .service-card:hover .service-card-bg { transform: scale(1.06); }
     .service-card-content { padding: 18px 20px; background: transparent; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
-    .service-cat-pill { display: inline-block; font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9e7bb6; border: 1px solid rgba(158,123,182,0.5); border-radius: 100px; padding: 4px 12px; margin-bottom: 10px; }
-    .service-tag { font-family: 'Nunito Sans', sans-serif; font-size: 21px; font-weight: 300; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
-    .service-name { font-family: 'Overpass', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3; color: #fff; }
+    /* mesma construcao das pills novas (gradiente vertical + realce interno), sem reflexo */
+    .service-cat-pill { display: inline-block; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; border: none; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); border-radius: 100px; padding: 5px 13px; margin-bottom: 10px; }
+    .service-tag { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 21px; font-weight: 500; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .service-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #fff; }
     .service-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s, gap 0.2s; }
     .service-link::after { content: '→'; font-size: 13px; }
     .service-card:hover .service-link { color: #c585b8; gap: 10px; }
@@ -263,7 +264,7 @@
     .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, transparent 70%); pointer-events: none; }
     .reel-card-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
     .reel-card-cat { font-family: 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #c585b8; }
-    .reel-card-name { font-family: 'Overpass', sans-serif; font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .reel-card-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     /* botao de play — mesma identidade do .rp-play da seccao "Pessoas que cresceram
        connosco": circulo de 64px, vidro escuro, sem borda nem sombra */
     .reel-card-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; width: 64px; height: 64px; border: 0; padding: 0; border-radius: 50%; background: rgba(0,0,0,.42); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); display: grid; place-items: center; pointer-events: none; transition: transform .3s, background .3s; }
@@ -304,8 +305,8 @@
     .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
     .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
     .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
-    .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
-    .reels-slide-org { font-family: 'Overpass', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c585b8; margin-top: 6px; }
+    .reels-slide-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .reels-slide-org { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c585b8; margin-top: 6px; }
     /* GLASSMORPHISM CTA (gradient + blur, no SVG distortion — reliable across browsers/GPUs) */
     .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
     .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
@@ -350,13 +351,13 @@
     @keyframes stepsNv2 { 0% { transform: translate(0,0) scale(0.96); } 50% { transform: translate(-24%,14%) scale(1.1); } 100% { transform: translate(-10%,-12%) scale(1.02); } }
     @keyframes stepsNv3 { 0% { transform: translate(0,0) scale(1.05); } 55% { transform: translate(12%,-20%) scale(0.9); } 100% { transform: translate(-16%,-8%) scale(1.12); } }
     /* o algarismo-fantasma enche o circulo como marca de agua */
-    .steps-fant { position: absolute; inset: 0; display: none; place-items: center; font-family: 'Overpass', sans-serif; font-weight: 900; font-size: min(58vw, 260px); line-height: 1; letter-spacing: -0.05em; color: rgba(255,255,255,0.10); text-shadow: 0 0 60px rgba(158,123,182,0.25); }
+    .steps-fant { position: absolute; inset: 0; display: none; place-items: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 900; font-size: min(58vw, 260px); line-height: 1; letter-spacing: -0.05em; color: rgba(255,255,255,0.10); text-shadow: 0 0 60px rgba(158,123,182,0.25); }
     .steps-veu { position: absolute; inset: 0; background: radial-gradient(circle at 50% 46%, rgba(5,4,8,0.74) 0%, rgba(5,4,8,0.36) 42%, rgba(5,4,8,0.06) 68%, transparent 82%); }
     .steps-fluxo { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 17%; pointer-events: none; z-index: 3; }
     /* variante C: indice Inter, titulo Nunito 300 caps grande, texto Inter, pontos */
-    .steps-fluxo .st-mini { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+    .steps-fluxo .st-mini { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
     .steps-fluxo .st-nome { font-family: 'Nunito Sans', sans-serif; font-weight: 300; font-size: clamp(24px, 5vw, 34px); text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.02; color: #fff; margin: 0.5em 0 0.5em; text-shadow: 0 3px 18px rgba(0,0,0,0.9); }
-    .steps-fluxo .st-desc { font-family: 'Inter', sans-serif; font-weight: 400; font-size: clamp(11.5px, 2.4vw, 13px); line-height: 1.6; color: rgba(255,255,255,0.82); text-shadow: 0 2px 12px rgba(0,0,0,0.92); }
+    .steps-fluxo .st-desc { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: clamp(11.5px, 2.4vw, 13px); line-height: 1.6; color: rgba(255,255,255,0.82); text-shadow: 0 2px 12px rgba(0,0,0,0.92); }
     .steps-fluxo .st-dots { display: flex; gap: 6px; margin-top: 14px; }
     .steps-fluxo .st-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); transition: background 0.4s; }
     .steps-fluxo .st-dots i.on { background: #c585b8; }
@@ -405,8 +406,8 @@
     .team-card:hover .team-card-bg { transform: scale(1.03); }
     .team-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%); }
     .team-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
-    .team-card-label { font-size: 10px; font-family: 'Overpass', sans-serif; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
-    .team-card-name { font-family: 'Overpass', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
+    .team-card-label { font-size: 10px; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+    .team-card-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
 
     /* CTA SECTION */
     .cta-section { padding: 100px 48px; background: #050505; width: 100vw; margin-left: calc(50% - 50vw); }
@@ -426,7 +427,7 @@
     .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: border-color 0.2s, color 0.2s; font-size: 13px; }
     .social-link:hover { border-color: #9e7bb6; color: #9e7bb6; }
     .footer-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-    .footer-col h3 { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .footer-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
     .footer-col ul { list-style: none; padding: 0; margin: 0; }
     .footer-col ul li { margin-bottom: 8px; }
     .footer-col ul li a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 13px; transition: color 0.2s; }
@@ -438,22 +439,22 @@
     .section-title, .cta-title, .logos-label, .home-hero-title, .st-nome, .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
 
     .ft-grid { display: grid; grid-template-columns: 1.35fr 0.9fr 0.9fr; gap: 56px; max-width: 1160px; margin: 0 auto; padding: 12px 0 44px; }
-    .ft-desc { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.84); max-width: 420px; margin: 20px 0 4px; }
-    .ft-contacts { list-style: none; padding: 0; margin: 0; }
-    .ft-contacts li { display: flex; align-items: flex-start; gap: 13px; margin-top: 16px; }
-    .ft-ico { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
-    .ft-ico svg { width: 17px; height: 17px; }
-    .ft-c-main, .ft-c-main a { font-size: 14.5px; color: #fff; line-height: 1.5; text-decoration: none; }
+    .ft-desc { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.84); max-width: 420px; margin: 20px 0 4px; }
+    .ft-contacts { list-style: none; padding: 0; margin: 16px 0 0; }
+    .ft-contacts li { display: flex; align-items: center; gap: 13px; margin-top: 16px; }
+    .ft-ico { width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+    .ft-ico svg { width: 20px; height: 20px; }
+    .ft-c-main, .ft-c-main a, .ft-c-sub { font-size: 15.5px; color: #fff; line-height: 1.5; text-decoration: none; }
     .ft-c-main a:hover { color: #c585b8; }
-    .ft-c-sub { font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .ft-c-sub { margin-top: 2px; }
     .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 16.5px; font-weight: 700; color: #9e7bb6; margin: 4px 0; }
     .ft-links { list-style: none; padding: 0; margin: 0; }
-    .ft-links li { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-links li { border-bottom: 1px solid rgba(255,255,255,0.18); }
     .ft-links a { display: block; padding: 11px 0; font-size: 14.5px; color: rgba(255,255,255,0.78); text-decoration: none; transition: color .2s; }
     .ft-links a:hover { color: #fff; }
     .ft-social { display: flex; gap: 9px; margin-top: 22px; }
-    .ft-social a { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; transition: background .2s, transform .2s; }
-    .ft-social a svg { width: 17px; height: 17px; }
+    .ft-social a { width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); display: grid; place-items: center; color: #fff; transition: background .2s, transform .2s; }
+    .ft-social a svg { width: 20px; height: 20px; }
     .ft-social a:hover, .ft-social a:focus-visible { background: rgba(255,255,255,0.16); transform: translateY(-2px); outline: none; }
     .ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); margin: 0 auto; padding: 24px 0 0; text-align: center; }
     .ft-bottom p { font-size: 13px; color: rgba(255,255,255,0.5); margin: 0 0 6px; }
@@ -462,17 +463,17 @@
     .ft-social--mob { display: none; }
     @media (max-width: 1024px) {
       footer { padding-left: clamp(56px, 11vw, 120px); padding-right: clamp(56px, 11vw, 120px); }
-      .ft-desc { font-size: 15.5px; line-height: 1.5; margin: 22px 0 6px; }
+      .ft-desc { font-size: 16.5px; line-height: 1.5; margin: 22px 0 6px; }
       .ft-contacts li { margin-top: 22px; gap: 14px; }
-      .ft-ico { width: 46px; height: 46px; border-radius: 12px; }
-      .ft-ico svg { width: 20px; height: 20px; }
-      .ft-c-main, .ft-c-main a { font-size: 16px; }
-      .ft-c-sub { font-size: 12.5px; margin-top: 3px; }
+      .ft-ico { width: 52px; height: 52px; border-radius: 13px; }
+      .ft-ico svg { width: 22px; height: 22px; }
+      .ft-c-main, .ft-c-main a { font-size: 17px; }
+      .ft-c-sub { font-size: 17px; margin-top: 3px; }
       .ft-col h3 { font-size: 19px; margin: 6px 0; }
       .ft-links a { padding: 14px 0; font-size: 16px; }
       .ft-social { gap: 10px; margin-top: 26px; }
-      .ft-social a { width: 44px; height: 44px; border-radius: 12px; }
-      .ft-social a svg { width: 20px; height: 20px; }
+      .ft-social a { width: 52px; height: 52px; border-radius: 13px; }
+      .ft-social a svg { width: 22px; height: 22px; }
       .ft-bottom { text-align: left; }
       .ft-bottom p { font-size: 14px; }
     }
@@ -481,21 +482,24 @@
     .ft-desc, .ft-c-main, .ft-c-main a, .ft-c-sub, .ft-links a, .ft-bottom p, .ft-bottom a { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; }
     .ft-desc { color: rgba(255,255,255,0.92); }
     @media (max-width: 1024px) {
-      .ft-ico { width: 32px; height: 32px; border-radius: 9px; }
-      .ft-ico svg { width: 15px; height: 15px; }
-      .ft-social a { width: 32px; height: 32px; border-radius: 9px; }
-      .ft-social a svg { width: 15px; height: 15px; }
+      .ft-ico { width: 44px; height: 44px; border-radius: 12px; }
+      .ft-ico svg { width: 19px; height: 19px; }
+      .ft-social a { width: 44px; height: 44px; border-radius: 12px; }
+      .ft-social a svg { width: 19px; height: 19px; }
       .ft-desc { margin: 26px 0 0; line-height: 1.35; }
-      .ft-contacts { margin-top: 26px; }
+      .ft-contacts { margin-top: 40px; }
       .ft-contacts li { margin-top: 22px; gap: 9px; }
       .ft-social { margin-top: 34px; }
-      .ft-c-main, .ft-c-main a { font-size: 14px; }
-      .ft-c-sub { font-size: 11.5px; }
+      .ft-c-main, .ft-c-main a { font-size: 15px; }
+      .ft-c-sub { font-size: 15px; }
     }
     @media (max-width: 900px) {
       .ft-grid { gap: 60px; }
       .ft-desc { max-width: 250px; }
       .ft-c-main { max-width: 230px; }
+    }
+    @media (max-width: 600px) {
+      .ft-contacts { margin-top: 60px; }
     }
 
 
@@ -600,11 +604,11 @@
     video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
     video::-webkit-media-controls { display: none !important; }
       /* titulos principais: Satoshi Black 900 com gradiente branco->cinza (no fim para vencer especificidade) */
-    .section-title, .cta-title, .logos-label, .steps-fluxo .st-nome { font-weight: 500; text-transform: none; color: #fff; line-height: 1.28; background: linear-gradient(180deg, #fbfbfb 14%, #6e6e6e 92%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.3px rgba(255,255,255,0.45); }
+    .section-title, .cta-title, .logos-label, .steps-fluxo .st-nome { font-weight: 500; text-transform: none; color: #fff; line-height: 1.28; background: linear-gradient(180deg, #fbfbfb 14%, #6e6e6e 92%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.1px rgba(255,255,255,0.55); }
     /* subtitulo da seccao servicos oculto */
     #services-subtitle { display: none; }
     /* gradiente e outline do h1 do hero (mesma estrutura dos restantes titulos) */
-    .home-hero-title { padding: 0.1em 0 0.16em; background: linear-gradient(180deg, #ffffff 10%, #d4d4d4 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.5px rgba(255,255,255,0.45); }
+    .home-hero-title { padding: 0.1em 0 0.16em; background: linear-gradient(180deg, #fbfbfb 12%, #a3a3a3 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.42); }
     /* quebras do h1 do hero: 2 versos em desktop/tablet, 3 no telemovel */
     .home-hero-title .br-m { display: none; }
     /* coerencia: seccoes sem subtitulo visivel (Servicos, Marcas que confiam)
@@ -625,13 +629,15 @@
     .steps-fluxo .st-desc { font-size: clamp(13px, 1.1vw, 14.5px); max-width: 40ch; }
     .steps-fluxo .st-dots { margin-top: 20px; }
     .st-seg { left: auto; right: 26px; bottom: 26px; transform: none; }
+    /* no slide CTA os pontos escondem-se e a pill vive na banda inferior do card */
+    .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 22px; margin-top: 0; line-height: 1; }
     .st-seg:hover, .st-seg:focus-visible { transform: scale(1.06); }
     .st-seg:active { transform: scale(0.96); }
     /* ===== refinamentos do card dos 4 passos ===== */
     /* letter-spacing apertado como regra partilhada com o hero */
     .home-hero-title, .steps-fluxo .st-nome { letter-spacing: -0.03em; }
     /* titulo maior e mais grosso, com o texto mais perto */
-    .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.15px rgba(255,255,255,0.35); }
+    .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.8px rgba(255,255,255,0.45); }
     /* frase maior e com as letras mais juntas */
     .steps-fluxo .st-desc { font-size: clamp(14.5px, 1.25vw, 16.5px); letter-spacing: -0.012em; line-height: 1.45; max-width: 38ch; }
     /* outline com reflexo nos dois vertices opostos (borda em gradiente) */
@@ -652,8 +658,55 @@
                   radial-gradient(19% 23% at 98% 98%, rgba(197,133,184,0.38) 0%, rgba(158,123,182,0.14) 45%, transparent 72%);
       filter: blur(2.5px); }
     /* pill do ultimo slide do card dos 4 passos */
-    .st-pill { display: none; align-items: center; justify-content: center; margin-top: 22px; padding: 13px 30px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); background: linear-gradient(145deg, #b98fd0 0%, #9e7bb6 48%, #7d5a97 100%); box-shadow: 0 10px 26px rgba(120,74,163,0.45), inset 0 1px 0 rgba(255,255,255,0.28); color: #fff; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; text-decoration: none; pointer-events: auto; transition: transform .25s, box-shadow .25s; }
-    .st-pill:hover, .st-pill:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(120,74,163,0.55), inset 0 1px 0 rgba(255,255,255,0.35); outline: none; }
+    .st-pill { display: none; align-items: center; justify-content: center; margin-top: 22px; padding: 13px 30px; border-radius: 100px; border: none; z-index: 0; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); color: #fff; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; text-decoration: none; pointer-events: auto; transition: transform .25s, box-shadow .25s; }
+    .st-pill:hover, .st-pill:focus-visible { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); outline: none; }
+    /* no hover o reflexo alarga a partir do ponto onde vai e fecha o anel */
+    .st-pill:hover .st-anel::before, .st-pill:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
+    /* Reflexo a contornar a pill. A rotacao e por TRANSFORM num elemento real
+       (.st-anel::before) — o compositor nunca a pausa, ao contrario da animacao de
+       custom properties, que alguns Chromes congelam quando ha uma transition no
+       mesmo elemento (era o bug: o reflexo parava de rodar durante o hover). */
+    @property --stpLarg { syntax: '<angle>'; inherits: false; initial-value: 26deg; }
+    @property --stpTail { syntax: '<number>'; inherits: false; initial-value: 0; }
+    @property --stpForte { syntax: '<number>'; inherits: false; initial-value: 0.92; }
+    @property --stpCometa { syntax: '<number>'; inherits: false; initial-value: 0.95; }
+    .st-anel { position: absolute; inset: -2px; border-radius: inherit; padding: 2px; pointer-events: none; overflow: hidden;
+      /* mascara em anel: fura o centro, so o contorno pinta (aplica-se ao conjunto) */
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      background: rgba(255,255,255,0.07); }
+    /* quadrado rotativo com o padrao conico: arco, cometa e preenchimento giram juntos */
+    .st-anel::before { content: ''; position: absolute; left: 50%; top: 50%; width: 120%; aspect-ratio: 1/1;
+      --stpLarg: 26deg; --stpTail: 0; --stpForte: 0.92; --stpCometa: 0.95;
+      background:
+        conic-gradient(from 4deg,
+          rgba(255,255,255,0) 0deg, rgba(255,255,255,var(--stpCometa)) 10deg, rgba(255,255,255,0) 26deg, rgba(255,255,255,0) 360deg),
+        conic-gradient(from 0deg,
+          rgba(235,235,240,var(--stpTail)) 0deg,
+          rgba(235,235,240,var(--stpForte)) 20deg,
+          rgba(235,235,240,var(--stpForte)) var(--stpLarg),
+          rgba(235,235,240,var(--stpTail)) calc(var(--stpLarg) + 30deg),
+          rgba(235,235,240,var(--stpTail)) 360deg);
+      transition: --stpLarg 2s cubic-bezier(0.3,0.7,0.2,1), --stpTail 2s cubic-bezier(0.3,0.7,0.2,1),
+                  --stpForte 2s cubic-bezier(0.3,0.7,0.2,1), --stpCometa 1.2s ease;
+      animation: stAnelGira 4.5s linear infinite; }
+    @keyframes stAnelGira { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+    /* luz vinda de cima (nao roda): o anel desvanece para as pontas e para o fundo */
+    .st-anel::after { content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(180deg, rgba(10,8,14,0) 10%, rgba(10,8,14,0.30) 55%, rgba(10,8,14,0.62) 100%); }
+    @media (prefers-reduced-motion: reduce) { .st-anel::before { animation: none; } }
+    /* CTA final: as duas pills replicam a construcao do "Saber mais" — gradiente
+       vertical + anel de reflexo. Contacte-nos cinzenta com texto preto; Ver
+       Trabalhos rosa. (a.gx-btn ganha aos overrides responsivos de border-radius) */
+    .cta-section a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+      font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+      background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%);
+      color: #0d0d10; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
+    .cta-section a.gx-btn::after { display: none; }
+    .cta-section a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    .cta-section a.gx-btn--purple { background: linear-gradient(180deg, #dcaacd 0%, #c585b8 48%, #a3659a 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+    .cta-section a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+    .gx-btn:hover .st-anel::before, .gx-btn:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
     /* CTA: titulo maior, linhas mais juntas */
     .cta-title { font-size: clamp(40px, 5.8vw, 82px); line-height: 0.98; padding: 0.08em 0 0.16em; text-wrap: balance; }
     @media (max-width: 900px) { .cta-title { font-size: clamp(34px, 10vw, 68px) !important; line-height: 0.98; } }
@@ -962,7 +1015,7 @@
   <style>
     #reels-panels{ padding: clamp(90px,11vw,150px) clamp(16px,4vw,48px); }
     #reels-panels .rp-head{ max-width:760px; margin:0 auto; text-align:center; position:relative; z-index:2; }
-    #reels-panels .rp-eyebrow{ font-family:'Overpass',sans-serif; font-size:11px; font-weight:800; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
+    #reels-panels .rp-eyebrow{ font-family:'Satoshi','Nunito Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
     #reels-panels .rp-title{ font-family:'Nunito Sans',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:300; letter-spacing:-0.02em; text-transform:uppercase; color:#fff; line-height:1; margin:0; }
     #reels-panels .rp-title span{ color:#9e7bb6; }
     #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
@@ -978,27 +1031,27 @@
     #reels-panels .rp-p .rp-sound{ opacity:0; pointer-events:none; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-sound{ opacity:1; pointer-events:auto; transition-delay:.16s; }
     #reels-panels .rp-p.has-video .rp-dur{ display:none; }  /* o card em vídeo não mostra a duração */
-    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Overpass',sans-serif; font-weight:800; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
+    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
     #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
     #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:0; transition:opacity .4s; }
     #reels-panels .rp-p.on .rp-badge, #reels-panels .rp-p.on .rp-dur, #reels-panels .rp-p.on .rp-play, #reels-panels .rp-p.on .rp-cap{ opacity:1; transition-delay:.16s; }
     #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
     #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
-    #reels-panels .rp-badge b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
+    #reels-panels .rp-badge b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
     #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
     #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
     #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
-    #reels-panels .rp-av.mono b{ font-family:'Overpass',sans-serif; font-weight:800; font-size:16px; color:#fff; letter-spacing:.02em; }
-    #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Overpass',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
+    #reels-panels .rp-av.mono b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:16px; color:#fff; letter-spacing:.02em; }
+    #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
     #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:64px; height:64px; border:0; padding:0; cursor:pointer; border-radius:50%; background:rgba(0,0,0,.42); -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px); display:grid; place-items:center; transition:transform .3s, background .3s; }
     #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ background:rgba(0,0,0,.6); outline:none; }
     @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
     #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
     #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
     #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-    #reels-panels .rp-nm{ font-family:'Overpass',sans-serif; font-weight:800; font-size:13px; color:#fff; }
-    #reels-panels .rp-og{ font-family:'Overpass',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
+    #reels-panels .rp-nm{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:13px; color:#fff; }
+    #reels-panels .rp-og{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
     #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
     @media (max-width: 760px){
       #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
@@ -1234,8 +1287,8 @@
       <div class="st-mini"><span class="st-num">01</span> / 04</div>
       <div class="st-nome"></div>
       <p class="st-desc"></p>
-      <a class="st-pill" href="./metodos">Saber mais</a>
       <div class="st-dots"><i></i><i></i><i></i><i></i><i></i></div>
+      <a class="st-pill" href="./metodos">Saber mais<i class="st-anel" aria-hidden="true"></i></a>
     </div>
     <button class="st-seg" type="button" aria-label="Passo seguinte"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
   </div>
@@ -1280,9 +1333,10 @@
       num.textContent=PASSOS[i].n; fant.textContent=PASSOS[i].n;
       nome.textContent=PASSOS[i].nome; desc.textContent=PASSOS[i].desc;
       for(var d=0;d<dots.length;d++) dots[d].classList.toggle('on', d===i);
-      var mini=fluxo.querySelector('.st-mini'), pill=fluxo.querySelector('.st-pill');
+      var mini=fluxo.querySelector('.st-mini'), pill=fluxo.querySelector('.st-pill'), caixaDots=fluxo.querySelector('.st-dots');
       if(mini) mini.style.visibility = PASSOS[i].n ? 'visible' : 'hidden';
       if(pill) pill.style.display = PASSOS[i].cta ? 'inline-flex' : 'none';
+      if(caixaDots) caixaDots.style.display = PASSOS[i].cta ? 'none' : 'flex';   // a pill toma o lugar dos pontos
       for(var d=0;d<dots.length;d++) dots[d].classList.toggle('on', d===i);
       if(anim){fluxo.classList.remove('troca');void fluxo.offsetWidth;fluxo.classList.add('troca');}
     }
@@ -1323,6 +1377,18 @@
     });
 
     vestir(frente,PALETAS[0]); pintar(0,false); passo=0;
+
+    // o card mantem sempre a proporcao dos slides normais
+    function fixarAltura(){
+      if(passo===PASSOS.length-1) return;
+      palco.style.height='auto';
+      var h=palco.offsetHeight;
+      if(h>0) palco.style.height=h+'px'; else palco.style.height='';
+    }
+    fixarAltura();
+    window.addEventListener('resize',fixarAltura);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fixarAltura);
+
     if(reduzido){ fio.style.strokeDashoffset=C*0.75; return; }
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){es.forEach(function(e){
@@ -1724,7 +1790,7 @@
 
   <style>
     #reviews-section .grev-head { display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center; margin-bottom: 52px; padding: 0 24px; }
-    #reviews-section .grev-eyebrow { display:inline-flex; align-items:center; gap:14px; font-family:'Overpass',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+    #reviews-section .grev-eyebrow { display:inline-flex; align-items:center; gap:14px; font-family:'Satoshi','Nunito Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
     #reviews-section .grev-eyebrow::before, #reviews-section .grev-eyebrow::after { content:''; display:block; width:32px; height:1px; background:rgba(255,255,255,0.25); }
     #reviews-section .grev-pill { display:inline-flex; align-items:center; gap:14px; background:transparent; padding:0; box-shadow:none; }
     #reviews-section .grev-avatars { display:flex; align-items:center; }
@@ -1758,7 +1824,7 @@
     #reviews-section .rc-text { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:400; line-height:1.65; color:rgba(255,255,255,0.72); margin:15px 0 0; }
     #reviews-section .row-left, #reviews-section .row-right { display:flex; gap:20px; width:max-content; }
     #reviews-section .grev-cta { text-align:center; margin-top:44px; padding: 0 24px; }
-    #reviews-section .grev-cta a { display:inline-flex; align-items:center; gap:10px; font-family:'Overpass',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color: rgba(255,255,255,0.7); text-decoration:none; transition: color 0.2s; }
+    #reviews-section .grev-cta a { display:inline-flex; align-items:center; gap:10px; font-family:'Satoshi','Nunito Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color: rgba(255,255,255,0.7); text-decoration:none; transition: color 0.2s; }
     #reviews-section .grev-cta a:hover { color:#fff; }
     #reviews-section .grev-cta a .grev-cta-label { border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:4px; }
     #reviews-section .grev-cta a .grev-arrow { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
@@ -1869,7 +1935,7 @@
   <div class="cta-inner">
     <h2 class="cta-title" style="text-align:left;">Pronto para criar algo <span>extraordinário?</span></h2>
     <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;flex-shrink:0;">
-      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span></a>
+      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span><i class="st-anel" aria-hidden="true"></i></a>
       <a href="./portfolio" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Ver Trabalhos</span></a>
     </div>
   </div>
@@ -2005,7 +2071,7 @@
     filter: blur(11px); opacity: 0.3; transform: scale(0.88); transform-origin: 88% 60%;
     transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
   #chat-bubble:hover::before { opacity: 0.6; transform: scale(1.05); }
-  #chat-bubble-text { font-family: 'Overpass', sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; white-space: nowrap; transition: opacity 0.2s, max-width 0.3s; }
+  #chat-bubble-text { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; white-space: nowrap; transition: opacity 0.2s, max-width 0.3s; }
   #chat-bubble.open #chat-bubble-text { opacity: 0; max-width: 0; overflow: hidden; padding: 0; }
   #chat-bubble.open { padding: 0 11px; }
   #chat-bubble:hover { transform: translateY(-3px); background: rgba(14,14,14,0.62); box-shadow: 0 16px 34px rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.55); }
@@ -2019,7 +2085,7 @@
   .chat-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(158,123,182,0.4); flex-shrink: 0; }
   .chat-avatar-wrap { position: relative; flex-shrink: 0; }
   .chat-header-dot { position: absolute; bottom: 1px; right: 1px; width: 9px; height: 9px; border-radius: 50%; background: #4ade80; border: 2px solid #0d0d0d; }
-  .chat-header-info h4 { font-family: 'Overpass', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; color: #fff; margin: 0 0 2px; }
+  .chat-header-info h4 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; color: #fff; margin: 0 0 2px; }
   .chat-header-info p { font-size: 11px; color: rgba(255,255,255,0.35); margin: 0; font-family: 'Nunito Sans', sans-serif; }
   #chat-close { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.35); cursor: pointer; padding: 4px; display: flex; align-items: center; transition: color 0.15s; }
   #chat-close:hover { color: #fff; }
