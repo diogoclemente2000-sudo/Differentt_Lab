@@ -681,19 +681,24 @@
        bloco com margens simetricas e botoes finos a toda a largura */
     @media (max-width: 600px) {
       .home-hero-title { font-size: clamp(38px, 10.8vw, 48px); line-height: calc(0.825em + 3px); }
-      .hero-content { padding: 0 64px 72px !important; }
+      .hero-content { padding: 0 32px 72px !important; }
       /* vence o clamp antigo de 30px com !important: fonte proporcional a largura
          util (paddings de 32px), medida para a linha mais larga encostar */
       /* mobile: 3 linhas fixas (br-m) e a mais longa — "fortes, com impacto" —
-         dimensionada para encostar aos dois lados da largura util (100vw - 128px) */
-      .hero-content .home-hero-title { text-align: left !important; font-size: calc((100vw - 128px) * 0.1075) !important; line-height: calc(0.835em + 3px) !important; }
+         dimensionada para encostar aos dois lados da largura util (100vw - 64px) */
+      .hero-content .home-hero-title { text-align: left !important; font-size: calc((100vw - 64px) * 0.1075) !important; line-height: calc(0.835em + 3px) !important; }
       /* particao em 3 linhas no mobile: criamos marcas / fortes, com impacto / no digital. */
       .home-hero-title .br-m { display: inline !important; }
       .home-hero-title .br-d { display: none !important; }
-      .hero-content .hero-lead { max-width: none !important; text-align: left !important; font-size: clamp(13.5px, calc((100vw - 128px) * 0.0550 + 1px), 17px) !important; line-height: 1.16 !important; }
-      .hero-btns .gx-btn { font-size: clamp(12.5px, calc((100vw - 128px) * 0.0505), 15px) !important; padding: 12px 0 !important; }
+      .hero-content .hero-lead { max-width: none !important; text-align: left !important; font-size: clamp(13.5px, calc((100vw - 64px) * 0.0550 + 1px), 17px) !important; line-height: 1.16 !important; }
+      .hero-btns .gx-btn { font-size: clamp(12.5px, calc((100vw - 64px) * 0.0505), 15px) !important; padding: 12px 0 !important; }
       .hero-btns { flex-direction: column; justify-content: flex-start !important; gap: 12px !important; margin-top: 36px !important; }
       .hero-btns .gx-btn { display: flex; width: 100%; max-width: none; padding: 13px 0; border-radius: 100px; }
+      /* ecras estreitos: o texto ocupa mais linhas e a pill descia ate encostar ao
+         fundo do card. Passa a estar ancorada ao palco (altura fixa), na mesma
+         linha da seta — deixa de depender de quantas linhas o texto ocupa. */
+      .steps-fluxo { position: static; padding-bottom: 74px; }
+      .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 26px; margin-top: 0; }
     }
     /* titulo maior e mais grosso, com o texto mais perto */
     .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
