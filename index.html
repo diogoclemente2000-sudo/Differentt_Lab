@@ -121,7 +121,7 @@
     /* ao fazer scroll a nav fica fosca (vidro) em vez de preto sólido */
     nav { transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease; }
     nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
-    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
+    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
     .nav-links { display: flex; gap: 50px; }
     .nav-links a { color: #fff; text-decoration: none; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
     .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
@@ -131,7 +131,7 @@
 
     /* MOBILE NAV */
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
-    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 28px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
     .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out 0.22s cubic-bezier(0.4,0,1,1) forwards; }
     @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -158,7 +158,7 @@
       .nav-hamburger { display: flex !important; }
       .hero-content { text-align: left; padding: 0 32px 80px 4px; }
       .hero-content h1 { text-align: left !important; max-width: none !important; font-size: clamp(22px, 7.2vw, 30px) !important; }
-      .hero-lead { font-size: 15px !important; max-width: 22em !important; line-height: 1.32 !important; }
+      .hero-lead { font-size: 16px !important; max-width: 22em !important; line-height: 1.06 !important; }
       .hero-content div { justify-content: flex-start !important; flex-direction: column !important; align-items: flex-start !important; }
       /* sem override de tamanho: os botoes usam o spec canonico em todos os ecras */
     }
@@ -191,11 +191,11 @@
     .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity .45s ease; }
     .hero-bg video.tocando { opacity: 1; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,1) 100%); pointer-events: none; }
-    .hero-content { position: relative; z-index: 2; padding: 0 48px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
+    .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
     .hero-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
     /* hero da homepage: frase, nao titulo display — por isso nao usa .hero-title das outras paginas */
-    .home-hero-title { text-align: left; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(31px, 4.1vw, 54px); font-weight: 700; line-height: 1.0; letter-spacing: -0.042em; margin-bottom: 20px; max-width: none; }
-    .hero-lead { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.32; color: rgba(255,255,255,0.85); max-width: 42ch; margin: 0; animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
+    .home-hero-title { text-align: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(37px, calc((100vw - 160px) * 0.0850), 105px); font-weight: 500; line-height: 0.845; letter-spacing: -0.042em; margin-bottom: 20px; max-width: none; }
+    .hero-lead { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(16px, calc(1.1vw + 1px), 17.5px); line-height: 1.06; color: rgba(255,255,255,0.85); max-width: none; text-align: center; margin: 0; animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
     .home-hero-title span { color: #9e7bb6; }
     @keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .home-hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
@@ -208,6 +208,8 @@
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 14.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.62); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .marquee-item .mq-check { width: 15px; height: 15px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+    .marquee-logo { height: 30px; width: auto; max-width: 155px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.25s; }
+    .marquee-item:hover .marquee-logo { opacity: 0.8; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     /* reflexo de luz no topo do marquee — linha brilhante + feixe difuso (tinta da marca) */
     .marquee-section { position: relative; }
@@ -225,11 +227,6 @@
     @media (prefers-reduced-motion: reduce) { .marquee-section::before { transform: none !important; opacity: 1 !important; animation: none !important; } }
 
     /* CLIENT LOGOS */
-    .logos-section { padding: 160px 48px; }
-    .logos-grid { display: flex; align-items: center; justify-content: center; gap: 48px 40px; flex-wrap: wrap; max-width: 1120px; margin: 0 auto; }
-    .logo-client { flex: 0 0 180px; height: 60px; display: flex; align-items: center; justify-content: center; opacity: 0.4; transition: opacity 0.25s; filter: brightness(10); }
-    .logo-client:hover { opacity: 0.75; }
-    .logo-client img, .logo-client svg { height: auto !important; max-height: 38px; max-width: 150px; width: auto; object-fit: contain; }
 
     /* SERVICES SECTION */
     .section { padding: 180px 48px; }
@@ -248,10 +245,10 @@
     .service-card:hover .service-card-bg { transform: scale(1.06); }
     .service-card-content { padding: 18px 20px; background: transparent; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
     /* mesma construcao das pills novas (gradiente vertical + realce interno), sem reflexo */
-    .service-cat-pill { display: inline-block; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; border: none; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); border-radius: 100px; padding: 5px 13px; margin-bottom: 10px; }
-    .service-tag { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 21px; font-weight: 500; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .service-cat-pill { display: inline-block; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.01em; text-transform: none; color: #fff; border: none; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); border-radius: 100px; padding: 5px 13px; margin-bottom: 10px; }
+    .service-tag { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 21px; font-weight: 500; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
     .service-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #fff; }
-    .service-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 14px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s, gap 0.2s; }
+    .service-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s, gap 0.2s; }
     .service-link::after { content: '→'; font-size: 13px; }
     .service-card:hover .service-link { color: #c585b8; gap: 10px; }
 
@@ -399,15 +396,51 @@
     @media (prefers-reduced-motion: reduce) { .steps-grid4 .step-orb4 { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
     /* TEAM SECTION */
-    .team-section { padding: 180px 48px; }
-    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 60px; }
-    .team-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 24px; cursor: pointer; }
-    .team-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center top; transition: transform 0.6s ease; }
-    .team-card:hover .team-card-bg { transform: scale(1.03); }
-    .team-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%); }
-    .team-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
-    .team-card-label { font-size: 10px; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
-    .team-card-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
+    .team-section { padding: 180px 160px; position: relative; overflow: hidden; }
+    .team-section .section-title, .team-section .team-sub { position: relative; z-index: 1; }
+    /* ── Equipa (estilo referencia GetDigital): foto recortada sobre card escuro;
+       no hover o gradiente roxo sobe do fundo do card, por tras da pessoa. Sem
+       hover o card mostra so o nome, em grande. ── */
+    .tm-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 60px; max-width: 1400px; margin-left: auto; margin-right: auto; }
+    .tm-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 12px; background: linear-gradient(180deg, #131315 0%, #0a0a0b 100%); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.45s ease; }
+    /* gradiente interior que sobe no hover (so transform/opacity) */
+    .tm-card::before { content: ''; position: absolute; inset: 0 0 -16% 0; background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_us_page/nova-secao/gradiante-roxo.png') center bottom / 100% 100% no-repeat; transform: translateY(52%); opacity: 0;
+      transition: transform 0.95s cubic-bezier(0.25, 1.35, 0.5, 1), opacity 0.7s ease; }
+    .tm-card:hover, .tm-card.on { border-color: rgba(255,255,255,0.18); }
+    .tm-card:hover::before, .tm-card.on::before { transform: translateY(-12%); opacity: 0.9; }
+    .tm-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .tm-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.32) 28%, rgba(0,0,0,0) 54%); pointer-events: none; }
+    .tm-info { position: absolute; left: 12px; right: 12px; bottom: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; transform: translateY(45px); transition: transform 0.8s cubic-bezier(0.25, 1.35, 0.5, 1); }
+    .tm-card:hover .tm-info, .tm-card.on .tm-info { transform: translateY(0); }
+    .tm-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(31px, 3.3vw, 48px); line-height: 0.98; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
+    .tm-pill { display: inline-flex; align-items: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px; letter-spacing: 0.01em; color: #fff; padding: 5px 11px; border-radius: 7px; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18), 0 4px 12px rgba(0,0,0,0.35); opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease 0.14s, transform 0.6s cubic-bezier(0.33,1,0.68,1) 0.14s; }
+    .tm-card:hover .tm-pill, .tm-card.on .tm-pill { opacity: 1; transform: none; }
+
+    /* ── Card "vagas" (linha inteira, por baixo da equipa) ── */
+    .tm-join { grid-column: 1 / -1; aspect-ratio: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; padding: 62px 32px 66px; text-decoration: none; }
+    .tm-join > * { position: relative; z-index: 1; }
+    /* no card das vagas o mesmo gradiente sobe menos e mais suave */
+    .tm-join::before { transform: translateY(70%); }
+    .tm-join:hover::before, .tm-join.on::before { transform: translateY(26%); opacity: 0.55; }
+    /* leque de icones: flutua devagar em repouso, abre no hover */
+    .tm-join-icons { display: flex; align-items: flex-end; justify-content: center; animation: tmFlutua 4.6s ease-in-out infinite; }
+    .tm-join:hover .tm-join-icons, .tm-join.on .tm-join-icons { animation-play-state: paused; }
+    @keyframes tmFlutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    .tm-ic { width: 74px; height: 74px; border-radius: 17px; display: grid; place-items: center; color: rgba(255,255,255,0.62); background: linear-gradient(180deg, rgba(255,255,255,0.085) 0%, rgba(255,255,255,0.035) 100%); border: 1px solid rgba(255,255,255,0.07); box-shadow: 0 12px 26px rgba(0,0,0,0.5); transition: transform 0.75s cubic-bezier(0.22,1,0.36,1), color 0.5s ease, border-color 0.5s ease; }
+    .tm-ic svg { width: 30px; height: 30px; }
+    .tm-ic--e { transform: rotate(-9deg) translate(16px, 8px); }
+    .tm-ic--d { transform: rotate(9deg) translate(-16px, 8px); }
+    .tm-ic--c { z-index: 2; color: rgba(255,255,255,0.82); background: linear-gradient(180deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.06) 100%); border-color: rgba(255,255,255,0.11); }
+    .tm-join:hover .tm-ic--e, .tm-join.on .tm-ic--e { transform: rotate(-21deg) translate(2px, 14px); }
+    .tm-join:hover .tm-ic--d, .tm-join.on .tm-ic--d { transform: rotate(21deg) translate(-2px, 14px); }
+    .tm-join:hover .tm-ic--c, .tm-join.on .tm-ic--c { transform: translateY(-10px) scale(1.06); color: #fff; }
+    .tm-join-title { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(26px, 2.6vw, 40px); line-height: 1.06; letter-spacing: -0.02em; text-align: center; color: #fff; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.62) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .tm-join-btn { display: inline-flex; align-items: center; gap: 12px; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: 15.5px; color: rgba(255,255,255,0.9); padding: 14px 30px; border: 1px solid rgba(255,255,255,0.22); border-radius: 100px; background: rgba(255,255,255,0.02); transition: border-color 0.45s ease, background 0.45s ease, color 0.45s ease; }
+    .tm-join-btn svg { width: 17px; height: 17px; transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); }
+    .tm-join:hover .tm-join-btn, .tm-join.on .tm-join-btn { color: #fff; border-color: rgba(255,255,255,0.42); background: rgba(255,255,255,0.06); }
+    .tm-join:hover .tm-join-btn svg, .tm-join.on .tm-join-btn svg { transform: translateX(5px); }
+
+    @media (prefers-reduced-motion: reduce) { .tm-card, .tm-card::before, .tm-info, .tm-pill, .tm-ic, .tm-join-btn, .tm-join-btn svg { transition: none; } .tm-join-icons { animation: none; } }
 
     /* CTA SECTION */
     .cta-section { padding: 100px 48px; background: #050505; width: 100vw; margin-left: calc(50% - 50vw); }
@@ -506,12 +539,10 @@
   /* ── TABLET (≤1024px) ── */
   @media (max-width: 1024px) {
     .site-wrap { overflow-x: hidden; }
-    .logos-section { padding: 100px 48px; }
-    .logos-grid { gap: 40px; }
     .services-section-wrap { padding: 100px 48px !important; }
     .steps-section { padding: 80px 48px; }
     .team-section { padding: 100px 48px; }
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .tm-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-section { padding: 80px 48px; }
     .cta-inner { gap: 48px; }
     footer { padding: 48px 48px 24px; }
@@ -528,8 +559,17 @@
   /* ── MOBILE CARDS (≤768px) ── */
   @media (max-width: 768px) {
     .services-grid { grid-template-columns: 1fr; row-gap: 32px; }
-    .team-grid { grid-template-columns: 1fr; gap: 16px; }
-    .team-card { aspect-ratio: 3/4; }
+    .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .tm-name { font-size: clamp(22px, 6.6vw, 30px); }
+    .tm-info { gap: 10px; transform: translateY(38px); }
+    .tm-pill { font-size: 9.5px; padding: 4px 9px; border-radius: 6px; }
+    .tm-join { padding: 44px 22px 48px; gap: 24px; }
+    .tm-ic { width: 58px; height: 58px; border-radius: 14px; }
+    .tm-ic svg { width: 24px; height: 24px; }
+    .tm-ic--e { transform: rotate(-9deg) translate(12px, 6px); }
+    .tm-ic--d { transform: rotate(9deg) translate(-12px, 6px); }
+    .tm-join-title { font-size: clamp(21px, 5.4vw, 28px); }
+    .tm-join-btn { font-size: 14px; padding: 12px 24px; }
     .cta-inner { flex-direction: column; align-items: flex-start; gap: 32px; }
   }
 
@@ -538,15 +578,13 @@
     .site-wrap { overflow-x: hidden; }
 
     /* Global padding */
-    .logos-section,
     .cta-section,
     .section,
     footer { padding-left: 56px !important; padding-right: 56px !important; }
-    .steps-section,
-    .team-section { padding-left: 8px !important; padding-right: 8px !important; }
+    .steps-section { padding-left: 8px !important; padding-right: 8px !important; }
+    .team-section { padding-left: 44px !important; padding-right: 44px !important; }
 
     /* Section vertical padding */
-    .logos-section { padding-top: 72px; padding-bottom: 72px; }
     .steps-section { padding-top: 72px; padding-bottom: 72px; }
     .team-section  { padding-top: 72px; padding-bottom: 72px; }
     #reviews-section { padding-top: 72px !important; padding-bottom: 72px !important; }
@@ -556,8 +594,8 @@
     .services-section-wrap { padding: 72px 56px !important; }
 
     /* Logos — stack in 2-col grid then single col */
-    .logos-grid { display: grid; grid-template-columns: 1fr; gap: 32px; justify-items: center; }
-    .logo-client img { height: 36px !important; }
+    .marquee-logo { height: 24px; max-width: 120px; }
+    .marquee-track { gap: 40px; }
 
     /* Steps — 2 colunas para poupar scroll vertical */
     .steps-palco { margin-top: 40px; }
@@ -567,19 +605,14 @@
     /* subtitulos de seccao visiveis no mobile */
     #services-subtitle, #team-label, #reels-subtitle, .logos-sub { font-size: 17px; line-height: 1.18; margin-bottom: 32px; padding: 0 6px; }
 
-    /* Team cards — full tall portrait */
-    .team-grid { grid-template-columns: 1fr; gap: 16px; }
-    .team-card { aspect-ratio: 3/4; }
-    /* em coluna unica a seccao fica muito longa: o primeiro card (o do portefolio)
-       sai do mobile, ficando o /nos e o /metodos */
-    .team-grid .team-card:first-child { display: none; }
+    /* Team cards — grelha 2x2 como na referencia mobile */
+    .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
     /* CTA */
     .cta-title { font-size: clamp(28px, 8vw, 48px) !important; max-width: 100%; text-align: left !important; }
 
     /* Typography */
     .section-title { font-size: clamp(28px, 7.6vw, 46px) !important; }
-    .logos-label   { font-size: clamp(28px, 7.6vw, 46px) !important; margin-bottom: 32px; }
     /* sem subtitulo visivel no mobile, o h2 precisa de respiro ate a imagem */
     .team-section .section-title, #portfolio-reels-section .section-title { margin-bottom: 4px; }
 
@@ -604,11 +637,11 @@
     video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
     video::-webkit-media-controls { display: none !important; }
       /* titulos principais: Satoshi Black 900 com gradiente branco->cinza (no fim para vencer especificidade) */
-    .section-title, .cta-title, .logos-label, .steps-fluxo .st-nome { font-weight: 500; text-transform: none; color: #fff; line-height: 1.28; background: linear-gradient(180deg, #fbfbfb 14%, #6e6e6e 92%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.1px rgba(255,255,255,0.55); }
+    .section-title, .cta-title, .logos-label, .steps-fluxo .st-nome { font-weight: 500; text-transform: none; color: #fff; line-height: 1.28; background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
     /* subtitulo da seccao servicos oculto */
     #services-subtitle { display: none; }
     /* gradiente e outline do h1 do hero (mesma estrutura dos restantes titulos) */
-    .home-hero-title { padding: 0.1em 0 0.16em; background: linear-gradient(180deg, #fbfbfb 12%, #a3a3a3 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.42); }
+    .home-hero-title { padding: 0.24em 0 0.30em; margin: -0.14em 0 calc(20px - 0.14em); background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); word-spacing: 0.026em; }
     /* quebras do h1 do hero: 2 versos em desktop/tablet, 3 no telemovel */
     .home-hero-title .br-m { display: none; }
     /* coerencia: seccoes sem subtitulo visivel (Servicos, Marcas que confiam)
@@ -629,15 +662,41 @@
     .steps-fluxo .st-desc { font-size: clamp(13px, 1.1vw, 14.5px); max-width: 40ch; }
     .steps-fluxo .st-dots { margin-top: 20px; }
     .st-seg { left: auto; right: 26px; bottom: 26px; transform: none; }
-    /* no slide CTA os pontos escondem-se e a pill vive na banda inferior do card */
-    .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 22px; margin-top: 0; line-height: 1; }
+    /* no slide CTA os pontos escondem-se e a pill vive na banda inferior do CARD:
+       ancorada ao palco (nao ao fluxo, que cresce com o texto e a fazia "cair"
+       nos ecras estreitos) */
+    /* a pill ocupa o lugar exato dos pontos (mesma margem, no fluxo do texto) */
+    .steps-fluxo .st-pill { position: static; margin-top: 20px; line-height: 1; align-self: flex-start;
+      /* entrada: o display alterna none->visivel a cada slide CTA, o que reinicia a
+         animacao; anima translate/opacity/filter (nunca transform — e o do hover) */
+      animation: stPillEntra 0.9s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+    @keyframes stPillEntra { from { opacity: 0; translate: 0 14px; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+    @media (prefers-reduced-motion: reduce) { .steps-fluxo .st-pill { animation: none; } }
     .st-seg:hover, .st-seg:focus-visible { transform: scale(1.06); }
     .st-seg:active { transform: scale(0.96); }
     /* ===== refinamentos do card dos 4 passos ===== */
     /* letter-spacing apertado como regra partilhada com o hero */
     .home-hero-title, .steps-fluxo .st-nome { letter-spacing: -0.03em; }
+    /* mobile: hero ao estilo da referencia GetDigital — titulo a encher a largura,
+       bloco com margens simetricas e botoes finos a toda a largura */
+    @media (max-width: 600px) {
+      .home-hero-title { font-size: clamp(38px, 10.8vw, 48px); line-height: calc(0.825em + 3px); }
+      .hero-content { padding: 0 64px 72px !important; }
+      /* vence o clamp antigo de 30px com !important: fonte proporcional a largura
+         util (paddings de 32px), medida para a linha mais larga encostar */
+      /* mobile: 3 linhas fixas (br-m) e a mais longa — "fortes, com impacto" —
+         dimensionada para encostar aos dois lados da largura util (100vw - 128px) */
+      .hero-content .home-hero-title { text-align: left !important; font-size: calc((100vw - 128px) * 0.1075) !important; line-height: calc(0.835em + 3px) !important; }
+      /* particao em 3 linhas no mobile: criamos marcas / fortes, com impacto / no digital. */
+      .home-hero-title .br-m { display: inline !important; }
+      .home-hero-title .br-d { display: none !important; }
+      .hero-content .hero-lead { max-width: none !important; text-align: left !important; font-size: clamp(13.5px, calc((100vw - 128px) * 0.0550 + 1px), 17px) !important; line-height: 1.16 !important; }
+      .hero-btns .gx-btn { font-size: clamp(12.5px, calc((100vw - 128px) * 0.0505), 15px) !important; padding: 12px 0 !important; }
+      .hero-btns { flex-direction: column; justify-content: flex-start !important; gap: 12px !important; margin-top: 36px !important; }
+      .hero-btns .gx-btn { display: flex; width: 100%; max-width: none; padding: 13px 0; border-radius: 100px; }
+    }
     /* titulo maior e mais grosso, com o texto mais perto */
-    .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.8px rgba(255,255,255,0.45); }
+    .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
     /* frase maior e com as letras mais juntas */
     .steps-fluxo .st-desc { font-size: clamp(14.5px, 1.25vw, 16.5px); letter-spacing: -0.012em; line-height: 1.45; max-width: 38ch; }
     /* outline com reflexo nos dois vertices opostos (borda em gradiente) */
@@ -654,9 +713,9 @@
     .steps-grupo { display: none; }
     /* halo roxo muito suave nos vertices onde o outline reflete */
     .steps-palco::after { content: ''; position: absolute; inset: -1.5px; border-radius: 13px; pointer-events: none; z-index: -1;
-      background: radial-gradient(19% 23% at 2% 2%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.16) 45%, transparent 72%),
-                  radial-gradient(19% 23% at 98% 98%, rgba(197,133,184,0.38) 0%, rgba(158,123,182,0.14) 45%, transparent 72%);
-      filter: blur(2.5px); }
+      background: radial-gradient(21% 25% at 2% 2%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                  radial-gradient(21% 25% at 98% 98%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.15) 45%, transparent 72%);
+      filter: blur(2.75px); }
     /* pill do ultimo slide do card dos 4 passos */
     .st-pill { display: none; align-items: center; justify-content: center; margin-top: 22px; padding: 13px 30px; border-radius: 100px; border: none; z-index: 0; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); color: #fff; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; text-decoration: none; pointer-events: auto; transition: transform .25s, box-shadow .25s; }
     .st-pill:hover, .st-pill:focus-visible { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); outline: none; }
@@ -676,7 +735,7 @@
       -webkit-mask-composite: xor; mask-composite: exclude;
       background: rgba(255,255,255,0.07); }
     /* quadrado rotativo com o padrao conico: arco, cometa e preenchimento giram juntos */
-    .st-anel::before { content: ''; position: absolute; left: 50%; top: 50%; width: 120%; aspect-ratio: 1/1;
+    .st-anel::before { content: ''; position: absolute; left: 50%; top: 50%; width: 120%; aspect-ratio: 1/1; will-change: transform;
       --stpLarg: 26deg; --stpTail: 0; --stpForte: 0.92; --stpCometa: 0.95;
       background:
         conic-gradient(from 4deg,
@@ -698,14 +757,15 @@
     /* CTA final: as duas pills replicam a construcao do "Saber mais" — gradiente
        vertical + anel de reflexo. Contacte-nos cinzenta com texto preto; Ver
        Trabalhos rosa. (a.gx-btn ganha aos overrides responsivos de border-radius) */
-    .cta-section a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+    .cta-section a.gx-btn, .hero-btns a.gx-btn { overflow: visible; border: none; border-radius: 100px;
       font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+      text-transform: none; letter-spacing: -0.005em;
       background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%);
       color: #0d0d10; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
-    .cta-section a.gx-btn::after { display: none; }
-    .cta-section a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
-    .cta-section a.gx-btn--purple { background: linear-gradient(180deg, #dcaacd 0%, #c585b8 48%, #a3659a 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
-    .cta-section a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+    .cta-section a.gx-btn::after, .hero-btns a.gx-btn::after { display: none; }
+    .cta-section a.gx-btn:hover, .hero-btns a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    .cta-section a.gx-btn--purple, .hero-btns a.gx-btn--purple { background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+    .cta-section a.gx-btn--purple:hover, .hero-btns a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
     .gx-btn:hover .st-anel::before, .gx-btn:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
     /* CTA: titulo maior, linhas mais juntas */
     .cta-title { font-size: clamp(40px, 5.8vw, 82px); line-height: 0.98; padding: 0.08em 0 0.16em; text-wrap: balance; }
@@ -714,7 +774,9 @@
     .mq-shade { position: absolute; inset: 0; pointer-events: none; z-index: 3;
       background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); }
     /* botoes CTA mais pequenos, alinhados a esquerda */
-    .cta-section .gx-btn { font-size: 12.5px; padding: 15px 30px; min-width: 0; border-radius: 11px; }
+    .cta-section .gx-btn { font-size: 14.5px; padding: 15px 30px; min-width: 0; border-radius: 11px; }
+    /* pills do hero: texto maior que o .gx-btn global (13px) */
+    .hero-btns a.gx-btn { font-size: 15px; }
     /* CTA: menos espaco titulo-botoes */
     .cta-title { margin: 0; }
     @media (max-width: 900px) { .cta-inner { gap: 16px; } }
@@ -778,11 +840,11 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="home-hero-title">Criamos marcas<br class="br-m"> fortes,<br class="br-d"> com impacto<br class="br-m"> no digital.</h1>
+    <h1 class="home-hero-title">Criamos marcas<br class="br-m"> fortes<br class="br-d"> com impacto<br class="br-m"> no digital.</h1>
     <p class="hero-lead">Uma agência 100% remota, flexível e dedicada a transformar a tua visão em resultados únicos. Cobrimos branding, websites, software e gestão de redes sociais para PMEs que querem crescer.</p>
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end;margin-top:48px;">
-      <a href="./contactos" class="btn-primary">Contacte-nos</a>
-      <a href="./portfolio" class="btn-outline">Ver Trabalhos</a>
+      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span><i class="st-anel" aria-hidden="true"></i></a>
+      <a href="./portfolio" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Ver Trabalhos</span></a>
     </div>
   </div>
 </section>
@@ -861,18 +923,24 @@
   <span class="mq-edge" aria-hidden="true"></span>
   <span class="mq-shade" aria-hidden="true"></span>
   <div class="marquee-track">
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Branding</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Web Development</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Motion Design</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3D Art</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Social Media</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identidade Visual</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Branding</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Web Development</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Motion Design</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3D Art</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Social Media</span>
-    <span class="marquee-item"><svg class="mq-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identidade Visual</span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt="Moment Laser – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt="Aroma Boreal – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2010.svg" alt="Esthetic Solution – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2011.svg" alt="Wellness Devices – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2013.svg" alt="Film Ideia – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt="MyMoment – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab"></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2010.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2011.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2013.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt=""></span>
   </div>
 </div>
 
@@ -901,7 +969,6 @@
         <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/V9qkn3A4cW9VBqmn1I9Io5kZfb8.jpg');"></div>
       </div>
       <div class="service-card-content">
-        <span class="service-cat-pill">Web</span>
         <div class="service-tag">Websites e serviços web</div>
         <span class="service-link">Saber mais</span>
       </div>
@@ -911,7 +978,6 @@
         <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/instagram-walls-examples.jpg');"></div>
       </div>
       <div class="service-card-content">
-        <span class="service-cat-pill">Redes Sociais</span>
         <div class="service-tag">Gestão de redes sociais</div>
         <span class="service-link">Saber mais</span>
       </div>
@@ -921,7 +987,6 @@
         <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/uhfWOL7YF7Po3G3w2ZfUdosDGgg.jpg');"></div>
       </div>
       <div class="service-card-content">
-        <span class="service-cat-pill">Branding</span>
         <div class="service-tag">Branding & comunicação</div>
         <span class="service-link">Saber mais</span>
       </div>
@@ -965,12 +1030,7 @@
       var parallaxF  = isMobile ? 0                       : 0.18;
       var widthVal   = isMobile ? '320%' : isTablet ? '280%' : '160%';
       canvas.style.width = widthVal;
-      if (isMobile) {
-        var logosSection = document.querySelector('.logos-section');
-        var logosRect = logosSection.getBoundingClientRect();
-        var wrapRect = document.getElementById('logos-services-wrap').getBoundingClientRect();
-        canvas.style.top = (logosRect.top - wrapRect.top + logosRect.height / 2) + 'px';
-      } else if (isTablet) {
+      if (isMobile || isTablet) {
         var servicesRect = rect;
         var wrapRect = document.getElementById('logos-services-wrap').getBoundingClientRect();
         canvas.style.top = (servicesRect.top - wrapRect.top + servicesRect.height / 2) + 'px';
@@ -1031,14 +1091,14 @@
     #reels-panels .rp-p .rp-sound{ opacity:0; pointer-events:none; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-sound{ opacity:1; pointer-events:auto; transition-delay:.16s; }
     #reels-panels .rp-p.has-video .rp-dur{ display:none; }  /* o card em vídeo não mostra a duração */
-    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; letter-spacing:.04em; font-size:15px; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
+    #reels-panels .rp-vlabel{ position:absolute; left:15px; bottom:20px; z-index:4; writing-mode:vertical-rl; transform:rotate(180deg); font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; letter-spacing:.04em; font-size:15px; text-transform:none; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); white-space:nowrap; transition:opacity .3s; }
     #reels-panels .rp-mini{ position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:4; width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:grid; place-items:center; transition:opacity .3s; }
     #reels-panels .rp-p.on .rp-vlabel, #reels-panels .rp-p.on .rp-mini{ opacity:0; pointer-events:none; }
     #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:0; transition:opacity .4s; }
     #reels-panels .rp-p.on .rp-badge, #reels-panels .rp-p.on .rp-dur, #reels-panels .rp-p.on .rp-play, #reels-panels .rp-p.on .rp-cap{ opacity:1; transition-delay:.16s; }
     #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
     #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
-    #reels-panels .rp-badge b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
+    #reels-panels .rp-badge b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:.04em; text-transform:none; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
     #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
     #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
     #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
@@ -1051,7 +1111,7 @@
     #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
     #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
     #reels-panels .rp-nm{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:13px; color:#fff; }
-    #reels-panels .rp-og{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#c585b8; }
+    #reels-panels .rp-og{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:.04em; text-transform:none; color:#c585b8; }
     #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
     @media (max-width: 760px){
       #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
@@ -1064,6 +1124,8 @@
       #reels-panels .rp-badge, #reels-panels .rp-dur, #reels-panels .rp-play, #reels-panels .rp-cap{ opacity:1 !important; }
       #reels-panels .rp-play{ width:44px; height:44px; }          /* botao de play mais pequeno no mobile */
       #reels-panels .rp-play svg{ width:16px; height:16px; }
+      #reels-panels .rp-av{ width:36px; height:36px; }            /* logo do cliente mais pequeno no mobile */
+      #reels-panels .rp-av.mono b{ font-size:13px; }
       #reels-panels .rp-fill{ filter:brightness(.82); }
     }
     @media (prefers-reduced-motion: reduce){ #reels-panels .rp-play::after{ animation:none; } #reels-panels .rp-p,#reels-panels .rp-fill{ transition:none; } }
@@ -1333,7 +1395,7 @@
       num.textContent=PASSOS[i].n; fant.textContent=PASSOS[i].n;
       nome.textContent=PASSOS[i].nome; desc.textContent=PASSOS[i].desc;
       for(var d=0;d<dots.length;d++) dots[d].classList.toggle('on', d===i);
-      var mini=fluxo.querySelector('.st-mini'), pill=fluxo.querySelector('.st-pill'), caixaDots=fluxo.querySelector('.st-dots');
+      var mini=fluxo.querySelector('.st-mini'), pill=palco.querySelector('.st-pill'), caixaDots=fluxo.querySelector('.st-dots');
       if(mini) mini.style.visibility = PASSOS[i].n ? 'visible' : 'hidden';
       if(pill) pill.style.display = PASSOS[i].cta ? 'inline-flex' : 'none';
       if(caixaDots) caixaDots.style.display = PASSOS[i].cta ? 'none' : 'flex';   // a pill toma o lugar dos pontos
@@ -1602,37 +1664,58 @@
   <h2 class="section-title">Conheça a equipa</h2>
   <p class="team-sub" id="team-label">Somos viciados em melhorar performance e atingir resultados.</p>
 
-  <div class="team-grid">
-    <a href="./portfolio" class="team-card" style="text-decoration:none;color:inherit;">
-      <div class="team-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/HXJVmYeTzy18s75bwfejEBMrbis.jpg');"></div>
-      <div class="team-card-overlay"></div>
-    </a>
-    <a href="./nos" class="team-card" style="text-decoration:none;color:inherit;">
-      <div class="team-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/K1YItQQgyNupm0xhgx7vYqmHWc.jpg');"></div>
-      <div class="team-card-overlay"></div>
-    </a>
-    <a href="./metodos" class="team-card" style="text-decoration:none;color:inherit;">
-      <div class="team-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/pW2f6W7fahUC0WoNIWa0g6rhvo.jpg');"></div>
-      <div class="team-card-overlay"></div>
+  <div class="tm-grid">
+    <div class="tm-card">
+      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/diogo.png" alt="Diogo Vieira — Founder da Differentt Lab">
+      <div class="tm-shade"></div>
+      <div class="tm-info"><span class="tm-name">Diogo<br>Vieira</span><span class="tm-pill">Founder</span></div>
+    </div>
+    <div class="tm-card">
+      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/marta.png" alt="Marta Fernandes — 3D Artist na Differentt Lab">
+      <div class="tm-shade"></div>
+      <div class="tm-info"><span class="tm-name">Marta<br>Fernandes</span><span class="tm-pill">3D Artist</span></div>
+    </div>
+    <div class="tm-card">
+      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/beatriz.png" alt="Beatriz — Social Media na Differentt Lab">
+      <div class="tm-shade"></div>
+      <div class="tm-info"><span class="tm-name">Beatriz</span><span class="tm-pill">Social Media</span></div>
+    </div>
+    <div class="tm-card">
+      <!-- foto do David ainda em falta -->
+      <div class="tm-shade"></div>
+      <div class="tm-info"><span class="tm-name">David<br>Clemente</span><span class="tm-pill">Videógrafo</span></div>
+    </div>
+
+    <!-- card de vagas: ocupa a linha toda por baixo da equipa -->
+    <a class="tm-card tm-join" href="./contactos" aria-label="Consultar vagas na Differentt Lab">
+      <div class="tm-join-icons">
+        <div class="tm-ic tm-ic--e" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="M15 10.5 21 7v10l-6-3.5z"/></svg></div>
+        <div class="tm-ic tm-ic--c" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3.5 20.5 11.5 11 21H3v-8z"/><path d="M8.5 15.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="m3 21 5.1-5.1"/></svg></div>
+        <div class="tm-ic tm-ic--d" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-5 4 5 4"/><path d="m15 8 5 4-5 4"/></svg></div>
+      </div>
+      <h3 class="tm-join-title">Interessado em<br>trabalhar connosco?</h3>
+      <span class="tm-join-btn">Consultar vagas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg></span>
     </a>
   </div>
 </section>
+<script>
+  // Em touch nao ha hover: o toque num card liga o mesmo estado (.on) que o hover
+  // usa no desktop — gradiente a subir, nome a subir e pill do cargo a aparecer.
+  (function(){
+    var grelha = document.querySelector('.tm-grid');
+    if (!grelha || !window.matchMedia('(hover: none)').matches) return;
+    grelha.addEventListener('touchstart', function(e){
+      var card = e.target.closest('.tm-card');
+      grelha.querySelectorAll('.tm-card.on').forEach(function(c){ if (c !== card) c.classList.remove('on'); });
+      if (card) card.classList.toggle('on');
+    }, { passive: true });
+    // tocar fora da grelha fecha o card aberto
+    document.addEventListener('touchstart', function(e){
+      if (!e.target.closest('.tm-grid')) grelha.querySelectorAll('.tm-card.on').forEach(function(c){ c.classList.remove('on'); });
+    }, { passive: true });
+  })();
+</script>
 
-<!-- CLIENT LOGOS (movido para junto da constelação) -->
-<div class="logos-section" style="position:relative;z-index:1;">
-  <h2 class="logos-label">Marcas que confiam</h2>
-  <div class="logos-grid">
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%208.svg" alt="Moment Laser – venda e aluguer de equipamentos de estética – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%209.svg" alt="Aroma Boreal – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2010.svg" alt="Esthetic Solution – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2011.svg" alt="Wellness Devices – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2013.svg" alt="Film Ideia – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2015.svg" alt="MyMoment – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – clínica de estética avançada – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-    <div class="logo-client"><img loading="lazy" decoding="async" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab" style="height:48px;filter:brightness(0) invert(1);opacity:0.45;"></div>
-  </div>
-</div>
 
 
 <!-- Testemunhos — player reels vertical (mesma mecânica do portfólio) -->

@@ -71,7 +71,7 @@
     nav { transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease; }
     nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
 
-    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 28px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,.45), 0 1px 4px rgba(69,69,69,.2); }
+    nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,.45), 0 1px 4px rgba(69,69,69,.2); }
     .nav-links { display: flex; gap: 50px; }
     .nav-links a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; opacity: .85; transition: opacity .2s, color .2s; }
     .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
@@ -79,7 +79,7 @@
     .nav-icons a { color: #fff; opacity: .75; transition: opacity .2s; display: flex; align-items: center; }
     .nav-icons a:hover { opacity: 1; }
     .nav-hamburger { display: none; align-items: center; justify-content: center; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; flex-shrink: 0; }
-    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 28px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 24px 64px rgba(0,0,0,.7); }
+    .nav-mobile-overlay { display: none; position: fixed; top: 20px; left: 20px; right: 20px; z-index: 200; background: rgba(0,0,0,0.72); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 0 23px 28px; flex-direction: column; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 24px 64px rgba(0,0,0,.7); }
     .nav-mobile-overlay.open { display: flex; animation: mob-nav-in .35s cubic-bezier(.22,1,.36,1) forwards; }
     .nav-mobile-overlay.closing { display: flex; animation: mob-nav-out .22s cubic-bezier(.4,0,1,1) forwards; }
     @keyframes mob-nav-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
