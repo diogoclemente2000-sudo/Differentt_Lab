@@ -123,7 +123,7 @@
     nav.scrolled { background: rgba(0,0,0,0.55) !important; -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important; }
     nav { pointer-events: all; width: 100%; max-width: 1750px; height: 65px; background: #000; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin: 0 20px; box-shadow: 1px 3px 12px rgba(69,69,69,0.45), 0 1px 4px rgba(69,69,69,0.2); }
     .nav-links { display: flex; gap: 50px; }
-    .nav-links a { color: #fff; text-decoration: none; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
+    .nav-links a { color: #fff; text-decoration: none; font-family: 'Nunito Sans', sans-serif; font-size: 24px; font-weight: 400; opacity: 0.85; transition: opacity 0.2s; }
     .nav-links a:hover, .nav-links a.active { opacity: 1; color: #9e7bb6; }
     .nav-icons { display: flex; gap: 20px; align-items: center; }
     .nav-icons a { color: #fff; opacity: 0.75; transition: opacity 0.2s; display: flex; align-items: center; }
@@ -470,6 +470,7 @@
     .step-orb4 { position: relative; aspect-ratio: 1; }
     .orb4-ring { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); transform: rotate(-90deg); pointer-events: none; opacity: 0.45; z-index: 0; }
     @media (min-width: 1025px) {
+      :root { --gutter: clamp(100px, 9.7vw, 160px); }
       .steps-section .steps-palco { display: none; }
       .steps-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 30px); max-width: 1380px; margin: 60px auto 0; }
       .steps-grid4 .steps-fluxo { padding: 0 12%; }
@@ -817,7 +818,10 @@
       /* ecras estreitos: o texto ocupa mais linhas e a pill descia ate encostar ao
          fundo do card. Passa a estar ancorada ao palco (altura fixa), na mesma
          linha da seta — deixa de depender de quantas linhas o texto ocupa. */
-      .steps-fluxo { position: static; padding-bottom: 74px; }
+      /* relative (nao static): mantem o mesmo layout e ancoragem da pill (o fluxo
+         preenche o palco), mas conserva o z-index — com static o texto pintava
+         por baixo do .steps-orbe e o 1o slide aparecia vazio. */
+      .steps-fluxo { position: relative; padding-bottom: 74px; }
       .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 52px; margin-top: 0; }
       .steps-fluxo.cta .st-mini { display: none; }
       .steps-fluxo.cta { padding-top: 22px; }
@@ -906,6 +910,27 @@
     .hero-btns a.gx-btn { font-size: 15px; }
     /* CTA: menos espaco titulo-botoes */
     .cta-title { margin: 0; }
+    /* reflexo rosa no card em destaque do portfolio (mobile) */
+    .reel-featured::after { content: ''; position: absolute; top: 0; left: 18%; right: 30%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent 0%, rgba(158,123,182,0.25) 20%, rgba(197,133,184,0.95) 50%, rgba(158,123,182,0.25) 80%, transparent 100%); filter: drop-shadow(0 0 6px rgba(197,133,184,0.75)); pointer-events: none; z-index: 4; }
+    /* ===== DESKTOP: hero editorial a esquerda + densidade (boas normas web) — mobile intocado ===== */
+    @media (min-width: 901px) {
+      .hero-content { max-width: 1440px; padding: 0 var(--gutter) 72px; }
+      .home-hero-title { text-align: left; font-size: clamp(44px, 4.9vw, 72px); line-height: 0.92; letter-spacing: -0.035em; margin-bottom: 20px; }
+      .hero-lead { text-align: left; max-width: 54ch; line-height: 1.34; }
+      .hero-content .hero-btns { justify-content: flex-start !important; margin-top: 34px !important; }
+      .hero-rev { justify-content: flex-start; margin-top: 30px; }
+    }
+    @media (min-width: 1025px) {
+      .section, .steps-section, .team-section { padding-top: 120px; padding-bottom: 120px; }
+      #portfolio-reels-section { padding-top: 120px !important; padding-bottom: 120px !important; }
+      #reels-panels { padding-top: 110px; padding-bottom: 110px; }
+      .section-title, .logos-label { font-size: clamp(29px, 2.9vw, 40px); }
+      .cta-title { font-size: clamp(36px, 4.2vw, 60px); }
+      .services-grid { max-width: 1160px; margin-left: auto; margin-right: auto; }
+      .reels-grid { max-width: 860px; margin-left: auto; margin-right: auto; }
+      #reels-panels .rp-acc { max-width: 1160px; height: clamp(440px, 44vw, 540px); }
+      .cta-inner, .ft-grid { max-width: 1160px; }
+    }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -1322,9 +1347,10 @@
     #reels-panels .rp-title span{ color:#9e7bb6; }
     #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
     #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
+    @media (min-width:1025px){ #reels-panels .rp-acc{ max-width:1160px; height:clamp(420px,40vw,500px); } }
     #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:12px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
     #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
-    #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
+    #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.92) 4%, rgba(0,0,0,.12) 44%, rgba(0,0,0,.32)); }
     #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
     /* botão de som do primeiro card (vídeo em auto-play) */
     #reels-panels .rp-sound{ position:absolute; top:14px; right:14px; z-index:6; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.5); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); display:grid; place-items:center; cursor:pointer; color:#fff; padding:0; }
@@ -1341,7 +1367,7 @@
     #reels-panels .rp-badge{ position:absolute; top:14px; left:14px; z-index:4; display:flex; align-items:center; gap:8px; }
     #reels-panels .rp-badge .rp-dot{ width:24px; height:24px; border-radius:50%; object-fit:cover; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
     #reels-panels .rp-badge b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:.04em; text-transform:none; color:rgba(255,255,255,.92); text-shadow:0 1px 3px rgba(0,0,0,.6); }
-    #reels-panels .rp-av{ width:46px; height:46px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
+    #reels-panels .rp-av{ width:34px; height:34px; border-radius:50%; overflow:hidden; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.9), 0 4px 14px rgba(0,0,0,.5); }
     #reels-panels .rp-av img{ width:100%; height:100%; object-fit:cover; display:block; }
     #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
     #reels-panels .rp-av.mono b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:16px; color:#fff; letter-spacing:.02em; }
@@ -1349,7 +1375,7 @@
     #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:64px; height:64px; border:0; padding:0; cursor:pointer; border-radius:50%; background:rgba(0,0,0,.42); -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px); display:grid; place-items:center; transition:transform .3s, background .3s; }
     #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ background:rgba(0,0,0,.6); outline:none; }
     @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
-    #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(6,4,10,.95) 6%, rgba(6,4,10,.4) 55%, transparent); }
+    #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(0,0,0,.95) 6%, rgba(0,0,0,.4) 55%, transparent); }
     #reels-panels .rp-q{ font-family:'Nunito Sans',sans-serif; font-weight:300; font-size:clamp(16px,1.7vw,21px); line-height:1.4; color:#fff; max-width:32ch; }
     #reels-panels .rp-who{ margin-top:12px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
     #reels-panels .rp-nm{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:13px; color:#fff; }
