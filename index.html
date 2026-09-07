@@ -200,13 +200,36 @@
     @keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .home-hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
     .hero-btns { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+    /* indicador de reviews no hero (mesmo badge da seccao de reviews) */
+    .hero-rev { display: flex; align-items: center; gap: 16px; margin-top: 46px; justify-content: flex-end; animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.65s both; }
+    /* o bloco <=1199px poe todos os divs do hero em coluna — este fica em linha */
+    .hero-content .hero-rev { flex-direction: row !important; align-items: center !important; }
+    .hero-rev-avatars { display: inline-flex; align-items: center; }
+    .hero-rev-av { position: relative; width: 31px; height: 31px; border-radius: 50%; overflow: hidden; margin-left: -10px; background: #fff; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,0.55), 0 0 0 3px #0a0a0a, 0 3px 8px rgba(0,0,0,0.45); }
+    .hero-rev-av:first-child { margin-left: 0; }
+    .hero-rev-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* mesma vinheta em cada avatar — unifica fotos com brilhos diferentes */
+    .hero-rev-av::after { content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: radial-gradient(circle at 50% 38%, transparent 42%, rgba(12,6,20,0.62) 100%); }
+    .hero-rev-av--g { display: grid; place-items: center; }
+    .hero-rev-av--g::after { background: radial-gradient(circle at 50% 38%, transparent 62%, rgba(0,0,0,0.12) 100%); }
+    .hero-rev-rating { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .hero-rev-stars { display: inline-flex; align-items: center; gap: 1.5px; line-height: 0; }
+    .hero-rev-stars svg { display: block; flex-shrink: 0; fill: #86609f; stroke: #86609f; animation: heroStar 0.75s cubic-bezier(0.22,1,0.36,1) both; }
+    .hero-rev-stars svg:nth-child(1) { animation-delay: 0.85s; }
+    .hero-rev-stars svg:nth-child(2) { animation-delay: 1.0s; }
+    .hero-rev-stars svg:nth-child(3) { animation-delay: 1.15s; }
+    .hero-rev-stars svg:nth-child(4) { animation-delay: 1.3s; }
+    .hero-rev-stars svg:nth-child(5) { animation-delay: 1.45s; }
+    @keyframes heroStar { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { .hero-rev, .hero-rev-stars svg { animation: none; } }
+    .hero-rev-count { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 14.5px; font-weight: 400; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
     .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 480px; }
 
     /* MARQUEE */
     .marquee-section { background: linear-gradient(180deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.008) 100%), #060606; padding: 27px 0; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); }
-    .marquee-track { display: flex; gap: 60px; animation: marquee 34s linear infinite; white-space: nowrap; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; white-space: nowrap; }
     .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: 'Nunito Sans', sans-serif; font-size: 14.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.62); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .marquee-item { margin-right: 60px; font-family: 'Nunito Sans', sans-serif; font-size: 14.5px; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.62); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .marquee-item .mq-check { width: 15px; height: 15px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
     .marquee-logo { height: 30px; width: auto; max-width: 155px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.25s; }
     .marquee-item:hover .marquee-logo { opacity: 0.8; }
@@ -228,8 +251,14 @@
 
     /* CLIENT LOGOS */
 
+    /* Respiro lateral da pagina: um so valor por tamanho de ecra. Todas as
+       seccoes usam var(--gutter) — nao acrescentar paddings laterais soltos. */
+    :root { --gutter: 80px; }
+    @media (max-width: 1024px) { :root { --gutter: 48px; } }
+    @media (max-width: 600px)  { :root { --gutter: 32px; } }
+
     /* SERVICES SECTION */
-    .section { padding: 180px 48px; }
+    .section { padding: 180px var(--gutter); }
     .section-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 16px; text-align: center; }
     /* regra unica de tamanho para os titulos de seccao da home (inclui o das marcas) */
     .section-title, .logos-label { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: clamp(29px, 3.6vw, 48px); font-weight: 300; letter-spacing: -0.02em; text-transform: uppercase; line-height: 0.95; margin-bottom: 4px; color: #fff; }
@@ -238,10 +267,23 @@
 
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     @media (max-width: 1199px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .services-3d-bg { width: 180vw !important; max-width: none !important; } }
-    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: 8px !important; padding-right: 8px !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: 8px !important; padding-right: 8px !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
-    .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 16px; background: transparent; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.18); isolation: isolate; }
+    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
+    .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 12px; background: transparent; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.18); isolation: isolate; }
     .service-card-photo { position: relative; flex: 1; min-height: 0; overflow: hidden; }
     .service-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .service-card-bg--svg svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: transparent; }
+    /* cards vetoriais: superficie continua (sem barra) e texto no enquadramento
+       da referencia — titulo grande prateado + paragrafo, como "Clientes"/"Receita" */
+    .service-card--vetor { height: 280px; background: #0a0a0a; }
+    .service-card--vetor .service-card-content { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 4px 26px 28px; }
+    /* o desenho deixa de acabar onde comeca o texto: passa a cobrir o card
+       inteiro, por tras do titulo (a caixa da foto deixa de o cortar) */
+    .service-card--vetor { position: relative; }
+    .service-card--vetor .service-card-photo { position: static; overflow: visible; }
+    .service-card--vetor .service-card-bg--svg { inset: 0; }
+    .service-card--vetor .service-card-content { position: relative; z-index: 1; }
+    .service-card--vetor .service-tag { text-transform: none; font-size: 25.3px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 8px; background: linear-gradient(180deg, #eceaf0 15%, #8f8e96 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.385px rgba(255,255,255,0.25); }
+    .service-desc { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; color: #fff; margin: -3px 0 0; }
     .service-card:hover .service-card-bg { transform: scale(1.06); }
     .service-card-content { padding: 18px 20px; background: transparent; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
     /* mesma construcao das pills novas (gradiente vertical + realce interno), sem reflexo */
@@ -251,11 +293,64 @@
     .service-link { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; transition: color 0.2s, gap 0.2s; }
     .service-link::after { content: '→'; font-size: 13px; }
     .service-card:hover .service-link { color: #c585b8; gap: 10px; }
+    /* CARD SERVICOS WEB — aneis concentricos com simbolos nas posicoes do editor.
+       Hover: brilho floresce, ondas ganham presenca, cada simbolo viaja para o destino
+       definido pelo Diogo, logo respira. */
+    .service-card--web:hover .service-card-bg { transform: none; }
+    .swx-brilho { transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(0.66);
+      transition: opacity 1.8s cubic-bezier(0.32, 0, 0.24, 1), transform 2.2s cubic-bezier(0.18, 1.24, 0.36, 1); }
+    .service-card--web:hover .swx-brilho { opacity: 0.43; transform: scale(1); }
+    .swx-ondas { opacity: 0.72; transition: opacity 1.2s ease; }
+    .service-card--web:hover .swx-ondas { opacity: 1; }
+    /* arranca devagar e acelera ao longo do trajeto */
+    .swx-ico { transition: transform 0.85s cubic-bezier(0.8, 0, 0.5, 1); }
+    .service-card--web:hover .swx-i1 { transform: translate(-54px, -87px); }    /* code     -> 519,234 */
+    .service-card--web:hover .swx-i2 { transform: translate(-117px, -100px); }    /* janela   -> 514,131 */
+    .service-card--web:hover .swx-i3 { transform: translate(127px, -83px); }    /* chaves   -> 377,187 */
+    .service-card--web:hover .swx-i4 { transform: translate(-90px, -97px); }    /* movel    -> 635,126 */
+    .service-card--web:hover .swx-i5 { transform: translate(11px, -62px); }    /* base     -> 390,259 */
+    .service-card--web:hover .swx-i6 { transform: translate(14px, -102px); }    /* terminal -> 289,269 */
+    .service-card--web:hover .swx-i7 { transform: translate(-76px, -123px); }    /* nuvem    -> 608,221 */
+    .service-card--web:hover .swx-i8 { transform: translate(-1px, -63px); }    /* raio     -> 484,318 */
+    .service-card--web:hover .swx-i9 { transform: translate(80px, -91px); }    /* lupa     -> 225,118 */
+    .service-card--web:hover .swx-i10 { transform: translate(147px, -141px); }    /* cadeado  -> 295,172 */
+    /* o quadrado do logo respira ligeiramente */
+    .swx-logo { transform-box: fill-box; transform-origin: center; transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+    .service-card--web:hover .swx-logo { transform: scale(1.05); }
+    @media (prefers-reduced-motion: reduce) {
+      .swx-brilho, .swx-logo, .swx-ondas, .swx-ico { transition: none; }
+    }
+    /* CARD GESTAO DE REDES SOCIAIS — curva de crescimento (mistura V1+V2): sem zoom,
+       brilho a florescer, passagem de luz a percorrer a curva e ponto "agora" a pulsar */
+    .service-card--social:hover .service-card-bg { transform: none; }
+    .smx2-fill { stroke-dasharray: 100 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.9s cubic-bezier(0.8, 0, 0.5, 1); }
+    .service-card--social:hover .smx2-fill { stroke-dashoffset: 0; transition-duration: 1.4s; transition-delay: 0.08s; }
+    .smx2-stat { position: absolute; top: 18px; left: 26px; z-index: 1; pointer-events: none;
+      font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 25.3px; letter-spacing: -0.015em;
+      background: linear-gradient(180deg, #eceaf0 15%, #8f8e96 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.385px rgba(255,255,255,0.25); }
+    @media (prefers-reduced-motion: reduce) {
+      .smx2-fill { transition: none; }
+    }
+    /* CARD BRANDING — no hover as pecas viajam para a composicao definida no editor;
+       arranca devagar e acelera, como nos outros cards */
+    .service-card--brand:hover .service-card-bg { transform: none; }
+    .bwx-peca { transition: transform 0.85s cubic-bezier(0.8, 0, 0.5, 1), opacity 0.7s ease; }
+    @media (prefers-reduced-motion: reduce) { .bwx-peca { transition: none; } }
+    /* mobile: composicao propria desenhada no construtor (2026-09-07) */
+    @media (max-width: 600px) {
+      .service-card--brand .bwx-peca { transform-box: fill-box; transform-origin: center; }
+      .service-card--brand .bwx-p3 { transform: translate(68.9px, -38.9px) scale(1.320); }
+      .service-card--brand .bwx-p4 { transform: translate(133.5px, -38.9px) scale(1.320); }
+      .service-card--brand .bwx-p5 { transform: translate(282.1px, -12.9px) scale(1.320); }
+      .service-card--brand .bwx-p6 { transform: translate(217.0px, -12.9px) scale(1.320); }
+      .service-card--brand .bwx-p7 { transform: translate(4.2px, -38.9px) scale(1.320); }
+      .service-card--brand .bwx-p8 { transform: translate(351.9px, -12.9px) scale(1.320); }
+    }
 
     /* REELS / PORTFOLIO GRID */
     .reels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .reels-grid .reel-card:nth-child(n+5) { display: none; }
-    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; }
+    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; }
     .reel-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .reel-card:hover .reel-card-img { transform: scale(1.06); }
     .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, transparent 70%); pointer-events: none; }
@@ -273,21 +368,21 @@
 
     /* MOBILE — product-style gallery: 1 featured card + thumbnail circles */
     .reels-mobile-gallery { display: none; }
-    .reel-featured { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; margin-bottom: 20px; }
+    .reel-featured { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; margin-bottom: 20px; }
     .reel-featured-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
     .reel-featured-img.active { opacity: 1; }
     .reel-thumbs { display: flex; gap: 7px; padding: 2px 2px 10px; }
     .reel-thumbs::-webkit-scrollbar { display: none; }
     /* background transparent: os thumbs sao <button> e sem isto ficam com o cinzento
        por omissao do browser (o reset do Tailwind fazia isto antes de ser removido) */
-    .reel-thumb { position: relative; flex: 1 1 0; min-width: 0; aspect-ratio: 50 / 68; border-radius: 11px; overflow: hidden; cursor: pointer; padding: 2px; background: transparent; border: 2px solid transparent; transition: border-color 0.2s, opacity 0.2s; opacity: 0.55; }
-    .reel-thumb img { width: 100%; height: 100%; border-radius: 9px; object-fit: cover; display: block; }
+    .reel-thumb { position: relative; flex: 1 1 0; min-width: 0; aspect-ratio: 50 / 68; border-radius: 8px; overflow: hidden; cursor: pointer; padding: 2px; background: transparent; border: 2px solid transparent; transition: border-color 0.2s, opacity 0.2s; opacity: 0.55; }
+    .reel-thumb img { width: 100%; height: 100%; border-radius: 6px; object-fit: cover; display: block; }
     .reel-thumb.active { border-color: #9e7bb6; opacity: 1; }
     .reel-thumbs .reel-thumb:nth-child(n+7) { display: none; }
     @media (max-width: 600px) {
       .reels-grid { display: none; }
       .reels-mobile-gallery { display: block; }
-      #portfolio-reels-section { padding: 72px 8px !important; }
+      #portfolio-reels-section { padding: 72px var(--gutter) !important; }
       .reel-featured { width: 100%; }
     }
 
@@ -328,7 +423,7 @@
     @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: calc(54px + env(safe-area-inset-top, 0px)); right: 16px; } .reels-mute { top: calc(54px + env(safe-area-inset-top, 0px)); left: 16px; } .reels-progress { padding: 14px 16px 0; } }
 
     /* STEPS SECTION */
-    .steps-section { padding: 180px 48px; background: transparent !important; }
+    .steps-section { padding: 180px var(--gutter); background: transparent !important; }
     /* 4 PASSOS — "Nébula": um círculo central onde três massas de luz vagueiam e a paleta
        muda com o passo; o algarismo enche o círculo como marca de água e o texto vive por
        cima. Avança sozinho (4s/passo), pausa em hover, arranca quando a secção aparece. */
@@ -396,7 +491,7 @@
     @media (prefers-reduced-motion: reduce) { .steps-grid4 .step-orb4 { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
     /* TEAM SECTION */
-    .team-section { padding: 180px 160px; position: relative; overflow: hidden; }
+    .team-section { padding: 180px var(--gutter); position: relative; overflow: hidden; }
     .team-section .section-title, .team-section .team-sub { position: relative; z-index: 1; }
     /* ── Equipa (estilo referencia GetDigital): foto recortada sobre card escuro;
        no hover o gradiente roxo sobe do fundo do card, por tras da pessoa. Sem
@@ -443,15 +538,33 @@
     @media (prefers-reduced-motion: reduce) { .tm-card, .tm-card::before, .tm-info, .tm-pill, .tm-ic, .tm-join-btn, .tm-join-btn svg { transition: none; } .tm-join-icons { animation: none; } }
 
     /* CTA SECTION */
-    .cta-section { padding: 100px 48px; background: #050505; width: 100vw; margin-left: calc(50% - 50vw); }
-    .cta-inner { max-width: 1400px; margin: 0 auto; display: flex; flex-direction: row; align-items: center; gap: 40px; }
+    .cta-section { padding: 100px var(--gutter); background: #050505; width: 100vw; margin-left: calc(50% - 50vw); }
+    /* card da CTA final — mesma linguagem do card dos 4 passos: cantos de 12px,
+       varredura de luz roxa no canto superior direito, veu por cima e moldura
+       em gradiente */
+    .cta-luz { position: relative; max-width: 620px; margin: 0 auto; }
+    /* brilho que reflete nos cantos, igual ao card dos 4 passos */
+    .cta-luz::after { content: ''; position: absolute; inset: -1px; border-radius: 13px; pointer-events: none; z-index: 0;
+      background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                  radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%);
+      filter: blur(1.6px); }
+    .cta-card { position: relative; z-index: 1; overflow: hidden; max-width: none; margin: 0; padding: 46px 44px 40px; border-radius: 12px; background: #08060b; border: 1px solid rgba(158,123,182,0.24); box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 0 70px rgba(158,123,182,0.12), inset 0 1px 0 rgba(255,255,255,0.06); }
+    .cta-card::after { content: ''; position: absolute; left: 50%; top: 34%; width: 145%; height: 82%; z-index: 0; transform: translate(-50%, -50%) rotate(15deg); background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/diff_imagebackground.png') center / 100% 100% no-repeat; pointer-events: none; }
+    .cta-veu { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(160deg, rgba(5,4,8,0.12) 0%, rgba(5,4,8,0.38) 55%, rgba(5,4,8,0.62) 100%); }
+    .cta-card::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; z-index: 3; pointer-events: none; background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .cta-card > :not(.cta-veu) { position: relative; z-index: 2; }
+    .cta-logo { display: block; height: 26px; width: auto; margin-bottom: 30px; }
+    .cta-section .cta-card .cta-title { text-align: left; font-size: clamp(31px, 4.4vw, 46px) !important; line-height: 1.0; margin: 0 0 14px; max-width: none; }
+    .cta-sub { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.45; color: rgba(255,255,255,0.78); margin: 0 0 32px; }
+    .cta-sub b { font-weight: 700; color: #c585b8; }
+    .cta-section .cta-card a.gx-btn { display: flex; width: 100%; min-width: 0; padding: 17px 0; font-size: 15px; border-radius: 100px; }
     /* botoes da CTA maiores e de largura igual (mais proporcionais ao titulo) */
     .cta-section .gx-btn { font-size: 14.5px; padding: 20px 44px; min-width: 250px; border-radius: 13px; }
     .cta-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; max-width: 560px; }
     .cta-title span { color: #fff; }
 
     /* FOOTER */
-    footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); width: 100vw; margin-left: calc(50% - 50vw); padding: 64px max(48px, calc((100vw - 1400px) / 2)) 32px; }
+    footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); width: 100vw; margin-left: calc(50% - 50vw); padding: 64px max(var(--gutter), calc((100vw - 1400px) / 2)) 32px; }
     .footer-inner { max-width: 1750px; margin: 0 auto; }
     .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; }
     .footer-brand-name { margin: 20px 0 12px; }
@@ -495,7 +608,7 @@
     .ft-bottom a:hover { color: #9e7bb6; }
     .ft-social--mob { display: none; }
     @media (max-width: 1024px) {
-      footer { padding-left: clamp(56px, 11vw, 120px); padding-right: clamp(56px, 11vw, 120px); }
+      footer { padding-left: var(--gutter); padding-right: var(--gutter); }
       .ft-desc { font-size: 16.5px; line-height: 1.5; margin: 22px 0 6px; }
       .ft-contacts li { margin-top: 22px; gap: 14px; }
       .ft-ico { width: 52px; height: 52px; border-radius: 13px; }
@@ -539,16 +652,15 @@
   /* ── TABLET (≤1024px) ── */
   @media (max-width: 1024px) {
     .site-wrap { overflow-x: hidden; }
-    .services-section-wrap { padding: 100px 48px !important; }
-    .steps-section { padding: 80px 48px; }
-    .team-section { padding: 100px 48px; }
+    .services-section-wrap { padding: 100px var(--gutter) !important; }
+    .steps-section { padding: 80px var(--gutter); }
+    .team-section { padding: 100px var(--gutter); }
     .tm-grid { grid-template-columns: repeat(2, 1fr); }
-    .cta-section { padding: 80px 48px; }
-    .cta-inner { gap: 48px; }
-    footer { padding: 48px 48px 24px; }
+    .cta-section { padding: 80px var(--gutter); }
+    footer { padding: 48px var(--gutter) 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .section { padding: 100px 48px; }
+    .section { padding: 100px var(--gutter); }
   }
 
   /* ── TABLET 3D CANVAS (769px–1024px) ── */
@@ -570,32 +682,37 @@
     .tm-ic--d { transform: rotate(9deg) translate(-12px, 6px); }
     .tm-join-title { font-size: clamp(21px, 5.4vw, 28px); }
     .tm-join-btn { font-size: 14px; padding: 12px 24px; }
-    .cta-inner { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .cta-card { padding: 34px 28px 32px; }
+    .cta-logo { height: 22px; margin-bottom: 24px; }
+    .cta-sub { font-size: 15px; margin-bottom: 26px; }
   }
 
   /* ── MOBILE (≤600px) ── */
   @media (max-width: 600px) {
     .site-wrap { overflow-x: hidden; }
 
-    /* Global padding */
+    /* Global padding — o mesmo respiro em todas as seccoes */
     .cta-section,
     .section,
-    footer { padding-left: 56px !important; padding-right: 56px !important; }
-    .steps-section { padding-left: 8px !important; padding-right: 8px !important; }
-    .team-section { padding-left: 44px !important; padding-right: 44px !important; }
+    .steps-section,
+    .team-section,
+    footer { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
 
     /* Section vertical padding */
     .steps-section { padding-top: 72px; padding-bottom: 72px; }
     .team-section  { padding-top: 72px; padding-bottom: 72px; }
     #reviews-section { padding-top: 72px !important; padding-bottom: 72px !important; }
-    .cta-section   { padding-top: 72px; padding-bottom: 72px; padding-left: 56px; padding-right: 56px; }
-    .cta-inner     { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .cta-section   { padding-top: 72px; padding-bottom: 72px; }
     footer         { padding-top: 48px; padding-bottom: 24px; }
-    .services-section-wrap { padding: 72px 56px !important; }
+    .services-section-wrap { padding: 72px var(--gutter) !important; }
 
     /* Logos — stack in 2-col grid then single col */
+    /* cards de servicos mais quadrados no telemovel (sem a altura fixa de 420px) */
+    .service-card { height: auto; aspect-ratio: 1 / 1; }
+    .service-card--vetor { aspect-ratio: auto; }
+    .service-card--vetor .service-card-photo { flex: none; height: 240px; }
     .marquee-logo { height: 24px; max-width: 120px; }
-    .marquee-track { gap: 40px; }
+    .marquee-item { margin-right: 40px; }
 
     /* Steps — 2 colunas para poupar scroll vertical */
     .steps-palco { margin-top: 40px; }
@@ -649,12 +766,12 @@
     #services-section .section-title, .logos-label { margin-bottom: 56px; }
     @media (max-width: 600px) { #services-section .section-title, .logos-label { margin-bottom: 44px; } }
     /* ===== 4 PASSOS: card unico que cicla os passos (substitui os circulos) ===== */
-    .steps-section .steps-palco { display: block !important; position: relative; width: min(560px, 92vw); aspect-ratio: auto; margin: 52px auto 0; }
+    .steps-section .steps-palco { display: block !important; position: relative; width: min(560px, 100%); aspect-ratio: auto; margin: 52px auto 0; }
     .steps-grid4 { display: none !important; }
     .steps-argo { display: none !important; }
     .steps-orbe { border-radius: 12px; border: 1px solid rgba(158,123,182,0.24); box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 0 70px rgba(158,123,182,0.12), inset 0 1px 0 rgba(255,255,255,0.06); }
     /* varredura de luz no canto superior direito, na tinta da marca */
-    .steps-orbe::after { content: ''; position: absolute; top: -62%; right: -42%; width: 145%; height: 145%; border-radius: 50%; background: radial-gradient(closest-side, rgba(197,133,184,0.5) 0%, rgba(158,123,182,0.2) 46%, transparent 72%); pointer-events: none; }
+    .steps-orbe::after { content: ''; position: absolute; top: -62%; right: -42%; width: 145%; height: 145%; border-radius: 50%; background: radial-gradient(closest-side, rgba(197,133,184,0.78) 0%, rgba(158,123,182,0.3) 46%, transparent 74%); pointer-events: none; }
     .steps-veu { background: linear-gradient(160deg, rgba(5,4,8,0.2) 0%, rgba(5,4,8,0.4) 55%, rgba(5,4,8,0.6) 100%); }
     /* texto alinhado a esquerda, em fluxo (define a altura do card) */
     .steps-fluxo { position: relative; inset: auto; align-items: flex-start; justify-content: flex-start; text-align: left; padding: 34px 34px 84px; }
@@ -694,11 +811,16 @@
       .hero-btns .gx-btn { font-size: clamp(12.5px, calc((100vw - 64px) * 0.0505), 15px) !important; padding: 12px 0 !important; }
       .hero-btns { flex-direction: column; justify-content: flex-start !important; gap: 12px !important; margin-top: 36px !important; }
       .hero-btns .gx-btn { display: flex; width: 100%; max-width: none; padding: 13px 0; border-radius: 100px; }
+      .hero-rev { margin-top: 36px; gap: 13px; }
+      .hero-rev-av { width: 28px; height: 28px; }
+      .hero-rev-count { font-size: 13.5px; }
       /* ecras estreitos: o texto ocupa mais linhas e a pill descia ate encostar ao
          fundo do card. Passa a estar ancorada ao palco (altura fixa), na mesma
          linha da seta — deixa de depender de quantas linhas o texto ocupa. */
       .steps-fluxo { position: static; padding-bottom: 74px; }
-      .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 26px; margin-top: 0; }
+      .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 52px; margin-top: 0; }
+      .steps-fluxo.cta .st-mini { display: none; }
+      .steps-fluxo.cta { padding-top: 22px; }
     }
     /* titulo maior e mais grosso, com o texto mais perto */
     .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
@@ -717,10 +839,10 @@
     /* blobs desativados no card dos 4 passos (fica a imagem de fundo + veu) */
     .steps-grupo { display: none; }
     /* halo roxo muito suave nos vertices onde o outline reflete */
-    .steps-palco::after { content: ''; position: absolute; inset: -1.5px; border-radius: 13px; pointer-events: none; z-index: -1;
-      background: radial-gradient(21% 25% at 2% 2%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
-                  radial-gradient(21% 25% at 98% 98%, rgba(197,133,184,0.42) 0%, rgba(158,123,182,0.15) 45%, transparent 72%);
-      filter: blur(2.75px); }
+    .steps-palco::after { content: ''; position: absolute; inset: -1px; border-radius: 13px; pointer-events: none; z-index: -1;
+      background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                  radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%);
+      filter: blur(1.6px); }
     /* pill do ultimo slide do card dos 4 passos */
     .st-pill { display: none; align-items: center; justify-content: center; margin-top: 22px; padding: 13px 30px; border-radius: 100px; border: none; z-index: 0; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); color: #fff; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; text-decoration: none; pointer-events: auto; transition: transform .25s, box-shadow .25s; }
     .st-pill:hover, .st-pill:focus-visible { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); outline: none; }
@@ -784,7 +906,6 @@
     .hero-btns a.gx-btn { font-size: 15px; }
     /* CTA: menos espaco titulo-botoes */
     .cta-title { margin: 0; }
-    @media (max-width: 900px) { .cta-inner { gap: 16px; } }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -850,6 +971,17 @@
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end;margin-top:48px;">
       <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span><i class="st-anel" aria-hidden="true"></i></a>
       <a href="./portfolio" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Ver Trabalhos</span></a>
+    </div>
+    <div class="hero-rev">
+      <span class="hero-rev-avatars">
+        <span class="hero-rev-av hero-rev-av--g"><svg viewBox="0 0 48 48" width="18" height="18" role="img" aria-label="Google"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></span>
+        <span class="hero-rev-av"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,w_88,h_88,g_face,q_auto,f_auto/Website_photos/testemunhos/capa-moment.jpg" alt="Cliente Differentt Lab" loading="lazy" decoding="async"></span>
+        <span class="hero-rev-av"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,w_88,h_88,g_face,q_auto,f_auto/Website_photos/testemunhos/capa-aroma.jpg" alt="Cliente Differentt Lab" loading="lazy" decoding="async"></span>
+      </span>
+      <span class="hero-rev-rating">
+        <span class="hero-rev-stars"><svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+        <span class="hero-rev-count">Mais de 100 clientes satisfeitos</span>
+      </span>
     </div>
   </div>
 </section>
@@ -962,38 +1094,143 @@
 <div style="position:relative;z-index:1;">
 
 <!-- SERVICES SECTION -->
-<section id="services-section" class="services-section-wrap" style="position:relative; padding: 180px 48px;">
+<section id="services-section" class="services-section-wrap" style="position:relative; padding: 180px var(--gutter);">
   <!-- content -->
   <div style="position:relative;z-index:1;">
   <h2 class="section-title" id="services-title">Conheça os serviços</h2>
   <p class="section-sub" id="services-subtitle">Cobrimos toda a parte digital do seu negócio — desde branding e criação de websites até gestão de redes sociais.</p>
 
   <div class="services-grid">
-    <a class="service-card" href="criacao-websites" style="text-decoration:none;">
+    <a class="service-card service-card--vetor service-card--web" href="criacao-websites" style="text-decoration:none;">
       <div class="service-card-photo">
-        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/V9qkn3A4cW9VBqmn1I9Io5kZfb8.jpg');"></div>
+        <div class="service-card-bg service-card-bg--svg"><svg viewBox="0 0 860 660" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="swx-icone" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#c49bd8"/><stop offset="0.48" stop-color="#a480bd"/><stop offset="1" stop-color="#86609f"/>
+    </linearGradient>
+    <linearGradient id="swx-marca" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#efe9f6"/>
+    </linearGradient>
+    <radialGradient id="swx-brilho-grad" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a074c8" stop-opacity="1"/>
+      <stop offset="0.22" stop-color="#9468bf" stop-opacity="0.94"/>
+      <stop offset="0.32" stop-color="#8558ac" stop-opacity="0.72"/>
+      <stop offset="0.42" stop-color="#764c9d" stop-opacity="0.5"/>
+      <stop offset="0.52" stop-color="#6b4394" stop-opacity="0.33"/>
+      <stop offset="0.62" stop-color="#5e3b86" stop-opacity="0.2"/>
+      <stop offset="0.72" stop-color="#533177" stop-opacity="0.11"/>
+      <stop offset="0.82" stop-color="#472b68" stop-opacity="0.055"/>
+      <stop offset="0.91" stop-color="#41285f" stop-opacity="0.02"/>
+      <stop offset="1" stop-color="#3b2457" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- brilho roxo atras de tudo -->
+  <circle class="swx-brilho" cx="430" cy="120" r="135" fill="url(#swx-brilho-grad)"/>
+  <g>
+    <!-- ondas com passo igual (60): a maior fecha acima do titulo -->
+    <g class="swx-ondas" fill="none" stroke="rgba(216,216,216,0.13)" stroke-width="1.6">
+      <circle cx="430" cy="120" r="85"/>
+      <circle cx="430" cy="120" r="145"/>
+      <circle cx="430" cy="120" r="205"/>
+      <circle cx="430" cy="120" r="265"/>
+    </g>
+    <!-- simbolos nas posicoes definidas pelo Diogo no editor -->
+    <g class="swx-orbita">
+      <g class="swx-ico swx-i1"><rect x="551.0" y="299.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(561.6 309.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 8.6 L5 12 L9.2 15.4"/><path d="M14.8 8.6 L19 12 L14.8 15.4"/><path d="M13.3 6.6 L10.7 17.4"/></g></g>
+      <g class="swx-ico swx-i2"><rect x="609.0" y="209.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(619.6 219.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 5.4 h17.6 a1.6 1.6 0 0 1 1.6 1.6 v10 a1.6 1.6 0 0 1 -1.6 1.6 h-17.6 a1.6 1.6 0 0 1 -1.6 -1.6 v-10 a1.6 1.6 0 0 1 1.6 -1.6 z"/><path d="M1.6 9.6 H22.4"/><path d="M4.8 7.5 h0.01"/><path d="M7.4 7.5 h0.01"/><path d="M10 7.5 h0.01"/></g></g>
+      <g class="swx-ico swx-i3"><rect x="228.0" y="248.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(238.6 258.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 5.6 q-2.6 0 -2.6 2.6 v1.6 q0 2.2 -2.2 2.2 q2.2 0 2.2 2.2 v1.6 q0 2.6 2.6 2.6"/><path d="M13.8 5.6 q2.6 0 2.6 2.6 v1.6 q0 2.2 2.2 2.2 q-2.2 0 -2.2 2.2 v1.6 q0 2.6 -2.6 2.6"/></g></g>
+      <g class="swx-ico swx-i4"><rect x="703.0" y="201.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(713.6 211.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 2.8 h7.2 a1.8 1.8 0 0 1 1.8 1.8 v13.8 a1.8 1.8 0 0 1 -1.8 1.8 h-7.2 a1.8 1.8 0 0 1 -1.8 -1.8 v-13.8 a1.8 1.8 0 0 1 1.8 -1.8 z"/><path d="M10.9 17.4 h2.2"/></g></g>
+      <g class="swx-ico swx-i5"><rect x="357.0" y="299.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(367.6 309.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4 c3.9 0 7 1.1 7 2.4 s-3.1 2.4 -7 2.4 s-7 -1.1 -7 -2.4 s3.1 -2.4 7 -2.4 z"/><path d="M5 5.8 v5.4 c0 1.3 3.1 2.4 7 2.4 s7 -1.1 7 -2.4 v-5.4"/><path d="M5 11.2 v5.4 c0 1.3 3.1 2.4 7 2.4 s7 -1.1 7 -2.4 v-5.4"/></g></g>
+      <g class="swx-ico swx-i6"><rect x="253.0" y="349.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(263.6 359.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 5.4 h17.2 a1.6 1.6 0 0 1 1.6 1.6 v10 a1.6 1.6 0 0 1 -1.6 1.6 h-17.2 a1.6 1.6 0 0 1 -1.6 -1.6 v-10 a1.6 1.6 0 0 1 1.6 -1.6 z"/><path d="M6.8 9.8 L9.6 12.2 L6.8 14.6"/><path d="M12.4 15 H17.2"/></g></g>
+      <g class="swx-ico swx-i7"><rect x="662.0" y="322.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(672.6 332.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 18 a4.2 4.2 0 0 1 0.3 -8.3 a5.4 5.4 0 0 1 10.2 1.1 a3.7 3.7 0 0 1 -0.6 7.2 z"/></g></g>
+      <g class="swx-ico swx-i8"><rect x="463.0" y="359.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(473.6 369.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2.8 L5.8 13.2 h5 L10.6 21.2 L18.2 10.8 h-5 z"/></g></g>
+      <g class="swx-ico swx-i9"><rect x="123.0" y="187.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(133.6 197.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.8 4.4 a6.4 6.4 0 1 0 0.001 12.8 a6.4 6.4 0 0 0 -0.001 -12.8 z"/><path d="M15.5 15.6 L19.8 19.9"/></g></g>
+      <g class="swx-ico swx-i10"><rect x="126.0" y="291.0" width="44" height="44" rx="13" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.14)" stroke-width="1.4"/><g transform="translate(136.6 301.6) scale(0.95)" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 10.6 h12.4 a1.6 1.6 0 0 1 1.6 1.6 v6.2 a1.6 1.6 0 0 1 -1.6 1.6 h-12.4 a1.6 1.6 0 0 1 -1.6 -1.6 v-6.2 a1.6 1.6 0 0 1 1.6 -1.6 z"/><path d="M8.4 10.6 v-3 a3.6 3.6 0 0 1 7.2 0 v3"/></g></g>
+    </g>
+  </g>
+  <!-- logo: quadrado roxo da marca com contorno interior e marca branca -->
+  <g class="swx-logo">
+    <rect x="393" y="83" width="74" height="74" rx="20" fill="url(#swx-icone)"/>
+    <rect x="395" y="85" width="70" height="70" rx="18" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+    <g transform="translate(411.5 101.5) scale(0.5198)">
+      <path d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z" fill="url(#swx-marca)"/>
+    </g>
+  </g>
+</svg></div>
       </div>
       <div class="service-card-content">
-        <div class="service-tag">Websites e serviços web</div>
-        <span class="service-link">Saber mais</span>
+        <div class="service-tag">Serviços web</div>
+        <p class="service-desc">Websites, lojas e plataformas, desenhados à medida do seu negócio.</p>
       </div>
     </a>
-    <a class="service-card" href="gestao-redes-sociais" style="text-decoration:none;">
+    <a class="service-card service-card--vetor service-card--social" href="gestao-redes-sociais" style="text-decoration:none;">
       <div class="service-card-photo">
-        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/instagram-walls-examples.jpg');"></div>
+        <div class="service-card-bg service-card-bg--svg"><svg viewBox="0 0 860 660" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="smx2-curva" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9e7bb6"/><stop offset="1" stop-color="#c585b8"/>
+    </linearGradient>
+  </defs>
+  <g stroke="rgba(255,255,255,0.07)" stroke-width="1.5">
+    <line x1="0" y1="205" x2="860" y2="205"/>
+    <line x1="0" y1="295" x2="860" y2="295"/>
+  </g>
+  <!-- curva "antes" (cinza) e curva da marca por cima -->
+  <path d="M-20 320 C 110 336 200 372 320 352 C 440 332 500 272 580 282 C 660 292 710 254 790 244 C 830 240 856 232 880 226" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M-20 398 C 90 380 150 268 260 278 C 330 284 362 322 432 312 C 522 298 545 205 625 194 C 685 186 700 228 756 210 C 806 194 826 138 880 128" fill="none" stroke="url(#smx2-curva)" stroke-width="6.5" stroke-linecap="round"/>
+  <!-- passagem de luz que percorre a curva no hover -->
+  <path class="smx2-fill" pathLength="100" d="M-20 398 C 90 380 150 268 260 278 C 330 284 362 322 432 312 C 522 298 545 205 625 194 C 685 186 700 228 756 210 C 806 194 826 138 880 128" fill="none" stroke="#e6c1ec" stroke-width="6.5" stroke-linecap="round"/>
+</svg></div>
+        <div class="smx2-stat">+2,4M de alcance</div>
       </div>
       <div class="service-card-content">
-        <div class="service-tag">Gestão de redes sociais</div>
-        <span class="service-link">Saber mais</span>
+        <div class="service-tag">Redes sociais</div>
+        <p class="service-desc">Estratégia, conteúdos e gestão diária para fazer a tua marca crescer nas redes.</p>
       </div>
     </a>
-    <a class="service-card" href="portfolio?filter=branding" style="text-decoration:none;">
+    <a class="service-card service-card--vetor service-card--brand" href="portfolio?filter=branding" style="text-decoration:none;">
       <div class="service-card-photo">
-        <div class="service-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/uhfWOL7YF7Po3G3w2ZfUdosDGgg.jpg');"></div>
+        <div class="service-card-bg service-card-bg--svg"><svg viewBox="0 0 860 660" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="bwx-nevoa" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <rect width="860" height="660" fill="#0e0e11"/>
+  <g class="bwx-peca bwx-p7"><g transform="translate(0 -10) translate(2.1 0) translate(184.4 112.0) scale(0.974) translate(-184.4 -112.0) translate(20.0 12) translate(-30.0 -35) translate(-13.6 -22) translate(208.0 157.0) scale(1.1) translate(-208.0 -157.0) translate(208 157) scale(0.56)"><rect x="-190" y="-115" width="380" height="230" rx="26" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/><text x="0" y="13" font-family="Satoshi, 'Nunito Sans', sans-serif" font-size="38" font-weight="900" letter-spacing="20" fill="#9e7bb6" text-anchor="middle">BRAND</text></g></g>
+  <g class="bwx-peca bwx-p8"><g transform="translate(0 14) translate(24.2 0) translate(560.6 264.0) scale(1.136) translate(-560.6 -264.0) translate(-20.0 0) translate(30.0 -15) translate(11.6 -22) translate(539.0 301.0) scale(1.1) translate(-539.0 -301.0) translate(539 301) scale(0.48)"><rect x="-190" y="-115" width="380" height="230" rx="26" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/></g></g>
+  <!-- cantos tenues na borda esquerda -->
+  
+  
+  <!-- tablet no canto superior direito -->
+  <g class="bwx-peca bwx-p3"><g transform="translate(0 -10) translate(-1.9 0) translate(426.1 112.0) scale(0.990) translate(-426.1 -112.0) translate(0.0 12) translate(0.0 -35) translate(1.8 -22) translate(424.3 157.0) scale(1.1) translate(-424.3 -157.0) translate(-261 76.2) translate(685.3 80.8) scale(0.58) translate(-685.3 -80.8) translate(-124.7 20.8) translate(810 60) scale(0.91) translate(-810 -60) translate(0 -20)">
+    <rect x="640" y="-40" width="340" height="240" rx="30" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/>
+    
+  </g></g>
+  <!-- BRAND cortado em baixo a esquerda -->
+  <g class="bwx-peca bwx-p4"><g transform="translate(0 -10) translate(-4.0 0) translate(666.0 112.0) scale(0.990) translate(-666.0 -112.0) translate(-20.0 12) translate(30.0 -35) translate(13.8 -22) translate(642.2 157.0) scale(1.1) translate(-642.2 -157.0) translate(502 -154.7) translate(140.2 311.7) scale(0.95) translate(-140.2 -311.7) translate(-19.8 -323.3) translate(160 635) scale(0.58) translate(-160 -635) translate(30 20)">
+    <rect x="-60" y="500" width="380" height="230" rx="28" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/>
+    
+  </g></g>
+  <!-- verso com linhas de texto e circulo -->
+  <g class="bwx-peca bwx-p5"><g transform="translate(0 14) translate(-4.0 0) translate(334.8 264.0) scale(1.146) translate(-334.8 -264.0) translate(0.0 0) translate(0.0 -15) translate(0.0 -22) translate(334.8 301.0) scale(1.1) translate(-334.8 -301.0) translate(-357 1.3) translate(691.8 299.7) scale(0.61) translate(-691.8 -299.7) translate(-198.2 -55.3) translate(890 355) scale(0.78) translate(-890 -355) translate(80 -60)">
+    <rect x="620" y="300" width="380" height="230" rx="28" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/><g transform="translate(784.4 363.2) scale(0.719)"><path d="m71.18,53.05v-17.59L35.73,0h-.27L0,35.45v17.86l22.33-22.33,4.46,4.46h0S0,62.25,0,62.25v8.93h8.93l26.8-26.79,26.8,26.79h8.66v-8.93l-26.66-26.66,4.6-4.6,22.06,22.06Zm-30.99-30.99l-4.6,4.6-4.47-4.47,4.6-4.6,4.47,4.47Z" fill="rgba(236,236,242,0.55)"/></g><text x="810" y="449.5" font-family="Satoshi, 'Nunito Sans', sans-serif" font-size="18.7" letter-spacing="7.2" fill="rgba(236,236,242,0.55)" text-anchor="middle">DIFFERENTT</text>
+    
+    
+    
+    
+  </g></g>
+  <!-- cartao principal -->
+  <g class="bwx-peca bwx-p6"><g transform="translate(0 14) translate(-28.2 0) translate(119.9 264.0) scale(1.108) translate(-119.9 -264.0) translate(20.0 0) translate(-30.0 -15) translate(-12.5 -22) translate(142.4 301.0) scale(1.1) translate(-142.4 -301.0) translate(-21 158.2) translate(163.4 142.8) scale(0.61) translate(-163.4 -142.8) translate(-94.6 5.8) translate(-12 17) translate(270 120) scale(0.58) translate(-270 -120) translate(-70 -130)">
+    <rect x="110" y="90" width="460" height="320" rx="34" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1" opacity="0.5" filter="url(#bwx-nevoa)"/>
+    <rect x="110" y="90" width="460" height="320" rx="34" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/>
+    
+    
+    
+  </g></g>
+</svg></div>
       </div>
       <div class="service-card-content">
         <div class="service-tag">Branding & comunicação</div>
-        <span class="service-link">Saber mais</span>
+        <p class="service-desc">Identidade visual completa — do logótipo às aplicações que dão cara à tua marca.</p>
       </div>
     </a>
   </div>
@@ -1085,7 +1322,7 @@
     #reels-panels .rp-title span{ color:#9e7bb6; }
     #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
     #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
-    #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:16px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
+    #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:12px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
     #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
     #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,4,10,.92) 4%, rgba(6,4,10,.12) 44%, rgba(6,4,10,.32)); }
     #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
@@ -1345,17 +1582,17 @@
       <circle class="st-base" cx="246" cy="246" r="237"/><circle class="st-fio" cx="246" cy="246" r="237"/>
     </svg>
     <div class="steps-orbe">
-      <div class="steps-grupo st-gA"></div>
+      <div class="steps-grupo st-gA"><i class="st-b1" style="background:radial-gradient(circle at 38% 36%,#9e7bb6 0%,#6a4f8a 40%,transparent 76%)"></i><i class="st-b2" style="background:radial-gradient(circle at 60% 40%,#6a4f8a 0%,#3c2a55 46%,transparent 78%)"></i><i class="st-b3" style="background:radial-gradient(circle at 50% 55%,#9e7bb6 0%,#3c2a55 52%,transparent 80%)"></i></div>
       <div class="steps-grupo st-gB fora"></div>
       <span class="steps-fant" aria-hidden="true">01</span>
       <div class="steps-veu"></div>
     </div>
     <div class="steps-fluxo" aria-live="polite">
       <div class="st-mini"><span class="st-num">01</span> / 04</div>
-      <div class="st-nome"></div>
-      <p class="st-desc"></p>
-      <div class="st-dots"><i></i><i></i><i></i><i></i><i></i></div>
-      <a class="st-pill" href="./metodos">Saber mais<i class="st-anel" aria-hidden="true"></i></a>
+      <div class="st-nome">Descoberta</div>
+      <p class="st-desc">Entendemos o teu negócio, os objetivos e o problema que há a resolver.</p>
+      <div class="st-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <a class="st-pill" href="./metodos" style="display:none">Saber mais<i class="st-anel" aria-hidden="true"></i></a>
     </div>
     <button class="st-seg" type="button" aria-label="Passo seguinte"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
   </div>
@@ -1402,6 +1639,7 @@
       for(var d=0;d<dots.length;d++) dots[d].classList.toggle('on', d===i);
       var mini=fluxo.querySelector('.st-mini'), pill=palco.querySelector('.st-pill'), caixaDots=fluxo.querySelector('.st-dots');
       if(mini) mini.style.visibility = PASSOS[i].n ? 'visible' : 'hidden';
+      fluxo.classList.toggle('cta', !!PASSOS[i].cta);
       if(pill) pill.style.display = PASSOS[i].cta ? 'inline-flex' : 'none';
       if(caixaDots) caixaDots.style.display = PASSOS[i].cta ? 'none' : 'flex';   // a pill toma o lugar dos pontos
       for(var d=0;d<dots.length;d++) dots[d].classList.toggle('on', d===i);
@@ -1426,8 +1664,10 @@
       fio.style.strokeDashoffset=(C*(1-t/CICLO)).toFixed(1);
       raf=requestAnimationFrame(quadro);
     }
-    function arrancar(){ if(vivo)return; vivo=true; ultimo=null; raf=requestAnimationFrame(quadro); }
-    function repor(){ vivo=false; if(raf)cancelAnimationFrame(raf); raf=null; acum=0; ultimo=null; passo=-1; fio.style.strokeDashoffset=C; }
+    function arrancar(){ if(vivo)return; vivo=true; ultimo=null;
+      var i0=passo<0?0:passo; vestir(frente,PALETAS[i0]); pintar(i0,false); passo=i0;   // repinta ao entrar em vista: o card nunca arranca em branco
+      raf=requestAnimationFrame(quadro); }
+    function repor(){ vivo=false; if(raf)cancelAnimationFrame(raf); raf=null; acum=0; ultimo=null; passo=-1; fio.style.strokeDashoffset=C; fluxo.classList.remove('troca'); }
 
     palco.addEventListener('mouseenter',function(){parado=true;});
     palco.addEventListener('mouseleave',function(){parado=false;});
@@ -1518,7 +1758,7 @@
 </section>
 
 <!-- PORTFOLIO REELS -->
-<section id="portfolio-reels-section" style="position:relative; padding: 180px 48px;">
+<section id="portfolio-reels-section" style="position:relative; padding: 180px var(--gutter);">
   <h2 class="section-title">Portfólio</h2>
   <p class="section-sub" id="reels-subtitle">Trabalhos da nossa agência</p>
 
@@ -2020,12 +2260,14 @@
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="cta-inner">
-    <h2 class="cta-title" style="text-align:left;">Pronto para criar algo <span>extraordinário?</span></h2>
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;flex-shrink:0;">
-      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Contacte-nos</span><i class="st-anel" aria-hidden="true"></i></a>
-      <a href="./portfolio" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Ver Trabalhos</span></a>
-    </div>
+  <div class="cta-luz">
+  <div class="cta-card">
+    <span class="cta-veu" aria-hidden="true"></span>
+    <img class="cta-logo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full%20logo.svg" alt="Differentt Lab">
+    <h2 class="cta-title">Pronto para criar algo <span>extraordinário?</span></h2>
+    <p class="cta-sub">Conta-nos a ideia — respondemos em <b>24h úteis</b>.</p>
+    <a href="./contactos" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Contacte-nos</span><i class="st-anel" aria-hidden="true"></i></a>
+  </div>
   </div>
 </section>
 
