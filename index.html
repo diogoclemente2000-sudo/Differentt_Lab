@@ -191,7 +191,9 @@
     .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity .45s ease; }
     .hero-bg video.tocando { opacity: 1; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 75%, rgba(0,0,0,1) 100%); pointer-events: none; }
-    .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
+    .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }   /* hero: bloco centrado, interior intocado */
+    /* tablet: o bloco de informacao centra como um todo (interior continua alinhado a esquerda) */
+    @media (min-width: 1200px) and (max-width: 1199px) { .hero-content { width: fit-content; } }
     .hero-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
     /* hero da homepage: frase, nao titulo display — por isso nao usa .hero-title das outras paginas */
     .home-hero-title { text-align: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(37px, calc((100vw - 160px) * 0.0850), 105px); font-weight: 500; line-height: 0.845; letter-spacing: -0.042em; margin-bottom: 20px; max-width: none; }
@@ -253,9 +255,9 @@
 
     /* Respiro lateral da pagina: um so valor por tamanho de ecra. Todas as
        seccoes usam var(--gutter) — nao acrescentar paddings laterais soltos. */
-    :root { --gutter: 80px; }
-    @media (max-width: 1024px) { :root { --gutter: 48px; } }
-    @media (max-width: 600px)  { :root { --gutter: 32px; } }
+    :root { --gutter: 80px; --larg-max: 1120px; }   /* PC: conteudo FIXO de 1120px centrado; o que cresce e a margem */
+    @media (max-width: 1199px) { :root { --gutter: 48px; } }
+    @media (max-width: 1199px)  { :root { --gutter: 26px; } }
 
     /* SERVICES SECTION */
     .section { padding: 180px var(--gutter); }
@@ -265,10 +267,15 @@
     /* regra unica para as frases de apoio por baixo dos titulos */
     .section-sub, .rp-sub, .team-sub, .logos-sub { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 17px; line-height: 1.18; color: rgba(255,255,255,0.88); max-width: 560px; margin: 0 auto 56px; text-align: center; }
 
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    @media (max-width: 1199px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .services-3d-bg { width: 180vw !important; max-width: none !important; } }
-    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
-    .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 12px; background: transparent; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.18); isolation: isolate; }
+    /* esfera de fundo (zoom): so o arco superior aparece atras dos cards */
+    #services-section { overflow: hidden; }
+    .services-esfera { position: absolute; left: 50%; top: 200px; transform: translateX(-50%); width: 165%; max-width: none; opacity: 0.5; pointer-events: none; z-index: 0; user-select: none; }
+    #services-section > :not(.services-esfera) { position: relative; z-index: 1; }
+    @media (max-width: 1199px) { .services-esfera { width: 240%; } }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 365px); justify-content: center; gap: 12px; max-width: var(--larg-max); margin-inline: auto; }
+    @media (max-width: 1199px) { .services-3d-bg { width: 180vw !important; max-width: none !important; } }
+    @media (max-width: 1199px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
+    .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 12px; background: transparent; border: 1.5px solid rgba(255,255,255,0.24); isolation: isolate; }
     .service-card-photo { position: relative; flex: 1; min-height: 0; overflow: hidden; }
     .service-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .service-card-bg--svg svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: transparent; }
@@ -337,7 +344,7 @@
     .bwx-peca { transition: transform 0.85s cubic-bezier(0.8, 0, 0.5, 1), opacity 0.7s ease; }
     @media (prefers-reduced-motion: reduce) { .bwx-peca { transition: none; } }
     /* mobile: composicao propria desenhada no construtor (2026-09-07) */
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .service-card--brand .bwx-peca { transform-box: fill-box; transform-origin: center; }
       .service-card--brand .bwx-p3 { transform: translate(68.9px, -38.9px) scale(1.320); }
       .service-card--brand .bwx-p4 { transform: translate(133.5px, -38.9px) scale(1.320); }
@@ -348,9 +355,9 @@
     }
 
     /* REELS / PORTFOLIO GRID */
-    .reels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .reels-grid { display: grid; grid-template-columns: repeat(4, 265px); justify-content: center; gap: 20px; max-width: var(--larg-max); margin-inline: auto; }
     .reels-grid .reel-card:nth-child(n+5) { display: none; }
-    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; }
+    .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.24); background: #0a0a0a; isolation: isolate; }
     .reel-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .reel-card:hover .reel-card-img { transform: scale(1.06); }
     .reel-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 45%, transparent 70%); pointer-events: none; }
@@ -363,12 +370,12 @@
     /* o triangulo tem o centro optico a esquerda do geometrico — 2px para a direita acertam-no */
     .reel-card-play svg { margin-left: 2px; }
     .reel-card:hover .reel-card-play, .reel-featured:hover .reel-card-play { background: rgba(0,0,0,.6); }
-    @media (max-width: 760px) { .reel-card-play { width: 44px; height: 44px; } .reel-card-play svg { width: 16px; height: 16px; } }
-    @media (max-width: 1199px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1199px) { .reel-card-play { width: 44px; height: 44px; } .reel-card-play svg { width: 16px; height: 16px; } }
+    
 
     /* MOBILE — product-style gallery: 1 featured card + thumbnail circles */
     .reels-mobile-gallery { display: none; }
-    .reel-featured { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; margin-bottom: 20px; }
+    .reel-featured { position: relative; width: 100%; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.24); background: #0a0a0a; margin-bottom: 20px; }
     .reel-featured-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
     .reel-featured-img.active { opacity: 1; }
     .reel-thumbs { display: flex; gap: 7px; padding: 2px 2px 10px; }
@@ -379,9 +386,9 @@
     .reel-thumb img { width: 100%; height: 100%; border-radius: 6px; object-fit: cover; display: block; }
     .reel-thumb.active { border-color: #9e7bb6; opacity: 1; }
     .reel-thumbs .reel-thumb:nth-child(n+7) { display: none; }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .reels-grid { display: none; }
-      .reels-mobile-gallery { display: block; }
+      .reels-mobile-gallery { display: block; max-width: 480px; margin-inline: auto; }
       #portfolio-reels-section { padding: 72px var(--gutter) !important; }
       .reel-featured { width: 100%; }
     }
@@ -416,11 +423,11 @@
     .reels-scroll-hint-text { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
     .reels-scroll-hint svg { filter: drop-shadow(0 1px 4px rgba(0,0,0,0.6)); }
     @keyframes reelsHintBounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
-    @media (min-width: 601px) {
+    @media (min-width: 1200px) {
       .reels-slide-frame { width: auto; height: min(90vh, 90dvh); aspect-ratio: 9 / 16; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
       .reels-slide-info { max-width: none; margin: 0; align-items: flex-start; text-align: left; padding: 0 28px 34px; }
     }
-    @media (max-width: 600px) { .reels-slide-name { font-size: 22px; } .reels-close { top: calc(54px + env(safe-area-inset-top, 0px)); right: 16px; } .reels-mute { top: calc(54px + env(safe-area-inset-top, 0px)); left: 16px; } .reels-progress { padding: 14px 16px 0; } }
+    @media (max-width: 1199px) { .reels-slide-name { font-size: 22px; } .reels-close { top: calc(54px + env(safe-area-inset-top, 0px)); right: 16px; } .reels-mute { top: calc(54px + env(safe-area-inset-top, 0px)); left: 16px; } .reels-progress { padding: 14px 16px 0; } }
 
     /* STEPS SECTION */
     .steps-section { padding: 180px var(--gutter); background: transparent !important; }
@@ -432,7 +439,7 @@
     .steps-argo circle { fill: none; stroke-width: 2; }
     .steps-argo .st-base { stroke: rgba(255,255,255,0.07); }
     .steps-argo .st-fio { stroke: url(#stepsGrad); stroke-linecap: round; }
-    .steps-orbe { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #08060b; border: 1px solid rgba(158,123,182,0.16); box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 80px rgba(158,123,182,0.10), inset 0 0 60px rgba(0,0,0,0.55); }
+    .steps-orbe { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #08060b; border: 1px solid rgba(158,123,182,0.16); box-shadow: inset 0 0 60px rgba(0,0,0,0.55); }
     .steps-grupo { position: absolute; inset: -12%; transition: opacity 1.6s ease, visibility 0s; }
     .steps-grupo.fora { opacity: 0; visibility: hidden; transition: opacity 1.6s ease, visibility 0s linear 1.6s; }
     .steps-grupo > i { position: absolute; display: block; border-radius: 50%; filter: blur(16px); mix-blend-mode: screen; will-change: transform; }
@@ -469,10 +476,9 @@
     .steps-grid4 { display: none; }
     .step-orb4 { position: relative; aspect-ratio: 1; }
     .orb4-ring { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); transform: rotate(-90deg); pointer-events: none; opacity: 0.45; z-index: 0; }
-    @media (min-width: 1025px) {
-      :root { --gutter: clamp(100px, 9.7vw, 160px); }
+    @media (min-width: 1200px) {
       .steps-section .steps-palco { display: none; }
-      .steps-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 30px); max-width: 1380px; margin: 60px auto 0; }
+      .steps-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 30px); max-width: var(--larg-max); margin: 60px auto 0; }
       .steps-grid4 .steps-fluxo { padding: 0 12%; }
       .steps-grid4 .st-mini { font-size: 10.5px; letter-spacing: 0.16em; }
       .steps-grid4 .st-nome { font-size: clamp(17px, 1.5vw, 23px); margin: 0.5em 0 0.5em; }
@@ -497,18 +503,34 @@
     /* ── Equipa (estilo referencia GetDigital): foto recortada sobre card escuro;
        no hover o gradiente roxo sobe do fundo do card, por tras da pessoa. Sem
        hover o card mostra so o nome, em grande. ── */
-    .tm-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 60px; max-width: 1400px; margin-left: auto; margin-right: auto; }
-    .tm-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 12px; background: linear-gradient(180deg, #131315 0%, #0a0a0b 100%); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.45s ease; }
+    .tm-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 356px); justify-content: center; gap: 26px; margin-top: 60px; }
+    /* pc: o David e o card das vagas partilham a 2a fila */
+    @media (min-width: 1200px) { .tm-grid .tm-join { grid-column: 2 / -1; } }
+    .tm-card { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 12px; background: linear-gradient(180deg, #131315 0%, #0a0a0b 100%); border: 1.5px solid rgba(255,255,255,0.14); transition: border-color 0.45s ease; }
     /* gradiente interior que sobe no hover (so transform/opacity) */
-    .tm-card::before { content: ''; position: absolute; inset: 0 0 -16% 0; background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_us_page/nova-secao/gradiante-roxo.png') center bottom / 100% 100% no-repeat; transform: translateY(52%); opacity: 0;
-      transition: transform 0.95s cubic-bezier(0.25, 1.35, 0.5, 1), opacity 0.7s ease; }
+    .tm-card::before { content: ''; position: absolute; inset: 0 0 -16% 0; background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_us_page/nova-secao/gradiante-roxo.png') center bottom / 100% 100% no-repeat; transform: translateY(60%); opacity: 0;
+      transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.25s ease; }
     .tm-card:hover, .tm-card.on { border-color: rgba(255,255,255,0.18); }
-    .tm-card:hover::before, .tm-card.on::before { transform: translateY(-12%); opacity: 0.9; }
+    .tm-card:hover::before, .tm-card.on::before { transform: translateY(-27%); opacity: 1; }
+    .tm-recorte { position: absolute; inset: 0; }
     .tm-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .tm-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.32) 28%, rgba(0,0,0,0) 54%); pointer-events: none; }
-    .tm-info { position: absolute; left: 12px; right: 12px; bottom: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; transform: translateY(45px); transition: transform 0.8s cubic-bezier(0.25, 1.35, 0.5, 1); }
+    /* pc: no hover a foto cresce e a cabeca sai por cima do card; laterais e fundo ficam cortados
+       (clip-path aberto so no topo, com os cantos redondos preservados) */
+    @media (min-width: 1200px) {
+      .tm-card { overflow: visible; clip-path: inset(-120px 0 0 0 round 12px); }
+      /* camada de composicao propria + contain: o corte e feito na GPU junto com a foto,
+         sem fugas nas laterais; cantos de baixo redondos como o card */
+      .tm-recorte { inset: -120px 0 0 0; overflow: hidden; border-radius: 0 0 12px 12px; transform: translateZ(0); contain: paint; }
+      .tm-recorte .tm-photo { top: 120px; height: calc(100% - 120px); }
+      .tm-card:hover, .tm-card.on { z-index: 2; }
+      .tm-photo { transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1); transform-origin: 50% 100%; }
+      .tm-card:hover .tm-photo, .tm-card.on .tm-photo { transform: scale(1.07); }
+      @media (prefers-reduced-motion: reduce) { .tm-photo { transition: none; } }
+    }
+    .tm-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.26) 28%, rgba(0,0,0,0) 54%); pointer-events: none; }
+    .tm-info { position: absolute; left: 12px; right: 12px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; transform: translateY(45px); transition: transform 0.8s cubic-bezier(0.25, 1.35, 0.5, 1); }
     .tm-card:hover .tm-info, .tm-card.on .tm-info { transform: translateY(0); }
-    .tm-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(31px, 3.3vw, 48px); line-height: 0.98; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
+    .tm-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: clamp(34px, 3.52vw, 51px); line-height: 0.98; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
     .tm-pill { display: inline-flex; align-items: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px; letter-spacing: 0.01em; color: #fff; padding: 5px 11px; border-radius: 7px; background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18), 0 4px 12px rgba(0,0,0,0.35); opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease 0.14s, transform 0.6s cubic-bezier(0.33,1,0.68,1) 0.14s; }
     .tm-card:hover .tm-pill, .tm-card.on .tm-pill { opacity: 1; transform: none; }
 
@@ -539,7 +561,7 @@
     @media (prefers-reduced-motion: reduce) { .tm-card, .tm-card::before, .tm-info, .tm-pill, .tm-ic, .tm-join-btn, .tm-join-btn svg { transition: none; } .tm-join-icons { animation: none; } }
 
     /* CTA SECTION */
-    .cta-section { padding: 100px var(--gutter); background: #050505; width: 100vw; margin-left: calc(50% - 50vw); }
+    .cta-section { padding: 100px var(--gutter); background: transparent; width: 100vw; margin-left: calc(50% - 50vw); }
     /* card da CTA final — mesma linguagem do card dos 4 passos: cantos de 12px,
        varredura de luz roxa no canto superior direito, veu por cima e moldura
        em gradiente */
@@ -549,7 +571,7 @@
       background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
                   radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%);
       filter: blur(1.6px); }
-    .cta-card { position: relative; z-index: 1; overflow: hidden; max-width: none; margin: 0; padding: 46px 44px 40px; border-radius: 12px; background: #08060b; border: 1px solid rgba(158,123,182,0.24); box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 0 70px rgba(158,123,182,0.12), inset 0 1px 0 rgba(255,255,255,0.06); }
+    .cta-card { position: relative; z-index: 1; overflow: hidden; max-width: none; margin: 0; padding: 46px 44px 40px; border-radius: 12px; background: #08060b; border: 1px solid rgba(158,123,182,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
     .cta-card::after { content: ''; position: absolute; left: 50%; top: 34%; width: 145%; height: 82%; z-index: 0; transform: translate(-50%, -50%) rotate(15deg); background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/diff_imagebackground.png') center / 100% 100% no-repeat; pointer-events: none; }
     .cta-veu { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(160deg, rgba(5,4,8,0.12) 0%, rgba(5,4,8,0.38) 55%, rgba(5,4,8,0.62) 100%); }
     .cta-card::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; z-index: 3; pointer-events: none; background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
@@ -567,7 +589,7 @@
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); width: 100vw; margin-left: calc(50% - 50vw); padding: 64px max(var(--gutter), calc((100vw - 1400px) / 2)) 32px; }
     .footer-inner { max-width: 1750px; margin: 0 auto; }
-    .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; }
+    .footer-top { display: grid; grid-template-columns: 280px 1fr; gap: 80px; margin-bottom: 60px; max-width: var(--larg-max); margin-inline: auto; }
     .footer-brand-name { margin: 20px 0 12px; }
     .footer-desc { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.4); max-width: 220px; margin-bottom: 24px; }
     .social-links { display: flex; gap: 14px; }
@@ -585,7 +607,7 @@
     /* Satoshi nos titulos; principais em Black 900 com gradiente branco->cinza */
     .section-title, .cta-title, .logos-label, .home-hero-title, .st-nome, .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
 
-    .ft-grid { display: grid; grid-template-columns: 1.35fr 0.9fr 0.9fr; gap: 56px; max-width: 1160px; margin: 0 auto; padding: 12px 0 44px; }
+    .ft-grid { display: grid; grid-template-columns: 1.35fr 0.9fr 0.9fr; gap: 56px; max-width: var(--larg-max); margin: 0 auto; padding: 12px 0 44px; }
     .ft-desc { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.84); max-width: 420px; margin: 20px 0 4px; }
     .ft-contacts { list-style: none; padding: 0; margin: 16px 0 0; }
     .ft-contacts li { display: flex; align-items: center; gap: 13px; margin-top: 16px; }
@@ -608,7 +630,7 @@
     .ft-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
     .ft-bottom a:hover { color: #9e7bb6; }
     .ft-social--mob { display: none; }
-    @media (max-width: 1024px) {
+    @media (max-width: 1199px) {
       footer { padding-left: var(--gutter); padding-right: var(--gutter); }
       .ft-desc { font-size: 16.5px; line-height: 1.5; margin: 22px 0 6px; }
       .ft-contacts li { margin-top: 22px; gap: 14px; }
@@ -624,11 +646,11 @@
       .ft-bottom { text-align: left; }
       .ft-bottom p { font-size: 14px; }
     }
-    @media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
+    @media (max-width: 1199px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
     /* FOOTER — ajustes estilo referencia: Satoshi Regular, icons menores, mais respiro, texto estreito */
     .ft-desc, .ft-c-main, .ft-c-main a, .ft-c-sub, .ft-links a, .ft-bottom p, .ft-bottom a { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; }
     .ft-desc { color: rgba(255,255,255,0.92); }
-    @media (max-width: 1024px) {
+    @media (max-width: 1199px) {
       .ft-ico { width: 44px; height: 44px; border-radius: 12px; }
       .ft-ico svg { width: 19px; height: 19px; }
       .ft-social a { width: 44px; height: 44px; border-radius: 12px; }
@@ -640,23 +662,22 @@
       .ft-c-main, .ft-c-main a { font-size: 15px; }
       .ft-c-sub { font-size: 15px; }
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1199px) {
       .ft-grid { gap: 60px; }
       .ft-desc { max-width: 250px; }
       .ft-c-main { max-width: 230px; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .ft-contacts { margin-top: 60px; }
     }
 
 
   /* ── TABLET (≤1024px) ── */
-  @media (max-width: 1024px) {
+  @media (max-width: 1199px) {
     .site-wrap { overflow-x: hidden; }
     .services-section-wrap { padding: 100px var(--gutter) !important; }
     .steps-section { padding: 80px var(--gutter); }
     .team-section { padding: 100px var(--gutter); }
-    .tm-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-section { padding: 80px var(--gutter); }
     footer { padding: 48px var(--gutter) 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
@@ -664,17 +685,12 @@
     .section { padding: 100px var(--gutter); }
   }
 
-  /* ── TABLET 3D CANVAS (769px–1024px) ── */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    #logo3dCanvas { width: 280% !important; max-width: none !important; top: 50% !important; }
-  }
-
   /* ── MOBILE CARDS (≤768px) ── */
-  @media (max-width: 768px) {
-    .services-grid { grid-template-columns: 1fr; row-gap: 32px; }
+  @media (max-width: 1199px) {
+    .services-grid { grid-template-columns: 1fr; row-gap: 32px; max-width: 480px; }
     .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 460px; margin-left: auto; margin-right: auto; }
-    .tm-name { font-size: clamp(22px, 6.6vw, 30px); }
-    .tm-info { gap: 10px; transform: translateY(38px); }
+    .tm-name { font-size: clamp(25px, 7.35vw, 33px); }
+    .tm-info { gap: 10px; transform: translateY(31px); }
     .tm-pill { font-size: 9.5px; padding: 4px 9px; border-radius: 6px; }
     .tm-join { padding: 44px 22px 48px; gap: 24px; }
     .tm-ic { width: 58px; height: 58px; border-radius: 14px; }
@@ -689,7 +705,7 @@
   }
 
   /* ── MOBILE (≤600px) ── */
-  @media (max-width: 600px) {
+  @media (max-width: 1199px) {
     .site-wrap { overflow-x: hidden; }
 
     /* Global padding — o mesmo respiro em todas as seccoes */
@@ -765,15 +781,17 @@
     /* coerencia: seccoes sem subtitulo visivel (Servicos, Marcas que confiam)
        levam a mesma distancia ao conteudo que os subtitulos tem aos cards */
     #services-section .section-title, .logos-label { margin-bottom: 56px; }
-    @media (max-width: 600px) { #services-section .section-title, .logos-label { margin-bottom: 44px; } }
+    @media (max-width: 1199px) { #services-section .section-title, .logos-label { margin-bottom: 44px; } }
     /* ===== 4 PASSOS: card unico que cicla os passos (substitui os circulos) ===== */
     .steps-section .steps-palco { display: block !important; position: relative; width: min(560px, 100%); aspect-ratio: auto; margin: 52px auto 0; }
+    /* pc: o card dos 4 passos estende a largura toda do conteudo */
+    @media (min-width: 1200px) { .steps-section .steps-palco { width: min(var(--larg-max), 100%); } }
     .steps-grid4 { display: none !important; }
     .steps-argo { display: none !important; }
-    .steps-orbe { border-radius: 12px; border: 1px solid rgba(158,123,182,0.24); box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 0 70px rgba(158,123,182,0.12), inset 0 1px 0 rgba(255,255,255,0.06); }
+    .steps-orbe { border-radius: 12px; border: 1px solid rgba(158,123,182,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
     /* varredura de luz no canto superior direito, na tinta da marca */
     .steps-orbe::after { content: ''; position: absolute; top: -62%; right: -42%; width: 145%; height: 145%; border-radius: 50%; background: radial-gradient(closest-side, rgba(197,133,184,0.78) 0%, rgba(158,123,182,0.3) 46%, transparent 74%); pointer-events: none; }
-    .steps-veu { background: linear-gradient(160deg, rgba(5,4,8,0.2) 0%, rgba(5,4,8,0.4) 55%, rgba(5,4,8,0.6) 100%); }
+    .steps-veu { background: linear-gradient(160deg, rgba(5,4,8,0.08) 0%, rgba(5,4,8,0.2) 55%, rgba(5,4,8,0.36) 100%); }
     /* texto alinhado a esquerda, em fluxo (define a altura do card) */
     .steps-fluxo { position: relative; inset: auto; align-items: flex-start; justify-content: flex-start; text-align: left; padding: 34px 34px 84px; }
     .steps-fluxo .st-nome { font-size: clamp(26px, 3.6vw, 38px); margin: 0.42em 0 0.5em; }
@@ -797,7 +815,7 @@
     .home-hero-title, .steps-fluxo .st-nome { letter-spacing: -0.03em; }
     /* mobile: hero ao estilo da referencia GetDigital — titulo a encher a largura,
        bloco com margens simetricas e botoes finos a toda a largura */
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .home-hero-title { font-size: clamp(38px, 10.8vw, 48px); line-height: calc(0.825em + 3px); }
       .hero-content { padding: 0 32px 72px !important; }
       /* vence o clamp antigo de 30px com !important: fonte proporcional a largura
@@ -900,7 +918,7 @@
     .gx-btn:hover .st-anel::before, .gx-btn:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
     /* CTA: titulo maior, linhas mais juntas */
     .cta-title { font-size: clamp(40px, 5.8vw, 82px); line-height: 0.98; padding: 0.08em 0 0.16em; text-wrap: balance; }
-    @media (max-width: 900px) { .cta-title { font-size: clamp(34px, 10vw, 68px) !important; line-height: 0.98; } }
+    @media (max-width: 1199px) { .cta-title { font-size: clamp(34px, 10vw, 68px) !important; line-height: 0.98; } }
     /* sombras laterais do carrossel — transicao suave com o fundo da pagina */
     .mq-shade { position: absolute; inset: 0; pointer-events: none; z-index: 3;
       background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); }
@@ -913,24 +931,89 @@
     /* reflexo rosa no card em destaque do portfolio (mobile) */
     .reel-featured::after { content: ''; position: absolute; top: 0; left: 18%; right: 30%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent 0%, rgba(158,123,182,0.25) 20%, rgba(197,133,184,0.95) 50%, rgba(158,123,182,0.25) 80%, transparent 100%); filter: drop-shadow(0 0 6px rgba(197,133,184,0.75)); pointer-events: none; z-index: 4; }
     /* ===== DESKTOP: hero editorial a esquerda + densidade (boas normas web) — mobile intocado ===== */
-    @media (min-width: 901px) {
+    @media (min-width: 1200px) {
       .hero-content { max-width: 1440px; padding: 0 var(--gutter) 72px; }
       .home-hero-title { text-align: left; font-size: clamp(44px, 4.9vw, 72px); line-height: 0.92; letter-spacing: -0.035em; margin-bottom: 20px; }
       .hero-lead { text-align: left; max-width: 54ch; line-height: 1.34; }
       .hero-content .hero-btns { justify-content: flex-start !important; margin-top: 34px !important; }
       .hero-rev { justify-content: flex-start; margin-top: 30px; }
     }
-    @media (min-width: 1025px) {
+    @media (min-width: 1200px) {
       .section, .steps-section, .team-section { padding-top: 120px; padding-bottom: 120px; }
       #portfolio-reels-section { padding-top: 120px !important; padding-bottom: 120px !important; }
       #reels-panels { padding-top: 110px; padding-bottom: 110px; }
       .section-title, .logos-label { font-size: clamp(29px, 2.9vw, 40px); }
       .cta-title { font-size: clamp(36px, 4.2vw, 60px); }
-      .services-grid { max-width: 1160px; margin-left: auto; margin-right: auto; }
-      .reels-grid { max-width: 860px; margin-left: auto; margin-right: auto; }
-      #reels-panels .rp-acc { max-width: 1160px; height: clamp(440px, 44vw, 540px); }
-      .cta-inner, .ft-grid { max-width: 1160px; }
+      .services-grid { max-width: var(--larg-max); margin-left: auto; margin-right: auto; }
+      .reels-grid { max-width: var(--larg-max); margin-left: auto; margin-right: auto; }
+      #reels-panels .rp-acc { max-width: var(--larg-max); height: clamp(440px, 44vw, 540px); }
+      .cta-inner, .ft-grid { max-width: var(--larg-max); }
     }
+    /* cards de servicos em vidro: transparentes + blur, deixam ver o fundo 3D */
+    .service-card--vetor { background: rgba(12,10,16,0.38); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+    /* borda com reflexo nos vertices opostos (portfolio) — mesma familia do card dos 4 passos */
+    /* borda a 0: o anel passa a coincidir com o bordo real do card, senao o raio
+       do pseudo (12px) nao casa com o raio interior (12 - 1.5px) e o canto parte */
+    .reel-card, .reel-featured { border: 0; }
+    .reel-card::before, .reel-featured::before { content: ''; position: absolute; inset: 0; padding: 1px; pointer-events: none; z-index: 6;
+      background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.08) 70%, rgba(197,133,184,0.92) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .reel-card::before { border-radius: 12px; }
+    .reel-featured::before { border-radius: 14px; }
+    /* botoes de play mais pequenos no pc (proporcao com os cards reduzidos) */
+    @media (min-width: 1200px) {
+      .reel-card-play { width: 42px; height: 42px; }
+      .reel-card-play svg { width: 15px; height: 15px; }
+      #reels-panels .rp-play { width: 42px; height: 42px; }
+      #reels-panels .rp-play svg { width: 15px; height: 15px; }
+    }
+    @media (max-width: 1199px) { #reels-panels .rp-play { width: 56px; height: 56px; } }
+    /* rasgo de luz no fim do card da equipa: o PNG do gradiente tem o bordo de baixo
+       claro e a sua base fica ~10px abaixo do card, pelo que essa faixa aparecia
+       como uma linha acesa. Desvanece-se antes de chegar ao fundo. */
+    .tm-card::before { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 30px), transparent calc(100% - 2px)); mask-image: linear-gradient(to bottom, #000 calc(100% - 30px), transparent calc(100% - 2px)); }
+    /* halo do CTA: anel difuso por tras do reflexo, a sangrar para fora do card
+       (como na referencia). O angulo do gradiente roda 360 graus em 5s, pelo que
+       ao fim de cada 5s volta exatamente a mesma posicao.
+       --halo-ang tambem e declarado em .cta-luz: sem suporte a @property o
+       gradiente fica estatico em vez de desaparecer. */
+    @property --halo-ang { syntax: '<angle>'; initial-value: 135deg; inherits: true; }
+    .cta-luz { --halo-ang: 135deg; animation: ctaHaloGira 13s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+    .cta-luz::after { inset: -7px; border-radius: 19px; padding: 6px;
+      background: linear-gradient(var(--halo-ang), rgba(236,166,222,1) 0%, rgba(220,150,206,0.8) 7%, rgba(196,134,186,0.26) 16%, rgba(196,134,186,0) 27%, rgba(196,134,186,0) 73%, rgba(196,134,186,0.24) 84%, rgba(220,150,206,0.78) 93%, rgba(236,166,222,1) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      filter: blur(26px);
+      }
+    @keyframes ctaHaloGira { to { --halo-ang: 495deg; } }
+    @media (prefers-reduced-motion: reduce) { .cta-luz::after { animation: none; } }
+    /* ── MOBILE: cards de tamanho fixo em mobile ──
+       Um so corte a 1200px. Abaixo disso os contentores dos cards tem largura
+       constante (340px), centrados, para o card nao esticar com o viewport.
+       min() so entra em ecras onde 340px nao caberia dentro do gutter. */
+    @media (max-width: 1199px) {
+      :root { --card-mob: 560px; }   /* limite alto: em telemovel manda sempre o 100%, logo os cards ficam colados a margem de 2px */
+      .services-grid,
+      .tm-grid,
+      .reels-mobile-gallery,
+      .cta-luz,
+      #reels-panels .rp-acc,
+      .steps-section .steps-palco { width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important; margin-left: auto !important; margin-right: auto !important; }
+      /* equipa em 2x2 dentro dos 340px */
+      .tm-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+    }
+    /* pc: equipa com a mesma largura das outras seccoes */
+    @media (min-width: 1200px) { .tm-grid { max-width: var(--larg-max); margin-inline: auto; } }
+    /* contorno da equipa: opaco em cima, a desvanecer ate 0 em baixo.
+       A borda solida sai (senao somava-se ao anel e o raio nao casava nos
+       cantos); o anel e um pseudo com o fade ja na propria cor. */
+    .tm-card { border: 0; }
+    .tm-card::after { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 0.75px; pointer-events: none; z-index: 4;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.09) 42%, rgba(255,255,255,0) 88%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      transition: background 0.45s ease; }
+    .tm-card:hover::after, .tm-card.on::after { background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.12) 42%, rgba(255,255,255,0) 88%); }
   </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -1120,6 +1203,7 @@
 
 <!-- SERVICES SECTION -->
 <section id="services-section" class="services-section-wrap" style="position:relative; padding: 180px var(--gutter);">
+  <img class="services-esfera" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_crop,g_center,w_2100,h_2100/q_auto,f_auto,w_2000/Website_photos/photos_home_page/section-backgorund.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- content -->
   <div style="position:relative;z-index:1;">
   <h2 class="section-title" id="services-title">Conheça os serviços</h2>
@@ -1219,7 +1303,7 @@
   <defs>
     <filter id="bwx-nevoa" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
-  <rect width="860" height="660" fill="#0e0e11"/>
+  
   <g class="bwx-peca bwx-p7"><g transform="translate(0 -10) translate(2.1 0) translate(184.4 112.0) scale(0.974) translate(-184.4 -112.0) translate(20.0 12) translate(-30.0 -35) translate(-13.6 -22) translate(208.0 157.0) scale(1.1) translate(-208.0 -157.0) translate(208 157) scale(0.56)"><rect x="-190" y="-115" width="380" height="230" rx="26" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/><text x="0" y="13" font-family="Satoshi, 'Nunito Sans', sans-serif" font-size="38" font-weight="900" letter-spacing="20" fill="#9e7bb6" text-anchor="middle">BRAND</text></g></g>
   <g class="bwx-peca bwx-p8"><g transform="translate(0 14) translate(24.2 0) translate(560.6 264.0) scale(1.136) translate(-560.6 -264.0) translate(-20.0 0) translate(30.0 -15) translate(11.6 -22) translate(539.0 301.0) scale(1.1) translate(-539.0 -301.0) translate(539 301) scale(0.48)"><rect x="-190" y="-115" width="380" height="230" rx="26" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4.1"/></g></g>
   <!-- cantos tenues na borda esquerda -->
@@ -1340,14 +1424,14 @@
 <!-- TESTEMUNHOS (paineis expansiveis) -->
 <section id="reels-panels" style="position:relative;z-index:1;">
   <style>
-    #reels-panels{ padding: clamp(90px,11vw,150px) clamp(16px,4vw,48px); }
+    #reels-panels{ padding: clamp(90px,11vw,150px) var(--gutter); }
     #reels-panels .rp-head{ max-width:760px; margin:0 auto; text-align:center; position:relative; z-index:2; }
     #reels-panels .rp-eyebrow{ font-family:'Satoshi','Nunito Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:#c585b8; margin-bottom:14px; }
     #reels-panels .rp-title{ font-family:'Nunito Sans',sans-serif; font-size:clamp(30px,5vw,56px); font-weight:300; letter-spacing:-0.02em; text-transform:uppercase; color:#fff; line-height:1; margin:0; }
     #reels-panels .rp-title span{ color:#9e7bb6; }
     #reels-panels .section-title span{ color:#9e7bb6; } /* span roxo do título, como na galaxy */
     #reels-panels .rp-acc{ display:flex; gap:clamp(8px,1vw,12px); max-width:1280px; margin:0 auto; height:clamp(460px,50vw,600px); }
-    @media (min-width:1025px){ #reels-panels .rp-acc{ max-width:1160px; height:clamp(420px,40vw,500px); } }
+    @media (min-width:1200px){ #reels-panels .rp-acc{ max-width:var(--larg-max); height:clamp(420px,40vw,500px); } }
     #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:12px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
     #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
     #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.92) 4%, rgba(0,0,0,.12) 44%, rgba(0,0,0,.32)); }
@@ -1372,7 +1456,7 @@
     #reels-panels .rp-av.mono{ background:radial-gradient(120% 120% at 30% 22%, #f0953f, #d96e18); display:grid; place-items:center; }
     #reels-panels .rp-av.mono b{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:16px; color:#fff; letter-spacing:.02em; }
     #reels-panels .rp-dur{ position:absolute; top:14px; right:14px; z-index:4; font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:11px; color:#fff; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); padding:5px 9px; border-radius:100px; }
-    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:64px; height:64px; border:0; padding:0; cursor:pointer; border-radius:50%; background:rgba(0,0,0,.42); -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px); display:grid; place-items:center; transition:transform .3s, background .3s; }
+    #reels-panels .rp-play{ position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); z-index:5; width:42px; height:42px; border:0; padding:0; cursor:pointer; border-radius:50%; background:rgba(0,0,0,.42); -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px); display:grid; place-items:center; transition:transform .3s, background .3s; }
     #reels-panels .rp-play:hover, #reels-panels .rp-play:focus-visible{ background:rgba(0,0,0,.6); outline:none; }
     @keyframes rpring{ 0%{transform:scale(.85);opacity:.7} 70%{opacity:0} 100%{transform:scale(1.4);opacity:0} }
     #reels-panels .rp-cap{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:clamp(18px,2.2vw,26px); background:linear-gradient(0deg, rgba(0,0,0,.95) 6%, rgba(0,0,0,.4) 55%, transparent); }
@@ -1381,7 +1465,7 @@
     #reels-panels .rp-nm{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:13px; color:#fff; }
     #reels-panels .rp-og{ font-family:'Satoshi','Nunito Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:.04em; text-transform:none; color:#c585b8; }
     #reels-panels .rp-p.on{ flex:2.7 1 0; } /* painel aberto ~4:5 (vertical suave) */
-    @media (max-width: 760px){
+    @media (max-width: 1199px){
       #reels-panels{ padding-left:0; padding-right:0; }        /* sem padding lateral no mobile */
       #reels-panels .rp-head{ padding:0 18px; }                /* header mantem margem lateral */
       #reels-panels .rp-acc{ display:flex; flex-wrap:nowrap; height:auto; gap:12px; max-width:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 12px 16px; scrollbar-width:none; }
@@ -1937,19 +2021,19 @@
 
   <div class="tm-grid">
     <div class="tm-card">
-      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/diogo.png" alt="Diogo Vieira — Founder da Differentt Lab">
+      <div class="tm-recorte"><img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/diogo.png" alt="Diogo Vieira — Founder da Differentt Lab"></div>
       <div class="tm-shade"></div>
-      <div class="tm-info"><span class="tm-name">Diogo<br>Vieira</span><span class="tm-pill">Founder</span></div>
+      <div class="tm-info"><span class="tm-name">Diogo<br>Vieira</span><span class="tm-pill">Web</span></div>
     </div>
     <div class="tm-card">
-      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/marta.png" alt="Marta Fernandes — 3D Artist na Differentt Lab">
+      <div class="tm-recorte"><img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/marta.png" alt="Marta Fernandes — 3D Artist na Differentt Lab"></div>
       <div class="tm-shade"></div>
       <div class="tm-info"><span class="tm-name">Marta<br>Fernandes</span><span class="tm-pill">3D Artist</span></div>
     </div>
     <div class="tm-card">
-      <img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/beatriz.png" alt="Beatriz — Social Media na Differentt Lab">
+      <div class="tm-recorte"><img class="tm-photo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_820,q_auto,f_auto/Website_photos/photos_us_page/nova-secao/beatriz.png" alt="Beatriz Vaz — Social Media na Differentt Lab"></div>
       <div class="tm-shade"></div>
-      <div class="tm-info"><span class="tm-name">Beatriz</span><span class="tm-pill">Social Media</span></div>
+      <div class="tm-info"><span class="tm-name">Beatriz<br>Vaz</span><span class="tm-pill">Social Media</span></div>
     </div>
     <div class="tm-card">
       <!-- foto do David ainda em falta -->
@@ -2168,8 +2252,8 @@
     @media (prefers-reduced-motion: reduce){ #reviews-section .grev-stars svg{ opacity:1 !important; transform:none !important; transition:none !important; } }
     #reviews-section .grev-stars svg, #reviews-section .rc-stars svg { display:block; flex-shrink:0; }
     #reviews-section .grev-count { font-family:'Nunito Sans',sans-serif; font-size:13.5px; font-weight:600; color:#fff; }
-    #reviews-section .rc { background: linear-gradient(150deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.04) 100%); border:1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 22px 24px; width: 350px; flex-shrink:0; box-shadow: 0 14px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12); display:flex; flex-direction:column; text-decoration:none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-    #reviews-section .rc:hover { transform: translateY(-4px); box-shadow: 0 20px 52px rgba(0,0,0,0.5); }
+    #reviews-section .rc { background: linear-gradient(150deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.04) 100%); border:1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); border-radius: 16px; padding: 22px 24px; width: 350px; flex-shrink:0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); display:flex; flex-direction:column; text-decoration:none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    #reviews-section .rc:hover { transform: translateY(-4px); }
     #reviews-section .rc-top { display:flex; align-items:center; gap:12px; }
     #reviews-section .rc-avatar { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Nunito Sans',sans-serif; font-weight:700; font-size:17px; flex-shrink:0; }
     #reviews-section .rc-meta { min-width:0; flex:1; }
@@ -2183,7 +2267,7 @@
     #reviews-section .grev-cta a .grev-cta-label { border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:4px; }
     #reviews-section .grev-cta a .grev-arrow { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
     #reviews-section .grev-cta a:hover .grev-arrow { transform: translateX(5px); }
-    @media (max-width: 600px) { #reviews-section { padding: 90px 0; } #reviews-section .rc { width: 300px; padding: 20px; } }
+    @media (max-width: 1199px) { #reviews-section { padding: 90px 0; } #reviews-section .rc { width: 300px; padding: 20px; } }
   </style>
 
   <div class="grev-head">
@@ -2213,7 +2297,7 @@
   })();
   </script>
 
-  <div style="overflow-x:clip;overflow-y:visible;padding:12px 0;margin-bottom:8px;">
+  <div class="rev-faixa" style="overflow-x:clip;overflow-y:visible;padding:12px 0;margin-bottom:8px;">
     <div class="row-left">
       <a class="rc" href="https://www.google.com/search?sa=X&amp;sca_esv=6f93171fcacd3140&amp;sxsrf=APpeQnuDJ8RU-GaiVV_yqWGKhAgaynY0mw:1785339395807&amp;q=Differentt+Lab+design+Cr%C3%ADticas&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDAxNDc1s7QwBpKGluYWFuYmGxgZXzHKu2SmpaUWpeaVlCj4JCYppKQWZ6bnKTgXHV5bkpmcWLyIlZAKABHtvTBfAAAA&amp;rldimm=18417569837561978874&amp;tbm=lcl&amp;hl=pt-PT&amp;ved=2ahUKEwjn-fXDm_iVAxX-OPsDHQ5uAq4Q9fQKegQILxAG&amp;biw=3127&amp;bih=1186&amp;dpr=1.1#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer"><div class="rc-top"><div class="rc-avatar" style="background:#4285F4;">R</div><div class="rc-meta"><div class="rc-name">Rúben Campos</div><div class="rc-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div></div><svg viewBox="0 0 48 48" width="18" height="18" role="img" aria-label="Google" style="flex-shrink:0;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div><p class="rc-text">A criatividade e atenção ao detalhe no design gráfico foram impressionantes. O resultado final refletiu exatamente a identidade da minha marca.</p></a>
       <a class="rc" href="https://www.google.com/search?sa=X&amp;sca_esv=6f93171fcacd3140&amp;sxsrf=APpeQnuDJ8RU-GaiVV_yqWGKhAgaynY0mw:1785339395807&amp;q=Differentt+Lab+design+Cr%C3%ADticas&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDAxNDc1s7QwBpKGluYWFuYmGxgZXzHKu2SmpaUWpeaVlCj4JCYppKQWZ6bnKTgXHV5bkpmcWLyIlZAKABHtvTBfAAAA&amp;rldimm=18417569837561978874&amp;tbm=lcl&amp;hl=pt-PT&amp;ved=2ahUKEwjn-fXDm_iVAxX-OPsDHQ5uAq4Q9fQKegQILxAG&amp;biw=3127&amp;bih=1186&amp;dpr=1.1#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer"><div class="rc-top"><div class="rc-avatar" style="background:#34A853;">E</div><div class="rc-meta"><div class="rc-name">Evo Clinic</div><div class="rc-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div></div><svg viewBox="0 0 48 48" width="18" height="18" role="img" aria-label="Google" style="flex-shrink:0;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div><p class="rc-text">Em menos de um ano: +70% de ligações telefónicas e +30% na taxa de marcações. Juntos com a Moment Laser, 900 mil visualizações nos últimos 30 dias.</p></a>
@@ -2230,7 +2314,7 @@
     </div>
   </div>
 
-  <div style="overflow-x:clip;overflow-y:visible;padding:12px 0;">
+  <div class="rev-faixa" style="overflow-x:clip;overflow-y:visible;padding:12px 0;">
     <div class="row-right">
       <a class="rc" href="https://www.google.com/search?sa=X&amp;sca_esv=6f93171fcacd3140&amp;sxsrf=APpeQnuDJ8RU-GaiVV_yqWGKhAgaynY0mw:1785339395807&amp;q=Differentt+Lab+design+Cr%C3%ADticas&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDAxNDc1s7QwBpKGluYWFuYmGxgZXzHKu2SmpaUWpeaVlCj4JCYppKQWZ6bnKTgXHV5bkpmcWLyIlZAKABHtvTBfAAAA&amp;rldimm=18417569837561978874&amp;tbm=lcl&amp;hl=pt-PT&amp;ved=2ahUKEwjn-fXDm_iVAxX-OPsDHQ5uAq4Q9fQKegQILxAG&amp;biw=3127&amp;bih=1186&amp;dpr=1.1#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer"><div class="rc-top"><div class="rc-avatar" style="background:#4285F4;">M</div><div class="rc-meta"><div class="rc-name">Moment Laser</div><div class="rc-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div></div><svg viewBox="0 0 48 48" width="18" height="18" role="img" aria-label="Google" style="flex-shrink:0;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div><p class="rc-text">De 7.000 para 10.000 seguidores em 1 ano, +813 mil visualizações no Instagram e mais de 70 agendamentos mensais. Juntos com a Evo Clinic, 900 mil visualizações nos últimos 30 dias.</p></a>
       <a class="rc" href="https://www.google.com/search?sa=X&amp;sca_esv=6f93171fcacd3140&amp;sxsrf=APpeQnuDJ8RU-GaiVV_yqWGKhAgaynY0mw:1785339395807&amp;q=Differentt+Lab+design+Cr%C3%ADticas&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDAxNDc1s7QwBpKGluYWFuYmGxgZXzHKu2SmpaUWpeaVlCj4JCYppKQWZ6bnKTgXHV5bkpmcWLyIlZAKABHtvTBfAAAA&amp;rldimm=18417569837561978874&amp;tbm=lcl&amp;hl=pt-PT&amp;ved=2ahUKEwjn-fXDm_iVAxX-OPsDHQ5uAq4Q9fQKegQILxAG&amp;biw=3127&amp;bih=1186&amp;dpr=1.1#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer"><div class="rc-top"><div class="rc-avatar" style="background:#34A853;">M</div><div class="rc-meta"><div class="rc-name">Miguel Santos</div><div class="rc-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div></div><svg viewBox="0 0 48 48" width="18" height="18" role="img" aria-label="Google" style="flex-shrink:0;"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></div><p class="rc-text">O website desenvolvido é moderno, rápido e totalmente alinhado com a nossa identidade. Uma solução profissional que nos distingue da concorrência.</p></a>
@@ -2287,6 +2371,8 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-luz">
+  <span class="cta-bloom cta-bloom--perto" aria-hidden="true"><i></i></span>
+  <span class="cta-bloom cta-bloom--longe" aria-hidden="true"><i></i></span>
   <div class="cta-card">
     <span class="cta-veu" aria-hidden="true"></span>
     <img class="cta-logo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full%20logo.svg" alt="Differentt Lab">
@@ -2375,7 +2461,7 @@
 <a href="https://wa.me/351910185220" target="_blank" rel="noopener" id="whatsapp-btn" title="Fala connosco no WhatsApp" style="position:fixed;bottom:40px;right:40px;z-index:9998;width:48px;height:48px;border-radius:50%;background:rgba(10,10,10,0.5);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);border:1.5px solid rgba(255,255,255,0.42);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,0.4);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;"><svg width="23" height="23" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 <style>
 #whatsapp-btn:hover{transform:translateY(-3px);background:rgba(14,14,14,0.62);border-color:rgba(255,255,255,0.55);box-shadow:0 16px 34px rgba(0,0,0,0.45);}
-@media (max-width: 600px) {
+@media (max-width: 1199px) {
   #whatsapp-btn { bottom: 76px !important; right: 16px !important; }
   #chat-widget { bottom: 16px !important; right: 16px !important; }
   #chat-bubble-text { display: none !important; }
@@ -2394,7 +2480,7 @@
 .ck-btn:hover,.ck-btn:focus-visible{transform:translateY(-1px);filter:brightness(1.07);outline:none;}
 .ck-light{background:#ececec;color:#141414;}
 .ck-pink{background:#c585b8;color:#fff;}
-@media (max-width:600px){#cookie-banner{left:16px;right:16px;bottom:16px;max-width:none;}}
+@media (max-width: 1199px){#cookie-banner{left:16px;right:16px;bottom:16px;max-width:none;}}
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
@@ -2475,6 +2561,98 @@
   /* ecra estreito: nao cabe ao lado, volta a abrir por cima do botao */
   @media (max-width: 520px) { #chat-panel { right: 0; bottom: calc(100% + 14px); } }
   @media (max-width: 420px) { #chat-panel { width: calc(100vw - 32px); height: 75vh; } #chat-widget { bottom: 16px; right: 16px; } }
+  /* avatares 10% mais pequenos em mobile (28->25, 40->36, 36->32) */
+  @media (max-width: 1199px) {
+    .hero-rev-av { width: 25px; height: 25px; margin-left: -8px; }
+    #reviews-section .grev-av { width: 36px; height: 36px; margin-left: -10px; }
+    #reviews-section .rc-avatar { width: 36px; height: 36px; font-size: 15px; }
+    #reels-panels .rp-av { width: 32px; height: 32px; }
+  }
+  /* mobile: fotos do Diogo e da Marta 15% mais pequenas (vinham mais enquadradas
+     que as restantes e a cabeca encostava ao topo do card) */
+  @media (max-width: 1199px) {
+    .tm-grid .tm-card:nth-child(1) .tm-photo,
+    .tm-grid .tm-card:nth-child(2) .tm-photo { transform: scale(0.98); transform-origin: 50% 100%; }
+  }
+  /* faixa roxa de repouso: ATRAS dos avatares (dentro de .tm-recorte, pintada
+     antes da foto). O shade preto por cima esmaga-a (~88% na base), por isso a
+     opacidade de origem e alta — o resultado percebido fica nos ~15%. No hover
+     desvanece enquanto o glow sobe a 100%. */
+  .tm-recorte::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 48%; pointer-events: none;
+    background: linear-gradient(to top, rgba(172,124,206,1) 0%, rgba(172,124,206,0.55) 45%, rgba(172,124,206,0) 100%);
+    opacity: 0.45; transition: opacity 1.1s ease; }
+  .tm-card:hover .tm-recorte::before, .tm-card.on .tm-recorte::before { opacity: 0; }
+  /* pc: o recorte estende 120px acima do card; corrige os 30% para a altura do card */
+  @media (min-width: 1200px) { .tm-recorte::before { height: calc((100% - 120px) * 0.48); } }
+  /* preto a subir da base, por cima do avatar E do roxo (fica dentro do recorte,
+     logo abaixo do nome, que vive em .tm-info). Da o remate escuro no fundo do
+     card e deixa o roxo so acima dele. */
+  .tm-recorte::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 58%; pointer-events: none;
+    background: linear-gradient(to top, rgba(22,20,26,1) 0%, rgba(24,22,28,0.96) 10%, rgba(26,24,30,0.8) 24%, rgba(28,26,32,0.48) 46%, rgba(30,28,34,0) 82%); }
+  @media (min-width: 1200px) { .tm-recorte::after { height: calc((100% - 120px) * 0.58); } }
+  /* gradiente nos nomes da equipa (so o gradiente, sem contorno).
+     O padding vertical e obrigatorio: com line-height 0.98 a caixa do fundo
+     fica mais curta que os glifos e o 'g' de Diogo partia o gradiente. */
+  .tm-name { padding: 0.06em 0 0.16em; color: #fff;
+    background: linear-gradient(180deg, #ffffff 12%, #f2f2f5 96%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  /* mobile: padding interior dos cards a dobrar (horizontal e vertical),
+     agora que os cards ocupam quase toda a largura do ecra */
+  @media (max-width: 1199px) {
+    .service-card--vetor .service-card-content { padding: 16px 26px 56px !important; }
+    .cta-card { padding: 72px 28px 68px !important; }
+    .steps-fluxo { padding: 72px 34px 78px !important; }   /* base: espaco da seta e dos pontos */
+    #reviews-section .rc { padding: 16px 18px !important; }
+    .tm-join { padding: 96px 22px 104px !important; }
+  }
+  /* margem lateral nas seccoes que faltavam em mobile (testemunhos e reviews).
+     Nas reviews a margem vai no contentor que corta (overflow-x: clip) e nao em
+     padding: com overflow, o padding faz parte da area visivel e nao afastaria nada. */
+  @media (max-width: 1199px) {
+    #reels-panels { padding-left: var(--gutter); padding-right: var(--gutter); }
+    #reviews-section .rev-faixa { margin-left: 8px; margin-right: 8px; }
+  }
+  /* moldura do card so existe onde ha brilho: usa o mesmo angulo animado do
+     halo e fica totalmente transparente nos intervalos, para nao se ver a linha */
+  .cta-card { border-color: transparent !important; }
+  .cta-card::before { background: linear-gradient(var(--halo-ang), rgba(230,165,215,1) 0%, rgba(210,145,196,0.5) 8%, rgba(190,132,182,0) 22%, rgba(190,132,182,0) 78%, rgba(210,145,196,0.48) 92%, rgba(230,165,215,1) 100%) !important; }
+  @media (prefers-reduced-motion: reduce) { .cta-luz { animation: none; } }
+  /* desfoque na moldura para ler como reflexo e nao como linha desenhada.
+     A moldura engrossa para sobreviver ao blur sem desaparecer. */
+  .cta-card::before { padding: 1px !important; filter: none; }   /* contorno nitido: quem faz o desfoque e o halo atras */
+  /* bloom: nucleo + brilho justo + brilho largo.
+     Um bloom real nao e uma linha com halo distante — sao varias camadas do
+     mesmo gradiente com raios de desfoque crescentes, sobrepostas. Todas leem
+     o mesmo --halo-ang animado, por isso rodam em conjunto. */
+  .cta-luz::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; pointer-events: none; z-index: 4;
+    background: linear-gradient(var(--halo-ang), rgba(233,222,248,1) 0%, rgba(186,158,222,0.85) 6%, rgba(158,123,182,0.3) 15%, rgba(158,123,182,0) 26%, rgba(158,123,182,0) 74%, rgba(158,123,182,0.28) 85%, rgba(186,158,222,0.83) 94%, rgba(233,222,248,1) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    filter: drop-shadow(0 0 3px rgba(255,205,242,1)) drop-shadow(0 0 8px rgba(245,180,230,1)) drop-shadow(0 0 18px rgba(226,156,212,0.95)) drop-shadow(0 0 40px rgba(205,140,192,0.8)) drop-shadow(0 0 80px rgba(186,128,178,0.6)); }
+  /* nucleo mais quente/claro no pico, como uma luz sobre-exposta */
+  .cta-card::before { background: linear-gradient(var(--halo-ang), rgba(255,226,250,1) 0%, rgba(235,165,220,0.72) 7%, rgba(200,138,188,0.2) 17%, rgba(200,138,188,0) 27%, rgba(200,138,188,0) 73%, rgba(200,138,188,0.18) 83%, rgba(235,165,220,0.7) 93%, rgba(255,226,250,1) 100%) !important; }
+  /* reviews: pontas desvanecidas — os cards entram e saem com fade em vez de
+     serem cortados a direito pelo limite do contentor */
+  #reviews-section .rev-faixa { -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.6) 1%, #000 3.5%, #000 96.5%, rgba(0,0,0,0.6) 99%, transparent 100%); mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.6) 1%, #000 3.5%, #000 96.5%, rgba(0,0,0,0.6) 99%, transparent 100%); }
+  /* camadas antigas do halo desligadas: o bloom vem todo do drop-shadow */
+  .cta-luz::after { display: block !important; inset: -1px !important; border-radius: 13px !important; padding: 3px !important; z-index: 0 !important;
+    background: linear-gradient(var(--halo-ang), rgba(250,190,236,1) 0%, rgba(235,165,220,0.9) 7%, rgba(210,142,196,0.32) 17%, rgba(210,142,196,0) 28%, rgba(210,142,196,0) 72%, rgba(210,142,196,0.3) 83%, rgba(235,165,220,0.88) 93%, rgba(250,190,236,1) 100%) !important;
+    filter: blur(16px) !important; }
+  .cta-card::before { background: none !important; }
+  /* bloom em duas camadas com o filtro no pai.
+     O CSS aplica o filter ANTES da mascara, por isso desfocar o proprio anel
+     mascarado recortava o brilho todo. A mascara passa a viver no filho e o
+     desfoque no pai — assim o brilho espalha-se para fora do anel. */
+  .cta-bloom { position: absolute; inset: -1px; pointer-events: none; z-index: 0; }
+  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px;
+    background: linear-gradient(var(--halo-ang), rgba(226,212,250,1) 0%, rgba(178,148,220,0.95) 6%, rgba(150,116,178,0.34) 16%, rgba(150,116,178,0) 27%, rgba(150,116,178,0) 73%, rgba(150,116,178,0.32) 84%, rgba(178,148,220,0.93) 94%, rgba(226,212,250,1) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .cta-bloom--perto { filter: blur(4px); }
+  .cta-bloom--longe { filter: blur(11px); opacity: 1; }
+  /* o nucleo volta a ser so a linha nitida, sem filtro nenhum */
+  .cta-luz::before { filter: none !important; padding: 1px !important; z-index: 4 !important; }
+  .cta-luz::after { display: none !important; }
 </style>
 
 <div id="chat-widget">
