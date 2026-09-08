@@ -257,7 +257,7 @@
        seccoes usam var(--gutter) — nao acrescentar paddings laterais soltos. */
     :root { --gutter: 80px; --larg-max: 1120px; }   /* PC: conteudo FIXO de 1120px centrado; o que cresce e a margem */
     @media (max-width: 1199px) { :root { --gutter: 48px; } }
-    @media (max-width: 1199px)  { :root { --gutter: 26px; } }
+    @media (max-width: 1199px)  { :root { --gutter: 28px; } }
 
     /* SERVICES SECTION */
     .section { padding: 180px var(--gutter); }
@@ -664,8 +664,9 @@
     }
     @media (max-width: 1199px) {
       .ft-grid { gap: 60px; }
-      .ft-desc { max-width: 250px; }
-      .ft-c-main { max-width: 230px; }
+      /* sem limites de largura: o texto acompanha a mesma margem do resto do site */
+      .ft-desc { max-width: none; }
+      .ft-c-main { max-width: none; }
     }
     @media (max-width: 1199px) {
       .ft-contacts { margin-top: 60px; }
@@ -840,7 +841,7 @@
          preenche o palco), mas conserva o z-index — com static o texto pintava
          por baixo do .steps-orbe e o 1o slide aparecia vazio. */
       .steps-fluxo { position: relative; padding-bottom: 74px; }
-      .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 52px; margin-top: 0; }
+      .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 26px; margin-top: 0; }   /* mesma linha da seta: afasta-se da frase sem colidir com ela */
       .steps-fluxo.cta .st-mini { display: none; }
       .steps-fluxo.cta { padding-top: 22px; }
     }
@@ -992,7 +993,7 @@
        constante (340px), centrados, para o card nao esticar com o viewport.
        min() so entra em ecras onde 340px nao caberia dentro do gutter. */
     @media (max-width: 1199px) {
-      :root { --card-mob: 560px; }   /* limite alto: em telemovel manda sempre o 100%, logo os cards ficam colados a margem de 2px */
+      :root { --card-mob: 424px; }   /* TAMANHO UNICO dos cards em mobile. Nao cresce 1px; so encolhe em ecras onde nao caberia */   /* conteudo congela aqui: 430px (maior telemovel) menos 2x26px. Ate 430px a margem e sempre 26px; acima disso o layout deixa de esticar */
       .services-grid,
       .tm-grid,
       .reels-mobile-gallery,
@@ -2610,7 +2611,7 @@
      padding: com overflow, o padding faz parte da area visivel e nao afastaria nada. */
   @media (max-width: 1199px) {
     #reels-panels { padding-left: var(--gutter); padding-right: var(--gutter); }
-    #reviews-section .rev-faixa { margin-left: 8px; margin-right: 8px; }
+    
   }
   /* moldura do card so existe onde ha brilho: usa o mesmo angulo animado do
      halo e fica totalmente transparente nos intervalos, para nao se ver a linha */
@@ -2653,6 +2654,43 @@
   /* o nucleo volta a ser so a linha nitida, sem filtro nenhum */
   .cta-luz::before { filter: none !important; padding: 1px !important; z-index: 4 !important; }
   .cta-luz::after { display: none !important; }
+  /* hero com a mesma margem do resto da estrutura em mobile */
+  @media (max-width: 1199px) { .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
+    max-width: calc(var(--card-mob) + 2 * var(--gutter)) !important; margin-left: auto !important; margin-right: auto !important; } }
+  /* congela os tamanhos que ainda escalavam com o viewport em mobile.
+     Os valores sao exatamente os que cada um tinha a 430px (o maior telemovel),
+     por isso ate essa largura nada muda; acima dela deixam de crescer. */
+  @media (max-width: 1199px) {
+    .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
+    .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
+    .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
+    .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
+    .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
+  }
+  /* nav, reviews e footer com a largura dos cards: eram os unicos que ainda
+     cresciam com o viewport e destoavam do resto */
+  @media (max-width: 1199px) {
+    .ft-grid, .ft-bottom {
+      width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* alinha os paineis dos clientes com as outras seccoes: o acordeao tem
+     padding lateral de 12px (para o scroll horizontal respirar) que empurrava o
+     primeiro painel 12px para dentro. Passa a padding 0 e o respiro vai para o
+     proprio contentor, que ja tem a margem certa. */
+  @media (max-width: 1199px) {
+    #reels-panels .rp-acc { padding-left: 0 !important; padding-right: 0 !important; }
+  }
+  /* faixa de reviews passa por cima do padding e sangra ate a borda do ecra,
+     como o carrossel de servicos: assim os cards deixam de ser cortados por um
+     limite interior e o corte acontece so no fim do ecra, que se le como natural
+     numa faixa em movimento. O desvanecimento nas pontas suaviza a entrada e a saida. */
+  @media (max-width: 1199px) {
+    #reviews-section .rev-faixa { width: 100vw !important; max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 2%, #000 7%, #000 93%, rgba(0,0,0,0.5) 98%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 2%, #000 7%, #000 93%, rgba(0,0,0,0.5) 98%, transparent 100%); }
+  }
 </style>
 
 <div id="chat-widget">
