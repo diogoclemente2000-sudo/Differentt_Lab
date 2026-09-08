@@ -998,7 +998,6 @@
       .tm-grid,
       .reels-mobile-gallery,
       .cta-luz,
-      #reels-panels .rp-acc,
       .steps-section .steps-palco { width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important; margin-left: auto !important; margin-right: auto !important; }
       /* equipa em 2x2 dentro dos 340px */
       .tm-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
@@ -2690,6 +2689,21 @@
       margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important;
       -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 2%, #000 7%, #000 93%, rgba(0,0,0,0.5) 98%, transparent 100%);
       mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 2%, #000 7%, #000 93%, rgba(0,0,0,0.5) 98%, transparent 100%); }
+  }
+  /* a faixa dos clientes tambem sangra ate a borda do ecra, como a dos reviews:
+     e um carrossel horizontal, logo os cards devem passar por cima das margens em
+     vez de serem cortados por um limite interior. O padding mantem o primeiro
+     card alinhado com a margem das outras seccoes. */
+  @media (max-width: 1199px) {
+    #reels-panels .rp-acc { width: 100vw !important; max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important;
+      /* margem efetiva: acima do ponto de congelamento os cards centram-se, logo
+         a margem real e maior que o gutter — o primeiro card tem de acompanhar */
+      padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2)) !important;
+      padding-right: max(var(--gutter), calc((100vw - var(--card-mob)) / 2)) !important;
+      scroll-padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2));
+      -webkit-mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 1.5%, #000 6%, #000 94%, rgba(0,0,0,0.5) 98.5%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, rgba(0,0,0,0.5) 1.5%, #000 6%, #000 94%, rgba(0,0,0,0.5) 98.5%, transparent 100%); }
   }
 </style>
 
