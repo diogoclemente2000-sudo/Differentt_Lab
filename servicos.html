@@ -617,6 +617,13 @@
 #cookie-banner p a{color:#c585b8;text-decoration:none;font-weight:700;}
 #cookie-banner p a:hover{text-decoration:underline;}
 .ck-btns{display:flex;gap:8px;flex-wrap:wrap;}
+/* mobile: os tres botoes numa so linha — sem quebra, com o texto a encolher o
+   necessario para o "Aceitar todos" deixar de cair para baixo */
+@media (max-width: 1199px){
+  .ck-btns{flex-wrap:nowrap;gap:6px;}
+  .ck-btns .ck-btn{flex:1 1 0;min-width:0;padding:10px 6px;font-size:12px;text-align:center;white-space:nowrap;}
+}
+@media (max-width: 360px){ .ck-btns .ck-btn{font-size:11px;padding:10px 4px;} }
 .ck-btn{font-family:'Satoshi','Nunito Sans',sans-serif;font-size:13px;font-weight:700;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;line-height:1;transition:transform .2s, filter .2s;}
 .ck-btn:hover,.ck-btn:focus-visible{transform:translateY(-1px);filter:brightness(1.07);outline:none;}
 .ck-light{background:#ececec;color:#141414;}

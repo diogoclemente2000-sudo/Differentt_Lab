@@ -151,10 +151,10 @@
     .hero-bg { position: absolute; inset: 0; pointer-events: none; background: #000 url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-poster.jpg') center/cover no-repeat; }
     .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
     .hero-bg video.is-on.tocando { opacity: 1; }
-    @media (max-width: 768px) { .hero-bg { background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg'); } }
+    @media (max-width: 1199px) { .hero-bg { background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg'); } }
     /* swap do vídeo de fundo: desktop por defeito, portrait no mobile */
     .hv-mobile { display: none; }
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
       .hv-desktop { display: none; }
       .hv-mobile { display: block; }
       /* filtro escuro subtil só no mobile, vindo da esquerda: 30% -> 0% ao meio */
@@ -185,7 +185,7 @@
       .hero-content h1 span { font-size: 16px !important; }
       .hero-content div { justify-content: flex-start !important; flex-direction: column !important; align-items: flex-start !important; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .hero-content { padding: 0 28px 60px !important; }
     }
     .btn-glow {
@@ -225,7 +225,7 @@
 
     /* PORTFOLIO — cards estilo home (capa em vídeo, 9:16) */
     .pf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 320px)); gap: 20px; justify-content: center; margin-top: 40px; }
-    @media (max-width: 1100px) { .pf-grid { grid-template-columns: repeat(2, minmax(0, 320px)); } }
+    @media (max-width: 1199px) { .pf-grid { grid-template-columns: repeat(2, minmax(0, 320px)); } }
     .reel-card { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3); background: #0a0a0a; isolation: isolate; display: block; text-decoration: none; }
     .reel-card-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     /* só em ratos: em touch o :hover fica "colado" e o card mexe-se durante o swipe */
@@ -240,9 +240,9 @@
     /* o triangulo tem o centro optico a esquerda do geometrico — 2px para a direita acertam-no */
     .reel-card-play svg { margin-left: 0; }
     .reel-card:hover .reel-card-play, .reel-featured:hover .reel-card-play { background: rgba(0,0,0,.6); }
-    @media (max-width: 760px) { .reel-card-play { width: 44px; height: 44px; } .reel-card-play svg { width: 16px; height: 16px; } }
+    @media (max-width: 1199px) { .reel-card-play { width: 44px; height: 44px; } .reel-card-play svg { width: 16px; height: 16px; } }
     /* mobile: flex horizontal com swipe (mesmo padrão da home) */
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .pf-grid { display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 4px 16px; scrollbar-width: none; justify-content: flex-start; }
       .pf-grid::-webkit-scrollbar { display: none; }
       .pf-grid .reel-card { flex: 0 0 72%; scroll-snap-align: center; }
@@ -526,7 +526,7 @@
       letter-spacing: 0.05em;
       font-variant-numeric: tabular-nums;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .offer-banner { flex-direction: column; align-items: flex-start; padding: 14px 16px; gap: 12px; }
       .offer-right { gap: 8px; }
       .offer-timer { font-size: 18px; }
@@ -561,7 +561,7 @@
       .example-card--clickable { border-color:rgba(158,123,182,0.28); }
     }
     /* tag e nome deixam de disputar a mesma linha em ecras estreitos */
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .example-meta { flex-direction:column; align-items:flex-start; gap:6px; padding:16px 18px; }
       .example-tag { font-size:10px; letter-spacing:0.16em; }
       .example-name { font-size:15px; color:rgba(255,255,255,0.85); }
@@ -575,7 +575,7 @@
     }
     .lp-modal-overlay.open { display:flex; animation:modalBgIn 0.25s ease both; }
     @keyframes modalBgIn { from{opacity:0} to{opacity:1} }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .lp-modal-overlay { padding:16px; }
       .lp-modal { padding:28px 22px; border-radius:20px; max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); }
       .lp-modal-close { margin:-8px -8px 0 12px; }
@@ -637,7 +637,7 @@
     .ig-card-val { font-family: 'Overpass', sans-serif; font-size: 34px; font-weight: 900; color: #fff; line-height: 1; }
     .ig-card-val i { font-size: 17px; font-weight: 700; font-style: normal; margin-left: 3px; }
     .ig-card-label { font-family: 'Nunito Sans', sans-serif; font-size: 11.5px; font-weight: 300; color: rgba(255,255,255,.42); margin-top: 6px; }
-    @media (max-width: 760px) { .infografico { grid-template-columns: 1fr; gap: 16px; } }
+    @media (max-width: 1199px) { .infografico { grid-template-columns: 1fr; gap: 16px; } }
     .mini-stats { display: flex; gap: 48px; margin-top: 48px; }
     .mini-stat { display: flex; flex-direction: column; }
     .mini-stat-val { font-family: 'Overpass', sans-serif; font-size: 48px; font-weight: 900; color: #fff; line-height: 1; }
@@ -676,7 +676,7 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; flex-direction: column; gap: 6px; justify-content: center; align-items: center; text-align: center; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1199px) {
       .hero-visuals { height: 480px; }
       .browser-frame { width: 500px; }
       .browser-screen { height: 340px; }
@@ -697,7 +697,7 @@
       /* tablet e abaixo: botao empilhado por baixo do texto (senao o titulo espreme-se) */
       .cta-bar { flex-direction: column; align-items: flex-start; gap: 32px; padding: 60px 48px; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
       .hero-visuals { height: 360px; }
       .browser-frame { width: 340px; }
       .browser-screen { height: 240px; }
@@ -713,7 +713,7 @@
       .hero-trust { justify-content: center; }
       .hero-proof { gap: 16px; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
 
       /* Mobile hero: stack browser on top, phones side by side below */
       .hero-visuals {
@@ -773,7 +773,7 @@
        ser esticado por um ecra 16:9 (as outras duas paginas ja faziam isto) */
     .reels-slide-frame { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
     .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    @media (min-width: 601px) {
+    @media (min-width: 1200px) {
       .reels-slide-frame { width: auto; height: min(90vh, 90dvh); aspect-ratio: 9 / 16; max-width: 94vw; border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
     }
     .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
@@ -807,7 +807,7 @@
     .faq-item.open .faq-icon::before { background: #9e7bb6; }
     .faq-answer { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.4); max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s; padding-left: 56px; }
     .faq-item.open .faq-answer { max-height: 460px; padding-bottom: 28px; }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .faq-question, .faq-question-left { gap: 16px; }
       .faq-num { min-width: 18px; }
       .faq-answer { padding-left: 34px; }
@@ -843,7 +843,7 @@
     .ft-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
     .ft-bottom a:hover { color: #9e7bb6; }
     .ft-social--mob { display: none; }
-    @media (max-width: 1024px) {
+    @media (max-width: 1199px) {
       footer { padding-left: clamp(56px, 11vw, 120px); padding-right: clamp(56px, 11vw, 120px); }
       .ft-desc { font-size: 16.5px; line-height: 1.5; margin: 22px 0 6px; }
       .ft-contacts li { margin-top: 22px; gap: 14px; }
@@ -859,11 +859,11 @@
       .ft-bottom { text-align: left; }
       .ft-bottom p { font-size: 14px; }
     }
-    @media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
+    @media (max-width: 1199px) { .ft-grid { grid-template-columns: 1fr; gap: 44px; } .ft-social--mob { display: flex; } .ft-social--desk { display: none; } }
     /* FOOTER — ajustes estilo referencia: Satoshi Regular, icons menores, mais respiro, texto estreito */
     .ft-desc, .ft-c-main, .ft-c-main a, .ft-c-sub, .ft-links a, .ft-bottom p, .ft-bottom a { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; }
     .ft-desc { color: rgba(255,255,255,0.92); }
-    @media (max-width: 1024px) {
+    @media (max-width: 1199px) {
       .ft-ico { width: 44px; height: 44px; border-radius: 12px; }
       .ft-ico svg { width: 19px; height: 19px; }
       .ft-social a { width: 44px; height: 44px; border-radius: 12px; }
@@ -875,12 +875,12 @@
       .ft-c-main, .ft-c-main a { font-size: 15px; }
       .ft-c-sub { font-size: 15px; }
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1199px) {
       .ft-grid { gap: 60px; }
       .ft-desc { max-width: 250px; }
       .ft-c-main { max-width: 230px; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1199px) {
       .ft-contacts { margin-top: 60px; }
     }
     /* sombras laterais do carrossel — transicao suave com o fundo da pagina */
@@ -978,7 +978,7 @@
     <script>
     (function(){
       // par de vídeos do viewport atual: alterna com crossfade (ambos ficam carregados — sem flash de reload)
-      var isMob = window.matchMedia('(max-width: 768px)').matches;
+      var isMob = window.matchMedia('(max-width: 1199px)').matches;
       // lista pela classe: acrescentar um <video> ao HTML entra na rotacao sem mexer no script
       var todos = function(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); };
       var vids = todos(isMob ? '.hv-mobile' : '.hv-desktop');
@@ -1036,10 +1036,11 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="home-hero-title" style="text-align:left;max-width:900px;"><strong class="hero-strong">TRANSFORMAÇÃO<br>DIGITAL</strong><br><br><span style="font-size:25px;line-height:1.3;display:inline-block;color:#fff;">Alinhamos as tuas equipas, dados e ferramentas.<br>Automatizamos processos e eliminamos o trabalho manual.</span></h1>
+    <h1 class="home-hero-title">Transformação<br>digital</h1>
+    <p class="hero-lead">Alinhamos as tuas equipas, dados e ferramentas. Automatizamos processos e eliminamos o trabalho manual.</p>
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-start;margin-top:48px;">
-      <a href="./contactos" class="btn-primary">Pedir Orçamento</a>
-      <a href="./portfolio" class="btn-outline">Ver Portfólio</a>
+      <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Pedir Proposta</span><i class="st-anel" aria-hidden="true"></i></a>
+      <a href="./portfolio" class="gx-btn gx-btn--azul"><span class="gx-btn-inner">Ver Portfólio</span></a>
     </div>
   </div>
 </section>
@@ -1070,7 +1071,7 @@
 
 <!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
 <section class="section">
-  <h2 class="section-title" style="text-align:center;font-size:clamp(24px,3vw,40px);">Implementações <span>incluídas</span></h2>
+  <h2 class="section-title" style="font-size:clamp(24px,3vw,40px);">Implementações <span>incluídas</span></h2>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
@@ -1135,7 +1136,7 @@
 
 <!-- PORTFOLIO — projetos web/software (layout dos reels da home) -->
 <section class="section">
-  <h2 class="section-title" style="text-align:center;">Projetos</h2>
+  <h2 class="section-title">Projetos</h2>
   <div class="pf-grid">
     <a class="reel-card" href="./projeto?p=zeetelecom">
       <video class="reel-card-vid" muted loop autoplay playsinline webkit-playsinline preload="metadata"
@@ -1211,7 +1212,6 @@
 <!-- SECTION: EXAMPLES -->
 <hr class="divider">
 <section class="section">
-  <div class="section-eyebrow">Exemplos reais</div>
   <h2 class="section-title">Do site ao <span>software</span><br>feito à medida</h2>
   <p class="section-body" style="margin-bottom:32px;">Cada negócio tem necessidades diferentes — uns precisam de uma página, outros de um sistema completo. Estes são alguns dos serviços que entregamos.</p>
 
@@ -1315,7 +1315,7 @@
             </div>
           </div>
         </div>
-        <a href="./contactos" class="btn-glow" style="margin-top:8px;width:100%;justify-content:center;">Pedir Orçamento</a>
+        <a href="./contactos" class="gx-btn gx-btn--purple" style="margin-top:8px;width:100%;justify-content:center;"><span class="gx-btn-inner">Pedir Proposta</span></a>
       </div>
     </div>
     <div class="example-card example-card--clickable" onclick="document.getElementById('mp-modal').classList.add('open')" style="cursor:pointer;">
@@ -1397,7 +1397,7 @@
             </div>
           </div>
         </div>
-        <a href="./contactos" class="btn-glow" style="margin-top:8px;width:100%;justify-content:center;">Pedir Orçamento</a>
+        <a href="./contactos" class="gx-btn gx-btn--purple" style="margin-top:8px;width:100%;justify-content:center;"><span class="gx-btn-inner">Pedir Proposta</span></a>
       </div>
     </div>
 
@@ -1477,7 +1477,7 @@
             </div>
           </div>
         </div>
-        <a href="./contactos" class="btn-glow" style="margin-top:8px;width:100%;justify-content:center;">Pedir Orçamento</a>
+        <a href="./contactos" class="gx-btn gx-btn--purple" style="margin-top:8px;width:100%;justify-content:center;"><span class="gx-btn-inner">Pedir Proposta</span></a>
       </div>
     </div>
 
@@ -1527,7 +1527,7 @@
             </div>
           </div>
         </div>
-        <a href="./contactos" class="btn-glow" style="margin-top:8px;width:100%;justify-content:center;">Pedir Orçamento</a>
+        <a href="./contactos" class="gx-btn gx-btn--purple" style="margin-top:8px;width:100%;justify-content:center;"><span class="gx-btn-inner">Pedir Proposta</span></a>
       </div>
     </div>
   </div>
@@ -1538,7 +1538,7 @@
 <section class="section">
   <div class="stats-wrap">
     <div class="stats-left">
-      <h2 class="section-title" style="text-align:center;">O que entregamos<br><span>em cada projeto</span></h2>
+      <h2 class="section-title">O que entregamos<br><span>em cada projeto</span></h2>
       <p class="section-body stats-intro">Websites, plataformas e software à medida — construídos para serem rápidos, seguros e simples de usar no dia a dia.</p>
 
       <!-- destaque: barra horizontal com gradiente -->
@@ -1551,23 +1551,41 @@
       <!-- INFOGRÁFICO -->
       <div class="infografico">
         <div class="ig-bloco">
-          <div class="ig-titulo">Departamentos otimizados</div>
-          <div class="ig-card">
-            <span class="ig-icone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
-            <div>
-              <div class="ig-card-val"><span class="mini-stat-val" data-target="3">0</span></div>
-              <div class="ig-card-label">Comercial, RH e financeiro num só sistema</div>
-            </div>
+          <div class="ig-palco" aria-hidden="true">
+            <span class="ig-tile ig-t1"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="ig-tile ig-t2"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+            <span class="ig-tile ig-t3"><svg viewBox="0 0 24 24"><path d="M19 5a8 8 0 1 0 0 14M3 10h11M3 14h11"/></svg></span>
+            <span class="ig-tile ig-t4"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="ig-tile ig-t5"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+            <span class="ig-tile ig-t6"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+            <span class="ig-tile ig-t7"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="ig-tile ig-t8"><svg viewBox="0 0 24 24"><path d="M19 5a8 8 0 1 0 0 14M3 10h11M3 14h11"/></svg></span>
+            <span class="ig-tile ig-t9"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+            <span class="ig-tile ig-t10"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <div class="ig-chip"><span class="ig-num"><span class="ig-sinal">+</span><span class="mini-stat-val" data-target="3">0</span></span></div>
+          </div>
+          <div class="ig-conteudo">
+            <div class="ig-titulo">Áreas otimizadas</div>
+            <div class="ig-card-label">Comercial, RH e financeiro deixam de viver em folhas soltas e passam a falar entre si no mesmo sistema.</div>
           </div>
         </div>
         <div class="ig-bloco">
-          <div class="ig-titulo">Automação interna</div>
-          <div class="ig-card">
-            <span class="ig-icone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-            <div>
-              <div class="ig-card-val">24<i>/7</i></div>
-              <div class="ig-card-label">Processos a correr sem trabalho manual</div>
-            </div>
+          <div class="ig-palco" aria-hidden="true">
+            <span class="ig-tile ig-t1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+            <span class="ig-tile ig-t2"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+            <span class="ig-tile ig-t3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <span class="ig-tile ig-t4"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+            <span class="ig-tile ig-t5"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+            <span class="ig-tile ig-t6"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+            <span class="ig-tile ig-t7"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+            <span class="ig-tile ig-t8"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <span class="ig-tile ig-t9"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+            <span class="ig-tile ig-t10"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+            <div class="ig-chip"><span class="ig-num">24<i>/7</i></span></div>
+          </div>
+          <div class="ig-conteudo">
+            <div class="ig-titulo">Automação interna</div>
+            <div class="ig-card-label">Processos a correr sozinhos, de dia e de noite, sem ninguém a copiar dados de um lado para o outro.</div>
           </div>
         </div>
       </div>
@@ -1577,8 +1595,8 @@
 
 <!-- SECTION 5: WHO IS IT FOR -->
 <section class="section">
-  <div class="section-eyebrow">Para quem é</div>
   <h2 class="section-title">Feito para <span>negócios</span><br>que querem crescer</h2>
+  <p class="section-sub-nova">Para quem é</p>
   <div class="who-grid">
     <div class="who-card">
       <h3>Pequenos negócios</h3>
@@ -1599,8 +1617,8 @@
 
 <!-- SECTION 6: FAQ -->
 <section class="section">
-  <div class="section-eyebrow">Dúvidas frequentes</div>
-  <h2 class="section-title"><span>FAQ</span></h2>
+  <h2 class="section-title">Perguntas Frequentes</h2>
+  <p class="faq-intro">Reunimos as dúvidas que nos chegam com mais frequência sobre websites, software à medida e prazos. Se faltar alguma, fala connosco.</p>
   <div class="faq-list">
     <div class="faq-item">
       <div class="faq-question"><div class="faq-question-left"><span class="faq-num">01</span><span>Quanto custa criar um website em Portugal?</span></div><div class="faq-icon"></div></div>
@@ -1657,11 +1675,21 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<div class="cta-bar">
-  <h2>Pronto para ter um<br>website que <span>trabalha por ti?</span></h2>
-  <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Pedir Orçamento</span></a>
-</div>
+<!-- FINAL CTA — card da home -->
+<section class="cta-section">
+  <div class="cta-luz">
+  <span class="cta-bloom cta-bloom--nucleo" aria-hidden="true"><i><b></b></i></span>
+  <span class="cta-bloom cta-bloom--perto" aria-hidden="true"><i><b></b></i></span>
+  <span class="cta-bloom cta-bloom--longe" aria-hidden="true"><i><b></b></i></span>
+  <div class="cta-card">
+    <span class="cta-veu" aria-hidden="true"></span>
+    <img class="cta-logo" loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/Website_photos/photos_home_page/full%20logo.svg" alt="Differentt Lab">
+    <h2 class="cta-title">Pronto para ter um website que <span>trabalha por ti?</span></h2>
+    <p class="cta-sub">Conta-nos a ideia — respondemos em <b>24h úteis</b>.</p>
+    <a href="./contactos" class="gx-btn gx-btn--purple"><span class="gx-btn-inner">Pedir Proposta</span><i class="st-anel" aria-hidden="true"></i></a>
+  </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -1840,11 +1868,914 @@
 #cookie-banner p a{color:#c585b8;text-decoration:none;font-weight:700;}
 #cookie-banner p a:hover{text-decoration:underline;}
 .ck-btns{display:flex;gap:8px;flex-wrap:wrap;}
+/* mobile: os tres botoes numa so linha — sem quebra, com o texto a encolher o
+   necessario para o "Aceitar todos" deixar de cair para baixo */
+@media (max-width: 1199px){
+  .ck-btns{flex-wrap:nowrap;gap:6px;}
+  .ck-btns .ck-btn{flex:1 1 0;min-width:0;padding:10px 6px;font-size:12px;text-align:center;white-space:nowrap;}
+}
+@media (max-width: 360px){ .ck-btns .ck-btn{font-size:11px;padding:10px 4px;} }
 .ck-btn{font-family:'Satoshi','Nunito Sans',sans-serif;font-size:13px;font-weight:700;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;line-height:1;transition:transform .2s, filter .2s;}
 .ck-btn:hover,.ck-btn:focus-visible{transform:translateY(-1px);filter:brightness(1.07);outline:none;}
 .ck-light{background:#ececec;color:#141414;}
 .ck-pink{background:#c585b8;color:#fff;}
-@media (max-width:600px){#cookie-banner{left:16px;right:16px;bottom:16px;max-width:none;}}
+@media (max-width: 1199px){#cookie-banner{left:16px;right:16px;bottom:16px;max-width:none;}}
+  /* ── sistema de layout da home portado para esta pagina ──
+     Um so corte a 1200px. Em mobile o conteudo estica ate encostar a margem de
+     28px e congela nos 424px, centrado; a tipografia congela nos valores de
+     430px para nao continuar a crescer com o viewport. */
+  :root { --gutter: 48px; --card-mob: 334px; }
+  @media (max-width: 1199px) { :root { --gutter: 28px; } }
+
+  .section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
+
+  @media (max-width: 1199px) {
+    .cards-grid, .who-grid, .examples-grid, .benefits-strip, .two-col, .infografico {
+      width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important;
+      margin-left: auto !important; margin-right: auto !important;
+      grid-template-columns: 1fr !important; }
+    .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
+      max-width: calc(var(--card-mob) + 2 * var(--gutter)) !important; margin-left: auto !important; margin-right: auto !important; }
+  }
+
+  /* titulos: Satoshi com gradiente branco->cinza e contorno fino, como na home */
+  .section-title, .cta-title {
+    font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
+    text-transform: none !important; line-height: 1.28; letter-spacing: -0.02em;
+    color: #fff; background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.77px rgba(255,255,255,0.25);
+ }
+  .section-title span, .cta-title span { -webkit-text-fill-color: transparent; }
+
+  /* tamanhos congelados nos valores de 430px */
+  @media (max-width: 1199px) {
+    .section-title { font-size: min(clamp(28px, 4vw, 56px), 32.7px) !important; }
+  }
+  /* ── card ciclante (mesma mecanica dos 4 Passos da home) ──
+     Substitui as grelhas de cards. Todos os slides ficam no DOM (so muda a
+     opacidade), para o texto continuar todo no HTML — esta pagina depende de
+     SEO e mostrar um card de cada vez apagaria os restantes do documento. */
+  .ciclo-palco { position: relative; width: min(var(--card-mob), 100%); max-width: min(var(--card-mob), 100%);
+    margin: 40px auto 0; border-radius: 12px; overflow: hidden; isolation: isolate;
+    background: #08060b; }
+  .ciclo-palco::before { content: ''; position: absolute; left: 50%; top: 34%; width: 145%; height: 82%; z-index: 0;
+    transform: translate(-50%, -50%) rotate(15deg);
+    background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/diff_imagebackground.png') center / 100% 100% no-repeat; pointer-events: none; }
+  .ciclo-veu { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(160deg, rgba(5,4,8,0.2) 0%, rgba(5,4,8,0.4) 55%, rgba(5,4,8,0.6) 100%); }
+  .ciclo-anel { position: absolute; inset: 0; border-radius: 12px; padding: 1px; z-index: 5; pointer-events: none;
+    background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .ciclo-pista { position: relative; z-index: 2; }
+  .ciclo-slide { padding: 34px 34px 84px; opacity: 0; transition: opacity .55s ease;
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+    align-items: flex-start; text-align: left; pointer-events: none; }
+  .ciclo-slide.on { opacity: 1; pointer-events: auto; }
+  .ciclo-mini { font-family: 'Overpass', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+  .ciclo-nome { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: clamp(24px, 4.2vw, 32px);
+    letter-spacing: -0.03em; line-height: 1.12; margin: 0 0 7px; padding: 0.04em 0 0.12em; text-transform: none;
+    background: linear-gradient(180deg, #ffffff 10%, #cfcfcf 96%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.15px rgba(255,255,255,0.35); }
+  .ciclo-desc { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(14.5px, 1.25vw, 16.5px);
+    letter-spacing: -0.012em; line-height: 1.45; color: rgba(255,255,255,0.84); margin: 0; max-width: 38ch; }
+  .ciclo-dots { position: absolute; left: 34px; bottom: 36px; z-index: 4; display: flex; gap: 7px; }
+  .ciclo-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.28); transition: background .35s; }
+  .ciclo-dots i.on { background: #c585b8; }
+  .ciclo-seg { position: absolute; right: 26px; bottom: 26px; z-index: 4; width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.28); background: rgba(0,0,0,0.28); color: #fff; display: grid; place-items: center;
+    cursor: pointer; padding: 0; transition: background .25s, transform .25s; }
+  .ciclo-seg:hover, .ciclo-seg:focus-visible { background: rgba(255,255,255,0.14); transform: translateY(-2px); outline: none; }
+  @media (prefers-reduced-motion: reduce) { .ciclo-slide { transition: none; } }
+  /* subtitulo de seccao, como na home: Satoshi Regular 17px */
+  .section-sub-nova { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 17px;
+    line-height: 1.18; color: rgba(255,255,255,0.88); margin: 4px 0 44px; max-width: 560px; }
+  /* titulos com quebra de linha: linhas mais juntas */
+  /* padding vertical obrigatorio: com entrelinha 1.06 a caixa do fundo fica mais
+     curta que os glifos e os descendentes (j, g, p, q) partem o gradiente */
+  .section-title { line-height: 1.06 !important; margin-bottom: 20px; padding: 0.06em 0 0.18em; }
+  /* botoes: pills iguais aos da home */
+  .gx-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; color: #fff; font-family: 'Satoshi','Nunito Sans',sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; text-decoration: none; cursor: pointer; transition: transform .45s cubic-bezier(0.22,1,0.36,1), box-shadow .45s cubic-bezier(0.22,1,0.36,1); }
+  .gx-btn-inner { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 10px; }
+    .cta-section a.gx-btn, .hero-btns a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+      font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+      text-transform: none; letter-spacing: -0.005em;
+      background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%);
+      color: #0d0d10; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
+    .cta-section a.gx-btn::after, .hero-btns a.gx-btn::after { display: none; }
+    .cta-section a.gx-btn:hover, .hero-btns a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    .cta-section a.gx-btn--purple, .hero-btns a.gx-btn--purple { background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+    .cta-section a.gx-btn--purple:hover, .hero-btns a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+    .gx-btn:hover .st-anel::before, .gx-btn:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
+    /* CTA: titulo maior, linhas mais juntas */
+    .cta-title { font-size: clamp(40px, 5.8vw, 82px); line-height: 0.98; padding: 0.08em 0 0.16em; text-wrap: balance; }
+    @media (max-width: 1199px) { .cta-title { font-size: clamp(34px, 10vw, 68px) !important; line-height: 0.98; } }
+    /* sombras laterais do carrossel — transicao suave com o fundo da pagina */
+    .mq-shade { position: absolute; inset: 0; pointer-events: none; z-index: 3;
+      background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); }
+    /* botoes CTA mais pequenos, alinhados a esquerda */
+    .cta-section .gx-btn { font-size: 14.5px; padding: 15px 30px; min-width: 0; border-radius: 11px; }
+    /* pills do hero: texto maior que o .gx-btn global (13px) */
+    .hero-btns a.gx-btn { font-size: 15px; }
+  /* ── card do CTA portado da home (bloom a rodar em pc, aparencia dos 4 Passos em mobile) ── */
+  .cta-section { padding: 100px var(--gutter); background: transparent; width: 100vw; margin-left: calc(50% - 50vw); }
+  .cta-luz { position: relative; max-width: 620px; margin: 0 auto; }
+  .cta-luz::after { content: ''; position: absolute; inset: -1px; border-radius: 13px; pointer-events: none; z-index: 0;
+        background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                    radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%);
+        filter: blur(1.6px); }
+  .cta-card { position: relative; z-index: 1; overflow: hidden; max-width: none; margin: 0; padding: 46px 44px 40px; border-radius: 12px; background: #08060b; border: 1px solid rgba(158,123,182,0.24); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+  .cta-card::after { content: ''; position: absolute; left: 50%; top: 34%; width: 145%; height: 82%; z-index: 0; transform: translate(-50%, -50%) rotate(15deg); background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/diff_imagebackground.png') center / 100% 100% no-repeat; pointer-events: none; }
+  .cta-veu { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(160deg, rgba(5,4,8,0.12) 0%, rgba(5,4,8,0.38) 55%, rgba(5,4,8,0.62) 100%); }
+  .cta-card::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; z-index: 3; pointer-events: none; background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+  .cta-card > :not(.cta-veu) { position: relative; z-index: 2; }
+  .cta-logo { display: block; height: 26px; width: auto; margin-bottom: 30px; }
+  .cta-section .cta-card .cta-title { text-align: left; font-size: clamp(31px, 4.4vw, 46px) !important; line-height: 1.0; margin: 0 0 14px; max-width: none; }
+  .cta-sub { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.45; color: rgba(255,255,255,0.78); margin: 0 0 32px; }
+  .cta-sub b { font-weight: 700; color: #c585b8; }
+  .cta-section .cta-card a.gx-btn { display: flex; width: 100%; min-width: 0; padding: 17px 0; font-size: 15px; border-radius: 100px; }
+  .cta-section .gx-btn { font-size: 14.5px; padding: 20px 44px; min-width: 250px; border-radius: 13px; }
+  .cta-title { text-align: center; font-family: 'Nunito Sans', sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; max-width: 560px; }
+  .cta-title span { color: #fff; }
+  .section-title, .cta-title, .logos-label, .home-hero-title, .st-nome, .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
+  .section-title, .cta-title, .logos-label, .steps-fluxo .st-nome { font-weight: 500; text-transform: none; color: #fff; line-height: 1.28; background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
+  .st-pill:hover .st-anel::before, .st-pill:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
+  .st-anel { position: absolute; inset: -2px; border-radius: inherit; padding: 2px; pointer-events: none; overflow: hidden;
+        /* mascara em anel: fura o centro, so o contorno pinta (aplica-se ao conjunto) */
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude;
+        background: rgba(255,255,255,0.07); }
+  .st-anel::before { content: ''; position: absolute; left: 50%; top: 50%; width: 120%; aspect-ratio: 1/1; will-change: transform;
+        --stpLarg: 26deg; --stpTail: 0; --stpForte: 0.92; --stpCometa: 0.95;
+        background:
+          conic-gradient(from 4deg,
+            rgba(255,255,255,0) 0deg, rgba(255,255,255,var(--stpCometa)) 10deg, rgba(255,255,255,0) 26deg, rgba(255,255,255,0) 360deg),
+          conic-gradient(from 0deg,
+            rgba(235,235,240,var(--stpTail)) 0deg,
+            rgba(235,235,240,var(--stpForte)) 20deg,
+            rgba(235,235,240,var(--stpForte)) var(--stpLarg),
+            rgba(235,235,240,var(--stpTail)) calc(var(--stpLarg) + 30deg),
+            rgba(235,235,240,var(--stpTail)) 360deg);
+        transition: --stpLarg 2s cubic-bezier(0.3,0.7,0.2,1), --stpTail 2s cubic-bezier(0.3,0.7,0.2,1),
+                    --stpForte 2s cubic-bezier(0.3,0.7,0.2,1), --stpCometa 1.2s ease;
+        animation: stAnelGira 4.5s linear infinite; }
+  .st-anel::after { content: ''; position: absolute; inset: 0; border-radius: inherit;
+        background: linear-gradient(180deg, rgba(10,8,14,0) 10%, rgba(10,8,14,0.30) 55%, rgba(10,8,14,0.62) 100%); }
+  .cta-section a.gx-btn, .hero-btns a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+        font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+        text-transform: none; letter-spacing: -0.005em;
+        background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%);
+        color: #0d0d10; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
+  .cta-section a.gx-btn::after, .hero-btns a.gx-btn::after { display: none; }
+  .cta-section a.gx-btn:hover, .hero-btns a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+  .cta-section a.gx-btn--purple, .hero-btns a.gx-btn--purple { background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+  .cta-section a.gx-btn--purple:hover, .hero-btns a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+  .gx-btn:hover .st-anel::before, .gx-btn:focus-visible .st-anel::before { --stpLarg: 260deg; --stpTail: 0.6; --stpForte: 0.6; --stpCometa: 0; }
+  .cta-title { font-size: clamp(40px, 5.8vw, 82px); line-height: 0.98; padding: 0.08em 0 0.16em; text-wrap: balance; }
+  .cta-section .gx-btn { font-size: 14.5px; padding: 15px 30px; min-width: 0; border-radius: 11px; }
+  .cta-title { margin: 0; }
+  .cta-luz { --halo-ang: 135deg; animation: ctaHaloGira 13s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+  .cta-luz::after { inset: -7px; border-radius: 19px; padding: 6px;
+        background: linear-gradient(var(--halo-ang), rgba(236,166,222,1) 0%, rgba(220,150,206,0.8) 7%, rgba(196,134,186,0.26) 16%, rgba(196,134,186,0) 27%, rgba(196,134,186,0) 73%, rgba(196,134,186,0.24) 84%, rgba(220,150,206,0.78) 93%, rgba(236,166,222,1) 100%);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude;
+        filter: blur(26px);
+        }
+  .cta-card { border-color: transparent !important; }
+  .cta-card::before { background: linear-gradient(var(--halo-ang), rgba(230,165,215,1) 0%, rgba(210,145,196,0.5) 8%, rgba(190,132,182,0) 22%, rgba(190,132,182,0) 78%, rgba(210,145,196,0.48) 92%, rgba(230,165,215,1) 100%) !important; }
+  .cta-card::before { padding: 1px !important; filter: none; }
+  .cta-luz::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; pointer-events: none; z-index: 4;
+      background: linear-gradient(var(--halo-ang), rgba(233,222,248,1) 0%, rgba(186,158,222,0.85) 6%, rgba(158,123,182,0.3) 15%, rgba(158,123,182,0) 26%, rgba(158,123,182,0) 74%, rgba(158,123,182,0.28) 85%, rgba(186,158,222,0.83) 94%, rgba(233,222,248,1) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      filter: drop-shadow(0 0 3px rgba(255,205,242,1)) drop-shadow(0 0 8px rgba(245,180,230,1)) drop-shadow(0 0 18px rgba(226,156,212,0.95)) drop-shadow(0 0 40px rgba(205,140,192,0.8)) drop-shadow(0 0 80px rgba(186,128,178,0.6)); }
+  .cta-card::before { background: linear-gradient(var(--halo-ang), rgba(255,226,250,1) 0%, rgba(235,165,220,0.72) 7%, rgba(200,138,188,0.2) 17%, rgba(200,138,188,0) 27%, rgba(200,138,188,0) 73%, rgba(200,138,188,0.18) 83%, rgba(235,165,220,0.7) 93%, rgba(255,226,250,1) 100%) !important; }
+  .cta-luz::after { display: block !important; inset: -1px !important; border-radius: 13px !important; padding: 3px !important; z-index: 0 !important;
+      background: linear-gradient(var(--halo-ang), rgba(250,190,236,1) 0%, rgba(235,165,220,0.9) 7%, rgba(210,142,196,0.32) 17%, rgba(210,142,196,0) 28%, rgba(210,142,196,0) 72%, rgba(210,142,196,0.3) 83%, rgba(235,165,220,0.88) 93%, rgba(250,190,236,1) 100%) !important;
+      filter: blur(16px) !important; }
+  .cta-card::before { background: none !important; }
+  .cta-bloom { position: absolute; inset: -1px; pointer-events: none; z-index: 0; }
+  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px;
+      background: linear-gradient(var(--halo-ang), rgba(226,212,250,1) 0%, rgba(178,148,220,0.95) 6%, rgba(150,116,178,0.34) 16%, rgba(150,116,178,0) 27%, rgba(150,116,178,0) 73%, rgba(150,116,178,0.32) 84%, rgba(178,148,220,0.93) 94%, rgba(226,212,250,1) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; }
+  .cta-bloom--perto { filter: blur(4px); }
+  .cta-bloom--longe { filter: blur(11px); opacity: 1; }
+  .cta-luz::before { filter: none !important; padding: 1px !important; z-index: 4 !important; }
+  .cta-luz::after { display: none !important; }
+  .cta-bloom { position: absolute; inset: -1px; pointer-events: none; z-index: 0; }
+  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px; overflow: hidden;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; background: none; }
+  .cta-bloom b { position: absolute; left: -60%; top: -60%; width: 220%; height: 220%; display: block;
+      background: conic-gradient(from 0deg,
+        rgba(233,222,248,1) 0deg, rgba(186,158,222,0.9) 10deg, rgba(158,123,182,0.25) 28deg, rgba(158,123,182,0) 52deg,
+        rgba(158,123,182,0) 128deg, rgba(158,123,182,0.25) 152deg, rgba(186,158,222,0.9) 170deg,
+        rgba(233,222,248,1) 180deg, rgba(186,158,222,0.9) 190deg, rgba(158,123,182,0.25) 208deg, rgba(158,123,182,0) 232deg,
+        rgba(158,123,182,0) 308deg, rgba(158,123,182,0.25) 332deg, rgba(186,158,222,0.9) 350deg, rgba(233,222,248,1) 360deg);
+      /* repouso com os dois brilhos nos cantos opostos. O angulo do canto depende
+         da proporcao do card, por isso muda entre pc e mobile. */
+      --ang-rep: 300deg;
+      transform: rotate(var(--ang-rep));
+      animation: ctaGira 7.6s linear infinite; }
+  @keyframes ctaGira {
+      0%   { transform: rotate(var(--ang-rep)); animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
+      34%  { transform: rotate(calc(var(--ang-rep) + 180deg)); }
+      100% { transform: rotate(calc(var(--ang-rep) + 180deg)); }
+    }
+  .cta-bloom--nucleo { inset: 0; z-index: 4; }
+  .cta-bloom--nucleo i { border-radius: 12px; padding: 1px; }
+  .cta-bloom--perto { filter: blur(4px); }
+  .cta-bloom--longe { filter: blur(11px); opacity: 1; }
+  .cta-luz { animation: none !important; }
+  .cta-luz::before, .cta-luz::after { display: none !important; }
+  .cta-card::before { background: none !important; }
+  @media (max-width: 1199px) {
+      .site-wrap { overflow-x: hidden; }
+      .services-section-wrap { padding: 100px var(--gutter) !important; }
+      .steps-section { padding: 80px var(--gutter); }
+      .team-section { padding: 100px var(--gutter); }
+      .cta-section { padding: 80px var(--gutter); }
+      footer { padding: 48px var(--gutter) 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .section { padding: 100px var(--gutter); }
+    }
+  @media (max-width: 1199px) {
+      .services-grid { grid-template-columns: 1fr; row-gap: 32px; max-width: 480px; }
+      .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 460px; margin-left: auto; margin-right: auto; }
+      .tm-name { font-size: clamp(25px, 7.35vw, 33px); }
+      .tm-info { gap: 10px; transform: translateY(31px); }
+      .tm-pill { font-size: 9.5px; padding: 4px 9px; border-radius: 6px; }
+      .tm-join { padding: 44px 22px 48px; gap: 24px; }
+      .tm-ic { width: 58px; height: 58px; border-radius: 14px; }
+      .tm-ic svg { width: 24px; height: 24px; }
+      .tm-ic--e { transform: rotate(-9deg) translate(12px, 6px); }
+      .tm-ic--d { transform: rotate(9deg) translate(-12px, 6px); }
+      .tm-join-title { font-size: clamp(21px, 5.4vw, 28px); }
+      .tm-join-btn { font-size: 14px; padding: 12px 24px; }
+      .cta-card { padding: 34px 28px 32px; }
+      .cta-logo { height: 22px; margin-bottom: 24px; }
+      .cta-sub { font-size: 15px; margin-bottom: 26px; }
+    }
+  @media (max-width: 1199px) {
+      .site-wrap { overflow-x: hidden; }
+  
+      /* Global padding — o mesmo respiro em todas as seccoes */
+      .cta-section,
+      .section,
+      .steps-section,
+      .team-section,
+      footer { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
+  
+      /* Section vertical padding */
+      .steps-section { padding-top: 72px; padding-bottom: 72px; }
+      .team-section  { padding-top: 72px; padding-bottom: 72px; }
+      #reviews-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+      .cta-section   { padding-top: 72px; padding-bottom: 72px; }
+      footer         { padding-top: 48px; padding-bottom: 24px; }
+      .services-section-wrap { padding: 72px var(--gutter) !important; }
+  
+      /* Logos — stack in 2-col grid then single col */
+      /* cards de servicos mais quadrados no telemovel (sem a altura fixa de 420px) */
+      .service-card { height: auto; aspect-ratio: 1 / 1; }
+      .service-card--vetor { aspect-ratio: auto; }
+      .service-card--vetor .service-card-photo { flex: none; height: 240px; }
+      .marquee-logo { height: 24px; max-width: 120px; }
+      .marquee-item { margin-right: 40px; }
+  
+      /* Steps — 2 colunas para poupar scroll vertical */
+      .steps-palco { margin-top: 40px; }
+  
+      /* Título e descrição da secção serviços + label da equipa escondidos visualmente no mobile (mantidos no DOM para SEO/acessibilidade) */
+      #services-title { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+      /* subtitulos de seccao visiveis no mobile */
+      #services-subtitle, #team-label, #reels-subtitle, .logos-sub { font-size: 17px; line-height: 1.18; margin-bottom: 32px; padding: 0 6px; }
+  
+      /* Team cards — grelha 2x2 como na referencia mobile */
+      .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  
+      /* CTA */
+      .cta-title { font-size: clamp(28px, 8vw, 48px) !important; max-width: 100%; text-align: left !important; }
+  
+      /* Typography */
+      .section-title { font-size: clamp(28px, 7.6vw, 46px) !important; }
+      /* sem subtitulo visivel no mobile, o h2 precisa de respiro ate a imagem */
+      .team-section .section-title, #portfolio-reels-section .section-title { margin-bottom: 4px; }
+  
+      /* Buttons */
+      .btn-primary, .btn-outline { max-width: 320px; }
+  
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  
+      /* Reviews cards */
+      .rc { width: 260px; padding: 18px 20px; }
+  
+      /* Hero */
+      .hero-content { padding: 0 28px 60px !important; }
+    }
+  @media (prefers-reduced-motion: reduce) { .st-anel::before { animation: none; } }
+  @media (max-width: 1199px) { .cta-title { font-size: clamp(34px, 10vw, 68px) !important; line-height: 0.98; } }
+  @media (min-width: 1200px) {
+        .section, .steps-section, .team-section { padding-top: 120px; padding-bottom: 120px; }
+        #portfolio-reels-section { padding-top: 120px !important; padding-bottom: 120px !important; }
+        #reels-panels { padding-top: 110px; padding-bottom: 110px; }
+        .section-title, .logos-label { font-size: clamp(29px, 2.9vw, 40px); }
+        .cta-title { font-size: clamp(36px, 4.2vw, 60px); }
+        .services-grid { max-width: var(--larg-max); margin-left: auto; margin-right: auto; }
+        .reels-grid { max-width: var(--larg-max); margin-left: auto; margin-right: auto; }
+        #reels-panels .rp-acc { max-width: var(--larg-max); height: clamp(440px, 44vw, 540px); }
+        .cta-inner, .ft-grid { max-width: var(--larg-max); }
+      }
+  @media (prefers-reduced-motion: reduce) { .cta-luz::after { animation: none; } }
+  @media (max-width: 1199px) {
+        :root { --card-mob: 334px; }   /* TAMANHO UNICO dos cards em mobile. Nao cresce 1px; so encolhe em ecras onde nao caberia */   /* conteudo congela aqui: 430px (maior telemovel) menos 2x26px. Ate 430px a margem e sempre 26px; acima disso o layout deixa de esticar */
+        .services-grid,
+        .tm-grid,
+        .reels-mobile-gallery,
+        .cta-luz,
+        .steps-section .steps-palco { width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important; margin-left: auto !important; margin-right: auto !important; }
+        /* equipa em 2x2 dentro dos 340px */
+        .tm-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+      }
+  @media (max-width: 1199px) {
+      .service-card--vetor .service-card-content { padding: 16px 26px 56px !important; }
+      .cta-card { padding: 72px 28px 68px !important; }
+      .steps-fluxo { padding: 72px 34px 78px !important; }   /* base: espaco da seta e dos pontos */
+      #reviews-section .rc { padding: 16px 18px !important; }
+      .tm-join { padding: 96px 22px 104px !important; }
+    }
+  @media (prefers-reduced-motion: reduce) { .cta-luz { animation: none; } }
+  @media (max-width: 1199px) {
+      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
+      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
+      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
+      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
+      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
+    }
+  @media (max-width: 1199px) { .cta-bloom b { --ang-rep: 319deg; } }
+  @media (prefers-reduced-motion: reduce) { .cta-bloom b { animation: none; } }
+  @media (max-width: 1199px) {
+      .cta-bloom { display: none !important; }
+      .cta-card::before { display: block !important; content: '' !important; position: absolute; inset: 0;
+        border-radius: 12px; padding: 1px; z-index: 5; pointer-events: none;
+        background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%) !important;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude; }
+      .cta-luz::after { display: block !important; content: '' !important; position: absolute; inset: -1px !important;
+        border-radius: 13px !important; padding: 0 !important; pointer-events: none; z-index: -1 !important;
+        background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                    radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%) !important;
+        -webkit-mask: none !important; mask: none !important;
+        filter: blur(1.6px) !important; }
+    }
+  /* ── hero portado da home: mesmos tamanhos, entrelinha e alinhamento ── */
+  .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
+  .home-hero-title { text-align: center; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: clamp(37px, calc((100vw - 160px) * 0.0850), 105px); font-weight: 500; line-height: 0.845; letter-spacing: -0.042em; margin-bottom: 20px; max-width: none; }
+  .hero-lead { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(16px, calc(1.1vw + 1px), 17.5px); line-height: 1.06; color: rgba(255,255,255,0.85); max-width: none; text-align: center; margin: 0; animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
+  .home-hero-title span { color: #9e7bb6; }
+  @keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .home-hero-title { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+  .hero-btns { animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+  .hero-content .hero-rev { flex-direction: row !important; align-items: center !important; }
+  .section-title, .cta-title, .logos-label, .home-hero-title, .st-nome, .ft-col h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
+  .home-hero-title { padding: 0.24em 0 0.30em; margin: -0.14em 0 calc(20px - 0.14em); background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); word-spacing: 0.026em; }
+  .home-hero-title .br-m { display: none; }
+  .home-hero-title, .steps-fluxo .st-nome { letter-spacing: -0.03em; }
+  .cta-section a.gx-btn, .hero-btns a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+        font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+        text-transform: none; letter-spacing: -0.005em;
+        background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%);
+        color: #0d0d10; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
+  .cta-section a.gx-btn::after, .hero-btns a.gx-btn::after { display: none; }
+  .cta-section a.gx-btn:hover, .hero-btns a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+  .cta-section a.gx-btn--purple, .hero-btns a.gx-btn--purple { background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+  .cta-section a.gx-btn--purple:hover, .hero-btns a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+  .hero-btns a.gx-btn { font-size: 15px; }
+  @media (max-width: 1199px) {
+        nav { padding: 16px 24px; }
+        .nav-links { display: none !important; }
+        .nav-icons { display: none !important; }
+        .nav-hamburger { display: flex !important; }
+        .hero-content { text-align: left; padding: 0 32px 80px 4px; }
+        .hero-content h1 { text-align: left !important; max-width: none !important; font-size: clamp(22px, 7.2vw, 30px) !important; }
+        .hero-lead { font-size: 16px !important; max-width: 22em !important; line-height: 1.06 !important; }
+        .hero-content div { justify-content: flex-start !important; flex-direction: column !important; align-items: flex-start !important; }
+        /* sem override de tamanho: os botoes usam o spec canonico em todos os ecras */
+      }
+  @media (min-width: 1200px) and (max-width: 1199px) { .hero-content { width: fit-content; } }
+  @media (max-width: 1199px) {
+      .site-wrap { overflow-x: hidden; }
+  
+      /* Global padding — o mesmo respiro em todas as seccoes */
+      .cta-section,
+      .section,
+      .steps-section,
+      .team-section,
+      footer { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
+  
+      /* Section vertical padding */
+      .steps-section { padding-top: 72px; padding-bottom: 72px; }
+      .team-section  { padding-top: 72px; padding-bottom: 72px; }
+      #reviews-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+      .cta-section   { padding-top: 72px; padding-bottom: 72px; }
+      footer         { padding-top: 48px; padding-bottom: 24px; }
+      .services-section-wrap { padding: 72px var(--gutter) !important; }
+  
+      /* Logos — stack in 2-col grid then single col */
+      /* cards de servicos mais quadrados no telemovel (sem a altura fixa de 420px) */
+      .service-card { height: auto; aspect-ratio: 1 / 1; }
+      .service-card--vetor { aspect-ratio: auto; }
+      .service-card--vetor .service-card-photo { flex: none; height: 240px; }
+      .marquee-logo { height: 24px; max-width: 120px; }
+      .marquee-item { margin-right: 40px; }
+  
+      /* Steps — 2 colunas para poupar scroll vertical */
+      .steps-palco { margin-top: 40px; }
+  
+      /* Título e descrição da secção serviços + label da equipa escondidos visualmente no mobile (mantidos no DOM para SEO/acessibilidade) */
+      #services-title { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+      /* subtitulos de seccao visiveis no mobile */
+      #services-subtitle, #team-label, #reels-subtitle, .logos-sub { font-size: 17px; line-height: 1.18; margin-bottom: 32px; padding: 0 6px; }
+  
+      /* Team cards — grelha 2x2 como na referencia mobile */
+      .tm-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  
+      /* CTA */
+      .cta-title { font-size: clamp(28px, 8vw, 48px) !important; max-width: 100%; text-align: left !important; }
+  
+      /* Typography */
+      .section-title { font-size: clamp(28px, 7.6vw, 46px) !important; }
+      /* sem subtitulo visivel no mobile, o h2 precisa de respiro ate a imagem */
+      .team-section .section-title, #portfolio-reels-section .section-title { margin-bottom: 4px; }
+  
+      /* Buttons */
+      .btn-primary, .btn-outline { max-width: 320px; }
+  
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  
+      /* Reviews cards */
+      .rc { width: 260px; padding: 18px 20px; }
+  
+      /* Hero */
+      .hero-content { padding: 0 28px 60px !important; }
+    }
+  @media (max-width: 1199px) {
+        .home-hero-title { font-size: clamp(38px, 10.8vw, 48px); line-height: calc(0.825em + 3px); }
+        .hero-content { padding: 0 32px 72px !important; }
+        /* vence o clamp antigo de 30px com !important: fonte proporcional a largura
+           util (paddings de 32px), medida para a linha mais larga encostar */
+        /* mobile: 3 linhas fixas (br-m) e a mais longa — "fortes, com impacto" —
+           dimensionada para encostar aos dois lados da largura util (100vw - 64px) */
+        .hero-content .home-hero-title { text-align: left !important; font-size: calc((100vw - 64px) * 0.1075) !important; line-height: calc(0.835em + 3px) !important; }
+        /* particao em 3 linhas no mobile: criamos marcas / fortes, com impacto / no digital. */
+        .home-hero-title .br-m { display: inline !important; }
+        .home-hero-title .br-d { display: none !important; }
+        .hero-content .hero-lead { max-width: none !important; text-align: left !important; font-size: clamp(13.5px, calc((100vw - 64px) * 0.0550 + 1px), 17px) !important; line-height: 1.16 !important; }
+        .hero-btns .gx-btn { font-size: clamp(12.5px, calc((100vw - 64px) * 0.0505), 15px) !important; padding: 12px 0 !important; }
+        .hero-btns { flex-direction: column; justify-content: flex-start !important; gap: 12px !important; margin-top: 36px !important; }
+        .hero-btns .gx-btn { display: flex; width: 100%; max-width: none; padding: 13px 0; border-radius: 100px; }
+        .hero-rev { margin-top: 36px; gap: 13px; }
+        .hero-rev-av { width: 28px; height: 28px; }
+        .hero-rev-count { font-size: 13.5px; }
+        /* ecras estreitos: o texto ocupa mais linhas e a pill descia ate encostar ao
+           fundo do card. Passa a estar ancorada ao palco (altura fixa), na mesma
+           linha da seta — deixa de depender de quantas linhas o texto ocupa. */
+        /* relative (nao static): mantem o mesmo layout e ancoragem da pill (o fluxo
+           preenche o palco), mas conserva o z-index — com static o texto pintava
+           por baixo do .steps-orbe e o 1o slide aparecia vazio. */
+        .steps-fluxo { position: relative; padding-bottom: 74px; }
+        .steps-fluxo .st-pill { position: absolute; left: 34px; bottom: 26px; margin-top: 0; }   /* mesma linha da seta: afasta-se da frase sem colidir com ela */
+        .steps-fluxo.cta .st-mini { display: none; }
+        .steps-fluxo.cta { padding-top: 22px; }
+      }
+  @media (min-width: 1200px) {
+        .hero-content { max-width: 1440px; padding: 0 var(--gutter) 72px; }
+        .home-hero-title { text-align: left; font-size: clamp(44px, 4.9vw, 72px); line-height: 0.92; letter-spacing: -0.035em; margin-bottom: 20px; }
+        .hero-lead { text-align: left; max-width: 54ch; line-height: 1.34; }
+        .hero-content .hero-btns { justify-content: flex-start !important; margin-top: 34px !important; }
+        .hero-rev { justify-content: flex-start; margin-top: 30px; }
+      }
+  @media (max-width: 1199px) { .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
+      max-width: calc(var(--card-mob) + 2 * var(--gutter)) !important; margin-left: auto !important; margin-right: auto !important; } }
+  @media (max-width: 1199px) {
+      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
+      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
+      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
+      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
+      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
+    }
+  /* paragrafos de seccao na fonte nova: Satoshi Regular 17px, como os
+     subtitulos da home (estavam em Nunito Sans 300, 16px, a 55% de branco) */
+  .section-body, .section-sub-nova { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important;
+    font-weight: 400 !important; font-size: 17px !important; line-height: 1.32 !important;
+    color: rgba(255,255,255,0.88) !important; }
+  /* ── FAQ em cards (estilo da referencia, nas nossas cores) ──
+     Cada pergunta passa a ser um card arredondado com chevron a direita; o card
+     aberto acende a moldura em roxo e ganha um gradiente subtil. */
+  .faq-list { gap: 12px; max-width: 860px; }
+  .faq-item { border: 1px solid rgba(255,255,255,0.09); border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.012) 100%), #0c0b10;
+    overflow: hidden; transition: border-color .35s ease, background .35s ease; }
+  .faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.09); }
+  .faq-item.open { border-color: rgba(197,133,184,0.72);
+    background: linear-gradient(180deg, rgba(158,123,182,0.10) 0%, rgba(158,123,182,0.03) 100%), #0c0b10; }
+
+  .faq-question { padding: 20px 22px; gap: 18px; }
+  .faq-question-left { gap: 0; }
+  .faq-num { display: none; }                       /* a referencia nao numera */
+  .faq-question span { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+    font-size: 16px; line-height: 1.28; color: rgba(255,255,255,0.92); letter-spacing: -0.01em; }
+  .faq-item.open .faq-question span { color: #fff; }
+
+  /* chevron: duas barras a formar um V, que roda 180 graus ao abrir */
+  .faq-icon { width: 22px; height: 22px; border: 0 !important; border-radius: 0; background: none;
+    position: relative; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  .faq-item.open .faq-icon { transform: rotate(180deg); }
+  .faq-icon::before, .faq-icon::after { content: ''; position: absolute; top: 50%; width: 11px; height: 2px;
+    border-radius: 2px; background: #c585b8; transition: background .3s ease; }
+  .faq-icon::before { left: 0;  transform: translateY(-50%) rotate(42deg); }
+  .faq-icon::after  { right: 0; transform: translateY(-50%) rotate(-42deg); }
+  /* a regra antiga (do icone +/−) escondia o ::after quando aberto; repoe-se aqui
+     a posicao das duas barras para o chevron ficar completo */
+  .faq-item.open .faq-icon::before { transform: translateY(-50%) rotate(42deg) !important; opacity: 1 !important; background: #d9a8ce !important; }
+  .faq-item.open .faq-icon::after { transform: translateY(-50%) rotate(-42deg) !important; opacity: 1 !important; background: #d9a8ce !important; }
+
+  .faq-answer { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 400;
+    line-height: 1.6; color: rgba(255,255,255,0.72); }
+  .faq-item.open .faq-answer { padding: 0 22px 22px; }
+
+  /* cabecalho da seccao */
+  .faq-intro { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 17px;
+    line-height: 1.32; color: rgba(255,255,255,0.88); margin: 4px auto 0; max-width: 620px; }
+  /* ── FAQ: acabamento final ──
+     Chevron limpo (um quadrado com duas bordas, rodado 45 graus, em vez das duas
+     barras que se viam partidas), titulos menos pesados, pergunta a quebrar
+     antes do meio, anel de reflexo por fora e gradiente simples por dentro. */
+
+  /* 1) contorno com reflexo nos vertices, como nos restantes cards */
+  .faq-item { position: relative; border-color: transparent !important; }
+  .faq-item::before { content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px;
+    z-index: 2; pointer-events: none;
+    background: linear-gradient(135deg, rgba(197,133,184,0.55) 0%, rgba(158,123,182,0.07) 32%, rgba(158,123,182,0.06) 68%, rgba(197,133,184,0.52) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    transition: background .35s ease; }
+  .faq-item.open::before {
+    background: linear-gradient(135deg, rgba(214,150,200,1) 0%, rgba(180,132,196,0.35) 32%, rgba(180,132,196,0.32) 68%, rgba(214,150,200,0.95) 100%); }
+
+  /* 2) gradiente simples por dentro */
+  .faq-item { background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.012) 60%), #0b0a0f; }
+  .faq-item.open { background: linear-gradient(160deg, rgba(158,123,182,0.16) 0%, rgba(158,123,182,0.04) 62%), #0b0a0f; }
+
+  /* 3) titulo menos pesado e a quebrar antes do meio do card */
+  .faq-question span { font-weight: 600 !important; font-size: 15.5px !important; max-width: 26ch; }
+
+  /* 4) chevron limpo: um so elemento, sem juntas visiveis */
+  .faq-icon { width: 20px; height: 20px; }
+  .faq-icon::after { display: none !important; }
+  .faq-icon::before { content: ''; position: absolute; left: 50%; top: 42%;
+    width: 9px; height: 9px; border: 0 !important;
+    border-right: 2px solid #c585b8 !important; border-bottom: 2px solid #c585b8 !important;
+    border-radius: 1px; background: none !important;
+    transform: translate(-50%, -50%) rotate(45deg) !important; opacity: 1 !important; }
+  .faq-item.open .faq-icon::before {
+    /* background: none — a regra antiga do icone +/- pintava o fundo quando aberto
+       e o chevron virava um losango cheio */
+    background: none !important;
+    border-right-color: #e2b4d8 !important; border-bottom-color: #e2b4d8 !important;
+    /* 45deg: o contentor .faq-icon ja roda 180deg quando aberto — somar outra
+       meia volta aqui punha o chevron a apontar para baixo outra vez */
+    transform: translate(-50%, -50%) rotate(45deg) !important; }
+  /* gradiente cinza nas perguntas, como nos titulos de seccao. O padding
+     vertical e obrigatorio: sem ele os descendentes (q, g, p) partem o gradiente. */
+  .faq-question span:not(.faq-num) { display: inline-block; padding: 0.04em 0 0.16em;
+    background: linear-gradient(180deg, #f2f2f4 10%, #9a9aa0 100%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .faq-item.open .faq-question span:not(.faq-num) {
+    background: linear-gradient(180deg, #ffffff 10%, #c9c9cf 100%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  /* card aberto: brilho concentrado no topo esquerdo, a esbater rapido, em vez
+     de um gradiente espalhado por todo o card */
+  .faq-item.open { background: radial-gradient(130% 62% at 0% 0%, rgba(176,138,204,0.26) 0%, rgba(158,123,182,0.09) 34%, rgba(158,123,182,0.02) 58%, transparent 78%), #0b0a0f !important; }
+  /* mais ar entre cards e texto da resposta maior */
+  .faq-list { gap: 22px !important; }
+  .faq-answer { font-size: 16.5px !important; line-height: 1.38 !important; color: rgba(255,255,255,0.78) !important; }
+  /* todos os botoes usam o aspeto pill da home, nao so os do hero e do CTA:
+     os dos pacotes viviam fora desses contentores e ficavam com o estilo antigo */
+  a.gx-btn { overflow: visible; border: none; border-radius: 100px;
+    background: linear-gradient(180deg, #ffffff 0%, #e9e9ee 100%); color: #0d0d10;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7); font-size: 14px; padding: 15px 32px; }
+  a.gx-btn::after { display: none; }
+  a.gx-btn:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+  a.gx-btn--purple { background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%); color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+  a.gx-btn--purple:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+  /* @property do anel dos botoes: sem estas declaracoes as variaveis --stp* nao
+     sao animaveis e o reflexo nunca se move — faltavam nesta pagina */
+  @property --stpLarg { syntax: '<angle>'; inherits: false; initial-value: 26deg; }
+  @property --stpTail { syntax: '<number>'; inherits: false; initial-value: 0; }
+  @property --stpForte { syntax: '<number>'; inherits: false; initial-value: 0.92; }
+  @property --stpCometa { syntax: '<number>'; inherits: false; initial-value: 0.95; }
+  @keyframes stAnelGira { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+  /* largura de conteudo igual a da home: 1120px centrados, em vez dos 1400px
+     que faziam o texto comecar mais a esquerda em ecras largos. Titulos e
+     paragrafos de seccao centrados; o footer passa a ter o mesmo limite. */
+  :root { --larg-max: 1120px; }
+  .section { max-width: var(--larg-max) !important; margin-left: auto !important; margin-right: auto !important; }
+  /* texto encostado a esquerda; o bloco continua centrado na pagina, alinhado
+     com os cards */
+  .section-title { text-align: left !important; margin-left: auto; margin-right: auto; }
+  .section-body, .section-sub-nova, .faq-intro, .stats-intro { text-align: left !important; margin-left: 0 !important; margin-right: auto !important; }
+  @media (min-width: 1200px) {
+    /* o footer trazia padding lateral proprio, que reduzia o espaco disponivel
+       e desalinhava a grelha nos ecras entre 1200 e 1280. O padding passa a
+       estar so na grelha, com a mesma conta da seccao. */
+    footer { padding-left: 0 !important; padding-right: 0 !important; }
+    .ft-grid, .ft-bottom { max-width: calc(var(--larg-max) + 2 * var(--gutter)) !important;
+      padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* faq e footer congelados em mobile, como os restantes cards: estavam a
+     esticar de 444 ate 860/1120px conforme a largura do ecra */
+  @media (max-width: 1199px) {
+    .faq-list, .ft-grid, .ft-bottom, .stat-bar, .stat-hero,
+    .faq-intro, .section-body, .section-sub-nova, .section-title {
+      width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* Projetos como a faixa dos clientes da home: carrossel horizontal que sangra
+     ate a borda do ecra (sem margem a direita), com o primeiro card alinhado a
+     margem efetiva das outras seccoes. */
+  @media (max-width: 1199px) {
+    .pf-grid { display: flex !important; flex-wrap: nowrap !important; gap: 12px !important;
+      width: 100vw !important; max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important;
+      padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2)) !important;
+      padding-right: max(var(--gutter), calc((100vw - var(--card-mob)) / 2)) !important;
+      scroll-padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2));
+      overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory; scroll-behavior: auto; scrollbar-width: none; }
+    .pf-grid::-webkit-scrollbar { display: none; }
+    .pf-grid > * { flex: 0 0 min(var(--card-mob), calc(100vw - 2 * var(--gutter))) !important; max-width: none !important;
+      scroll-snap-align: start !important; scroll-snap-stop: normal; }
+  }
+  /* espacamento vertical igual ao da home: 4px do titulo ao subtitulo e 56px
+     do subtitulo ao conteudo (na criacao eram 20 a 40px) */
+  .section-title { margin-bottom: 4px !important; }
+  .section-body, .section-sub-nova, .faq-intro { margin-top: 0 !important; margin-bottom: 56px !important; }
+  .ciclo-palco { margin-top: 40px; }
+  /* ── estrutura de pc igual a da home ──
+     Na home a seccao ocupa a largura toda com 80px de padding (os titulos ficam
+     com 1280px) e sao os cards que se limitam a 1120px centrados. Aqui a seccao
+     e que estava limitada a 1120, o que encolhia tudo para 1024. */
+  @media (min-width: 1200px) {
+    :root { --gutter: 80px; }
+    /* coluna unica em pc: a seccao trava nos 1120 de conteudo, por isso titulos,
+       paragrafos e cards partilham a mesma margem esquerda em qualquer ecra.
+       Antes a seccao era livre e os titulos chegavam a 1760px a 1920, 320px a
+       esquerda dos cards. */
+    .section { max-width: calc(var(--larg-max) + 2 * var(--gutter)) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+    .ciclo-palco, .pf-grid, .faq-list, .cards-grid, .who-grid, .examples-grid, .benefits-strip, .two-col, .infografico {
+      width: 100% !important; max-width: var(--larg-max) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+    /* o card ciclante estica: e o equivalente ao card dos 4 Passos da home */
+    .ciclo-palco .ciclo-slide { padding: 44px 48px 92px; }
+    .ciclo-desc { max-width: 52ch; }
+  }
+  /* CTA maior em pc: acompanha a largura dos restantes cards (1120px) em vez
+     dos 620px da home, com o interior a crescer na mesma proporcao */
+  @media (min-width: 1200px) {
+    .cta-luz { max-width: var(--larg-max) !important; }
+    .cta-card { padding: 66px 64px 60px !important; }
+    .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+    .cta-card .cta-sub { font-size: 18px; }
+  }
+  /* O bloom parte no CTA largo: a luz e um retangulo a rodar e, para cobrir o
+     card em todos os angulos, tem de ser um quadrado com lado >= diagonal.
+     A 1120x300 a diagonal e ~1159px e o retangulo de 220% da altura (660px)
+     deixava de cobrir — dai o brilho desaparecer em parte da volta.
+     Em pc passa a quadrado de 130% da largura: bloom cobre o card largo. */
+  @media (min-width: 1200px) {
+    .cta-bloom b { left: 50%; top: 50%; width: 130%; height: auto; aspect-ratio: 1 / 1;
+      translate: -50% -50%; }
+  }
+  /* barra da oferta com a mesma largura do restante conteudo */
+  .offer-banner { width: min(var(--card-mob), 100%); max-width: min(var(--card-mob), 100%); margin-left: auto; margin-right: auto; }
+  @media (min-width: 1200px) { .offer-banner { width: 100%; max-width: var(--larg-max); } }
+  /* FAQ maior em pc: o card passou de 860 para 1120px e o texto ficou pequeno
+     para a largura. O limite de 26ch da pergunta tambem sai, senao quebra cedo
+     de mais num card largo. */
+  @media (min-width: 1200px) {
+    .faq-question { padding: 26px 32px; }
+    .faq-question span { font-size: 20px !important; max-width: 46ch; }
+    .faq-answer { font-size: 18px !important; }
+    .faq-item.open .faq-answer { padding: 0 32px 28px; }
+    .faq-icon { width: 24px; height: 24px; }
+    .faq-icon::before { width: 11px; height: 11px; }
+  }
+  /* ── cards do infografico com o estilo dos cards de servicos da home ──
+     Mesma moldura (raio 12, borda .24, vidro escuro), mesma divisao: palco
+     grafico de 240px + conteudo (titulo 25.3px gradiente + descricao 15px).
+     No palco, icones em azulejos espalhados (como os da home) e o numero
+     num chip escuro ao centro sobre um halo roxo — a referencia do +500. */
+  .ig-bloco { position: relative; padding: 0 !important; overflow: hidden; border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,.24) !important; background: transparent !important; isolation: isolate; }
+  .ig-palco { position: relative; height: 198px; overflow: hidden;
+    background: transparent; }
+  /* azulejos mais pequenos, dispostos num anel centrado no chip: cada um e
+     colocado a partir do centro do palco (deslocamentos --x/--y), por isso a
+     composicao fica sempre centrada, seja o card de 334px ou de 544px */
+  /* o tamanho vem de --s para poder variar icone a icone */
+  .ig-tile { position: absolute; left: 50%; top: 50%; --k: 1; --s: 32px;
+    translate: calc(-50% + var(--x) * var(--k)) calc(-50% + var(--y) * var(--k));
+    width: var(--s); height: var(--s); border-radius: 4px; display: grid; place-items: center;
+    background: rgba(255,255,255,.1); border: 0.5px solid rgba(255,255,255,.2); color: #fff; }
+  .ig-tile svg { width: calc(var(--s) * .58); height: calc(var(--s) * .58); fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .ig-t1 { --x: 140px; --y: -16px; --s: 22px; filter: blur(1.8px); }
+  .ig-t2 { --x: 52px; --y: 20px; --s: 23px; filter: blur(1.4px); opacity: 0.8; }
+  .ig-t3 { --x: -12px; --y: 28px; --s: 31px; }
+  .ig-t4 { --x: -84px; --y: 20px; --s: 20px; filter: blur(1.2px); opacity: 0.82; }
+  .ig-t5 { --x: -136px; --y: 0px; --s: 21px; filter: blur(1.8px); }
+  .ig-t6 { --x: 8px; --y: -40px; --s: 21px; filter: blur(1.5px); opacity: 0.78; }
+  .ig-t7 { --x: 84px; --y: -40px; --s: 29px; }
+  .ig-t8 { --x: 120px; --y: 52px; --s: 22px; filter: blur(1px); opacity: 0.85; }
+  .ig-t9 { --x: -88px; --y: -44px; --s: 31px; }
+  .ig-t10 { --x: -40px; --y: -76px; --s: 20px; filter: blur(1.6px); }
+  /* os nitidos ficam roxos, como os destacados da referencia */
+  .ig-t3, .ig-t7, .ig-t9 { color: #c585b8; }
+  .ig-chip { position: absolute; left: 50%; top: 44%; translate: -50% -50%; padding: 3px 62px 2px; border-radius: 8px; white-space: nowrap;
+    background: linear-gradient(180deg, #171717, #0d0d0d); border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 18px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.6); }
+  .ig-num { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-size: 43px !important; font-weight: 700 !important;
+    line-height: 1.1 !important; letter-spacing: -0.03em; display: inline-block;
+    background: linear-gradient(180deg, #ffffff 17%, #93929a 62%, #1c1b22 92%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.4px rgba(255,255,255,0.55);
+    /* o gradiente so pinta dentro da caixa de fundo. Com line-height 1.1 os glifos
+       (53px) sao mais altos que a caixa (47px) e o contorno passa a direita, por
+       isso ficavam cortados. A folga alarga a caixa e a margem negativa devolve
+       o espaco, para o chip nao crescer. */
+    padding: 5px 7px 6px 3px; margin: -5px -7px -6px -3px; }
+  .ig-num .mini-stat-val { font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important;
+    line-height: inherit !important; letter-spacing: inherit; background: none; -webkit-text-fill-color: inherit;
+    -webkit-text-stroke: inherit; color: inherit; }
+  .ig-num i { font-style: normal; font-size: 24px; font-weight: 700; margin-left: 2px; }
+  .ig-sinal { font-size: 0.66em; font-weight: 700; margin-right: 1px; vertical-align: 0.16em; }
+  .ig-conteudo { padding: 2px 26px 26px; }
+  .ig-titulo { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; text-transform: none !important; letter-spacing: -0.015em !important;
+    font-size: 25.3px !important; font-weight: 700 !important; margin-bottom: 1px !important; line-height: 1.22; display: inline-block; padding-bottom: 0.09em; max-width: 75%;
+    background: linear-gradient(180deg, #eceaf0 15%, #8f8e96 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .ig-card-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important; font-size: 14.5px !important;
+    line-height: 1.22 !important; color: rgba(255,255,255,.62) !important; margin: 2.5px 0 0 !important; max-width: 75%; }
+  .infografico { gap: 32px !important; margin-top: 48px !important; }
+  /* ── animacao de hover do card, como na referencia ──
+     Os azulejos afastam-se do centro (o raio do anel cresce), o chip do numero
+     aumenta e acende-se um halo roxo por tras. O palco deixa de cortar para os
+     azulejos poderem espalhar-se ate a zona do texto, como no exemplo — ficam
+     por tras porque o conteudo vem depois no DOM. */
+  .ig-palco { overflow: visible; }
+  .ig-tile { z-index: 1; transition: translate .52s cubic-bezier(.85,0,.18,1), opacity .5s ease, background-color .4s ease; }
+  .ig-chip { z-index: 2; transition: scale .6s cubic-bezier(.22,.61,.36,1), box-shadow .5s ease, border-color .5s ease; }
+  /* contorno aceso a volta do chip. Um pseudo-elemento nao serve: dentro do
+     contexto de empilhamento do chip, um filho com z-index negativo pinta por
+     CIMA do fundo do chip e o roxo entrava no interior. O box-shadow segue o
+     raio do chip e pinta so para fora. */
+  @media (hover: hover) {
+    .ig-bloco:hover .ig-tile { --k: 1.32; }
+    .ig-bloco:hover .ig-tile[class*="ig-t"] { opacity: 1; }
+    .ig-bloco:hover .ig-chip { scale: 1.05; border-color: rgba(197,133,184,.42);
+      box-shadow: 0 18px 46px rgba(0,0,0,.6), 0 0 0 0.5px rgba(197,133,184,.26),
+                  0 0 12px 0 rgba(158,123,182,.5), 0 0 24px 3px rgba(158,123,182,.2); }
+  }
+  /* ── identidade na barra de oferta e nos cards de projeto ──
+     Saiem o vermelho e as fontes antigas (Nunito/Overpass); entram os roxos da
+     casa, a Satoshi e o mesmo anel em gradiente a 135 graus dos cards da FAQ:
+     um pseudo-elemento com mascara, aceso nos vertices opostos. */
+  .offer-banner { position: relative; background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.012) 60%), #0b0a0f !important;
+    border: 1px solid transparent !important; border-radius: 14px !important; padding: 15px 22px !important; }
+  .offer-banner::before { content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(224,51,47,.6) 0%, rgba(195,31,31,.08) 32%, rgba(195,31,31,.07) 68%, rgba(224,51,47,.56) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .offer-pill { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 700 !important;
+    font-size: 12.5px !important; letter-spacing: 0 !important; padding: 5px 13px !important;
+    /* o pill fica vermelho, com letra branca e um reflexo branco por cima */
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #e0332f, #c31f1f) !important; color: #fff !important; }
+  .offer-pill::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,.06) 48%, rgba(255,255,255,0) 62%); }
+  .offer-pill::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.05) 60%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .offer-text { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
+    font-size: 14.5px !important; color: rgba(255,255,255,.82) !important; }
+  .offer-timer-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
+    font-size: 11px !important; letter-spacing: .1em !important; color: rgba(255,255,255,.45) !important; }
+  .offer-timer { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 700 !important;
+    font-size: 17px !important; color: #e0332f !important; font-variant-numeric: tabular-nums; }
+
+  /* cards de projeto: mesmo anel, sem a borda plana branca */
+  .reel-card { border: 0 !important; border-radius: 14px !important; }
+  .reel-card::after { content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px;
+    z-index: 4; pointer-events: none;
+    background: linear-gradient(135deg, rgba(197,133,184,.55) 0%, rgba(158,123,182,.07) 32%, rgba(158,123,182,.06) 68%, rgba(197,133,184,.52) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .reel-card-cat { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 700 !important;
+    font-size: 10.5px !important; letter-spacing: .12em !important; }
+  .reel-card-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 700 !important;
+    font-size: 18px !important; letter-spacing: -0.015em !important; }
+  /* ── destaque dos 93% com a identidade nova ──
+     Sai a Overpass 900 centrada; entra a Satoshi com o mesmo gradiente e
+     contorno dos numeros dos cards, encostada a esquerda como os titulos.
+     A barra fica mais fina, com o anel da casa a delimita-la. */
+  .stat-hero { max-width: none !important; margin: 44px 0 0 !important; text-align: left !important; }
+  .stat-hero-top { justify-content: flex-start !important; align-items: baseline; gap: 2px !important; }
+  .stat-hero-val, .stat-hero-sym { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important;
+    font-weight: 700 !important; letter-spacing: -0.03em !important; display: inline-block;
+    background: linear-gradient(180deg, #ffffff 17%, #93929a 62%, #1c1b22 92%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.4px rgba(255,255,255,0.55);
+    padding: 5px 7px 6px 0; margin: -5px -7px -6px 0; }
+  .stat-hero-val { font-size: clamp(56px, 7vw, 82px) !important; }
+  .stat-hero-sym { font-size: clamp(26px, 3.4vw, 38px) !important; }
+  .stat-hero-label { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
+    font-size: 14.5px !important; letter-spacing: 0 !important; text-transform: none !important;
+    color: rgba(255,255,255,.62) !important; margin-top: 10px !important; }
+  .stat-bar { position: relative; height: 6px !important; margin-top: 20px !important;
+    background: rgba(255,255,255,.05) !important; max-width: 620px; }
+  .stat-bar::after { content: ''; position: absolute; inset: 0; border-radius: 100px; padding: 1px;
+    pointer-events: none; z-index: 2;
+    background: linear-gradient(135deg, rgba(197,133,184,.55) 0%, rgba(158,123,182,.07) 32%, rgba(158,123,182,.06) 68%, rgba(197,133,184,.52) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .stat-bar-fill { box-shadow: 0 0 14px rgba(158,123,182,.4) !important; }
+  /* Ver Portfolio: azul claro no topo a escurecer para baixo, mesma forma dos
+     restantes botoes (o roxo fica para o botao principal) */
+  .hero-btns a.gx-btn--azul, a.gx-btn--azul { background: linear-gradient(180deg, #a8cbe8 0%, #6f9dc4 48%, #416a91 100%); color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 8px 22px rgba(48,92,132,.28); }
+  .hero-btns a.gx-btn--azul:hover, a.gx-btn--azul:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 10px 26px rgba(48,92,132,.34); }
+  /* ── texto fixo em mobile e bloco dos 93% dentro da margem ──
+     O titulo de seccao ia de 28 a 32.7px e o h1 do hero de 31.8 a 39.3px
+     conforme o ecra: passam a valer sempre o tamanho dos 390px, como os cards,
+     que tambem congelaram. E o bloco dos 93% ficava colado aos 28px enquanto o
+     resto se afastava, porque tinha margem esquerda propria. */
+  @media (max-width: 1199px) {
+    .section-title, .logos-label { font-size: 29.6px !important; }
+    .home-hero-title, .hero-content .home-hero-title { font-size: 36px !important; font-weight: 600 !important; }
+    .stat-hero { width: min(var(--card-mob), 100%) !important; max-width: min(var(--card-mob), 100%) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+    .stat-bar { max-width: none !important; }
+  }
+  /* barra dos 93% mais discreta: menos saturacao no preenchimento, o anel a
+     volta perde a cor e fica neutro */
+  .stat-bar-fill { background: linear-gradient(90deg, rgba(158,123,182,.42) 0%, rgba(197,133,184,.5) 100%) !important;
+    box-shadow: none !important; }
+  .stat-bar::after { background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.05) 40%, rgba(255,255,255,.05) 60%, rgba(255,255,255,.2) 100%) !important; }
+  /* ── cards dos servicos a cinza/branco ──
+     Saiem os roxos das etiquetas e da moldura; fica tudo neutro. Os cantos
+     encolhem de 20 para 12px, como os restantes cards, e o pill "Ver detalhes"
+     passa a ter o mesmo tratamento do botao branco da casa: gradiente claro,
+     realce no topo e sombra propria. */
+  .example-card { border-radius: 12px !important; border-color: rgba(255,255,255,.16) !important; }
+  .example-card:hover, .example-card--clickable:hover { border-color: rgba(255,255,255,.3) !important; }
+  .example-tag { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 700 !important;
+    font-size: 10.5px !important; letter-spacing: .12em !important; color: rgba(255,255,255,.5) !important; }
+  .example-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
+    font-size: 14.5px !important; color: rgba(255,255,255,.72) !important; }
+  .example-hover-hint {
+    background: linear-gradient(180deg, #fbfbfc 0%, #e6e6ea 48%, #cfcfd6 100%) !important;
+    border: 0 !important; color: #14121a !important;
+    font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-size: 12px !important; font-weight: 700 !important;
+    letter-spacing: 0 !important; padding: 7px 15px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 6px 18px rgba(0,0,0,.45) !important; }
+  @media (max-width: 1199px) {
+    .example-card--clickable { border-color: rgba(255,255,255,.16) !important; }
+    .example-hover-hint { background: linear-gradient(180deg, #fbfbfc 0%, #e6e6ea 48%, #cfcfd6 100%) !important;
+      -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+      border: 0 !important; color: #14121a !important; }
+  }
+  /* contador encostado a esquerda do card e mais pequeno: estava a ser
+     empurrado para a direita pelo space-between da barra */
+  .offer-banner { flex-wrap: wrap; justify-content: flex-start !important; row-gap: 8px !important; }
+  .offer-left { flex: 1 1 100%; }
+  .offer-right { flex: 0 0 auto; margin-right: auto; }
+  .offer-timer-label { font-size: 9.5px !important; letter-spacing: .12em !important;
+    text-transform: uppercase !important; }
+  .offer-timer { font-size: 13.5px !important; }
+  /* marquee dos logos: camada propria na GPU para o Safari nao piscar os
+     logos com filter durante a translacao continua */
+  .marquee-track { will-change: transform; transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+  .marquee-logo { -webkit-backface-visibility: hidden; backface-visibility: hidden; transform: translateZ(0); }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
@@ -1980,6 +2911,85 @@
     if(e.isIntersecting){ m.classList.add('lit'); io.disconnect(); }
   });},{threshold:0.4});
   io.observe(m);
+})();
+</script>
+<script>
+/* Converte grelhas de cards no card ciclante dos 4 Passos.
+   Le os cards que ja existem no HTML e reconstroi-os como slides — todos ficam
+   no DOM, so muda a opacidade, para nao se perder texto indexavel. */
+(function(){
+  var SETA = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
+  function dois(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function converter(grelha){
+    var itens = [].slice.call(grelha.children).map(function(c){
+      var h = c.querySelector('h3,h4'), p = c.querySelector('p');
+      return { titulo: h ? h.textContent.trim() : '', texto: p ? p.textContent.trim() : '' };
+    }).filter(function(i){ return i.titulo || i.texto; });
+    if(itens.length < 2) return;
+
+    var total = itens.length;
+    var palco = document.createElement('div');
+    palco.className = 'ciclo-palco';
+    var html = '<span class="ciclo-veu" aria-hidden="true"></span><span class="ciclo-anel" aria-hidden="true"></span><div class="ciclo-pista" aria-live="polite">';
+    itens.forEach(function(it, i){
+      html += '<div class="ciclo-slide' + (i === 0 ? ' on' : '') + '">' +
+                '<div class="ciclo-mini">' + dois(i+1) + ' / ' + dois(total) + '</div>' +
+                '<h3 class="ciclo-nome">' + it.titulo + '</h3>' +
+                '<p class="ciclo-desc">' + it.texto + '</p>' +
+              '</div>';
+    });
+    html += '</div><div class="ciclo-dots" aria-hidden="true">';
+    itens.forEach(function(_, i){ html += '<i class="' + (i === 0 ? 'on' : '') + '"></i>'; });
+    html += '</div><button class="ciclo-seg" type="button" aria-label="Seguinte">' + SETA + '</button>';
+    palco.innerHTML = html;
+    grelha.parentNode.replaceChild(palco, grelha);
+
+    var pista  = palco.querySelector('.ciclo-pista');
+    var slides = palco.querySelectorAll('.ciclo-slide');
+    var dots   = palco.querySelectorAll('.ciclo-dots i');
+    var actual = 0, timer = null;
+
+    /* altura fixa: a do slide mais alto, senao o card salta de tamanho a cada troca */
+    function fixarAltura(){
+      var max = 0;
+      for(var i = 0; i < slides.length; i++){
+        slides[i].style.position = 'relative';
+        var h = slides[i].offsetHeight;
+        if(h > max) max = h;
+        slides[i].style.position = '';
+      }
+      if(max) pista.style.height = max + 'px';
+    }
+    function ir(i){
+      actual = (i + slides.length) % slides.length;
+      for(var k = 0; k < slides.length; k++){
+        slides[k].classList.toggle('on', k === actual);
+        if(dots[k]) dots[k].classList.toggle('on', k === actual);
+      }
+    }
+    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 4200); }
+    function parar(){ if(timer){ clearInterval(timer); timer = null; } }
+
+    palco.querySelector('.ciclo-seg').addEventListener('click', function(){ ir(actual + 1); parar(); arrancar(); });
+    palco.addEventListener('mouseenter', parar);
+    palco.addEventListener('mouseleave', arrancar);
+
+    fixarAltura();
+    window.addEventListener('resize', fixarAltura);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(fixarAltura);
+
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ arrancar(); } else { parar(); } });
+      }, { threshold: 0.3 }).observe(palco);
+    } else { arrancar(); }
+  }
+
+  ['.cards-grid', '.who-grid'].forEach(function(sel){
+    var g = document.querySelector(sel);
+    if(g) converter(g);
+  });
 })();
 </script>
 </body>
