@@ -977,9 +977,9 @@
   .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
 }
 @media (min-width: 1200px) {
-  .cta-luz { max-width: var(--larg-max) !important; }
-  .cta-card { padding: 66px 64px 60px !important; }
-  .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+  .cta-luz { max-width: calc(var(--larg-max) * 0.9) !important; }   /* 90% da coluna: quase encosta as margens, fixo ai */
+  .cta-card { padding: 52px 48px 48px !important; }
+  .cta-section .cta-card .cta-title { font-size: clamp(31px, 2.9vw, 42px) !important; max-width: 18ch; }
   .cta-card .cta-sub { font-size: 18px; }
 }
 @media (min-width: 1200px) {
@@ -1198,6 +1198,309 @@
     background: rgba(8,6,11,0.65) !important; transform: scale(1.06) !important; outline: none; }
   .ciclo-seg:active { transform: scale(0.96) !important; }
   .ciclo-seg:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+  /* a FAQ segue a mesma regra do card do CTA: 90% da coluna, centrada e fixa
+     ai em pc (nao estica ate a margem) */
+  @media (min-width: 1200px) {
+    .faq-list { width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* cabecalho da FAQ centrado sobre a lista, e a pergunta maior com a linha a
+     quebrar mais tarde (26ch era curto de mais para o card a 1008px) */
+  /* nestas paginas a FAQ vive num <section class="section"> simples, por isso
+     o alvo e a seccao que contem a lista */
+  section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+  .faq-section .section-title, .faq-header .section-title,
+  .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+    text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  section:has(.faq-list) .section-sub, .faq-section .section-sub, .faq-header .section-sub, .faq-intro { max-width: 62ch !important; }
+  @media (min-width: 1200px) {
+    section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+    .faq-section .section-title, .faq-header .section-title,
+    .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+      width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important; }
+    .faq-question span:not(.faq-num) { font-size: 23px !important; max-width: 62ch !important; }
+  }
+  @media (max-width: 1199px) {
+    .faq-question span:not(.faq-num) { font-size: 17px !important; max-width: 34ch !important; }
+  }
+
+  /* ══════════════════════════════════════════════════════════════════
+     PACKS DE GESTAO (vindo do _mockup-packs.html)
+     4 cards (3 packs + o extra Scale) -> resumo com total e WhatsApp ->
+     condicoes numa faixa esbatida. Circulos e condicoes abrem um pop-up.
+     ══════════════════════════════════════════════════════════════════ */
+  .packs-section { --visto: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); }
+  .packs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch; }
+
+  /* cores do estado escolhido registadas como <color>: o browser nao anima gradientes,
+     mas anima estas variaveis dentro deles, e assim a passagem a roxo e suave */
+  @property --pk-bg-a    { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-bg-b    { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-canto   { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-meio    { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-pick-a  { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-pick-b  { syntax: '<color>'; inherits: false; initial-value: transparent; }
+  @property --pk-pick-c  { syntax: '<color>'; inherits: false; initial-value: transparent; }
+
+  .pack-card { position: relative; display: flex; flex-direction: column; border-radius: 12px; padding: 26px 22px 22px;
+    --pk-bg-a: rgba(255,255,255,0.05); --pk-bg-b: rgba(255,255,255,0.012);
+    background: linear-gradient(160deg, var(--pk-bg-a), var(--pk-bg-b) 60%), #0b0a0f;
+    border: 0; isolation: isolate; cursor: pointer; text-align: left;
+    transition: transform .45s cubic-bezier(0.22,1,0.36,1), --pk-bg-a .6s ease, --pk-bg-b .6s ease; }
+  .pack-card:hover { transform: translateY(-4px); }
+  .pack-card:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+  /* anel da casa */
+  .pack-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    --pk-canto: rgba(197,133,184,0.55); --pk-meio: rgba(158,123,182,0.07);
+    background: linear-gradient(135deg, var(--pk-canto) 0%, var(--pk-meio) 32%, var(--pk-meio) 68%, var(--pk-canto) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    transition: --pk-canto .6s ease, --pk-meio .6s ease; }
+
+  .pack-eyebrow { font-weight: 700; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin: 0 0 10px; }
+  .pack-nome { font-weight: 700; font-size: 21px; line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 12px;
+    background: linear-gradient(180deg, #ffffff 0%, #cfcfcf 100%); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; }
+  .pack-preco { font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: -0.03em; margin: 0 0 14px;
+    padding: 0.04em 0 0.12em;
+    background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px rgba(255,255,255,0.22); }
+  .pack-preco span { font-size: 14px; font-weight: 500; letter-spacing: 0; margin-left: 3px; -webkit-text-stroke: 0; }
+  .pack-preco.pack-preco--sob { font-size: 24px; }
+  .pack-frase { font-weight: 400; font-size: 13.5px; line-height: 1.32; color: rgba(255,255,255,0.66);
+    margin: 0 0 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+  /* ── redes incluidas: pill com as apps sobrepostas + nota ── */
+  .pack-redes-nota { font-weight: 500; font-size: 11px; line-height: 1.2; color: rgba(255,255,255,0.42);
+    margin: 0 0 16px; }
+  .pack-pilulas { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pack-pilulas--topo { align-items: center; justify-content: space-between; margin: 0 0 7px; }
+  .pack-pilula { display: inline-flex; align-items: center; gap: 7px; padding: 5px 13px; border-radius: 100px;
+    background: rgba(255,255,255,0.055); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.17);
+    font-weight: 700; font-size: 11px; letter-spacing: -0.005em; line-height: 1;
+    color: rgba(255,255,255,0.86); white-space: nowrap; }
+  .pack-pilula--apps { padding-left: 5px; }
+  /* apps sobrepostas, como os avatares da hero da home */
+  .pack-pilha { display: inline-flex; align-items: center; padding-left: 7px; }
+  .pack-pilha > span { position: relative; display: grid; place-items: center; width: 20px; height: 20px;
+    border-radius: 50%; margin-left: -7px; background: #fff; flex-shrink: 0;
+    box-shadow: 0 0 0 1.5px #14131a; }
+  .pack-pilha > span:nth-child(1) { z-index: 4; } .pack-pilha > span:nth-child(2) { z-index: 3; }
+  .pack-pilha > span:nth-child(3) { z-index: 2; } .pack-pilha > span:nth-child(4) { z-index: 1; }
+  .pack-pilha svg { width: 12px; height: 12px; color: #16161c; }   /* preto e branco */
+
+  /* ── logos das plataformas: circulo branco, so a marca ── */
+  .pack-logo { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+    background: #fff; box-shadow: 0 2px 9px rgba(0,0,0,0.4); }
+  .pack-logo svg { width: 17px; height: 17px; }
+  .pack-logo--meta { color: #0081fb; }
+  .pack-logo--dev { color: #9e7bb6; }
+  /* pills do Scale: mesmas medidas do pill das redes (30px de altura, logo de 20px, letra de 11px) */
+  .pack-pills { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 16px; }
+  .pack-pill { display: inline-flex; align-items: center; gap: 7px; padding: 5px 13px 5px 5px; border-radius: 100px;
+    font-weight: 700; font-size: 11px; letter-spacing: -0.005em; line-height: 1; color: rgba(255,255,255,0.92); }
+  .pack-pill .pack-logo { width: 20px; height: 20px; box-shadow: none; }
+  .pack-pill .pack-logo svg { width: 12px; height: 12px; }
+
+  /* vidro escuro: circulo de info, pill das redes e pills do Scale partilham o mesmo acabamento */
+  .pack-info, .pack-pilulas--topo .pack-pilula, .pack-pill { position: relative; isolation: isolate;
+    background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.10), rgba(255,255,255,0.015) 62%),
+      linear-gradient(160deg, #1d1c23 0%, #0a090e 100%);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5), inset 0 0 6px rgba(0,0,0,0.55); }
+  /* contorno com reflexo em dois lados opostos (cima-esquerda e baixo-direita), como o anel dos cards */
+  .pack-info::before, .pack-pilulas--topo .pack-pilula::before, .pack-pill::before { content: ''; position: absolute; inset: 0;
+    border-radius: inherit; padding: 1px; pointer-events: none; z-index: -1;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.07) 36%,
+      rgba(255,255,255,0.07) 64%, rgba(255,255,255,0.62) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  /* circulo com 3 barras brancas, do lado oposto ao pill das redes: abre o pop-up de detalhes */
+  .pack-info { flex: none; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%;
+    cursor: pointer; transition: transform .3s cubic-bezier(0.22,1,0.36,1); }
+  /* medidas inteiras (2px + 3px de intervalo): as tres barras saem com a mesma espessura em qualquer ecra */
+  .pack-info span { display: block; width: 11px; height: 2px; border-radius: 2px; background: #fff; }
+  .pack-pills .pack-info { margin-left: auto; align-self: center; }   /* no Scale fica a direita das pills */
+  .pack-info:hover { transform: scale(1.08); }
+  .pack-info:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+
+  .pack-lista { list-style: none; display: flex; flex-direction: column; gap: 9px; margin: 0 0 18px; }
+  .pack-lista li { position: relative; padding-left: 21px; font-weight: 400; font-size: 13.5px; line-height: 1.3;
+    color: rgba(255,255,255,0.86); }
+  /* visto de cada ponto: mascara do --visto (definido na .packs-section) */
+  .pack-lista li::before { content: ''; position: absolute; left: 0; top: 0.18em; width: 13px; height: 13px;
+    background: #fff; -webkit-mask: var(--visto) center / contain no-repeat; mask: var(--visto) center / contain no-repeat; }
+  .pack-lista li strong { font-weight: 700; color: #fff; }
+
+  /* ── botao de escolha ── */
+  /* margin-top auto: os botoes ficam alinhados no fundo de todos os cards */
+  .pack-pick { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px 0;
+    margin-top: auto;
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 100px;
+    --pk-pick-a: rgba(255,255,255,0.04); --pk-pick-b: rgba(255,255,255,0.04); --pk-pick-c: rgba(255,255,255,0.04);
+    background: linear-gradient(180deg, var(--pk-pick-a) 0%, var(--pk-pick-b) 48%, var(--pk-pick-c) 100%);
+    color: rgba(255,255,255,0.9); font-family: inherit; font-weight: 700; font-size: 13.5px; line-height: 1;
+    cursor: pointer; transition: border-color .6s ease, color .6s ease, box-shadow .6s ease,
+      --pk-pick-a .6s ease, --pk-pick-b .6s ease, --pk-pick-c .6s ease; }
+  .pack-card:hover .pack-pick { border-color: rgba(197,133,184,0.6);
+    --pk-pick-a: rgba(197,133,184,0.10); --pk-pick-b: rgba(197,133,184,0.10); --pk-pick-c: rgba(197,133,184,0.10); }
+  .pack-pick svg { width: 13px; height: 13px; opacity: 0; transform: scale(0.6);
+    transition: opacity .25s ease, transform .3s cubic-bezier(0.22,1,0.36,1); }
+  .pack-pick .rot-on { display: none; }
+
+  /* ── estado escolhido ── */
+  .pack-card.on { --pk-bg-a: rgba(158,123,182,0.20); --pk-bg-b: rgba(158,123,182,0.04); }
+  .pack-card.on::before { --pk-canto: rgba(197,133,184,1); --pk-meio: rgba(197,133,184,0.55); }
+  .pack-card.on .pack-pick { border-color: transparent; color: #fff;
+    --pk-pick-a: #c49bd8; --pk-pick-b: #a480bd; --pk-pick-c: #86609f;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+  .pack-card.on .pack-pick svg { opacity: 1; transform: scale(1); }
+  .pack-card.on .pack-pick .rot-off { display: none; }
+  .pack-card.on .pack-pick .rot-on { display: inline; }
+
+  /* ── extra (Scale) ── */
+  .pack-selo { position: absolute; top: -9px; left: 22px; z-index: 3; display: inline-flex; align-items: center;
+    padding: 4px 11px 3px; border-radius: 100px; font-weight: 700; font-size: 9.5px; letter-spacing: 0.11em;
+    text-transform: uppercase; color: #fff;
+    background: linear-gradient(180deg, #c49bd8 0%, #a480bd 48%, #86609f 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); }
+  .pack-card--extra { --pk-bg-a: rgba(255,255,255,0.035); --pk-bg-b: rgba(255,255,255,0.008);
+    background: linear-gradient(160deg, var(--pk-bg-a), var(--pk-bg-b) 60%), #08070c; }
+  .pack-card--extra::before { --pk-canto: rgba(197,133,184,0.3); --pk-meio: rgba(158,123,182,0.05); }
+  .pack-card--extra .pack-lista { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; }
+
+  /* ── resumo: a tua escolha + total + WhatsApp ── */
+  .packs-resumo { position: relative; margin-top: 34px; border-radius: 14px; padding: 24px 28px;
+    background: linear-gradient(160deg, rgba(158,123,182,0.13), rgba(158,123,182,0.02) 60%), #0b0a0f; }
+  .resumo-topo { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+  .packs-resumo::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(135deg, rgba(197,133,184,0.85) 0%, rgba(158,123,182,0.16) 32%,
+      rgba(158,123,182,0.14) 68%, rgba(197,133,184,0.8) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .resumo-esq { min-width: 0; }
+  .resumo-rot { font-weight: 700; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); margin: 0 0 10px; }
+  .resumo-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .resumo-chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: 100px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13);
+    font-weight: 600; font-size: 13px; color: rgba(255,255,255,0.9); }
+  .resumo-chip--pack { background: rgba(197,133,184,0.16); border-color: rgba(197,133,184,0.45); }
+  .resumo-chip button { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px;
+    padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,0.14); color: #fff;
+    font-family: inherit; font-size: 13px; line-height: 0.9; cursor: pointer; transition: background .2s ease; }
+  .resumo-chip button:hover { background: rgba(255,255,255,0.28); }
+  .resumo-dir { display: flex; align-items: center; gap: 24px; flex: none; }
+  .resumo-total { text-align: right; }
+  .resumo-total b { display: block; font-weight: 700; font-size: 32px; line-height: 1; letter-spacing: -0.03em;
+    padding: 0.04em 0 0.1em;
+    background: linear-gradient(180deg, #e6c3de 0%, #c585b8 52%, #9e7bb6 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .resumo-total b i { font-style: normal; font-size: 14px; font-weight: 500; }
+  .resumo-total small { display: block; margin-top: 5px; font-weight: 400; font-size: 11.5px; line-height: 1.3;
+    color: rgba(255,255,255,0.5); }
+  /* o .gx-btn antigo desta pagina ainda poe maiusculas e o brilho ::after: aqui fica o pill da home,
+     com o mesmo acerto que o hero e o CTA ja fazem */
+  .packs-resumo a.gx-btn { white-space: nowrap; text-transform: none; }
+  .packs-resumo a.gx-btn::after { display: none; }
+
+  /* ── condicoes: faixa esbatida no fundo do resumo (cada uma abre pop-up) ──
+     a faixa encosta aos rebordos do card (margens negativas = padding do resumo);
+     sem position, para o anel ::before do resumo continuar por cima */
+  .packs-selos { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 30px;
+    margin: 22px -28px -24px; padding: 14px 28px 16px; border-radius: 0 0 14px 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.34) 100%); }
+  .selo { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none;
+    cursor: pointer; text-align: left; font-family: inherit; font-weight: 500; font-size: 13px;
+    letter-spacing: -0.005em; color: rgba(255,255,255,0.5); transition: color .25s ease; }
+  .selo:hover { color: rgba(255,255,255,0.9); }
+  .selo:focus-visible { outline: 2px solid #c585b8; outline-offset: 4px; border-radius: 6px; }
+  .selo-ico { flex: none; display: grid; place-items: center; color: rgba(255,255,255,0.36);
+    transition: color .25s ease; }
+  .selo-ico svg { width: 15px; height: 15px; }
+  .selo:hover .selo-ico { color: #c585b8; }
+  .selo-txt { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+  .selo-txt b { font-weight: 500; }
+  .selo-txt span { font-size: 12px; opacity: 0.6; }
+  .selo-mais { flex: none; width: 10px; height: 10px; opacity: 0.35;
+    transition: opacity .25s ease, transform .3s cubic-bezier(0.22,1,0.36,1); }
+  .selo:hover .selo-mais { opacity: 0.8; transform: translateX(2px); }
+
+  .packs-fine { font-weight: 400; font-size: 11.5px; line-height: 1.34; color: rgba(255,255,255,0.38);
+    margin: 60px 0 0; }
+
+  /* ── pop-up (acima da nav, que esta no z-index 100) ── */
+  .lp-fundo { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 24px;
+    background: rgba(0,0,0,0.66); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  .lp-fundo.on { opacity: 1; pointer-events: all; }
+  .lp-modal { position: relative; width: min(430px, 100%); border-radius: 16px; padding: 28px 30px 26px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015) 60%), #0b0a0f;
+    transform: translateY(14px) scale(0.98); transition: transform .35s cubic-bezier(0.22,1,0.36,1); }
+  .lp-fundo.on .lp-modal { transform: none; }
+  .lp-modal::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(135deg, rgba(197,133,184,0.7) 0%, rgba(158,123,182,0.08) 34%,
+      rgba(158,123,182,0.07) 66%, rgba(197,133,184,0.7) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; }
+  .lp-ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; margin-bottom: 16px;
+    background: rgba(197,133,184,0.16); color: #c585b8; }
+  .lp-ico svg { width: 22px; height: 22px; }
+  .lp-modal h3 { font-weight: 500; font-size: 25px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 10px;
+    background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; }
+  .lp-modal p { font-weight: 400; font-size: 14.5px; line-height: 1.4; color: rgba(255,255,255,0.78); margin: 0; }
+  .lp-linhas { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 18px 0 0;
+    padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.09); }
+  .lp-linhas li { display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    font-weight: 400; font-size: 14px; color: rgba(255,255,255,0.7); }
+  .lp-linhas li b { font-weight: 700; color: #c585b8; }
+  .lp-fechar { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 30px; height: 30px;
+    padding: 0; border: 1px solid rgba(255,255,255,0.16); border-radius: 50%; background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.75); font-family: inherit; font-size: 16px; line-height: 0.9; cursor: pointer;
+    transition: background .2s ease, border-color .2s ease; }
+  .lp-fechar:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 1199px) {
+    /* os cards sangram ate a borda num carrossel, como os reels */
+    .packs-grid { display: flex; flex-wrap: nowrap; gap: 12px;
+      width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+      padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2));
+      padding-right: max(var(--gutter), calc((100vw - var(--card-mob)) / 2));
+      padding-top: 10px; padding-bottom: 16px;
+      scroll-padding-left: max(var(--gutter), calc((100vw - var(--card-mob)) / 2));
+      overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .packs-grid::-webkit-scrollbar { display: none; }
+    .packs-grid .pack-card { flex: 0 0 min(var(--card-mob), calc(100vw - 2 * var(--gutter)));
+      scroll-snap-align: start; padding: 26px 24px 22px; }
+    .pack-card:hover { transform: none; }
+    .pack-card--extra .pack-lista { grid-template-columns: 1fr; }
+
+    .packs-resumo, .packs-fine {
+      width: min(var(--card-mob), 100%); max-width: min(var(--card-mob), 100%);
+      margin-left: auto; margin-right: auto; }
+    .packs-resumo { padding: 22px 22px 20px; }
+    .resumo-topo { flex-direction: column; align-items: stretch; gap: 18px; }
+    .resumo-dir { flex-direction: column; align-items: stretch; gap: 16px; }
+    .resumo-total { text-align: left; }
+    .packs-resumo a.gx-btn { display: flex; width: 100%; padding: 14px 0; }
+
+    /* no telemovel a faixa vira uma lista curta, uma condicao por linha */
+    .packs-selos { flex-direction: column; align-items: stretch; gap: 0;
+      margin: 20px -22px -20px; padding: 2px 22px 4px; }
+    .packs-fine { margin-top: 16px; }
+    .selo { padding: 12px 0; }
+    .selo + .selo { border-top: 1px solid rgba(255,255,255,0.05); }
+    .selo-txt { flex: 1; white-space: normal; }
+    .selo-txt span { display: none; }   /* no telemovel so o essencial cabe */
+    .lp-modal { padding: 26px 24px 24px; }
+  }
 </style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -1529,6 +1832,380 @@
     </div>
   </div>
 </section>
+
+<hr class="divider">
+
+<!-- PACKS DE GESTAO (vindo do _mockup-packs.html): depois dos resultados, antes da FAQ -->
+<section class="section packs-section" id="packs">
+
+  <!-- glifos usados por <use> nos cards e nos pop-ups -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="g-ig" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.9" d="M7.2 2.8h9.6a4.4 4.4 0 0 1 4.4 4.4v9.6a4.4 4.4 0 0 1-4.4 4.4H7.2a4.4 4.4 0 0 1-4.4-4.4V7.2a4.4 4.4 0 0 1 4.4-4.4Z"/>
+      <circle fill="none" stroke="currentColor" stroke-width="1.9" cx="12" cy="12" r="3.9"/>
+      <circle fill="currentColor" cx="17.2" cy="6.8" r="1.25"/>
+    </symbol>
+    <symbol id="g-fb" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/>
+    </symbol>
+    <symbol id="g-tt" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.28 8.28 0 0 0 4.83 1.54V7a4.86 4.86 0 0 1-1.06-.31Z"/>
+    </symbol>
+    <symbol id="g-dev" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="m8.4 8.2-4.3 3.8 4.3 3.8M15.6 8.2l4.3 3.8-4.3 3.8M13.4 5.6l-2.8 12.8"/>
+    </symbol>
+    <symbol id="g-google" viewBox="0 0 24 24">
+      <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.46a5.52 5.52 0 0 1-2.4 3.62v3.01h3.88c2.27-2.09 3.58-5.17 3.58-8.82Z"/>
+      <path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.94-2.91l-3.88-3.01c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.95H1.26v3.11A12 12 0 0 0 12 24Z"/>
+      <path fill="#FBBC05" d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56V6.61H1.26a12 12 0 0 0 0 10.78l4.01-3.11Z"/>
+      <path fill="#EA4335" d="M12 4.77c1.76 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.26 6.61l4.01 3.11C6.22 6.88 8.87 4.77 12 4.77Z"/>
+    </symbol>
+    <symbol id="g-meta" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M2.6 12c0-3.4 1.7-5.9 4-5.9 1.7 0 2.9 1.2 4.1 3.4l2.9 5.2c1.2 2.1 2.4 3.3 4 3.3 2.3 0 3.9-2.5 3.9-5.9s-1.6-5.9-3.9-5.9c-1.6 0-2.8 1.2-4 3.3l-2.9 5.2c-1.2 2.2-2.4 3.4-4.1 3.4-2.3 0-4-2.5-4-5.9Z"/>
+    </symbol>
+    <symbol id="g-experiencia" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M12 2.6l2.35 5.1 5.55.66-4.1 3.8 1.1 5.48L12 15.02l-4.9 2.62 1.1-5.48-4.1-3.8 5.55-.66L12 2.6Z"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M6.4 21h11.2"/>
+    </symbol>
+    <symbol id="g-prazo" viewBox="0 0 24 24">
+      <rect fill="none" stroke="currentColor" stroke-width="1.9" x="3" y="4.8" width="18" height="16.2" rx="3"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M3 10h18M8 2.6v4M16 2.6v4"/>
+      <path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8.6 15.4 2.1 2.1 4.1-4.1"/>
+    </symbol>
+    <symbol id="g-desconto" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M11.4 2.7H20a1.3 1.3 0 0 1 1.3 1.3v8.6a1.3 1.3 0 0 1-.38.92l-8.1 8.1a1.3 1.3 0 0 1-1.84 0l-8.6-8.6a1.3 1.3 0 0 1 0-1.84l8.1-8.1a1.3 1.3 0 0 1 .92-.38Z"/>
+      <circle fill="currentColor" cx="16.6" cy="7.4" r="1.5"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="m8.2 15.8 5.2-5.2"/>
+      <circle fill="none" stroke="currentColor" stroke-width="1.7" cx="8.7" cy="11.1" r="1.15"/>
+      <circle fill="none" stroke="currentColor" stroke-width="1.7" cx="12.9" cy="15.3" r="1.15"/>
+    </symbol>
+    <symbol id="g-visto" viewBox="0 0 24 24">
+      <polyline fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="g-mais" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" d="M12 5v14M5 12h14"/>
+    </symbol>
+    <symbol id="g-foto" viewBox="0 0 24 24">
+      <rect fill="none" stroke="currentColor" stroke-width="1.9" x="3" y="4.5" width="18" height="15" rx="2.6"/>
+      <circle fill="none" stroke="currentColor" stroke-width="1.9" cx="9" cy="10" r="1.8"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="m3.4 17.2 5-4.6 3.6 3.2 3.4-3 5.2 4.6"/>
+    </symbol>
+    <symbol id="g-subir" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="m3 16.8 6-6 4 4 8-8M15 6.8h6v6"/>
+    </symbol>
+    <symbol id="g-video" viewBox="0 0 24 24">
+      <rect fill="none" stroke="currentColor" stroke-width="1.9" x="2.6" y="6.2" width="13.4" height="11.6" rx="2.6"/>
+      <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="m16 10.3 5.4-3.1v9.6L16 13.7Z"/>
+    </symbol>
+    <symbol id="g-seta" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/>
+    </symbol>
+  </svg>
+
+  <h2 class="section-title">Escolhe o <span>pack</span> que trabalha por ti</h2>
+  <p class="section-sub">Escolhe o teu e falamos com o plano já em cima da mesa. Precisas de outra coisa? Fazemos à medida.</p>
+
+  <div class="packs-grid" role="group" aria-label="Packs de gestão de redes e extras">
+
+    <!-- 01 · Essencial -->
+    <article class="pack-card" data-pack="essencial" data-nome="Essencial" data-preco="550" role="radio" aria-checked="false" tabindex="0">
+      <p class="pack-eyebrow">Pack 01</p>
+      <h3 class="pack-nome">Essencial</h3>
+      <p class="pack-preco">550 €<span>/mês</span></p>
+      <p class="pack-frase">Para quem já tem fotografias do negócio e precisa de estar presente com consistência.</p>
+      <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="essencial" aria-label="Detalhes do Essencial"><span></span><span></span><span></span></button></p>
+      <p class="pack-redes-nota">2 redes à tua escolha</p>
+      <ul class="pack-lista">
+        <li><strong>10 publicações</strong> por mês e 2 Reels</li>
+        <li>Copywriting, design e agendamento</li>
+        <li>Calendário aprovado por ti antes de sair</li>
+        <li>Relatório mensal</li>
+      </ul>
+      <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
+    </article>
+
+    <!-- 02 · Pro -->
+    <article class="pack-card" data-pack="pro" data-nome="Pro" data-preco="750" role="radio" aria-checked="false" tabindex="0">
+      <p class="pack-eyebrow">Pack 02</p>
+      <h3 class="pack-nome">Pro</h3>
+      <p class="pack-preco">750 €<span>/mês</span></p>
+      <p class="pack-frase">Vamos ao teu espaço filmar. O conteúdo passa a ser mesmo teu.</p>
+      <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="pro" aria-label="Detalhes da produção do Pro"><span></span><span></span><span></span></button></p>
+      <p class="pack-redes-nota">2 redes à tua escolha</p>
+      <ul class="pack-lista">
+        <li><strong>8 horas de produção</strong></li>
+        <li>10 publicações por mês e 3 Reels</li>
+        <li>Copywriting, design e agendamento</li>
+        <li>Relatório e reunião mensais</li>
+      </ul>
+      <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
+    </article>
+
+    <!-- 03 · Performance -->
+    <article class="pack-card" data-pack="performance" data-nome="Performance" data-preco="900" role="radio" aria-checked="false" tabindex="0">
+      <p class="pack-eyebrow">Pack 03</p>
+      <h3 class="pack-nome">Performance</h3>
+      <p class="pack-preco">900 €<span>/mês</span></p>
+      <p class="pack-frase">O dobro das horas no teu espaço, para nunca faltar material fresco.</p>
+      <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span><span><svg><use href="#g-tt"/></svg></span></span>3 redes</span><button type="button" class="pack-info" data-lp="performance" aria-label="Detalhes da produção do Performance"><span></span><span></span><span></span></button></p>
+      <p class="pack-redes-nota">3 redes à tua escolha</p>
+      <ul class="pack-lista">
+        <li><strong>16 horas de produção</strong></li>
+        <li>12 publicações por mês e 4 Reels</li>
+        <li>Copywriting, design e agendamento</li>
+        <li>Relatório e reunião mensais</li>
+      </ul>
+      <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
+    </article>
+
+    <!-- 04 · Scale (extra) -->
+    <article class="pack-card pack-card--extra" data-extra="scale" data-nome="Scale" data-preco="" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="pack-selo">Extra</span>
+      <p class="pack-eyebrow">Junta a qualquer pack</p>
+      <h3 class="pack-nome">Scale</h3>
+      <p class="pack-preco pack-preco--sob">Sob orçamento</p>
+      <p class="pack-frase">Anúncios, funil de vendas, mais do que uma marca? Desenhamos ao teu caso.</p>
+      <div class="pack-pills">
+        <span class="pack-pill"><span class="pack-logo pack-logo--meta"><svg><use href="#g-meta"/></svg></span>Meta Ads</span>
+        <span class="pack-pill"><span class="pack-logo"><svg><use href="#g-google"/></svg></span>Google Ads</span>
+        <span class="pack-pill"><span class="pack-logo pack-logo--dev"><svg><use href="#g-dev"/></svg></span>Landing page</span>
+        <button type="button" class="pack-info" data-lp="scale" aria-label="Detalhes do Scale"><span></span><span></span><span></span></button>
+      </div>
+      <ul class="pack-lista">
+        <li><strong>Campanhas de anúncios</strong>, com captação só para elas</li>
+        <li>Funil de vendas com rastreio de conversões</li>
+        <li>Estratégia própria por marca</li>
+      </ul>
+      <button type="button" class="pack-pick"><svg><use href="#g-mais"/></svg><span class="rot-off">Adicionar</span><span class="rot-on">Adicionado</span></button>
+    </article>
+
+  </div>
+
+  <div class="packs-resumo">
+    <div class="resumo-topo">
+      <div class="resumo-esq">
+        <p class="resumo-rot">A tua escolha</p>
+        <div class="resumo-chips" id="resumoChips"></div>
+      </div>
+      <div class="resumo-dir">
+        <div class="resumo-total">
+          <b id="resumoVal">750 €<i>/mês</i></b>
+          <small id="resumoNota">Semestre à cabeça: 4.050 €</small>
+        </div>
+        <a class="gx-btn gx-btn--purple" id="resumoCta" href="https://wa.me/351910185220" target="_blank" rel="noopener"><span class="gx-btn-inner">Falar connosco</span></a>
+      </div>
+    </div>
+
+    <div class="packs-selos">
+      <button type="button" class="selo" data-lp="exp">
+        <span class="selo-ico"><svg><use href="#g-experiencia"/></svg></span>
+        <span class="selo-txt"><b>1.º mês à experiência</b><span>sem compromisso</span></span>
+        <svg class="selo-mais"><use href="#g-seta"/></svg>
+      </button>
+      <button type="button" class="selo" data-lp="praz">
+        <span class="selo-ico"><svg><use href="#g-prazo"/></svg></span>
+        <span class="selo-txt"><b>Contratos de 6 meses</b><span>depois do 1.º</span></span>
+        <svg class="selo-mais"><use href="#g-seta"/></svg>
+      </button>
+      <button type="button" class="selo" data-lp="desc">
+        <span class="selo-ico"><svg><use href="#g-desconto"/></svg></span>
+        <span class="selo-txt"><b>Semestre à cabeça: menos 10%</b><span>poupas até 540 €</span></span>
+        <svg class="selo-mais"><use href="#g-seta"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <p class="packs-fine">Valores sem IVA. Produções especiais e horas além das incluídas são orçamentadas caso a caso.</p>
+</section>
+
+<div class="lp-fundo" id="lpFundo" role="dialog" aria-modal="true" aria-labelledby="lpTitulo">
+  <div class="lp-modal">
+    <button type="button" class="lp-fechar" id="lpFechar" aria-label="Fechar">×</button>
+    <span class="lp-ico" id="lpIco"></span>
+    <h3 id="lpTitulo"></h3>
+    <p id="lpTexto"></p>
+    <ul class="lp-linhas" id="lpLinhas"></ul>
+  </div>
+</div>
+
+<script>
+// Packs: escolha de um pack (+ extras), total, e o link do WhatsApp com a escolha
+(function(){
+  var packs  = [].slice.call(document.querySelectorAll('[data-pack]'));
+  var extras = [].slice.call(document.querySelectorAll('[data-extra]'));
+  var chips  = document.getElementById('resumoChips');
+  var val    = document.getElementById('resumoVal');
+  var nota   = document.getElementById('resumoNota');
+  var cta    = document.getElementById('resumoCta');
+  var ZAP    = '351910185220';
+
+  // separador de milhares a mao: o toLocaleString nem sempre aplica o ponto
+  function euros(n){ var t = String(n);
+    return (t.length > 3 ? t.slice(0, t.length - 3) + '.' + t.slice(-3) : t) + ' €'; }
+
+  // a atribuicao da lead (ref: utm...) vem do meta-pixel.js, que reescreve todos os links
+  // wa.me no arranque com uma mensagem generica; aqui junta-se a ref a mensagem do pack
+  function refAtrib(){
+    try {
+      var m = decodeURIComponent(window.whatsappHref ? window.whatsappHref() : '').match(/\(ref: [^)]*\)/);
+      return m ? ' ' + m[0] : '';
+    } catch (e) { return ''; }
+  }
+
+  function linkZap(){
+    var pack = packs.filter(function(c){ return c.classList.contains('on'); })[0];
+    var juntos = extras.filter(function(c){ return c.classList.contains('on'); });
+    var msg = 'Olá! Vim do site da Differentt. ';
+    msg += pack ? 'Interessa-me o pack ' + pack.dataset.nome + '.' : 'Queria perceber que pack me serve melhor.';
+    if (juntos.length) {
+      var nomes = juntos.map(function(e){ return e.dataset.nome; });
+      var lista = nomes.length > 1 ? nomes.slice(0, -1).join(', ') + ' e ' + nomes[nomes.length - 1] : nomes[0];
+      msg += (nomes.length > 1 ? ' Com os extras ' : ' Com o extra ') + lista + '.';
+    }
+    return 'https://wa.me/' + ZAP + '?text=' + encodeURIComponent(msg + refAtrib());
+  }
+
+  function pintar(){
+    var pack = packs.filter(function(c){ return c.classList.contains('on'); })[0];
+    var juntos = extras.filter(function(c){ return c.classList.contains('on'); });
+
+    chips.innerHTML = '';
+    if (pack) chips.appendChild(fazChip(pack, 'resumo-chip--pack'));
+    juntos.forEach(function(e){ chips.appendChild(fazChip(e, '')); });
+    if (!pack && !juntos.length) {
+      var vazio = document.createElement('span');
+      vazio.className = 'resumo-chip';
+      vazio.textContent = 'Ainda não escolheste nada';
+      chips.appendChild(vazio);
+    }
+
+    var preco = pack ? parseInt(pack.dataset.preco || '', 10) : NaN;
+    if (!pack) {
+      val.innerHTML = 'Escolhe um pack';
+      val.style.fontSize = '22px';
+      nota.textContent = 'Os extras juntam-se a qualquer um deles.';
+    } else if (isNaN(preco)) {
+      val.innerHTML = 'Sob orçamento';
+      val.style.fontSize = '24px';
+      nota.textContent = 'Falamos contigo e desenhamos ao teu caso.';
+    } else {
+      val.innerHTML = euros(preco) + '<i>/mês</i>';
+      val.style.fontSize = '';
+      nota.textContent = 'Semestre à cabeça: ' + euros(Math.round(preco * 6 * 0.9))
+        + (juntos.length ? '  ·  extras sob consulta' : '');
+    }
+    cta.href = linkZap();
+  }
+
+  function fazChip(card, extraClasse){
+    var s = document.createElement('span');
+    s.className = 'resumo-chip ' + extraClasse;
+    s.appendChild(document.createTextNode(card.dataset.nome));
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = '×';
+    b.setAttribute('aria-label', 'Retirar ' + card.dataset.nome);
+    b.addEventListener('click', function(ev){ ev.stopPropagation(); marcar(card, false); pintar(); });
+    s.appendChild(b);
+    return s;
+  }
+
+  function marcar(card, ligado){
+    card.classList.toggle('on', ligado);
+    card.setAttribute('aria-checked', ligado ? 'true' : 'false');
+  }
+
+  packs.forEach(function(card){
+    function escolher(){ packs.forEach(function(o){ marcar(o, o === card); }); pintar(); }
+    card.addEventListener('click', escolher);
+    card.addEventListener('keydown', function(e){
+      if (e.target !== card) return;   // teclas no circulo de info nao escolhem o pack
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); escolher(); }
+    });
+  });
+
+  extras.forEach(function(card){
+    function alternar(){ marcar(card, !card.classList.contains('on')); pintar(); }
+    card.addEventListener('click', alternar);
+    card.addEventListener('keydown', function(e){
+      if (e.target !== card) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); alternar(); }
+    });
+  });
+
+  // o link final monta-se no clique: assim ganha sempre ao reescrever do meta-pixel.js;
+  // e repoe-se depois dele no arranque, para o link visivel (ao manter premido) ja levar o pack
+  cta.addEventListener('click', function(){ cta.href = linkZap(); });
+  document.addEventListener('DOMContentLoaded', function(){ cta.href = linkZap(); });
+
+  // o Pro comeca escolhido
+  marcar(packs[1], true);
+  pintar();
+})();
+
+// Pop-ups dos packs e das condicoes
+(function(){
+  var CONTEUDO = {
+    exp: { ico: 'g-experiencia', titulo: 'Primeiro mês à experiência',
+      texto: 'Experimenta um mês sem compromisso, para veres como trabalhamos. Sem contrato e sem fidelização: se não for para ti, fica por aqui.',
+      linhas: [] },
+    praz: { ico: 'g-prazo', titulo: 'Depois, contratos de 6 meses',
+      texto: 'É o tempo mínimo para os resultados aparecerem e poderem ser medidos. Nas redes, os primeiros dois meses são de construção; é do terceiro em diante que se vê a diferença.',
+      linhas: [] },
+    desc: { ico: 'g-desconto', titulo: 'Pagas o semestre à cabeça? Menos 10%',
+      texto: 'Adiantas os 6 meses e o valor total desce 10%. Fica assim:',
+      linhas: [['Essencial', '2.970 €', 'poupas 330 €'], ['Pro', '4.050 €', 'poupas 450 €'], ['Performance', '4.860 €', 'poupas 540 €']] },
+    essencial: { ico: 'g-foto', titulo: 'O que inclui o Essencial',
+      texto: 'Trabalhamos com as fotografias e vídeos que já tens do negócio. Tratamos do resto: textos, design e agendamento, com o calendário aprovado por ti antes de sair.',
+      linhas: [['Conteúdo por mês', '10 posts e 2 Reels'], ['Redes', '2 à tua escolha'], ['Produção no teu espaço', 'não incluída'], ['Relatório', 'mensal']] },
+    pro: { ico: 'g-video', titulo: 'A produção do Pro',
+      texto: 'Vamos ao teu espaço filmar e fotografar. As 8 horas repartem-se por 2 dias, marcados contigo. Horas extra ou deslocações além dos 30 km são orçamentadas à parte.',
+      linhas: [['Horas de produção', '8 h'], ['Dias no teu espaço', '2 dias'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '10 posts e 3 Reels']] },
+    performance: { ico: 'g-video', titulo: 'A produção do Performance',
+      texto: 'O dobro das horas no teu espaço: 16 horas repartidas por 3 dias, marcados contigo. Horas extra ou deslocações além dos 30 km são orçamentadas à parte.',
+      linhas: [['Horas de produção', '16 h'], ['Dias no teu espaço', '3 dias'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '12 posts e 4 Reels']] },
+    scale: { ico: 'g-subir', titulo: 'Como funciona o Scale',
+      texto: 'Junta-se a qualquer pack. Percebemos o teu objetivo e desenhamos a proposta à medida: anúncios, funil de vendas ou estratégia para mais do que uma marca.',
+      linhas: [['Anúncios', 'Meta e Google Ads'], ['Captação', 'só para os anúncios'], ['Funil de vendas', 'com rastreio'], ['Preço', 'sob orçamento']] }
+  };
+  var fundo  = document.getElementById('lpFundo');
+  var ico    = document.getElementById('lpIco');
+  var titulo = document.getElementById('lpTitulo');
+  var texto  = document.getElementById('lpTexto');
+  var linhas = document.getElementById('lpLinhas');
+  var ultimo = null;
+
+  function abrir(chave, origem){
+    var d = CONTEUDO[chave]; if (!d) return;
+    ultimo = origem;
+    ico.innerHTML = '<svg><use href="#' + d.ico + '"/></svg>';
+    titulo.textContent = d.titulo;
+    texto.textContent = d.texto;
+    linhas.innerHTML = '';
+    linhas.hidden = !d.linhas.length;
+    d.linhas.forEach(function(l){
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + l[0] + '</span><span><b>' + l[1] + '</b>' + (l[2] ? ' · ' + l[2] : '') + '</span>';
+      linhas.appendChild(li);
+    });
+    fundo.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lpFechar').focus();
+  }
+  function fechar(){
+    fundo.classList.remove('on');
+    document.body.style.overflow = '';
+    if (ultimo) ultimo.focus();
+  }
+
+  [].forEach.call(document.querySelectorAll('[data-lp]'), function(b){
+    // stopPropagation: o circulo de info esta dentro do card e nao o deve escolher
+    b.addEventListener('click', function(e){ e.stopPropagation(); abrir(b.dataset.lp, b); });
+  });
+  document.getElementById('lpFechar').addEventListener('click', fechar);
+  fundo.addEventListener('click', function(e){ if (e.target === fundo) fechar(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && fundo.classList.contains('on')) fechar(); });
+})();
+</script>
 
 <hr class="divider">
 
