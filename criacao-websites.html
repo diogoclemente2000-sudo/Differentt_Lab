@@ -1137,6 +1137,7 @@
 <!-- PORTFOLIO — projetos web/software (layout dos reels da home) -->
 <section class="section">
   <h2 class="section-title">Projetos</h2>
+  <p class="section-sub-nova">Websites e apps que desenhámos e desenvolvemos para os nossos clientes. Abre um para veres o projeto completo.</p>
   <div class="pf-grid">
     <a class="reel-card" href="./projeto?p=zeetelecom">
       <video class="reel-card-vid" muted loop autoplay playsinline webkit-playsinline preload="metadata"
@@ -1166,6 +1167,26 @@
       <div class="reel-card-info"><span class="reel-card-cat">Website</span><span class="reel-card-name">Villas Gourmet</span></div>
     </a>
   </div>
+  <script>
+  (function(){
+    // no telemovel o carrossel abre com o segundo projeto ao centro (o 1.o e o 3.o
+    // espreitam dos lados); so mexe no scroll horizontal da faixa, nunca na pagina
+    var grelha = document.querySelector('.pf-grid');
+    if(!grelha || !window.matchMedia('(max-width: 1199px)').matches) return;
+    var mexeu = false;
+    ['pointerdown', 'touchstart', 'wheel'].forEach(function(ev){
+      grelha.addEventListener(ev, function(){ mexeu = true; }, { passive: true, once: true });
+    });
+    function centrar(){
+      var c = grelha.children[1]; if(!c || mexeu) return;
+      grelha.scrollLeft += c.getBoundingClientRect().left - grelha.getBoundingClientRect().left
+        - (grelha.clientWidth - c.offsetWidth) / 2;
+    }
+    centrar();
+    // volta a acertar depois das letras e dos videos, se a pessoa ainda nao mexeu
+    window.addEventListener('load', centrar, { once: true });
+  })();
+  </script>
   <script>
   // Escape fecha o modal aberto
   document.addEventListener('keydown', function(e){
@@ -1212,8 +1233,8 @@
 <!-- SECTION: EXAMPLES -->
 <hr class="divider">
 <section class="section">
-  <h2 class="section-title">Do site ao <span>software</span><br>feito à medida</h2>
-  <p class="section-body" style="margin-bottom:32px;">Cada negócio tem necessidades diferentes: uns precisam de uma página, outros de um sistema completo. Estes são alguns dos serviços que entregamos.</p>
+  <h2 class="section-title">Da landing page<br>ao <span>software</span> de gestão</h2>
+  <p class="section-body" style="margin-bottom:32px;">Uma página para receber contactos, um site com várias páginas, uma loja online ou um sistema para gerir clientes. Fazemos os quatro e dizemos-te qual te serve.</p>
 
   <!-- SPECIAL OFFER BANNER -->
   <div class="offer-banner" id="offer-banner">
@@ -2057,33 +2078,33 @@
       filter: blur(16px) !important; }
   .cta-card::before { background: none !important; }
   .cta-bloom { position: absolute; inset: -1px; pointer-events: none; z-index: 0; }
-  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px;
-      background: linear-gradient(var(--halo-ang), rgba(226,212,250,1) 0%, rgba(178,148,220,0.95) 6%, rgba(150,116,178,0.34) 16%, rgba(150,116,178,0) 27%, rgba(150,116,178,0) 73%, rgba(150,116,178,0.32) 84%, rgba(178,148,220,0.93) 94%, rgba(226,212,250,1) 100%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px;
+      background: linear-gradient(var(--halo-ang), rgba(226,212,250,1) 0%, rgba(178,148,220,0.95) 6%, rgba(150,116,178,0.34) 16%, rgba(150,116,178,0) 27%, rgba(150,116,178,0) 73%, rgba(150,116,178,0.32) 84%, rgba(178,148,220,0.93) 94%, rgba(226,212,250,1) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude; }
   .cta-bloom--perto { filter: blur(4px); }
   .cta-bloom--longe { filter: blur(11px); opacity: 1; }
   .cta-luz::before { filter: none !important; padding: 1px !important; z-index: 4 !important; }
   .cta-luz::after { display: none !important; }
   .cta-bloom { position: absolute; inset: -1px; pointer-events: none; z-index: 0; }
-  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px; overflow: hidden;
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  .cta-bloom i { position: absolute; inset: 0; display: block; border-radius: 13px; padding: 3px; overflow: hidden;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude; background: none; }
-  .cta-bloom b { position: absolute; left: -60%; top: -60%; width: 220%; height: 220%; display: block;
-      background: conic-gradient(from 0deg,
-        rgba(233,222,248,1) 0deg, rgba(186,158,222,0.9) 10deg, rgba(158,123,182,0.25) 28deg, rgba(158,123,182,0) 52deg,
-        rgba(158,123,182,0) 128deg, rgba(158,123,182,0.25) 152deg, rgba(186,158,222,0.9) 170deg,
-        rgba(233,222,248,1) 180deg, rgba(186,158,222,0.9) 190deg, rgba(158,123,182,0.25) 208deg, rgba(158,123,182,0) 232deg,
-        rgba(158,123,182,0) 308deg, rgba(158,123,182,0.25) 332deg, rgba(186,158,222,0.9) 350deg, rgba(233,222,248,1) 360deg);
-      /* repouso com os dois brilhos nos cantos opostos. O angulo do canto depende
-         da proporcao do card, por isso muda entre pc e mobile. */
-      --ang-rep: 300deg;
-      transform: rotate(var(--ang-rep));
+  .cta-bloom b { position: absolute; left: -60%; top: -60%; width: 220%; height: 220%; display: block;
+      background: conic-gradient(from 0deg,
+        rgba(233,222,248,1) 0deg, rgba(186,158,222,0.9) 10deg, rgba(158,123,182,0.25) 28deg, rgba(158,123,182,0) 52deg,
+        rgba(158,123,182,0) 128deg, rgba(158,123,182,0.25) 152deg, rgba(186,158,222,0.9) 170deg,
+        rgba(233,222,248,1) 180deg, rgba(186,158,222,0.9) 190deg, rgba(158,123,182,0.25) 208deg, rgba(158,123,182,0) 232deg,
+        rgba(158,123,182,0) 308deg, rgba(158,123,182,0.25) 332deg, rgba(186,158,222,0.9) 350deg, rgba(233,222,248,1) 360deg);
+      /* repouso com os dois brilhos nos cantos opostos. O angulo do canto depende
+         da proporcao do card, por isso muda entre pc e mobile. */
+      --ang-rep: 300deg;
+      transform: rotate(var(--ang-rep));
       animation: ctaGira 7.6s linear infinite; }
-  @keyframes ctaGira {
-      0%   { transform: rotate(var(--ang-rep)); animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
-      34%  { transform: rotate(calc(var(--ang-rep) + 180deg)); }
-      100% { transform: rotate(calc(var(--ang-rep) + 180deg)); }
+  @keyframes ctaGira {
+      0%   { transform: rotate(var(--ang-rep)); animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
+      34%  { transform: rotate(calc(var(--ang-rep) + 180deg)); }
+      100% { transform: rotate(calc(var(--ang-rep) + 180deg)); }
     }
   .cta-bloom--nucleo { inset: 0; z-index: 4; }
   .cta-bloom--nucleo i { border-radius: 12px; padding: 1px; }
@@ -2202,36 +2223,36 @@
         /* equipa em 2x2 dentro dos 340px */
         .tm-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
       }
-  @media (max-width: 1199px) {
-      .service-card--vetor .service-card-content { padding: 16px 26px 56px !important; }
-      .cta-card { padding: 72px 28px 68px !important; }
-      .steps-fluxo { padding: 72px 34px 78px !important; }   /* base: espaco da seta e dos pontos */
-      #reviews-section .rc { padding: 16px 18px !important; }
-      .tm-join { padding: 96px 22px 104px !important; }
+  @media (max-width: 1199px) {
+      .service-card--vetor .service-card-content { padding: 16px 26px 56px !important; }
+      .cta-card { padding: 72px 28px 68px !important; }
+      .steps-fluxo { padding: 72px 34px 78px !important; }   /* base: espaco da seta e dos pontos */
+      #reviews-section .rc { padding: 16px 18px !important; }
+      .tm-join { padding: 96px 22px 104px !important; }
     }
   @media (prefers-reduced-motion: reduce) { .cta-luz { animation: none; } }
-  @media (max-width: 1199px) {
-      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
-      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
-      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
-      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
-      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
+  @media (max-width: 1199px) {
+      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
+      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
+      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
+      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
+      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
     }
   @media (max-width: 1199px) { .cta-bloom b { --ang-rep: 319deg; } }
   @media (prefers-reduced-motion: reduce) { .cta-bloom b { animation: none; } }
-  @media (max-width: 1199px) {
-      .cta-bloom { display: none !important; }
-      .cta-card::before { display: block !important; content: '' !important; position: absolute; inset: 0;
-        border-radius: 12px; padding: 1px; z-index: 5; pointer-events: none;
-        background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%) !important;
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor; mask-composite: exclude; }
-      .cta-luz::after { display: block !important; content: '' !important; position: absolute; inset: -1px !important;
-        border-radius: 13px !important; padding: 0 !important; pointer-events: none; z-index: -1 !important;
-        background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
-                    radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%) !important;
-        -webkit-mask: none !important; mask: none !important;
-        filter: blur(1.6px) !important; }
+  @media (max-width: 1199px) {
+      .cta-bloom { display: none !important; }
+      .cta-card::before { display: block !important; content: '' !important; position: absolute; inset: 0;
+        border-radius: 12px; padding: 1px; z-index: 5; pointer-events: none;
+        background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%) !important;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude; }
+      .cta-luz::after { display: block !important; content: '' !important; position: absolute; inset: -1px !important;
+        border-radius: 13px !important; padding: 0 !important; pointer-events: none; z-index: -1 !important;
+        background: radial-gradient(17% 21% at 5% 5%, rgba(197,133,184,0.46) 0%, rgba(158,123,182,0.18) 45%, transparent 72%),
+                    radial-gradient(15% 18% at 96% 96%, rgba(197,133,184,0.2) 0%, rgba(158,123,182,0.07) 45%, transparent 70%) !important;
+        -webkit-mask: none !important; mask: none !important;
+        filter: blur(1.6px) !important; }
     }
   /* ── hero portado da home: mesmos tamanhos, entrelinha e alinhamento ── */
   .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; max-width: 1400px; width: 100%; margin: 0 auto; }
@@ -2362,14 +2383,14 @@
         .hero-content .hero-btns { justify-content: flex-start !important; margin-top: 34px !important; }
         .hero-rev { justify-content: flex-start; margin-top: 30px; }
       }
-  @media (max-width: 1199px) { .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
+  @media (max-width: 1199px) { .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
       max-width: calc(var(--card-mob) + 2 * var(--gutter)) !important; margin-left: auto !important; margin-right: auto !important; } }
-  @media (max-width: 1199px) {
-      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
-      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
-      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
-      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
-      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
+  @media (max-width: 1199px) {
+      .hero-content .home-hero-title { font-size: min(calc((100vw - 64px) * 0.1075), 39.3px) !important; }
+      .section-title, .logos-label { font-size: min(clamp(28px, 7.6vw, 46px), 32.7px) !important; }
+      .tm-name { font-size: min(clamp(25px, 7.35vw, 33px), 31.6px) !important; }
+      .steps-fluxo .st-nome { font-size: min(clamp(30px, 4.2vw, 44px), 30px) !important; }
+      .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
     }
   /* paragrafos de seccao na fonte nova: Satoshi Regular 17px, como os
      subtitulos da home (estavam em Nunito Sans 300, 16px, a 55% de branco) */
@@ -2548,14 +2569,15 @@
       margin-left: auto !important; margin-right: auto !important; }
     /* o card ciclante estica: e o equivalente ao card dos 4 Passos da home */
     .ciclo-palco .ciclo-slide { padding: 44px 48px 92px; }
+    .ciclo-palco .ciclo-dots { left: 48px; }   /* pontos alinhados com o texto do slide */
     .ciclo-desc { max-width: 52ch; }
   }
   /* CTA maior em pc: acompanha a largura dos restantes cards (1120px) em vez
      dos 620px da home, com o interior a crescer na mesma proporcao */
   @media (min-width: 1200px) {
-    .cta-luz { max-width: var(--larg-max) !important; }
-    .cta-card { padding: 66px 64px 60px !important; }
-    .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+    .cta-luz { max-width: calc(var(--larg-max) * 0.9) !important; }   /* 90% da coluna: quase encosta as margens, fixo ai */
+    .cta-card { padding: 52px 48px 48px !important; }
+    .cta-section .cta-card .cta-title { font-size: clamp(31px, 2.9vw, 42px) !important; max-width: 18ch; }
     .cta-card .cta-sub { font-size: 18px; }
   }
   /* O bloom parte no CTA largo: a luz e um retangulo a rodar e, para cobrir o
@@ -2768,7 +2790,7 @@
      empurrado para a direita pelo space-between da barra */
   .offer-banner { flex-wrap: wrap; justify-content: flex-start !important; row-gap: 8px !important; }
   .offer-left { flex: 1 1 100%; }
-  .offer-right { flex: 0 0 auto; margin-left: auto; margin-right: 0; }
+  .offer-right { flex: 0 0 auto; margin-left: 0; margin-right: 0; }
   .offer-timer-label { font-size: 9.5px !important; letter-spacing: .12em !important;
     text-transform: uppercase !important; }
   .offer-timer { font-size: 13.5px !important; }
@@ -2854,6 +2876,31 @@
     background: rgba(8,6,11,0.65) !important; transform: scale(1.06) !important; outline: none; }
   .ciclo-seg:active { transform: scale(0.96) !important; }
   .ciclo-seg:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+  /* a FAQ segue a mesma regra do card do CTA: 90% da coluna, centrada e fixa
+     ai em pc (nao estica ate a margem) */
+  @media (min-width: 1200px) {
+    .faq-list { width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* cabecalho da FAQ centrado sobre a lista, e a pergunta maior com a linha a
+     quebrar mais tarde (26ch era curto de mais para o card a 1008px) */
+  /* nestas paginas a FAQ vive num <section class="section"> simples, por isso
+     o alvo e a seccao que contem a lista */
+  section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+  .faq-section .section-title, .faq-header .section-title,
+  .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+    text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  section:has(.faq-list) .section-sub, .faq-section .section-sub, .faq-header .section-sub, .faq-intro { max-width: 62ch !important; }
+  @media (min-width: 1200px) {
+    section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+    .faq-section .section-title, .faq-header .section-title,
+    .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+      width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important; }
+    .faq-question span:not(.faq-num) { font-size: 23px !important; max-width: 62ch !important; }
+  }
+  @media (max-width: 1199px) {
+    .faq-question span:not(.faq-num) { font-size: 17px !important; max-width: 34ch !important; }
+  }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>

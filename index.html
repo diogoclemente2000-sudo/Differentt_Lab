@@ -272,7 +272,8 @@
     .services-esfera { position: absolute; left: 50%; top: 200px; transform: translateX(-50%); width: 165%; max-width: none; opacity: 0.5; pointer-events: none; z-index: 0; user-select: none; }
     #services-section > :not(.services-esfera) { position: relative; z-index: 1; }
     @media (max-width: 1199px) { .services-esfera { width: 240%; } }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 365px); justify-content: center; gap: 12px; max-width: var(--larg-max); margin-inline: auto; }
+    /* auto-fit: as colunas vazias colapsam, por isso 2 ou 3 cards ficam sempre centrados */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, 365px); justify-content: center; gap: 12px; max-width: var(--larg-max); margin-inline: auto; }
     @media (max-width: 1199px) { .services-3d-bg { width: 180vw !important; max-width: none !important; } }
     @media (max-width: 1199px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
     .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 12px; background: transparent; border: 1.5px solid rgba(255,255,255,0.24); isolation: isolate; }
@@ -1011,7 +1012,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.09) 42%, rgba(255,255,255,0) 88%);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude;
-      transition: background 0.45s ease; }
+      transition: background 1.1s cubic-bezier(0.33, 1, 0.68, 1); }
     .tm-card:hover::after, .tm-card.on::after { background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.12) 42%, rgba(255,255,255,0) 88%); }
   </style>
   <script src="/meta-pixel.js"></script>
@@ -1206,7 +1207,7 @@
   <!-- content -->
   <div style="position:relative;z-index:1;">
   <h2 class="section-title" id="services-title">Conheça os serviços</h2>
-  <p class="section-sub" id="services-subtitle">Cobrimos toda a parte digital do seu negócio, desde branding e criação de websites até gestão de redes sociais.</p>
+  <p class="section-sub" id="services-subtitle">Cobrimos toda a parte digital do seu negócio, desde branding e criação de websites até gestão de redes sociais.<span class="so-pc"> Uma só equipa, um só interlocutor e a mesma linguagem em cada ponto de contacto com o cliente.</span></p>
 
   <div class="services-grid">
     <a class="service-card service-card--vetor service-card--web" href="criacao-websites" style="text-decoration:none;">
@@ -1296,6 +1297,9 @@
         <p class="service-desc">Estratégia, conteúdos e gestão diária para fazer a tua marca crescer nas redes.</p>
       </div>
     </a>
+    <!-- Branding & comunicacao escondido por agora (pedido do Diogo, 2026-09-11).
+         Para voltar a mostrar: tirar o <template> e o </template> a volta do card. -->
+    <template id="card-branding">
     <a class="service-card service-card--vetor service-card--brand" href="portfolio?filter=branding" style="text-decoration:none;">
       <div class="service-card-photo">
         <div class="service-card-bg service-card-bg--svg"><svg viewBox="0 0 860 660" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
@@ -1341,6 +1345,7 @@
         <p class="service-desc">Identidade visual completa, do logótipo às aplicações que dão cara à tua marca.</p>
       </div>
     </a>
+    </template>
   </div>
   </div>
 
@@ -1483,7 +1488,7 @@
   </style>
   <div class="rp-head">
     <h2 class="section-title">Os nossos clientes</h2>
-    <p class="rp-sub">Pessoas e marcas que cresceram connosco, o impacto real das nossas parcerias.</p>
+    <p class="rp-sub">Pessoas e marcas que cresceram connosco, o impacto real das nossas parcerias.<span class="so-pc"> Clínicas, lojas e serviços locais que passaram a ser encontrados, reconhecidos e escolhidos.</span></p>
   </div>
   <div class="rp-acc" id="rpAcc" aria-label="Testemunhos em vídeo"></div>
 </section>
@@ -1683,7 +1688,7 @@
 <!-- 4 STEPS -->
 <section class="steps-section">
   <h2 class="section-title">4 Passos para o Sucesso</h2>
-  <p class="section-sub">Entenda o nosso workflow.</p>
+  <p class="section-sub">Entenda o nosso workflow.<span class="so-pc"> Um processo estruturado, do primeiro contacto à entrega final, com etapas e prazos acordados desde o início.</span></p>
 
   <div class="steps-palco" id="stepsPalco">
     <svg class="steps-argo" viewBox="0 0 492 492" aria-hidden="true">
@@ -1869,7 +1874,7 @@
 <!-- PORTFOLIO REELS -->
 <section id="portfolio-reels-section" style="position:relative; padding: 180px var(--gutter);">
   <h2 class="section-title">Portfólio</h2>
-  <p class="section-sub" id="reels-subtitle">Trabalhos da nossa agência</p>
+  <p class="section-sub" id="reels-subtitle">Projetos para PMEs que querem profissionalizar a sua marca<span class="so-pc">:<br>websites, identidade visual e conteúdo, desenvolvidos à medida de cada negócio.</span></p>
 
   <div class="reels-grid" id="reelsGrid">
     <div class="reel-card" data-project="evo-clinic" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/evo-reels-web.mp4">
@@ -2016,7 +2021,7 @@
 <!-- TEAM SECTION -->
 <section class="team-section">
   <h2 class="section-title">Conheça a equipa</h2>
-  <p class="team-sub" id="team-label">Somos viciados em melhorar performance e atingir resultados.</p>
+  <p class="team-sub" id="team-label">Somos viciados em melhorar performance e atingir resultados.<span class="so-pc"><br>Somos poucos, próximos, e acompanhamos cada projeto do rascunho ao lançamento.</span></p>
 
   <div class="tm-grid">
     <div class="tm-card">
@@ -2785,9 +2790,9 @@
   /* CTA maior em pc: acompanha a largura dos restantes cards (--larg-max) em vez
      dos 620px, com o interior a crescer na mesma proporcao */
   @media (min-width: 1200px) {
-    .cta-luz { max-width: var(--larg-max) !important; }
-    .cta-card { padding: 66px 64px 60px !important; }
-    .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+    .cta-luz { max-width: calc(var(--larg-max) * 0.9) !important; }   /* 90% da coluna: quase encosta as margens, fixo ai */
+    .cta-card { padding: 52px 48px 48px !important; }
+    .cta-section .cta-card .cta-title { font-size: clamp(31px, 2.9vw, 42px) !important; max-width: 18ch; }
     .cta-card .cta-sub { font-size: 18px; }
   }
   /* O bloom parte no CTA largo: a luz e um retangulo a rodar e, para cobrir o
@@ -2849,7 +2854,7 @@
      (e esse ja tem z-index 2, portanto fica por cima). */
   @media (min-width: 1200px) {
     .tm-card { clip-path: inset(0 0 0 0 round 12px); transition: border-color .45s ease, clip-path .55s cubic-bezier(.22,1,.36,1); }
-    .tm-card:hover, .tm-card.on { clip-path: inset(-120px 0 0 0 round 12px); }
+    .tm-card:hover, .tm-card.on { clip-path: inset(-120px 0 0 0 round 12px); }   /* abre so por cima */
   }
   /* ── mesmo sistema da criacao-websites em mobile ──
      Os cards do carrossel de clientes passam a ter a largura unica (davam
@@ -2903,6 +2908,50 @@
   /* logo do card 14% maior (o hover soma-se a este valor de base) */
   .swx-logo { transform: scale(1.14); }
   .service-card--web:hover .swx-logo { transform: scale(1.2); }
+  /* ── topo do card sem degrau ──
+     Como as fotos sao PNG recortado, nas zonas transparentes via-se a aresta
+     onde o fundo do card comeca. O fundo era mais claro em cima (#131315), o
+     que maximizava o degrau contra a pagina; passa a arrancar quase preto e a
+     clarear so a seguir. E o anel deixa de desenhar a aresta do topo no hover. */
+  .tm-card { background: linear-gradient(180deg, #050506 0%, #0d0d0f 22%, #0a0a0b 100%) !important; }
+  /* ── contorno branco com a cabeca a frente ──
+     O anel pintava por cima da foto e cortava a silhueta. Invertendo a ordem,
+     a pessoa (opaca) tapa o contorno onde passa por cima dele, e o contorno
+     continua visivel a volta — que e o efeito da referencia.
+     Ordem: fundo -> gradiente roxo -> anel -> foto -> sombra -> nome. */
+  @media (min-width: 1200px) {
+    .tm-card::after { z-index: 2 !important; }        /* anel, por baixo da foto */
+    .tm-recorte     { z-index: 3; }                    /* a foto passa a frente do anel */
+    .tm-shade       { z-index: 4; }
+    .tm-info        { z-index: 5; }
+    /* no hover o contorno acende a branco, uniforme */
+    .tm-card:hover::after, .tm-card.on::after {
+      background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.72) 46%,
+        rgba(255,255,255,0.4) 100%) !important; }
+  }
+  /* ── contorno: transicao suave ──
+     Interpolar dois gradientes saltava (passava a branco de uma vez). O anel
+     fica sempre com o mesmo gradiente branco e a transicao passa a ser de
+     opacidade — sobe de 34% para 100% em 1.1s. */
+  .tm-card::after {
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.72) 46%, rgba(255,255,255,0.4) 100%) !important;
+    opacity: 0.34;
+    transition: opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1) !important; }
+  .tm-card:hover::after, .tm-card.on::after { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .tm-card::after { transition: none !important; } }
+  /* no telemovel o contorno fica parado no repouso (igual a pagina Nos): o toque
+     continua a ligar a foto, o nome e o roxo, mas o anel ja nao acende a branco */
+  @media (max-width: 1199px) {
+    .tm-card::after { transition: none !important; }
+    .tm-card:hover::after, .tm-card.on::after { opacity: 0.34; }
+  }
+  /* acrescento visivel so em pc: em mobile a frase fica curta, no desktop ha
+     espaco para dar mais contexto */
+  .so-pc { display: none; }
+  @media (min-width: 1200px) {
+    .so-pc { display: inline; }
+    .section-sub, .rp-sub, .team-sub, .logos-sub { max-width: 66ch !important; }
+  }
 </style>
 
 <div id="chat-widget">

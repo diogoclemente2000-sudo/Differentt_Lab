@@ -328,6 +328,7 @@
     @media (min-width: 1200px) {
       .ciclo-palco { width: 100%; max-width: var(--larg-max); }
       .ciclo-slide { padding: 44px 48px 92px; }
+      .ciclo-dots { left: 48px; }   /* pontos alinhados com o texto do slide */
       .ciclo-desc { max-width: 52ch; }
     }
 
@@ -757,9 +758,9 @@
   .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
 }
 @media (min-width: 1200px) {
-  .cta-luz { max-width: var(--larg-max) !important; }
-  .cta-card { padding: 66px 64px 60px !important; }
-  .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+  .cta-luz { max-width: calc(var(--larg-max) * 0.9) !important; }   /* 90% da coluna: quase encosta as margens, fixo ai */
+  .cta-card { padding: 52px 48px 48px !important; }
+  .cta-section .cta-card .cta-title { font-size: clamp(31px, 2.9vw, 42px) !important; max-width: 18ch; }
   .cta-card .cta-sub { font-size: 18px; }
 }
 @media (min-width: 1200px) {
@@ -1176,6 +1177,31 @@
     background: rgba(8,6,11,0.65) !important; transform: scale(1.06) !important; outline: none; }
   .ciclo-seg:active { transform: scale(0.96) !important; }
   .ciclo-seg:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+  /* ── equipa: contorno branco com a cabeca a frente (igual a home) ──
+     O anel pintava por cima da foto e cortava a silhueta; invertida a ordem, a
+     pessoa (opaca) tapa o contorno onde passa por cima e este continua visivel
+     a volta. O fundo do card arranca quase preto para nao haver degrau contra a
+     pagina nas zonas transparentes do PNG. A transicao e de opacidade: dois
+     gradientes diferentes nao interpolam bem e o branco entrava de uma vez. */
+  .tm-card { background: linear-gradient(180deg, #050506 0%, #0d0d0f 22%, #0a0a0b 100%) !important; }
+  @media (min-width: 1200px) {
+    .tm-card::after { z-index: 2 !important; }
+    .tm-recorte     { z-index: 3; }
+    .tm-shade       { z-index: 4; }
+    .tm-info        { z-index: 5; }
+  }
+  .tm-card::after {
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.72) 46%, rgba(255,255,255,0.4) 100%) !important;
+    opacity: 0.34;
+    transition: opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1) !important; }
+  .tm-card:hover::after, .tm-card.on::after { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .tm-card::after { transition: none !important; } }
+  /* no telemovel o contorno fica parado no repouso: o toque continua a ligar
+     a foto, o nome e o roxo, mas o anel ja nao acende */
+  @media (max-width: 1199px) {
+    .tm-card::after { transition: none !important; }
+    .tm-card:hover::after, .tm-card.on::after { opacity: 0.34; }
+  }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
