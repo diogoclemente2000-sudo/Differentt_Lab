@@ -1037,7 +1037,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="home-hero-title">Transformação<br>digital</h1>
-    <p class="hero-lead">Alinhamos as tuas equipas, dados e ferramentas. Automatizamos processos e eliminamos o trabalho manual.</p>
+    <p class="hero-lead">Alinhamos equipas, dados e ferramentas. Automatizamos processos e eliminamos o trabalho manual.</p>
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-start;margin-top:48px;">
       <a href="./contactos" class="gx-btn"><span class="gx-btn-inner">Pedir Proposta</span><i class="st-anel" aria-hidden="true"></i></a>
       <a href="./portfolio" class="gx-btn gx-btn--azul"><span class="gx-btn-inner">Ver Portfólio</span></a>
@@ -1137,7 +1137,7 @@
 <!-- PORTFOLIO — projetos web/software (layout dos reels da home) -->
 <section class="section">
   <h2 class="section-title">Projetos</h2>
-  <p class="section-sub-nova">Websites e apps que desenhámos e desenvolvemos para os nossos clientes. Abre um para veres o projeto completo.</p>
+  <p class="section-sub-nova">Uma seleção de websites e aplicações desenvolvidos à medida das necessidades de cada empresa, do frontend ao backend.</p>
   <div class="pf-grid">
     <a class="reel-card" href="./projeto?p=zeetelecom">
       <video class="reel-card-vid" muted loop autoplay playsinline webkit-playsinline preload="metadata"
@@ -1233,8 +1233,8 @@
 <!-- SECTION: EXAMPLES -->
 <hr class="divider">
 <section class="section">
-  <h2 class="section-title">Da landing page<br>ao <span>software</span> de gestão</h2>
-  <p class="section-body" style="margin-bottom:32px;">Uma página para receber contactos, um site com várias páginas, uma loja online ou um sistema para gerir clientes. Fazemos os quatro e dizemos-te qual te serve.</p>
+  <h2 class="section-title">Websites, lojas<br>e <span>sistemas</span> de gestão</h2>
+  <p class="section-body" style="margin-bottom:32px;">Analisamos cada empresa e recomendamos a solução adequada: página de captação, plataforma institucional, loja online ou sistema de gestão&nbsp;comercial.</p>
 
   <!-- SPECIAL OFFER BANNER -->
   <div class="offer-banner" id="offer-banner">
@@ -1560,7 +1560,7 @@
   <div class="stats-wrap">
     <div class="stats-left">
       <h2 class="section-title">O que entregamos<br><span>em cada projeto</span></h2>
-      <p class="section-body stats-intro">Websites, plataformas e software à medida, construídos para serem rápidos, seguros e simples de usar no dia a dia.</p>
+      <p class="section-body stats-intro">Construímos sistemas próprios que concentram a informação da empresa num só lugar, organizam o trabalho das equipas e aumentam a produtividade no dia a dia.</p>
 
       <!-- destaque: barra horizontal com gradiente -->
       <div class="stat-hero">
@@ -1613,6 +1613,25 @@
     </div>
   </div>
 </section>
+<script>
+  // Em touch nao ha hover: o toque num card do infografico liga a mesma animacao
+  // (.on); tocar outra vez ou fora desliga, e so fica um ligado de cada vez
+  (function(){
+    if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    var blocos = [].slice.call(document.querySelectorAll('.ig-bloco'));
+    if (!blocos.length) return;
+    blocos.forEach(function(b){
+      b.addEventListener('click', function(){
+        var ligar = !b.classList.contains('on');
+        blocos.forEach(function(o){ o.classList.remove('on'); });
+        if (ligar) b.classList.add('on');
+      });
+    });
+    document.addEventListener('click', function(e){
+      if (!e.target.closest('.ig-bloco')) blocos.forEach(function(o){ o.classList.remove('on'); });
+    });
+  })();
+</script>
 
 <!-- SECTION 5: WHO IS IT FOR -->
 <section class="section">
@@ -2676,6 +2695,12 @@
       box-shadow: 0 18px 46px rgba(0,0,0,.6), 0 0 0 0.5px rgba(197,133,184,.26),
                   0 0 12px 0 rgba(158,123,182,.5), 0 0 24px 3px rgba(158,123,182,.2); }
   }
+  /* em touch nao ha hover: o toque liga o mesmo estado com a classe .on (JS a seguir a seccao) */
+  .ig-bloco.on .ig-tile { --k: 1.32; }
+  .ig-bloco.on .ig-tile[class*="ig-t"] { opacity: 1; }
+  .ig-bloco.on .ig-chip { scale: 1.05; border-color: rgba(197,133,184,.42);
+    box-shadow: 0 18px 46px rgba(0,0,0,.6), 0 0 0 0.5px rgba(197,133,184,.26),
+                0 0 12px 0 rgba(158,123,182,.5), 0 0 24px 3px rgba(158,123,182,.2); }
   /* ── identidade na barra de oferta e nos cards de projeto ──
      Saiem o vermelho e as fontes antigas (Nunito/Overpass); entram os roxos da
      casa, a Satoshi e o mesmo anel em gradiente a 135 graus dos cards da FAQ:
