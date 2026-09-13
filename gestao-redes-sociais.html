@@ -1657,7 +1657,7 @@
 <!-- SECTION 2: STRATEGIC MANAGEMENT -->
 <section class="section">
   <h2 class="section-title">Mais do que publicar<br><span>uma estratégia</span> com objetivo</h2>
-  <p class="section-sub">Antes do primeiro post, definimos com quem comunicas, o que queres alcançar e como medir. Depois, cada conteúdo trabalha em função disso.</p>
+  <p class="section-sub">Antes da primeira publicação, definimos público, objetivos e métricas. Cada conteúdo é pensado para cumprir um objetivo e melhorar a performance do produto ou serviço.</p>
   <div class="cards-grid">
     <div class="card">
       <div class="card-icon">
@@ -1702,7 +1702,7 @@
 <!-- SECTION 5: REELS SHOWCASE -->
 <section class="section reels-section-center">
   <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
-  <p class="section-sub">Conteúdo feito para trazer clientes, não só gostos. Mais ligações, marcações e seguidores, com resultados medidos todos os meses.</p>
+  <p class="section-sub">Conteúdo orientado para resultados de negócio: mais ligações, marcações e seguidores, com desempenho medido e estratégia reajustada todos&nbsp;os&nbsp;meses.</p>
   <div class="reels-grid" id="reelsGrid">
     <div class="reel-item">
       <div class="reel-card" data-project="aroma-boreal" data-video="./Website_videos/aroma-reels-web.mp4">
@@ -1905,14 +1905,14 @@
     </symbol>
   </svg>
 
-  <h2 class="section-title">Escolhe o <span>pack</span> que trabalha por ti</h2>
-  <p class="section-sub">Escolhe o teu e falamos com o plano já em cima da mesa. Precisas de outra coisa? Fazemos à medida.</p>
+  <h2 class="section-title">Um plano para cada <span>fase</span> do negócio</h2>
+  <p class="section-sub">Três planos mensais com âmbito, produção e valor definidos à partida. Para necessidades específicas, desenvolvemos uma proposta à medida.</p>
 
-  <div class="packs-grid" role="group" aria-label="Packs de gestão de redes e extras">
+  <div class="packs-grid" role="group" aria-label="Planos de gestão de redes e extras">
 
     <!-- 01 · Essencial -->
     <article class="pack-card" data-pack="essencial" data-nome="Essencial" data-preco="550" role="radio" aria-checked="false" tabindex="0">
-      <p class="pack-eyebrow">Pack 01</p>
+      <p class="pack-eyebrow">Plano 01</p>
       <h3 class="pack-nome">Essencial</h3>
       <p class="pack-preco">550 €<span>/mês</span></p>
       <p class="pack-frase">Para quem já tem fotografias do negócio e precisa de estar presente com consistência.</p>
@@ -1929,7 +1929,7 @@
 
     <!-- 02 · Pro -->
     <article class="pack-card" data-pack="pro" data-nome="Pro" data-preco="750" role="radio" aria-checked="false" tabindex="0">
-      <p class="pack-eyebrow">Pack 02</p>
+      <p class="pack-eyebrow">Plano 02</p>
       <h3 class="pack-nome">Pro</h3>
       <p class="pack-preco">750 €<span>/mês</span></p>
       <p class="pack-frase">Vamos ao teu espaço filmar. O conteúdo passa a ser mesmo teu.</p>
@@ -1946,7 +1946,7 @@
 
     <!-- 03 · Performance -->
     <article class="pack-card" data-pack="performance" data-nome="Performance" data-preco="900" role="radio" aria-checked="false" tabindex="0">
-      <p class="pack-eyebrow">Pack 03</p>
+      <p class="pack-eyebrow">Plano 03</p>
       <h3 class="pack-nome">Performance</h3>
       <p class="pack-preco">900 €<span>/mês</span></p>
       <p class="pack-frase">O dobro das horas no teu espaço, para nunca faltar material fresco.</p>
@@ -1964,7 +1964,7 @@
     <!-- 04 · Scale (extra) -->
     <article class="pack-card pack-card--extra" data-extra="scale" data-nome="Scale" data-preco="" role="checkbox" aria-checked="false" tabindex="0">
       <span class="pack-selo">Extra</span>
-      <p class="pack-eyebrow">Junta a qualquer pack</p>
+      <p class="pack-eyebrow">Complementa qualquer plano</p>
       <h3 class="pack-nome">Scale</h3>
       <p class="pack-preco pack-preco--sob">Sob orçamento</p>
       <p class="pack-frase">Anúncios, funil de vendas, mais do que uma marca? Desenhamos ao teu caso.</p>
@@ -2059,7 +2059,7 @@
     var pack = packs.filter(function(c){ return c.classList.contains('on'); })[0];
     var juntos = extras.filter(function(c){ return c.classList.contains('on'); });
     var msg = 'Olá! Vim do site da Differentt. ';
-    msg += pack ? 'Interessa-me o pack ' + pack.dataset.nome + '.' : 'Queria perceber que pack me serve melhor.';
+    msg += pack ? 'Interessa-me o plano ' + pack.dataset.nome + '.' : 'Queria perceber que plano me serve melhor.';
     if (juntos.length) {
       var nomes = juntos.map(function(e){ return e.dataset.nome; });
       var lista = nomes.length > 1 ? nomes.slice(0, -1).join(', ') + ' e ' + nomes[nomes.length - 1] : nomes[0];
@@ -2084,7 +2084,7 @@
 
     var preco = pack ? parseInt(pack.dataset.preco || '', 10) : NaN;
     if (!pack) {
-      val.innerHTML = 'Escolhe um pack';
+      val.innerHTML = 'Nenhum plano selecionado';
       val.style.fontSize = '22px';
       nota.textContent = 'Os extras juntam-se a qualquer um deles.';
     } else if (isNaN(preco)) {
@@ -2167,7 +2167,7 @@
       texto: 'O dobro das horas no teu espaço: 16 horas repartidas por 3 dias, marcados contigo. Horas extra ou deslocações além dos 30 km são orçamentadas à parte.',
       linhas: [['Horas de produção', '16 h'], ['Dias no teu espaço', '3 dias'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '12 posts e 4 Reels']] },
     scale: { ico: 'g-subir', titulo: 'Como funciona o Scale',
-      texto: 'Junta-se a qualquer pack. Percebemos o teu objetivo e desenhamos a proposta à medida: anúncios, funil de vendas ou estratégia para mais do que uma marca.',
+      texto: 'Complementa qualquer plano. Percebemos o teu objetivo e desenhamos a proposta à medida: anúncios, funil de vendas ou estratégia para mais do que uma marca.',
       linhas: [['Anúncios', 'Meta e Google Ads'], ['Captação', 'só para os anúncios'], ['Funil de vendas', 'com rastreio'], ['Preço', 'sob orçamento']] }
   };
   var fundo  = document.getElementById('lpFundo');
