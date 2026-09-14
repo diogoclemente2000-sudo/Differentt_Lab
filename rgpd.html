@@ -35,7 +35,7 @@
   <meta name="description" content="Os seus direitos ao abrigo do RGPD no Differentt Lab: acesso, retificação, apagamento, portabilidade e oposição. Saiba como exercer os seus direitos de proteção de dados.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: linear-gradient(45deg, #000 0%, #020202 25%, #010101 50%, #030303 75%, #000 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; }
@@ -192,6 +192,87 @@
     }
     @media (max-width: 600px) {
       .ft-contacts { margin-top: 60px; }
+    }
+  
+    /* ═══ SISTEMA VISUAL (set/2026) — ver md files_rules/SISTEMA-VISUAL.md ═══
+       PC: conteudo 1120 centrado, margem --gutter 80; o que cresce e a margem.
+       Mobile (<=1199): tudo congela na largura unica dos cards (334). */
+    :root { --gutter: 80px; --larg-max: 1120px; --card-mob: 334px; }
+    @media (max-width: 1199px) { :root { --gutter: 28px; } }
+
+    body { font-family: 'Satoshi', 'Nunito Sans', sans-serif; }
+    .nav-links a { font-family: 'Nunito Sans', sans-serif; }
+
+    /* ── cabecalho da pagina ── */
+    .page-head { padding: 190px var(--gutter) 0; text-align: left; overflow: visible; }
+    .page-head::before { display: none; }   /* fora o halo roxo antigo */
+    @media (min-width: 1200px) {
+      .page-head, .legal-wrap { max-width: calc(var(--larg-max) + 2 * var(--gutter)) !important;
+        margin-left: auto; margin-right: auto; }
+    }
+    .page-eyebrow { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .page-title { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; text-transform: none;
+      font-size: clamp(29px, 2.9vw, 40px); line-height: 1.06; letter-spacing: -0.02em; text-align: left;
+      margin: 0 0 4px; padding: 0.06em 0 0.18em; color: #fff;
+      background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
+    .page-updated { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 17px;
+      line-height: 1.18; color: rgba(255,255,255,0.88); text-transform: none; letter-spacing: 0;
+      margin: 0; }
+
+    /* ── corpo legal: cada seccao e um card com o anel da casa ── */
+    .legal-wrap { max-width: none; padding: 56px var(--gutter) 120px; }
+    .legal-wrap section { position: relative; border-radius: 12px; background: #0a0a0a;
+      padding: 34px 38px; margin-bottom: 18px; scroll-margin-top: 120px; }
+    .legal-wrap section::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; }
+    .legal-wrap section > * { position: relative; }
+    .legal-wrap h2 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: 25.3px;
+      line-height: 1.14; letter-spacing: -0.015em; text-transform: none; color: #fff;
+      display: flex; align-items: baseline; gap: 14px; margin: 0 0 16px; padding: 0.04em 0 0.1em;
+      background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.385px rgba(255,255,255,0.25); }
+    .legal-wrap h2 span { flex-shrink: 0; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700;
+      font-size: 11px; letter-spacing: 0.16em; margin: 0; color: #c585b8;
+      -webkit-text-fill-color: #c585b8; -webkit-text-stroke: 0; }
+    .legal-wrap h3 { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 24px 0 10px; }
+    .legal-wrap p, .legal-wrap ul li { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400;
+      font-size: 15px; line-height: 1.62; color: rgba(255,255,255,0.88); }
+    .legal-wrap p { margin: 0 0 12px; }
+    .legal-wrap ul { margin: 12px 0 4px; }
+    .legal-wrap ul li { margin-bottom: 9px; padding-left: 20px; }
+    .legal-wrap ul li::before { top: 9px; left: 2px; width: 6px; height: 6px; background: #c585b8; }
+    .legal-wrap strong { color: #fff; font-weight: 700; }
+    .legal-wrap a { color: #c585b8; }
+    /* caixa de destaque: mesma linguagem, so mais escura */
+    .legal-note { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px; padding: 20px 24px; margin: 18px 0 4px; }
+
+    /* ── mobile: congelamento na largura unica ── */
+    @media (max-width: 1199px) {
+      .page-head { padding: 140px var(--gutter) 0; }
+      .page-title { font-size: 29.6px; }
+      .legal-wrap { padding: 40px var(--gutter) 80px; }
+      .page-head-inner, .legal-wrap section {
+        width: min(var(--card-mob), 100%); max-width: min(var(--card-mob), 100%);
+        margin-left: auto; margin-right: auto; }
+      .legal-wrap section { padding: 26px 22px; }
+      .legal-wrap h2 { font-size: 21px; gap: 10px; }
+    }
+
+    /* ── footer no mesmo eixo ── */
+    footer { padding-left: var(--gutter); padding-right: var(--gutter); }
+    @media (min-width: 1200px) {
+      footer { padding-left: 0; padding-right: 0; }
+      .ft-grid, .ft-bottom { max-width: calc(var(--larg-max) + 2 * var(--gutter));
+        margin-left: auto; margin-right: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
     }
   </style>
   <script src="/meta-pixel.js"></script>

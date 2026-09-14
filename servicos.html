@@ -647,9 +647,9 @@
   .cta-section .cta-card .cta-title { font-size: min(clamp(31px, 4.4vw, 46px), 31px) !important; }
 }
 @media (min-width: 1200px) {
-  .cta-luz { max-width: var(--larg-max) !important; }
-  .cta-card { padding: 66px 64px 60px !important; }
-  .cta-section .cta-card .cta-title { font-size: clamp(38px, 3.8vw, 56px) !important; max-width: 18ch; }
+  .cta-luz { max-width: calc(var(--larg-max) * 0.9) !important; }   /* 90% da coluna: quase encosta as margens, fixo ai */
+  .cta-card { padding: 52px 48px 48px !important; }
+  .cta-section .cta-card .cta-title { font-size: clamp(31px, 2.9vw, 42px) !important; max-width: 18ch; }
   .cta-card .cta-sub { font-size: 18px; }
 }
 @media (min-width: 1200px) {
@@ -1070,6 +1070,31 @@
      mobile puxava tambem o titulo para o meio em pc */
   .section-title { display: block !important; width: 100%; }
   @media (max-width: 1199px) { .section-title { width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))) !important; } }
+  /* a FAQ segue a mesma regra do card do CTA: 90% da coluna, centrada e fixa
+     ai em pc (nao estica ate a margem) */
+  @media (min-width: 1200px) {
+    .faq-list { width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+  /* cabecalho da FAQ centrado sobre a lista, e a pergunta maior com a linha a
+     quebrar mais tarde (26ch era curto de mais para o card a 1008px) */
+  /* nestas paginas a FAQ vive num <section class="section"> simples, por isso
+     o alvo e a seccao que contem a lista */
+  section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+  .faq-section .section-title, .faq-header .section-title,
+  .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+    text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+  section:has(.faq-list) .section-sub, .faq-section .section-sub, .faq-header .section-sub, .faq-intro { max-width: 62ch !important; }
+  @media (min-width: 1200px) {
+    section:has(.faq-list) .section-title, section:has(.faq-list) .section-sub,
+    .faq-section .section-title, .faq-header .section-title,
+    .faq-section .section-sub, .faq-header .section-sub, .faq-intro {
+      width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important; }
+    .faq-question span:not(.faq-num) { font-size: 23px !important; max-width: 62ch !important; }
+  }
+  @media (max-width: 1199px) {
+    .faq-question span:not(.faq-num) { font-size: 17px !important; max-width: 34ch !important; }
+  }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>

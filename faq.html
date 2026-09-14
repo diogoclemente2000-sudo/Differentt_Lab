@@ -205,7 +205,13 @@
     @media (max-width: 600px) {
       .ft-contacts { margin-top: 60px; }
     }
-  </style>
+    /* a FAQ segue a mesma regra do card do CTA: 90% da coluna, centrada e fixa
+     ai em pc (nao estica ate a margem) */
+  @media (min-width: 1200px) {
+    .faq-list { width: 100% !important; max-width: calc(var(--larg-max) * 0.9) !important;
+      margin-left: auto !important; margin-right: auto !important; }
+  }
+</style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",

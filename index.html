@@ -277,6 +277,15 @@
     @media (max-width: 1199px) { .services-3d-bg { width: 180vw !important; max-width: none !important; } }
     @media (max-width: 1199px) { .services-grid { grid-template-columns: 1fr; row-gap: 32px; padding-left: 0 !important; padding-right: 0 !important; } #services-section { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-section-wrap { padding-top: 140px !important; padding-bottom: 140px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; } .services-3d-bg { width: 250vw !important; max-width: none !important; bottom: auto !important; top: 50% !important; transform: translate(-50%, -50%) !important; opacity: 0.9 !important; } }
     .service-card { display: flex; flex-direction: column; height: 420px; overflow: hidden; cursor: pointer; border-radius: 12px; background: transparent; border: 1.5px solid rgba(255,255,255,0.24); isolation: isolate; }
+    /* entrada dos cards de servicos: fade e subida suave quando cada card entra no ecra.
+       A classe .anima so e posta pelo JS, por isso sem JS os cards aparecem normais.
+       Usa translate (e nao transform) para nao mexer no hover dos desenhos. */
+    .services-grid.anima .service-card { opacity: 0; translate: 0 28px;
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), translate .9s cubic-bezier(.22,1,.36,1); }
+    .services-grid.anima .service-card:nth-child(2) { transition-delay: .12s; }
+    .services-grid.anima .service-card.in { opacity: 1; translate: 0 0; }
+    @media (prefers-reduced-motion: reduce) {
+      .services-grid.anima .service-card { opacity: 1; translate: none; transition: none; } }
     .service-card-photo { position: relative; flex: 1; min-height: 0; overflow: hidden; }
     .service-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .service-card-bg--svg svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: transparent; }
@@ -1347,6 +1356,19 @@
     </a>
     </template>
   </div>
+  <script>
+  // cards de servicos: fade e subida suave quando cada um entra no ecra
+  (function(){
+    var grelha = document.querySelector('.services-grid');
+    if (!grelha || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cards = grelha.querySelectorAll('.service-card');
+    grelha.classList.add('anima');
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
   </div>
 
   <script>

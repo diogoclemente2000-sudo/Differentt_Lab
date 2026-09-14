@@ -164,7 +164,12 @@ const server = createServer(async (req, res) => {
       stats = await stat(filePath).catch(() => null);
     }
     if (!stats) throw new Error('not found');
-    if (stats.isDirectory()) filePath = join(filePath, 'index.html');
+    // pasta: usa index.html se existir; senao tenta <pasta>.html (ex.: /blog -> blog.html,
+    // que em producao o Netlify ja resolve; sem isto o dir blog/ mascarava o blog.html)
+    if (stats.isDirectory()) {
+      const dentro = join(filePath, 'index.html');
+      filePath = await stat(dentro).catch(() => null) ? dentro : filePath + '.html';
+    }
     const ext = extname(filePath).toLowerCase();
     const contentType = mime[ext] || 'application/octet-stream';
     const data = await readFile(filePath);

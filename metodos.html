@@ -578,7 +578,7 @@
 <!-- MINI CONTACT FORM -->
 <div class="contact-cta">
   <div>
-    <h2 class="contact-cta-title">Conta-nos<br class="br-desktop"> mais sobre<br><span>a tua ideia.</span></h2>
+    <h2 class="contact-cta-title">Conta-nos<br class="br-desktop"> mais sobre <br><span>a tua ideia.</span></h2>
   </div>
   <form class="mini-form" id="mini-contact-form" action="/.netlify/functions/send-email" method="POST">
     <input type="text" name="name" placeholder="Primeiro nome" required>
@@ -694,6 +694,24 @@
      mobile puxava tambem o titulo para o meio em pc */
   .section-title { display: block !important; width: 100%; }
   @media (max-width: 1199px) { .section-title { width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))) !important; } }
+  /* ── formulario a toda a largura em pc ──
+     Era uma grelha de duas colunas com o titulo a esquerda e os campos estreitos
+     a direita, desnivelados. Passa a coluna unica: titulo em cima e os campos a
+     esticar pela mesma largura, alinhados pela margem do texto. Em mobile fica
+     como estava. */
+  @media (min-width: 1200px) {
+    .contact-cta { grid-template-columns: 1fr !important; gap: 34px !important; align-items: start; }
+    .mini-form { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini-form textarea { grid-column: 1 / -1; min-height: 150px; }
+    .mini-form .gx-btn { grid-column: 1 / -1; justify-self: start; min-width: 240px; }
+    .mini-form #mini-success { grid-column: 1 / -1; }
+  }
+  /* as quebras fixas do titulo vinham de quando ele vivia numa coluna estreita;
+     a toda a largura parte-o em tres linhas curtas sem motivo */
+  @media (min-width: 1200px) {
+    .contact-cta-title br { display: none; }
+    .contact-cta-title { max-width: 24ch; }
+  }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
