@@ -1174,6 +1174,15 @@
      para titulos de seccao, curtos de mais para um titulo de pagina */
   .page-hero .hero-title { margin-bottom: 20px !important; }
   @media (max-width: 1199px) { .page-hero .hero-title { margin-bottom: 16px !important; } }
+  /* filtros: so o "Todos" mostra o numero (total de trabalhos); nas outras tags fica escondido */
+  .filter-tab:not([data-filter="all"]) .filter-count { display: none !important; }
+
+  /* brilho do hero centrado na coluna do texto (igual aos artigos do blog): antes tinha o centro
+     preso aos 22% da largura do ecra e em ecras grandes caia antes do inicio do texto.
+     Agora e uma elipse larga, centrada na coluna, e mais suave (9% no centro em vez de 17%). */
+  .page-hero::before { top: -14% !important; left: 50% !important; right: auto !important; bottom: auto !important;
+    width: min(1400px, 170vw) !important; max-width: none !important; height: 780px !important; transform: translateX(-50%) !important;
+    background: radial-gradient(ellipse 50% 50% at 50% 42%, rgba(158,123,182,.09) 0%, rgba(158,123,182,.045) 38%, rgba(158,123,182,0) 72%) !important; }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>

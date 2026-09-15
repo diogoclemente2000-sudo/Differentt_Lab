@@ -134,7 +134,7 @@
 
     /* ── CATEGORY BADGES ── */
     .cat { display: inline-block; font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; }
-    .cat-websites, .cat-social, .cat-seo, .cat-design, .cat-branding { background: rgba(0,0,0,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.18); }
+    .cat-websites, .cat-social, .cat-seo, .cat-design, .cat-branding, .cat-ia { background: rgba(0,0,0,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.18); }
 
     /* ── FEATURED ARTICLE ── */
     .featured-wrap { margin-bottom: 80px; }
@@ -457,7 +457,11 @@
       .ft-grid, .ft-bottom { max-width: calc(var(--larg-max) + 2 * var(--gutter));
         margin-left: auto; margin-right: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
     }
-  </style>
+      /* a foto funde-se no corpo do card: o gradiente acaba na cor exata do fundo (#0a0a0a)
+       a 100%. Antes acabava num preto a 70% de outra cor, e a ultima fila de pixeis da foto
+       (altura fracionaria, ~200.8px) aparecia no hover como uma linha entre a foto e o texto. */
+    .card-img-overlay { background: linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,.85) 8%, rgba(10,10,10,.55) 24%, rgba(10,10,10,0) 60%); }
+</style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
@@ -537,6 +541,7 @@
       <button class="filter-tab" data-filter="seo">SEO<span class="filter-count"></span></button>
       <button class="filter-tab" data-filter="design">Design<span class="filter-count"></span></button>
       <button class="filter-tab" data-filter="branding">Branding<span class="filter-count"></span></button>
+      <button class="filter-tab" data-filter="ia">IA<span class="filter-count"></span></button>
       <span class="filter-underline" id="filterUnderline"></span>
     </div>
   </div>
@@ -587,10 +592,157 @@
   <!-- ARTICLES GRID -->
   <div class="articles-grid">
 
+    <!-- Card IA: anuncios-no-chatgpt-guia-empresas-portugal -->
+    <a href="./blog/anuncios-no-chatgpt-guia-empresas-portugal.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/anuncios-no-chatgpt-guia-empresas-portugal.jpg" alt="Anúncios no ChatGPT: Guia para Empresas em Portugal" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Anúncios no ChatGPT: Guia Completo para Empresas em Portugal (2026)</h3>
+        <p class="card-excerpt">Os anúncios no ChatGPT chegaram a Portugal em agosto de 2026. Quem os vê, onde aparecem, o que é permitido, como se compram no Ads Manager e a quem compensa testar.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>12 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: quanto-custa-anunciar-no-chatgpt -->
+    <a href="./blog/quanto-custa-anunciar-no-chatgpt.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/quanto-custa-anunciar-no-chatgpt.jpg" alt="Quanto Custa Anunciar no ChatGPT" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Quanto Custa Anunciar no ChatGPT? O Que É Oficial, o Que É Estimativa e Como Orçamentar um Teste</h3>
+        <p class="card-excerpt">A OpenAI não publica tabela de preços. O modelo oficial (CPM, CPC, oCPC), o que são só estimativas de agências e um método para orçamentar um primeiro teste com os seus números.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>8 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: chatgpt-ads-google-ads-ou-meta-ads -->
+    <a href="./blog/chatgpt-ads-google-ads-ou-meta-ads.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/chatgpt-ads-google-ads-ou-meta-ads.jpg" alt="ChatGPT Ads, Google Ads ou Meta Ads" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">ChatGPT Ads, Google Ads ou Meta Ads: Onde Uma PME Portuguesa Deve Investir Primeiro</h3>
+        <p class="card-excerpt">Comparação franca das três plataformas: segmentação, formatos, medição, categorias aceites em Portugal e um plano de arranque por objetivo e por fase do negócio.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>9 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: como-aparecer-no-chatgpt-sem-pagar -->
+    <a href="./blog/como-aparecer-no-chatgpt-sem-pagar.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/como-aparecer-no-chatgpt-sem-pagar.jpg" alt="Como Aparecer no ChatGPT Sem Pagar" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Como Aparecer nas Respostas do ChatGPT Sem Pagar: Guia de GEO para Empresas Portuguesas</h3>
+        <p class="card-excerpt">Os anúncios não fazem a IA recomendar a sua empresa. O que faz: rastreadores permitidos, entidade clara, conteúdo citável e presença fora do site. E o que não funciona.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>9 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: landing-pages-trafego-ia -->
+    <a href="./blog/landing-pages-trafego-ia.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/landing-pages-trafego-ia.jpg" alt="Landing Pages para Tráfego Vindo da IA" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Landing Pages para Tráfego Vindo da IA: O Que Muda Quando o Visitante Chega do ChatGPT</h3>
+        <p class="card-excerpt">Quem chega do ChatGPT já traz contexto, e a página de destino pesa na entrega do anúncio. Estrutura recomendada, erros que custam caro e checklist antes de lançar.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>8 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: publicidade-ia-negocios-locais-lisboa -->
+    <a href="./blog/publicidade-ia-negocios-locais-lisboa.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/publicidade-ia-negocios-locais-lisboa.jpg" alt="Publicidade em IA para Negócios Locais em Lisboa" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Publicidade em IA para Negócios Locais em Lisboa: Quem Já Pode Anunciar no ChatGPT e Quem Ainda Não</h3>
+        <p class="card-excerpt">Restauração, serviços e retalho já podem. Clínicas, estética médica e finanças estão restritas fora dos EUA. Setor a setor, e o que fazer entretanto.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>9 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card IA: como-medir-trafego-chatgpt-ga4 -->
+    <a href="./blog/como-medir-trafego-chatgpt-ga4.html" class="article-card" data-cat="ia">
+      <div class="card-img-wrap">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/IA/como-medir-trafego-chatgpt-ga4.jpg" alt="Como Medir o Tráfego que Vem do ChatGPT" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <div class="card-cat-wrap"><span class="cat cat-ia">IA</span></div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Como Medir o Tráfego e as Vendas que Vêm do ChatGPT: GA4, UTM e Pixel da OpenAI</h3>
+        <p class="card-excerpt">Onde o tráfego do ChatGPT aparece no GA4, como separar orgânico de anúncios, como ligar cliques a vendas com o pixel da OpenAI e o que nenhuma ferramenta mede.</p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>9 min</span>
+            <span class="card-meta-dot"></span>
+            <span>Set 2026</span>
+          </div>
+          <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
     <!-- Card 1 -->
     <a href="./blog/quanto-custa-gestao-redes-sociais-portugal.html" class="article-card" data-cat="social">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Preços+2026" alt="Quanto Custa Gestão de Redes Sociais em Portugal" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/quanto-custa-gestao-redes-sociais-portugal.jpg" alt="Quanto Custa Gestão de Redes Sociais em Portugal" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-social">Redes Sociais</span></div>
       </div>
@@ -651,25 +803,25 @@
     </a>
 
     <!-- Card 4 -->
-    <article class="article-card" data-cat="websites">
+    <a href="./blog/quanto-custa-website-profissional-portugal.html" class="article-card" data-cat="websites">
       <div class="card-img-wrap">
         <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/CUSTO-WEBSITE.jpg" alt="Quanto Custa um Website Profissional em Portugal" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-websites">Websites</span></div>
       </div>
       <div class="card-body">
-        <h3 class="card-title">Quanto Custa um Website Profissional em Portugal em 2025?</h3>
-        <p class="card-excerpt">Existe uma diferença enorme entre um website de €500 e um de €5.000. Explicamos o que justifica cada preço e o que deves exigir pelo teu investimento.</p>
+        <h3 class="card-title">Quanto Custa um Website Profissional em Portugal em 2026?</h3>
+        <p class="card-excerpt">Faixas de preço reais para landing pages, sites institucionais e lojas online, o que deve estar incluído, os custos que continuam depois do lançamento e as obrigações legais em Portugal.</p>
         <div class="card-footer">
           <div class="card-meta">
-            <span>4 min</span>
+            <span>11 min</span>
             <span class="card-meta-dot"></span>
-            <span>Mar 2025</span>
+            <span>Set 2026</span>
           </div>
           <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </article>
+    </a>
 
     <!-- Card 5 -->
     <a href="./blog/roi-redes-sociais-como-medir.html" class="article-card" data-cat="social">
@@ -693,25 +845,25 @@
     </a>
 
     <!-- Card 6 -->
-    <article class="article-card" data-cat="branding">
+    <a href="./blog/branding-vs-design-grafico.html" class="article-card" data-cat="branding">
       <div class="card-img-wrap">
         <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/BRANDING.jpg" alt="Branding vs Design Gráfico" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-branding">Branding</span></div>
       </div>
       <div class="card-body">
-        <h3 class="card-title">Branding vs. Design Gráfico: Qual a Diferença e Porque Importa</h3>
-        <p class="card-excerpt">Um logo não é uma identidade de marca. Percebe a diferença entre branding e design gráfico, e porquê confundi-los pode custar caro ao teu negócio.</p>
+        <h3 class="card-title">Branding vs. Design Gráfico: Qual É a Diferença e Porque Importa</h3>
+        <p class="card-excerpt">Um logótipo não é uma marca. O que cada disciplina entrega, como se cruzam, os sinais de que precisa de branding e por onde começar sem pagar duas vezes.</p>
         <div class="card-footer">
           <div class="card-meta">
-            <span>5 min</span>
+            <span>10 min</span>
             <span class="card-meta-dot"></span>
-            <span>Abr 2025</span>
+            <span>Set 2026</span>
           </div>
           <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </article>
+    </a>
 
     <!-- NEWSLETTER CTA (full-width inline) -->
     <div class="newsletter-card">
@@ -729,30 +881,30 @@
     </div>
 
     <!-- Card 7 -->
-    <article class="article-card" data-cat="websites">
+    <a href="./blog/aumentar-taxa-conversao-website.html" class="article-card" data-cat="websites">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Conversão" alt="Como Aumentar a Taxa de Conversão" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/aumentar-taxa-conversao-website.jpg" alt="Como Aumentar a Taxa de Conversão" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-websites">Websites</span></div>
       </div>
       <div class="card-body">
-        <h3 class="card-title">Como Aumentar a Taxa de Conversão do Teu Website Sem Redesenhar Tudo</h3>
-        <p class="card-excerpt">Pequenas mudanças no copy, no CTA e na estrutura da página podem duplicar as tuas conversões. Descobre quais os elementos com maior impacto.</p>
+        <h3 class="card-title">Como Aumentar a Taxa de Conversão do Website Sem Redesenhar Tudo</h3>
+        <p class="card-excerpt">Como medir a taxa de conversão no GA4 e 12 mudanças no texto, nos botões, nos formulários e na velocidade, por ordem de impacto, que aumentam contactos sem refazer o site.</p>
         <div class="card-footer">
           <div class="card-meta">
-            <span>7 min</span>
+            <span>11 min</span>
             <span class="card-meta-dot"></span>
-            <span>Abr 2025</span>
+            <span>Set 2026</span>
           </div>
           <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </article>
+    </a>
 
     <!-- Card 8 -->
     <a href="./blog/como-escolher-agencia-redes-sociais.html" class="article-card" data-cat="social">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Escolher+Agência" alt="Como Escolher uma Agência de Redes Sociais" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/como-escolher-agencia-redes-sociais.jpg" alt="Como Escolher uma Agência de Redes Sociais" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-social">Redes Sociais</span></div>
       </div>
@@ -771,25 +923,25 @@
     </a>
 
     <!-- Card 9 -->
-    <article class="article-card" data-cat="seo">
+    <a href="./blog/google-analytics-4-guia.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=GA4" alt="Google Analytics 4" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/google-analytics-4-guia.jpg" alt="Google Analytics 4" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
       <div class="card-body">
-        <h3 class="card-title">Google Analytics 4: O Que Mudou e Como Usar Para Tomar Melhores Decisões</h3>
-        <p class="card-excerpt">O GA4 trouxe uma nova forma de medir o comportamento dos utilizadores. Aprende a interpretar os dados mais importantes para o teu negócio sem te perderes nos relatórios.</p>
+        <h3 class="card-title">Google Analytics 4 em 2026: O Que Mudou e Como Usar Para Decidir Melhor</h3>
+        <p class="card-excerpt">O canal AI Assistant, os dashboards, o consentimento e os seis relatórios que interessam a uma PME. Configuração mínima em poucas horas e uma rotina mensal de 20 minutos.</p>
         <div class="card-footer">
           <div class="card-meta">
-            <span>8 min</span>
+            <span>12 min</span>
             <span class="card-meta-dot"></span>
-            <span>Mai 2025</span>
+            <span>Set 2026</span>
           </div>
           <svg class="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
-    </article>
+    </a>
 
     <!-- Card SEO 2 -->
     <a href="./blog/aparecer-google-maps-lisboa.html" class="article-card" data-cat="seo">
@@ -811,7 +963,7 @@
     <!-- Card SEO 3 -->
     <a href="./blog/google-business-profile-lisboa.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=GBP" alt="Google Business Profile Lisboa" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/google-business-profile-lisboa.jpg" alt="Google Business Profile Lisboa" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -828,7 +980,7 @@
     <!-- Card SEO 4 -->
     <a href="./blog/negocio-nao-aparece-google.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Invisível%3F" alt="Negócio não aparece no Google" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/negocio-nao-aparece-google.jpg" alt="Negócio não aparece no Google" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -879,7 +1031,7 @@
     <!-- Card SEO 7 -->
     <a href="./blog/website-seo-local-lisboa.html" class="article-card" data-cat="seo">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Leads" alt="Website SEO Local Lisboa" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/website-seo-local-lisboa.jpg" alt="Website SEO Local Lisboa" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-seo">SEO</span></div>
       </div>
@@ -896,7 +1048,7 @@
     <!-- Card Design WD1 — Neo-Brutalismo -->
     <a href="./blog/neo-brutalismo-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Neo-Brutalismo" alt="Neo-Brutalismo Web Design" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/neo-brutalismo-web-design.jpg" alt="Neo-Brutalismo Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -913,7 +1065,7 @@
     <!-- Card Design WD2 — Microinterações -->
     <a href="./blog/microinteracoes-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Microinterações" alt="Microinterações Web Design" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/microinteracoes-web-design.jpg" alt="Microinterações Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -930,7 +1082,7 @@
     <!-- Card Design WD3 — Inteligência Artificial -->
     <a href="./blog/inteligencia-artificial-web-design.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=IA+Web+Design" alt="Inteligência Artificial Web Design" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/inteligencia-artificial-web-design.jpg" alt="Inteligência Artificial Web Design" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -947,7 +1099,7 @@
     <!-- Card Design WD4 — Websites 3D -->
     <a href="./blog/websites-3d-experiencias-imersivas.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Websites+3D" alt="Websites 3D Experiências Imersivas" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/websites-3d-experiencias-imersivas.jpg" alt="Websites 3D Experiências Imersivas" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>
@@ -964,7 +1116,7 @@
     <!-- Card Design WD5 — Landing Pages -->
     <a href="./blog/landing-pages-vantagens-2025.html" class="article-card" data-cat="design">
       <div class="card-img-wrap">
-        <img src="https://placehold.co/600x340/080808/8f8f8f?text=Landing+Pages" alt="Landing Pages Vantagens 2025" loading="lazy">
+        <img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,ar_16:9,w_640,q_auto,f_auto/Website_photos/BLOG/landing-pages-vantagens-2025.jpg" alt="Landing Pages Vantagens 2025" loading="lazy">
         <div class="card-img-overlay"></div>
         <div class="card-cat-wrap"><span class="cat cat-design">Design</span></div>
       </div>

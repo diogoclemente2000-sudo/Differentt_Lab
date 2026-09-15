@@ -1095,6 +1095,8 @@
   @media (max-width: 1199px) {
     .faq-question span:not(.faq-num) { font-size: 17px !important; max-width: 34ch !important; }
   }
+  /* filtros: so o "Todos" mostra o numero (total de servicos); nas outras tags fica escondido */
+  .filter-tab:not([data-filter="all"]) .filter-count { display: none !important; }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
