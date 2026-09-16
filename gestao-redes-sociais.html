@@ -1644,6 +1644,10 @@
   /* termos de estrategia no marquee: sao mais compridos, por isso a duracao sobe
      na mesma proporcao para a faixa manter a velocidade de antes (~30 px/s) */
   .marquee-track { animation-duration: 67s; }
+  /* segunda linha de letra pequena (link para o guia): colada a primeira e com o link na cor da casa */
+  .packs-fine + .packs-fine { margin-top: 8px !important; }
+  .packs-fine a { color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(197,133,184,0.6); transition: color .2s; }
+  .packs-fine a:hover { color: #e2b4d8; }
 </style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -2161,6 +2165,7 @@
   </div>
 
   <p class="packs-fine">Valores sem IVA. Produções especiais e horas além das incluídas são orçamentadas caso a caso.</p>
+  <p class="packs-fine">Os anúncios já chegaram ao ChatGPT em Portugal. O que se pode fazer, quanto custa e para quem faz sentido está no nosso <a href="./blog/anuncios-no-chatgpt-guia-empresas-portugal">guia de anúncios no ChatGPT para empresas</a>.</p>
 </section>
 
 <div class="lp-fundo" id="lpFundo" role="dialog" aria-modal="true" aria-labelledby="lpTitulo">

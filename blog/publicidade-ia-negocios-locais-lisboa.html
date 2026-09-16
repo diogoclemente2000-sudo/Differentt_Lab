@@ -26,6 +26,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Publicidade em IA para Negócios Locais em Lisboa: Quem Já Pode Anunciar no ChatGPT e Quem Ainda Não (2026)", "description": "Clínicas, estética, restauração e serviços em Lisboa: quem pode anunciar no ChatGPT em 2026, quem está restrito pela OpenAI e o que fazer entretanto.", "url": "https://differenttlab.com/blog/publicidade-ia-negocios-locais-lisboa", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://differenttlab.com/blog/publicidade-ia-negocios-locais-lisboa"}, "image": "https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,w_1200,h_630,q_auto/Website_photos/BLOG/IA/publicidade-ia-negocios-locais-lisboa.jpg", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Organization", "name": "Differentt Lab", "url": "https://differenttlab.com"}, "publisher": {"@type": "Organization", "name": "Differentt Lab", "logo": {"@type": "ImageObject", "url": "https://differenttlab.com/favicon-512.png"}}, "inLanguage": "pt-PT", "keywords": "anúncios ChatGPT negócios locais, publicidade IA clínicas, ChatGPT Ads restaurantes Lisboa, publicidade IA serviços locais, anunciar no ChatGPT Lisboa"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://differenttlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://differenttlab.com/blog"},{"@type":"ListItem","position":3,"name":"Publicidade em IA para Negócios Locais em Lisboa (2026)","item":"https://differenttlab.com/blog/publicidade-ia-negocios-locais-lisboa"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Uma clínica em Lisboa pode anunciar no ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Em setembro de 2026, provavelmente não. A política de anúncios da OpenAI restringe serviços de saúde a aprovações caso a caso nos Estados Unidos e diz que fora dos EUA são geralmente proibidos. Além disso, o ChatGPT não mostra anúncios em conversas sobre saúde pessoal. Pode tentar a aprovação, mas o caminho mais seguro é o orgânico e os canais Google e Meta."}}, {"@type": "Question", "name": "E um centro de estética ou depilação a laser?", "acceptedAnswer": {"@type": "Answer", "text": "Procedimentos cosméticos minimamente invasivos estão na lista de saúde, aprovados caso a caso apenas nos EUA. Serviços de beleza não médicos (cabeleireiro, barbearia, manicure) enquadram-se em estilo de vida e serviços locais e são, em princípio, aceites, desde que sem alegações de saúde."}}, {"@type": "Question", "name": "Um restaurante pode anunciar no ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Restauração e hotelaria enquadram-se em viagens e experiências, uma das categorias nomeadas pela OpenAI para a fase inicial. O anúncio e a página de destino não podem promover bebidas alcoólicas, por isso aponte para a página do restaurante ou de reservas."}}, {"@type": "Question", "name": "O ChatGPT Ads permite segmentar só Lisboa?", "acceptedAnswer": {"@type": "Answer", "text": "A OpenAI confirmou que existe segmentação geográfica, mas não publicou o nível de detalhe disponível em Portugal. Confirme ao criar o grupo de anúncios. Se só existir segmentação por país, reforce a localização nas dicas de contexto e na página de destino."}}, {"@type": "Question", "name": "O que é mais importante para um negócio local: o anúncio ou aparecer na resposta?", "acceptedAnswer": {"@type": "Answer", "text": "Aparecer na resposta. O anúncio aparece por baixo da resposta orgânica, onde o ChatGPT já listou os negócios que encontrou online. Trabalhar o Google Business Profile, as avaliações e o site é o que faz um negócio local ser mencionado, com ou sem anúncios."}}]}</script>
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -333,6 +334,29 @@
     .article-hero::before{top:-14% !important;left:50% !important;right:auto !important;bottom:auto !important;
       width:min(1400px,170vw) !important;height:780px !important;transform:translateX(-50%) !important;
       background:radial-gradient(ellipse 50% 50% at 50% 42%,rgba(158,123,182,.09) 0%,rgba(158,123,182,.045) 38%,rgba(158,123,182,0) 72%) !important}
+
+    /* ═══ FAQ dos artigos no formato das paginas do site (set/2026) ═══
+       Mesmo componente da gestao/criacao: card com o anel da casa, pergunta com gradiente,
+       chevron rosa, halo no canto quando aberto. O markup (.faq-q/.faq-a) e o JS ficam. */
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin:24px 0 0}
+    .faq-item{position:relative;border:0;border-radius:14px;overflow:hidden;
+      background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012) 60%),#0b0a0f;transition:background .35s ease}
+    .faq-item::before{content:'';position:absolute;inset:0;border-radius:14px;padding:1px;z-index:2;pointer-events:none;
+      background:linear-gradient(135deg,rgba(197,133,184,.55) 0%,rgba(158,123,182,.07) 32%,rgba(158,123,182,.06) 68%,rgba(197,133,184,.52) 100%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background .35s ease}
+    .faq-item.open{background:radial-gradient(130% 62% at 0% 0%,rgba(176,138,204,.26) 0%,rgba(158,123,182,.06) 46%,transparent 78%),#0b0a0f}
+    .faq-item.open::before{background:linear-gradient(135deg,rgba(197,133,184,.9) 0%,rgba(158,123,182,.12) 32%,rgba(158,123,182,.1) 68%,rgba(197,133,184,.85) 100%)}
+    .faq-q{position:relative;gap:20px;padding:20px 52px 20px 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-weight:600;font-size:16px;line-height:1.3;
+      color:#fff;background:linear-gradient(180deg,#f2f2f4 10%,#9a9aa0 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q:hover,.faq-item.open .faq-q{background:linear-gradient(180deg,#ffffff 10%,#c9c9cf 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q .faq-icon{display:none}
+    .faq-q::after{content:'';position:absolute;right:24px;top:50%;width:9px;height:9px;margin-top:-7px;
+      border-right:2px solid #c585b8;border-bottom:2px solid #c585b8;transform:rotate(45deg);transition:transform .35s ease,border-color .3s ease}
+    .faq-item.open .faq-q::after{transform:rotate(225deg);margin-top:-2px;border-color:#e2b4d8}
+    .faq-a{display:block;max-height:0;overflow:hidden;padding:0 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-size:16px;line-height:1.42;color:rgba(255,255,255,.78);
+      transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .3s}
+    .faq-item.open .faq-a{max-height:600px;padding:0 22px 22px}
+    @media (min-width:1200px){.faq-q{padding:24px 60px 24px 28px;font-size:17.5px}.faq-q::after{right:28px}.faq-a{padding:0 28px;font-size:17px}.faq-item.open .faq-a{padding:0 28px 26px}}
 </style>
   <script src="/meta-pixel.js"></script>
 </head>

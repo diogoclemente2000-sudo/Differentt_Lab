@@ -26,6 +26,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Branding vs. Design Gráfico: Qual É a Diferença, Porque Importa e O Que o Seu Negócio Precisa Primeiro", "description": "Um logótipo não é uma marca. A diferença entre branding e design gráfico, o que cada um entrega, como se cruzam e por onde começar sem pagar duas vezes.", "url": "https://differenttlab.com/blog/branding-vs-design-grafico", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://differenttlab.com/blog/branding-vs-design-grafico"}, "image": "https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,w_1200,h_630,q_auto/Website_photos/BLOG/BRANDING.jpg", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Organization", "name": "Differentt Lab", "url": "https://differenttlab.com"}, "publisher": {"@type": "Organization", "name": "Differentt Lab", "logo": {"@type": "ImageObject", "url": "https://differenttlab.com/favicon-512.png"}}, "inLanguage": "pt-PT", "keywords": "branding vs design gráfico, diferença entre branding e design gráfico, o que é branding, identidade visual, manual de marca, rebranding PME"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://differenttlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://differenttlab.com/blog"},{"@type":"ListItem","position":3,"name":"Branding vs. Design Gráfico: Qual É a Diferença (2026)","item":"https://differenttlab.com/blog/branding-vs-design-grafico"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual é a diferença entre branding e design gráfico?", "acceptedAnswer": {"@type": "Answer", "text": "Branding define o que a marca é: posicionamento, público, promessa, tom de voz e sistema de identidade visual e verbal. Design gráfico executa peças concretas (cartões, publicações, anúncios, embalagens) dentro desse sistema. O branding decide, o design gráfico produz."}}, {"@type": "Question", "name": "Um logótipo é branding?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O logótipo é uma peça de design gráfico que faz parte da identidade visual, que por sua vez é uma parte do branding. Um logótipo sem estratégia, paleta, tipografia e regras de uso é um desenho solto que cada fornecedor vai aplicar à sua maneira."}}, {"@type": "Question", "name": "Quanto tempo demora um projeto de branding?", "acceptedAnswer": {"@type": "Answer", "text": "Na Differentt Lab, um projeto de branding completo para uma PME demora normalmente entre 3 e 6 semanas, dependendo da complexidade e da rapidez do feedback. As fases são descoberta, estratégia, identidade verbal, identidade visual, aplicações e manual de marca."}}, {"@type": "Question", "name": "O que deve incluir um manual de marca?", "acceptedAnswer": {"@type": "Answer", "text": "Logótipo e versões com regras de uso e margens de proteção, paleta de cores com códigos para impressão e ecrã, tipografia e hierarquia, estilo de fotografia e ilustração, tom de voz com exemplos, e aplicações modelo. Deve vir acompanhado dos ficheiros finais em formato vetorial e digital."}}, {"@type": "Question", "name": "Preciso de branding antes de fazer o website?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, pelo menos do essencial. O site herda cores, tipografia, tom de voz e estilo de imagem. Fazer o site primeiro e a marca depois obriga a refazer o site ou a viver com uma identidade decidida pelo template."}}, {"@type": "Question", "name": "Posso fazer só um rebranding do logótipo?", "acceptedAnswer": {"@type": "Answer", "text": "Pode, mas raramente resolve o problema. Se o posicionamento e o tom não forem revistos, o logótipo novo vai ser aplicado com as mesmas incoerências. Um rebranding útil começa por perguntar se a estratégia ainda serve e só depois desenha."}}]}</script>
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -333,6 +334,29 @@
     .article-hero::before{top:-14% !important;left:50% !important;right:auto !important;bottom:auto !important;
       width:min(1400px,170vw) !important;height:780px !important;transform:translateX(-50%) !important;
       background:radial-gradient(ellipse 50% 50% at 50% 42%,rgba(158,123,182,.09) 0%,rgba(158,123,182,.045) 38%,rgba(158,123,182,0) 72%) !important}
+
+    /* ═══ FAQ dos artigos no formato das paginas do site (set/2026) ═══
+       Mesmo componente da gestao/criacao: card com o anel da casa, pergunta com gradiente,
+       chevron rosa, halo no canto quando aberto. O markup (.faq-q/.faq-a) e o JS ficam. */
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin:24px 0 0}
+    .faq-item{position:relative;border:0;border-radius:14px;overflow:hidden;
+      background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012) 60%),#0b0a0f;transition:background .35s ease}
+    .faq-item::before{content:'';position:absolute;inset:0;border-radius:14px;padding:1px;z-index:2;pointer-events:none;
+      background:linear-gradient(135deg,rgba(197,133,184,.55) 0%,rgba(158,123,182,.07) 32%,rgba(158,123,182,.06) 68%,rgba(197,133,184,.52) 100%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background .35s ease}
+    .faq-item.open{background:radial-gradient(130% 62% at 0% 0%,rgba(176,138,204,.26) 0%,rgba(158,123,182,.06) 46%,transparent 78%),#0b0a0f}
+    .faq-item.open::before{background:linear-gradient(135deg,rgba(197,133,184,.9) 0%,rgba(158,123,182,.12) 32%,rgba(158,123,182,.1) 68%,rgba(197,133,184,.85) 100%)}
+    .faq-q{position:relative;gap:20px;padding:20px 52px 20px 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-weight:600;font-size:16px;line-height:1.3;
+      color:#fff;background:linear-gradient(180deg,#f2f2f4 10%,#9a9aa0 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q:hover,.faq-item.open .faq-q{background:linear-gradient(180deg,#ffffff 10%,#c9c9cf 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q .faq-icon{display:none}
+    .faq-q::after{content:'';position:absolute;right:24px;top:50%;width:9px;height:9px;margin-top:-7px;
+      border-right:2px solid #c585b8;border-bottom:2px solid #c585b8;transform:rotate(45deg);transition:transform .35s ease,border-color .3s ease}
+    .faq-item.open .faq-q::after{transform:rotate(225deg);margin-top:-2px;border-color:#e2b4d8}
+    .faq-a{display:block;max-height:0;overflow:hidden;padding:0 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-size:16px;line-height:1.42;color:rgba(255,255,255,.78);
+      transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .3s}
+    .faq-item.open .faq-a{max-height:600px;padding:0 22px 22px}
+    @media (min-width:1200px){.faq-q{padding:24px 60px 24px 28px;font-size:17.5px}.faq-q::after{right:28px}.faq-a{padding:0 28px;font-size:17px}.faq-item.open .faq-a{padding:0 28px 26px}}
 </style>
   <script src="/meta-pixel.js"></script>
 </head>

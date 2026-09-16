@@ -26,6 +26,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Anúncios no ChatGPT: Guia Completo para Empresas em Portugal (2026)", "description": "Os anúncios no ChatGPT já chegaram a Portugal. Quem os vê, onde aparecem, o que é permitido, como se compram no Ads Manager e a quem compensa testar.", "url": "https://differenttlab.com/blog/anuncios-no-chatgpt-guia-empresas-portugal", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://differenttlab.com/blog/anuncios-no-chatgpt-guia-empresas-portugal"}, "image": "https://res.cloudinary.com/dgun4lhkm/image/upload/c_fill,w_1200,h_630,q_auto/Website_photos/BLOG/IA/anuncios-no-chatgpt-guia-empresas-portugal.jpg", "datePublished": "2026-09-14", "dateModified": "2026-09-14", "author": {"@type": "Organization", "name": "Differentt Lab", "url": "https://differenttlab.com"}, "publisher": {"@type": "Organization", "name": "Differentt Lab", "logo": {"@type": "ImageObject", "url": "https://differenttlab.com/favicon-512.png"}}, "inLanguage": "pt-PT", "keywords": "anúncios no ChatGPT, publicidade no ChatGPT, ChatGPT Ads Portugal, como anunciar no ChatGPT, ChatGPT Ads como funciona"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://differenttlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://differenttlab.com/blog"},{"@type":"ListItem","position":3,"name":"Anúncios no ChatGPT: Guia para Empresas em Portugal (2026)","item":"https://differenttlab.com/blog/anuncios-no-chatgpt-guia-empresas-portugal"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O ChatGPT já tem anúncios em Portugal?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Os anúncios começaram a aparecer aos utilizadores portugueses dos planos Free e Go a 24 de agosto de 2026, quando a OpenAI expandiu o ChatGPT Ads a 31 mercados europeus. Os planos Plus, Pro, Business, Enterprise e Edu continuam sem publicidade."}}, {"@type": "Question", "name": "Uma empresa portuguesa pode anunciar no ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Desde 31 de agosto de 2026 o Ads Manager da OpenAI está disponível em autosserviço nos 31 mercados europeus, incluindo Portugal. A entidade legal faturada tem de estar sediada num país da lista de disponibilidade e a categoria do negócio tem de ser aceite pelas políticas de anúncios."}}, {"@type": "Question", "name": "Onde aparecem os anúncios no ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Por baixo do fim da resposta do ChatGPT, identificados como patrocinados e separados visualmente do texto da resposta. Cada unidade tem nome do anunciante, logótipo, título, descrição, imagem e link para a página de destino. Não aparecem no browser ChatGPT Atlas nem em conversas sobre temas sensíveis."}}, {"@type": "Question", "name": "Os anúncios influenciam as respostas do ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Segundo a OpenAI, os anúncios correm em sistemas separados do modelo e os anunciantes não conseguem alterar, ordenar ou influenciar as respostas. Pagar um anúncio não faz a sua empresa ser recomendada na resposta."}}, {"@type": "Question", "name": "Quanto custa anunciar no ChatGPT?", "acceptedAnswer": {"@type": "Answer", "text": "A OpenAI não publica tabela de preços. O modelo é CPM (objetivo Reach) ou CPC (objetivo Clicks), com lance máximo definido pelo anunciante e leilão de segundo preço. Para CPC, o centro de ajuda recomenda começar entre 3 e 5 dólares por clique. Os CPM médios que circulam em blogs são estimativas de agências, não dados oficiais."}}, {"@type": "Question", "name": "Os anúncios no ChatGPT usam o histórico das minhas conversas?", "acceptedAnswer": {"@type": "Answer", "text": "Na Europa, não, por agora. A OpenAI declarou que os anúncios personalizados não estão inicialmente disponíveis no Espaço Económico Europeu e na Suíça, pelo que a seleção se baseia no contexto da conversa atual. Os anunciantes nunca têm acesso às conversas, só a dados agregados de desempenho."}}]}</script>
   <link rel="preconnect" href="https://res.cloudinary.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -333,6 +334,29 @@
     .article-hero::before{top:-14% !important;left:50% !important;right:auto !important;bottom:auto !important;
       width:min(1400px,170vw) !important;height:780px !important;transform:translateX(-50%) !important;
       background:radial-gradient(ellipse 50% 50% at 50% 42%,rgba(158,123,182,.09) 0%,rgba(158,123,182,.045) 38%,rgba(158,123,182,0) 72%) !important}
+
+    /* ═══ FAQ dos artigos no formato das paginas do site (set/2026) ═══
+       Mesmo componente da gestao/criacao: card com o anel da casa, pergunta com gradiente,
+       chevron rosa, halo no canto quando aberto. O markup (.faq-q/.faq-a) e o JS ficam. */
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin:24px 0 0}
+    .faq-item{position:relative;border:0;border-radius:14px;overflow:hidden;
+      background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012) 60%),#0b0a0f;transition:background .35s ease}
+    .faq-item::before{content:'';position:absolute;inset:0;border-radius:14px;padding:1px;z-index:2;pointer-events:none;
+      background:linear-gradient(135deg,rgba(197,133,184,.55) 0%,rgba(158,123,182,.07) 32%,rgba(158,123,182,.06) 68%,rgba(197,133,184,.52) 100%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background .35s ease}
+    .faq-item.open{background:radial-gradient(130% 62% at 0% 0%,rgba(176,138,204,.26) 0%,rgba(158,123,182,.06) 46%,transparent 78%),#0b0a0f}
+    .faq-item.open::before{background:linear-gradient(135deg,rgba(197,133,184,.9) 0%,rgba(158,123,182,.12) 32%,rgba(158,123,182,.1) 68%,rgba(197,133,184,.85) 100%)}
+    .faq-q{position:relative;gap:20px;padding:20px 52px 20px 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-weight:600;font-size:16px;line-height:1.3;
+      color:#fff;background:linear-gradient(180deg,#f2f2f4 10%,#9a9aa0 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q:hover,.faq-item.open .faq-q{background:linear-gradient(180deg,#ffffff 10%,#c9c9cf 100%) no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .faq-q .faq-icon{display:none}
+    .faq-q::after{content:'';position:absolute;right:24px;top:50%;width:9px;height:9px;margin-top:-7px;
+      border-right:2px solid #c585b8;border-bottom:2px solid #c585b8;transform:rotate(45deg);transition:transform .35s ease,border-color .3s ease}
+    .faq-item.open .faq-q::after{transform:rotate(225deg);margin-top:-2px;border-color:#e2b4d8}
+    .faq-a{display:block;max-height:0;overflow:hidden;padding:0 22px;font-family:'Satoshi','Nunito Sans',sans-serif;font-size:16px;line-height:1.42;color:rgba(255,255,255,.78);
+      transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .3s}
+    .faq-item.open .faq-a{max-height:600px;padding:0 22px 22px}
+    @media (min-width:1200px){.faq-q{padding:24px 60px 24px 28px;font-size:17.5px}.faq-q::after{right:28px}.faq-a{padding:0 28px;font-size:17px}.faq-item.open .faq-a{padding:0 28px 26px}}
 </style>
   <script src="/meta-pixel.js"></script>
 </head>
@@ -360,7 +384,7 @@
   <nav class="breadcrumb"><a href="../index">Home</a><span>›</span><a href="../blog">Blog</a><span>›</span><span class="breadcrumb-current">IA</span></nav>
   <div class="article-tags"><span class="art-cat">IA</span><span class="art-readtime">12 min de leitura</span></div>
   <h1 class="article-h1">Anúncios no ChatGPT: Guia Completo para Empresas em Portugal (2026)</h1>
-  <p class="article-intro">Desde agosto de 2026 que os utilizadores portugueses do ChatGPT veem anúncios, e qualquer empresa com entidade em Portugal pode comprá-los. Este guia junta o que a OpenAI publicou oficialmente, o que a imprensa portuguesa confirmou e o que ainda ninguém sabe.</p>
+  <p class="article-intro">Desde agosto de 2026 que os utilizadores portugueses do ChatGPT veem anúncios, e, segundo a OpenAI, qualquer empresa com entidade em Portugal já os pode comprar em autosserviço. Este guia junta o que a OpenAI publicou oficialmente, o que a imprensa portuguesa confirmou e o que ainda ninguém sabe.</p>
   <div class="article-byline"><div class="byline-avatar"><img src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_crop,g_center,w_1080,h_1080/c_fill,w_80,h_80,q_auto,f_auto/Website_photos/BLOG/diogo.png" alt="Diogo Clemente, Differentt Lab" width="40" height="40" loading="lazy"></div><div class="byline-info"><span class="byline-name">Differentt Lab</span><span class="byline-date">Setembro 2026</span></div></div>
 </header>
 
@@ -387,7 +411,7 @@
 
   <article class="article-content">
 <h2 id="resposta-rapida">Resposta rápida</h2>
-    <p><strong>Os anúncios no ChatGPT (ChatGPT Ads) são blocos patrocinados que aparecem por baixo das respostas do ChatGPT para utilizadores dos planos Free e Go.</strong> Em Portugal estão ativos desde 24 de agosto de 2026 e, desde 31 de agosto de 2026, qualquer empresa pode comprá-los em autosserviço no Ads Manager da OpenAI, pagando por mil impressões (CPM) ou por clique (CPC). Os anúncios não alteram as respostas, são sempre identificados como patrocinados e não têm acesso às conversas dos utilizadores.</p>
+    <p><strong>Os anúncios no ChatGPT (ChatGPT Ads) são blocos patrocinados que aparecem por baixo das respostas do ChatGPT para utilizadores dos planos Free e Go.</strong> Em Portugal estão ativos desde 24 de agosto de 2026 e, desde 31 de agosto de 2026, segundo a OpenAI, qualquer empresa pode comprá-los em autosserviço no Ads Manager, pagando por mil impressões (CPM) ou por clique (CPC). Os anúncios não alteram as respostas, são sempre identificados como patrocinados e não têm acesso às conversas dos utilizadores.</p>
     <p>Isto é o essencial. O resto do artigo explica cada ponto com a fonte respetiva, porque muito do que circula sobre este tema mistura factos confirmados com estimativas de agências.</p>
 
     <h2 id="o-que-sao">O que são os anúncios no ChatGPT</h2>
