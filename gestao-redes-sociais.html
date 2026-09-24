@@ -1648,6 +1648,28 @@
   .packs-fine + .packs-fine { margin-top: 8px !important; }
   .packs-fine a { color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(197,133,184,0.6); transition: color .2s; }
   .packs-fine a:hover { color: #e2b4d8; }
+
+
+    /* ═══ ANIMACOES DE ENTRADA (set/2026) ═══
+       .rv-pronto e posta pelo JS: sem JS ou com "reduzir movimento" nada fica escondido. */
+    .rv-pronto .rv { opacity: 0; translate: 0 14px; filter: blur(2px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), translate .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1); }
+    .rv-pronto .rv.rv-sub { transition-delay: .12s; }
+    .rv-pronto .rv.in { opacity: 1; translate: 0 0; filter: blur(0); }
+    /* cards: animation em vez de transition, para nao pisar a transition do hover; escalonados por --rv-i */
+    @keyframes rvCard { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+    .rv-pronto .rv-card { opacity: 0; }
+    .rv-pronto .rv-card.in { animation: rvCard .7s cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--rv-i, 0) * 60ms); }
+    .rv-pronto .rv-card.rv-done { opacity: 1; animation: none; }
+    /* FAQ: a resposta desvanece enquanto o card abre */
+    .faq-answer, .faq-a { opacity: 0; transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s, opacity .35s ease; }
+    .faq-item.open .faq-answer, .faq-item.open .faq-a { opacity: 1; transition-delay: 0s, 0s, .1s; }
+    /* formularios: brilho suave no foco */
+    form input:focus, form textarea:focus, form select:focus { box-shadow: 0 0 0 3px rgba(197,133,184,.16) !important; transition: box-shadow .25s ease, border-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
+      .faq-answer, .faq-a { opacity: 1; }
+    }
 </style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -2052,7 +2074,7 @@
   </svg>
 
   <h2 class="section-title">Um plano para cada <span>fase</span> do negócio</h2>
-  <p class="section-sub">Três packs mensais de gestão de redes sociais, com âmbito, produção e valor definidos à partida. Para necessidades específicas, desenvolvemos uma proposta à medida.</p>
+  <p class="section-sub">Três packs mensais de gestão de redes sociais, com âmbito, produção e investimento definidos à partida. Para necessidades específicas, desenvolvemos uma proposta à medida.</p>
 
   <div class="packs-grid" role="group" aria-label="Packs e planos de gestão de redes sociais">
 
@@ -2061,14 +2083,14 @@
       <p class="pack-eyebrow">Plano 01</p>
       <h3 class="pack-nome">Essencial</h3>
       <p class="pack-preco">550 €<span>/mês</span></p>
-      <p class="pack-frase">Para quem já tem fotografias do negócio e precisa de estar presente com consistência.</p>
+      <p class="pack-frase">Para negócios que já dispõem de material fotográfico e precisam de presença regular e consistente nas redes.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="essencial" aria-label="Detalhes do Essencial"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">2 redes à tua escolha</p>
+      <p class="pack-redes-nota">2 redes sociais à tua escolha</p>
       <ul class="pack-lista">
         <li><strong>10 publicações</strong> por mês e 2 Reels</li>
-        <li>Copywriting, design e agendamento</li>
-        <li>Calendário aprovado por ti antes de sair</li>
-        <li>Relatório mensal</li>
+        <li>Copywriting, design e agendamento das publicações</li>
+        <li>Calendário editorial aprovado por ti antes da publicação</li>
+        <li>Relatório mensal de resultados</li>
       </ul>
       <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
     </article>
@@ -2078,14 +2100,14 @@
       <p class="pack-eyebrow">Plano 02</p>
       <h3 class="pack-nome">Pro</h3>
       <p class="pack-preco">750 €<span>/mês</span></p>
-      <p class="pack-frase">Vamos ao teu espaço filmar. O conteúdo passa a ser mesmo teu.</p>
+      <p class="pack-frase">Filmagens e fotografia presenciais no teu espaço. Conteúdo original, produzido para a tua marca.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="pro" aria-label="Detalhes da produção do Pro"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">2 redes à tua escolha</p>
+      <p class="pack-redes-nota">2 redes sociais à tua escolha</p>
       <ul class="pack-lista">
-        <li><strong>8 horas de produção</strong></li>
+        <li><strong>8 horas de produção presencial</strong></li>
         <li>10 publicações por mês e 3 Reels</li>
-        <li>Copywriting, design e agendamento</li>
-        <li>Relatório e reunião mensais</li>
+        <li>Copywriting, design e agendamento das publicações</li>
+        <li>Relatório de resultados e reunião mensais</li>
       </ul>
       <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
     </article>
@@ -2095,14 +2117,14 @@
       <p class="pack-eyebrow">Plano 03</p>
       <h3 class="pack-nome">Performance</h3>
       <p class="pack-preco">900 €<span>/mês</span></p>
-      <p class="pack-frase">O dobro das horas no teu espaço, para nunca faltar material fresco.</p>
+      <p class="pack-frase">O dobro da produção presencial e mais publicações, para uma presença contínua com material sempre novo.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span><span><svg><use href="#g-tt"/></svg></span></span>3 redes</span><button type="button" class="pack-info" data-lp="performance" aria-label="Detalhes da produção do Performance"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">3 redes à tua escolha</p>
+      <p class="pack-redes-nota">3 redes sociais à tua escolha</p>
       <ul class="pack-lista">
-        <li><strong>16 horas de produção</strong></li>
+        <li><strong>16 horas de produção presencial</strong></li>
         <li>12 publicações por mês e 4 Reels</li>
-        <li>Copywriting, design e agendamento</li>
-        <li>Relatório e reunião mensais</li>
+        <li>Copywriting, design e agendamento das publicações</li>
+        <li>Relatório de resultados e reunião mensais</li>
       </ul>
       <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
     </article>
@@ -2113,7 +2135,7 @@
       <p class="pack-eyebrow">Complementa qualquer plano</p>
       <h3 class="pack-nome">Scale</h3>
       <p class="pack-preco pack-preco--sob">Sob orçamento</p>
-      <p class="pack-frase">Anúncios, funil de vendas, mais do que uma marca? Desenhamos ao teu caso.</p>
+      <p class="pack-frase">Campanhas de anúncios, funil de vendas ou várias marcas. Uma proposta desenhada à medida do teu objetivo.</p>
       <div class="pack-pills">
         <span class="pack-pill"><span class="pack-logo pack-logo--meta"><svg><use href="#g-meta"/></svg></span>Meta Ads</span>
         <span class="pack-pill"><span class="pack-logo"><svg><use href="#g-google"/></svg></span>Google Ads</span>
@@ -2121,9 +2143,9 @@
         <button type="button" class="pack-info" data-lp="scale" aria-label="Detalhes do Scale"><span></span><span></span><span></span></button>
       </div>
       <ul class="pack-lista">
-        <li><strong>Campanhas de anúncios</strong>, com captação só para elas</li>
-        <li>Funil de vendas com rastreio de conversões</li>
-        <li>Estratégia própria por marca</li>
+        <li><strong>Campanhas de anúncios</strong> com produção de criativos dedicada</li>
+        <li>Funil de vendas com landing page e rastreio de conversões</li>
+        <li>Estratégia e linguagem próprias para cada marca</li>
       </ul>
       <button type="button" class="pack-pick"><svg><use href="#g-mais"/></svg><span class="rot-off">Adicionar</span><span class="rot-on">Adicionado</span></button>
     </article>
@@ -2148,12 +2170,12 @@
     <div class="packs-selos">
       <button type="button" class="selo" data-lp="exp">
         <span class="selo-ico"><svg><use href="#g-experiencia"/></svg></span>
-        <span class="selo-txt"><b>1.º mês à experiência</b><span>sem compromisso</span></span>
+        <span class="selo-txt"><b>1.º mês à experiência</b><span>sem fidelização</span></span>
         <svg class="selo-mais"><use href="#g-seta"/></svg>
       </button>
       <button type="button" class="selo" data-lp="praz">
         <span class="selo-ico"><svg><use href="#g-prazo"/></svg></span>
-        <span class="selo-txt"><b>Contratos de 6 meses</b><span>depois do 1.º</span></span>
+        <span class="selo-txt"><b>Contratos de 6 meses</b><span>após o período de experiência</span></span>
         <svg class="selo-mais"><use href="#g-seta"/></svg>
       </button>
       <button type="button" class="selo" data-lp="desc">
@@ -2296,26 +2318,26 @@
 (function(){
   var CONTEUDO = {
     exp: { ico: 'g-experiencia', titulo: 'Primeiro mês à experiência',
-      texto: 'Experimenta um mês sem compromisso, para veres como trabalhamos. Sem contrato e sem fidelização: se não for para ti, fica por aqui.',
+      texto: 'O primeiro mês funciona como período de experiência, sem contrato nem fidelização. Permite avaliar a forma como trabalhamos antes de assumir um compromisso.',
       linhas: [] },
     praz: { ico: 'g-prazo', titulo: 'Depois, contratos de 6 meses',
-      texto: 'É o tempo mínimo para os resultados aparecerem e poderem ser medidos. Nas redes, os primeiros dois meses são de construção; é do terceiro em diante que se vê a diferença.',
+      texto: 'Seis meses é o período mínimo para os resultados surgirem e poderem ser medidos. Nas redes sociais, os primeiros dois meses são de construção; a partir do terceiro a diferença torna-se visível.',
       linhas: [] },
     desc: { ico: 'g-desconto', titulo: 'Pagas o semestre à cabeça? Menos 10%',
-      texto: 'Adiantas os 6 meses e o valor total desce 10%. Fica assim:',
+      texto: 'Com o pagamento dos 6 meses à cabeça, o investimento total reduz 10%:',
       linhas: [['Essencial', '2.970 €', 'poupas 330 €'], ['Pro', '4.050 €', 'poupas 450 €'], ['Performance', '4.860 €', 'poupas 540 €']] },
-    essencial: { ico: 'g-foto', titulo: 'O que inclui o Essencial',
-      texto: 'Trabalhamos com as fotografias e vídeos que já tens do negócio. Tratamos do resto: textos, design e agendamento, com o calendário aprovado por ti antes de sair.',
-      linhas: [['Conteúdo por mês', '10 posts e 2 Reels'], ['Redes', '2 à tua escolha'], ['Produção no teu espaço', 'não incluída'], ['Relatório', 'mensal']] },
-    pro: { ico: 'g-video', titulo: 'A produção do Pro',
-      texto: 'Vamos ao teu espaço filmar e fotografar. As 8 horas repartem-se por 2 dias, marcados contigo. Horas extra ou deslocações além dos 30 km são orçamentadas à parte.',
-      linhas: [['Horas de produção', '8 h'], ['Dias no teu espaço', '2 dias'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '10 posts e 3 Reels']] },
-    performance: { ico: 'g-video', titulo: 'A produção do Performance',
-      texto: 'O dobro das horas no teu espaço: 16 horas repartidas por 3 dias, marcados contigo. Horas extra ou deslocações além dos 30 km são orçamentadas à parte.',
-      linhas: [['Horas de produção', '16 h'], ['Dias no teu espaço', '3 dias'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '12 posts e 4 Reels']] },
-    scale: { ico: 'g-subir', titulo: 'Como funciona o Scale',
-      texto: 'Complementa qualquer plano. Percebemos o teu objetivo e desenhamos a proposta à medida: anúncios, funil de vendas ou estratégia para mais do que uma marca.',
-      linhas: [['Anúncios', 'Meta e Google Ads'], ['Captação', 'só para os anúncios'], ['Funil de vendas', 'com rastreio'], ['Preço', 'sob orçamento']] }
+    essencial: { ico: 'g-foto', titulo: 'O que inclui o plano Essencial',
+      texto: 'Trabalhamos com o material fotográfico e de vídeo que o teu negócio já tem. Asseguramos o restante: copywriting, design e agendamento, com o calendário editorial aprovado por ti antes da publicação.',
+      linhas: [['Conteúdo por mês', '10 posts e 2 Reels'], ['Redes', '2 à tua escolha'], ['Produção presencial', 'não incluída'], ['Relatório de resultados', 'mensal']] },
+    pro: { ico: 'g-video', titulo: 'A produção presencial do plano Pro',
+      texto: 'Filmagens e fotografia presenciais no teu espaço. As 8 horas de produção repartem-se por 2 sessões, agendadas contigo. Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
+      linhas: [['Horas de produção', '8 h'], ['Sessões presenciais', '2'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '10 posts e 3 Reels']] },
+    performance: { ico: 'g-video', titulo: 'A produção presencial do plano Performance',
+      texto: 'O dobro da produção presencial: 16 horas de filmagens e fotografia repartidas por 3 sessões, agendadas contigo. Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
+      linhas: [['Horas de produção', '16 h'], ['Sessões presenciais', '3'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '12 posts e 4 Reels']] },
+    scale: { ico: 'g-subir', titulo: 'Como funciona o extra Scale',
+      texto: 'Complementa qualquer plano. Analisamos o teu objetivo e desenhamos uma proposta à medida: campanhas de anúncios, funil de vendas ou estratégia para várias marcas.',
+      linhas: [['Anúncios', 'Meta e Google Ads'], ['Produção de criativos', 'dedicada aos anúncios'], ['Funil de vendas', 'com rastreio de conversões'], ['Preço', 'sob orçamento']] }
   };
   var fundo  = document.getElementById('lpFundo');
   var ico    = document.getElementById('lpIco');
@@ -2779,6 +2801,43 @@
     if(e.isIntersecting){ m.classList.add('lit'); io.disconnect(); }
   });},{threshold:0.4});
   io.observe(m);
+})();
+</script>
+
+
+
+<script>
+(function(){
+  // ANIMACOES DE ENTRADA (set/2026): titulos, subtitulos, cards e footer entram ao chegar ao ecra
+  var reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduz || !("IntersectionObserver" in window)) return;
+  var vis = function(e){ return e.getBoundingClientRect().height >= 4; };
+  var alvos = [];
+  document.querySelectorAll(".section-title, .cta-title").forEach(function(t){
+    if (!vis(t)) return;
+    t.classList.add("rv"); alvos.push(t);
+    var s = t.nextElementSibling;
+    if (s && /(^| )(section-sub|section-sub-nova|team-sub|cta-sub|rp-sub|section-body|faq-intro)( |$)/.test(s.className) && vis(s)) { s.classList.add("rv", "rv-sub"); alvos.push(s); }
+  });
+  document.querySelectorAll(".ft-grid").forEach(function(e){ e.classList.add("rv"); alvos.push(e); });
+  var cards = ".pack-card" ? [].slice.call(document.querySelectorAll(".pack-card")).filter(function(c){ return vis(c) && !(c.parentElement && c.parentElement.scrollWidth > c.parentElement.clientWidth + 4); }) : [];
+  cards.forEach(function(c){ c.classList.add("rv-card"); c.addEventListener("animationend", function(){ c.classList.add("rv-done"); c.classList.remove("in"); }, { once: true }); });
+  if (!alvos.length && !cards.length) return;
+  document.documentElement.classList.add("rv-pronto");
+  var io = new IntersectionObserver(function(es){
+    // os cards que entram na mesma leva escalonam entre si (60ms cada, ate 8)
+    var i = 0;
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      if (e.target.classList.contains("rv-card")) { e.target.style.setProperty("--rv-i", Math.min(i++, 8)); }
+      e.target.classList.add("in"); io.unobserve(e.target);
+    });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+  alvos.concat(cards).forEach(function(a){
+    var r = a.getBoundingClientRect();
+    // o que ja esta no ecra ao carregar aparece sem animar
+    if (r.top < innerHeight && r.bottom > 0) { a.classList.add("in", a.classList.contains("rv-card") ? "rv-done" : "in"); } else { io.observe(a); }
+  });
 })();
 </script>
 </body>

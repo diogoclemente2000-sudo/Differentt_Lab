@@ -309,35 +309,6 @@
       .method-banner-sub { width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))); max-width: none; margin: 0 auto; }
     }
 
-    /* ── LISTA DE FASES (mesma mecanica, moldura e tipografia da casa) ── */
-    .accordion { display: flex; flex-direction: column; gap: 10px;
-      width: 100%; max-width: var(--larg-max); margin: 0 auto; padding: 0 var(--gutter) 56px; }
-    @media (min-width: 1200px) { .accordion { padding: 0 0 56px; } }
-    .acc-item { position: relative; display: flex; align-items: center; gap: 20px; padding: 18px 24px;
-      border: 0; border-radius: 12px; overflow: hidden; cursor: pointer;
-      background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.012) 60%), #0b0a0f;
-      transition: background .35s ease; }
-    .acc-item::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; z-index: 2; pointer-events: none;
-      background: linear-gradient(135deg, rgba(197,133,184,.55) 0%, rgba(158,123,182,.07) 32%, rgba(158,123,182,.06) 68%, rgba(197,133,184,.52) 100%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; transition: background .35s ease; }
-    .acc-item:hover, .acc-item.active { background: radial-gradient(130% 62% at 0% 0%, rgba(176,138,204,.26) 0%, rgba(158,123,182,.06) 46%, transparent 78%), #0b0a0f; }
-    .acc-item.active::before { background: linear-gradient(135deg, rgba(197,133,184,.9) 0%, rgba(158,123,182,.12) 32%, rgba(158,123,182,.1) 68%, rgba(197,133,184,.85) 100%); }
-    .acc-num { display: none; }
-    .acc-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 17px;
-      letter-spacing: -0.015em; text-transform: none; color: #fff; flex: 1; }
-    .acc-phase { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px;
-      letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
-    .acc-icon { width: 24px; height: 24px; display: grid; place-items: center; color: #c585b8; flex-shrink: 0;
-      transition: transform .35s cubic-bezier(0.22,1,0.36,1); }
-    .acc-item:hover .acc-icon { transform: translateX(3px); }
-    @media (max-width: 1199px) {
-      .accordion { padding: 0 0 44px; width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))); }
-      .acc-item { padding: 16px 20px; gap: 14px; }
-      .acc-name { font-size: 16px; }
-      .acc-phase { display: none; }
-    }
-
     /* ── CARDS DAS ETAPAS ── */
     .step-cards { display: flex; flex-direction: column; gap: 16px;
       width: 100%; max-width: var(--larg-max); margin: 0 auto; padding: 0 var(--gutter) 100px; }
@@ -495,37 +466,17 @@
 </div>
 
 <!-- STEPS LIST -->
-<div class="accordion">
-  <div class="acc-item active">
-    <span class="acc-num">01</span>
-    <span class="acc-name">Colheita</span>
-    <span class="acc-phase">1ª Fase</span>
-    <span class="acc-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="7,2 12,7 7,12"/></svg></span>
-  </div>
-  <div class="acc-item">
-    <span class="acc-num">02</span>
-    <span class="acc-name">Definição</span>
-    <span class="acc-phase">2ª Fase</span>
-    <span class="acc-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="7,2 12,7 7,12"/></svg></span>
-  </div>
-  <div class="acc-item">
-    <span class="acc-num">03</span>
-    <span class="acc-name">Grafismo</span>
-    <span class="acc-phase">3ª Fase</span>
-    <span class="acc-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="7,2 12,7 7,12"/></svg></span>
-  </div>
-  <div class="acc-item">
-    <span class="acc-num">04</span>
-    <span class="acc-name">Ação</span>
-    <span class="acc-phase">4ª Fase</span>
-    <span class="acc-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="7,2 12,7 7,12"/></svg></span>
-  </div>
+<div class="fases" role="navigation" aria-label="Etapas do método">
+  <a class="fase on" href="#etapa-1"><span class="fase-num">01</span><span class="fase-nome">Colheita</span><span class="fase-desc">Analisamos a marca, o mercado e os consumidores.</span></a>
+  <a class="fase" href="#etapa-2"><span class="fase-num">02</span><span class="fase-nome">Definição</span><span class="fase-desc">Estratégia, conceito e direção criativa.</span></a>
+  <a class="fase" href="#etapa-3"><span class="fase-num">03</span><span class="fase-nome">Grafismo</span><span class="fase-desc">Design, identidade e todas as peças.</span></a>
+  <a class="fase" href="#etapa-4"><span class="fase-num">04</span><span class="fase-nome">Ação</span><span class="fase-desc">Aplicação, acompanhamento e resultados.</span></a>
 </div>
 
 <!-- STEP CARDS -->
 <div class="step-cards">
 
-  <div class="step-card">
+  <div class="step-card" id="etapa-1">
     <div class="step-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_methods_page/NVLYBfR5V9RCL9ZlJetaqMpBTyk.png');"></div>
     <div class="step-card-overlay"></div>
     <div class="step-card-num">01</div>
@@ -537,7 +488,7 @@
     </div>
   </div>
 
-  <div class="step-card">
+  <div class="step-card" id="etapa-2">
     <div class="step-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_methods_page/RtvoBH4zNzdxmCDOMPVykrqBkXU.png');"></div>
     <div class="step-card-overlay"></div>
     <div class="step-card-num">02</div>
@@ -549,7 +500,7 @@
     </div>
   </div>
 
-  <div class="step-card">
+  <div class="step-card" id="etapa-3">
     <div class="step-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_methods_page/inQbBSftiQ6M4JS70QiwnL5bLy8.png');"></div>
     <div class="step-card-overlay"></div>
     <div class="step-card-num">03</div>
@@ -561,7 +512,7 @@
     </div>
   </div>
 
-  <div class="step-card">
+  <div class="step-card" id="etapa-4">
     <div class="step-card-bg" style="background-image:url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_methods_page/AUoVTSdwz7rQMfFQTBedCunjbs.png');"></div>
     <div class="step-card-overlay"></div>
     <div class="step-card-num">04</div>
@@ -712,6 +663,54 @@
     .contact-cta-title br { display: none; }
     .contact-cta-title { max-width: 24ch; }
   }
+
+
+    /* ═══ ANIMACOES DE ENTRADA (set/2026) ═══
+       .rv-pronto e posta pelo JS: sem JS ou com "reduzir movimento" nada fica escondido. */
+    .rv-pronto .rv { opacity: 0; translate: 0 14px; filter: blur(2px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), translate .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1); }
+    .rv-pronto .rv.rv-sub { transition-delay: .12s; }
+    .rv-pronto .rv.in { opacity: 1; translate: 0 0; filter: blur(0); }
+    /* cards: animation em vez de transition, para nao pisar a transition do hover; escalonados por --rv-i */
+    @keyframes rvCard { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+    .rv-pronto .rv-card { opacity: 0; }
+    .rv-pronto .rv-card.in { animation: rvCard .7s cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--rv-i, 0) * 60ms); }
+    .rv-pronto .rv-card.rv-done { opacity: 1; animation: none; }
+    /* FAQ: a resposta desvanece enquanto o card abre */
+    .faq-answer, .faq-a { opacity: 0; transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s, opacity .35s ease; }
+    .faq-item.open .faq-answer, .faq-item.open .faq-a { opacity: 1; transition-delay: 0s, 0s, .1s; }
+    /* formularios: brilho suave no foco */
+    form input:focus, form textarea:focus, form select:focus { box-shadow: 0 0 0 3px rgba(197,133,184,.16) !important; transition: box-shadow .25s ease, border-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
+      .faq-answer, .faq-a { opacity: 1; }
+    }
+
+    /* ── INDICE DE ETAPAS: quatro cards da casa (anel, interior cinza, numero em gradiente); o ativo segue o scroll ── */
+    .fases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: var(--larg-max); margin: 0 auto; padding: 0 0 56px; }
+    .fase { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 22px 22px 20px; border-radius: 14px; text-decoration: none; color: #fff; isolation: isolate;
+      background: linear-gradient(160deg, rgba(255,255,255,.022), rgba(255,255,255,0) 60%), #060608;
+      transition: transform .45s cubic-bezier(.22,1,.36,1), background .35s ease; }
+    .fase::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: linear-gradient(135deg, rgba(197,133,184,.38) 0%, rgba(255,255,255,.06) 32%, rgba(255,255,255,.05) 68%, rgba(197,133,184,.36) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; transition: background .35s ease; }
+    .fase-num { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: -.03em; margin-bottom: 8px; padding: .04em 0 .1em;
+      background: linear-gradient(180deg, #ffffff 17%, #93929a 62%, #1c1b22 92%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: .4px rgba(255,255,255,.55); }
+    .fase-nome { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -.015em; line-height: 1.15; color: #fff; }
+    .fase-desc { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.32; color: rgba(255,255,255,.62); }
+    .fase:hover { transform: translateY(-4px); }
+    .fase:hover::before { background: linear-gradient(135deg, rgba(197,133,184,.85) 0%, rgba(158,123,182,.18) 32%, rgba(158,123,182,.16) 68%, rgba(197,133,184,.8) 100%); }
+    .fase.on { background: radial-gradient(120% 60% at 0% 0%, rgba(176,138,204,.16) 0%, rgba(158,123,182,.03) 46%, transparent 78%), #060608; }
+    .fase.on::before { background: linear-gradient(135deg, rgba(197,133,184,1) 0%, rgba(197,133,184,.5) 32%, rgba(197,133,184,.5) 68%, rgba(197,133,184,1) 100%); }
+    .fase:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; }
+    @media (max-width: 1199px) {
+      .fases { grid-template-columns: 1fr 1fr; gap: 10px; width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))); padding: 0 0 44px; }
+      .fase { padding: 18px 16px 16px; gap: 4px; }
+      .fase-num { font-size: 28px; margin-bottom: 6px; }
+      .fase-nome { font-size: 16px; }
+      .fase-desc { font-size: 12.5px; }
+    }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
@@ -737,6 +736,60 @@
     if(!tick){ tick = true; requestAnimationFrame(upd); }
   }, {passive:true});
 })();
+</script>
+
+
+
+<script>
+(function(){
+  // ANIMACOES DE ENTRADA (set/2026): titulos, subtitulos, cards e footer entram ao chegar ao ecra
+  var reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduz || !("IntersectionObserver" in window)) return;
+  var vis = function(e){ return e.getBoundingClientRect().height >= 4; };
+  var alvos = [];
+  document.querySelectorAll(".section-title, .cta-title").forEach(function(t){
+    if (!vis(t)) return;
+    t.classList.add("rv"); alvos.push(t);
+    var s = t.nextElementSibling;
+    if (s && /(^| )(section-sub|section-sub-nova|team-sub|cta-sub|rp-sub|section-body|faq-intro)( |$)/.test(s.className) && vis(s)) { s.classList.add("rv", "rv-sub"); alvos.push(s); }
+  });
+  document.querySelectorAll(".ft-grid").forEach(function(e){ e.classList.add("rv"); alvos.push(e); });
+  var cards = ".step-card" ? [].slice.call(document.querySelectorAll(".step-card")).filter(function(c){ return vis(c) && !(c.parentElement && c.parentElement.scrollWidth > c.parentElement.clientWidth + 4); }) : [];
+  cards.forEach(function(c){ c.classList.add("rv-card"); c.addEventListener("animationend", function(){ c.classList.add("rv-done"); c.classList.remove("in"); }, { once: true }); });
+  if (!alvos.length && !cards.length) return;
+  document.documentElement.classList.add("rv-pronto");
+  var io = new IntersectionObserver(function(es){
+    // os cards que entram na mesma leva escalonam entre si (60ms cada, ate 8)
+    var i = 0;
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      if (e.target.classList.contains("rv-card")) { e.target.style.setProperty("--rv-i", Math.min(i++, 8)); }
+      e.target.classList.add("in"); io.unobserve(e.target);
+    });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+  alvos.concat(cards).forEach(function(a){
+    var r = a.getBoundingClientRect();
+    // o que ja esta no ecra ao carregar aparece sem animar
+    if (r.top < innerHeight && r.bottom > 0) { a.classList.add("in", a.classList.contains("rv-card") ? "rv-done" : "in"); } else { io.observe(a); }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var fases = [].slice.call(document.querySelectorAll(".fase")); var cards = [].slice.call(document.querySelectorAll(".step-card"));
+  if (!fases.length || !cards.length) return;
+  function marcar(i){ fases.forEach(function(f, k){ f.classList.toggle("on", k === i); f.classList.toggle("done", k < i); }); }
+  fases.forEach(function(f, i){ f.addEventListener("click", function(e){ e.preventDefault(); marcar(i);
+    var y = cards[i].getBoundingClientRect().top + scrollY - 96; scrollTo({ top: y, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }); });
+  // ativo = o card mais perto do topo do ecra (logo abaixo da nav); com 3 ou 4 cards visiveis
+  // ao mesmo tempo em PC, e a unica definicao que nao salta
+  var pedido = false;
+  function atualizar(){ pedido = false; var ref = 110, melhor = 0, d = Infinity;
+    cards.forEach(function(c, i){ var dd = Math.abs(c.getBoundingClientRect().top - ref); if (dd < d) { d = dd; melhor = i; } });
+    marcar(melhor); }
+  addEventListener("scroll", function(){ if (!pedido) { pedido = true; requestAnimationFrame(atualizar); } }, { passive: true });
+  atualizar();})();
 </script>
 </body>
 </html>

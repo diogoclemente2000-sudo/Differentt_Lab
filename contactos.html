@@ -830,6 +830,28 @@
   .section-title:has(+ .faq-intro), .section-title:has(+ .stats-intro) { margin-bottom: 4px !important; }
   /* h1 das paginas interiores com a entrelinha do hero da home */
   .page-hero .section-title, .hire-title { line-height: 0.92 !important; }
+
+
+    /* ═══ ANIMACOES DE ENTRADA (set/2026) ═══
+       .rv-pronto e posta pelo JS: sem JS ou com "reduzir movimento" nada fica escondido. */
+    .rv-pronto .rv { opacity: 0; translate: 0 14px; filter: blur(2px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), translate .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1); }
+    .rv-pronto .rv.rv-sub { transition-delay: .12s; }
+    .rv-pronto .rv.in { opacity: 1; translate: 0 0; filter: blur(0); }
+    /* cards: animation em vez de transition, para nao pisar a transition do hover; escalonados por --rv-i */
+    @keyframes rvCard { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+    .rv-pronto .rv-card { opacity: 0; }
+    .rv-pronto .rv-card.in { animation: rvCard .7s cubic-bezier(.22,1,.36,1) both; animation-delay: calc(var(--rv-i, 0) * 60ms); }
+    .rv-pronto .rv-card.rv-done { opacity: 1; animation: none; }
+    /* FAQ: a resposta desvanece enquanto o card abre */
+    .faq-answer, .faq-a { opacity: 0; transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s, opacity .35s ease; }
+    .faq-item.open .faq-answer, .faq-item.open .faq-a { opacity: 1; transition-delay: 0s, 0s, .1s; }
+    /* formularios: brilho suave no foco */
+    form input:focus, form textarea:focus, form select:focus { box-shadow: 0 0 0 3px rgba(197,133,184,.16) !important; transition: box-shadow .25s ease, border-color .25s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
+      .faq-answer, .faq-a { opacity: 1; }
+    }
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
@@ -854,6 +876,43 @@
   window.addEventListener('scroll', function(){
     if(!tick){ tick = true; requestAnimationFrame(upd); }
   }, {passive:true});
+})();
+</script>
+
+
+
+<script>
+(function(){
+  // ANIMACOES DE ENTRADA (set/2026): titulos, subtitulos, cards e footer entram ao chegar ao ecra
+  var reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduz || !("IntersectionObserver" in window)) return;
+  var vis = function(e){ return e.getBoundingClientRect().height >= 4; };
+  var alvos = [];
+  document.querySelectorAll(".section-title, .cta-title").forEach(function(t){
+    if (!vis(t)) return;
+    t.classList.add("rv"); alvos.push(t);
+    var s = t.nextElementSibling;
+    if (s && /(^| )(section-sub|section-sub-nova|team-sub|cta-sub|rp-sub|section-body|faq-intro)( |$)/.test(s.className) && vis(s)) { s.classList.add("rv", "rv-sub"); alvos.push(s); }
+  });
+  document.querySelectorAll(".ft-grid").forEach(function(e){ e.classList.add("rv"); alvos.push(e); });
+  var cards = "" ? [].slice.call(document.querySelectorAll("")).filter(function(c){ return vis(c) && !(c.parentElement && c.parentElement.scrollWidth > c.parentElement.clientWidth + 4); }) : [];
+  cards.forEach(function(c){ c.classList.add("rv-card"); c.addEventListener("animationend", function(){ c.classList.add("rv-done"); c.classList.remove("in"); }, { once: true }); });
+  if (!alvos.length && !cards.length) return;
+  document.documentElement.classList.add("rv-pronto");
+  var io = new IntersectionObserver(function(es){
+    // os cards que entram na mesma leva escalonam entre si (60ms cada, ate 8)
+    var i = 0;
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      if (e.target.classList.contains("rv-card")) { e.target.style.setProperty("--rv-i", Math.min(i++, 8)); }
+      e.target.classList.add("in"); io.unobserve(e.target);
+    });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+  alvos.concat(cards).forEach(function(a){
+    var r = a.getBoundingClientRect();
+    // o que ja esta no ecra ao carregar aparece sem animar
+    if (r.top < innerHeight && r.bottom > 0) { a.classList.add("in", a.classList.contains("rv-card") ? "rv-done" : "in"); } else { io.observe(a); }
+  });
 })();
 </script>
 </body>
