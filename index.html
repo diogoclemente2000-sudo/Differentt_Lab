@@ -1751,7 +1751,7 @@
       ['#571f47','#a5538d','#d391bd'],
       ['#3c2a55','#6a4f8a','#9e7bb6']
     ];
-    var CICLO=20000, POR_PASSO=4000, C=2*Math.PI*237;
+    var CICLO=10000, POR_PASSO=2000, C=2*Math.PI*237;   /* 2s por passo, so enquanto o card esta no ecra */
     var palco=document.getElementById('stepsPalco');
     if(!palco) return;
     var gA=palco.querySelector('.st-gA'), gB=palco.querySelector('.st-gB');
@@ -2868,6 +2868,9 @@
   #reels-panels .rp-av { box-shadow: 0 0 0 1px rgba(255,255,255,.45), 0 4px 14px rgba(0,0,0,.5); }
   /* titulos a esquerda como na criacao-websites; o bloco continua centrado */
   .section-title, .section-sub, .section-body, .rp-sub, .team-sub, .rp-head, .team-head { text-align: left !important; }
+  /* excecao: o titulo e o subtitulo dos servicos ficam ao centro */
+  #services-section .section-title, #services-subtitle { text-align: center !important;
+    margin-left: auto !important; margin-right: auto !important; }
   .section-sub, .section-body, .rp-sub, .team-sub { margin-left: 0 !important; margin-right: auto !important; }
   /* Equipa em pc: a folga de 120px so existe no hover.
      O clip-path abria 120px acima do card em permanencia, para a cabeca poder

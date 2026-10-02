@@ -93,6 +93,10 @@
 
     /* INFO + GALLERY */
     .project-light { background: transparent; color: #fff; }
+    /* so-para-leitores: tira o bloco da vista mas mantem o texto na pagina, legivel
+       por leitores de ecra e pelos motores de busca (nao e display:none) */
+    .so-leitores { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
     .project-info { padding: 72px max(48px, calc((100% - 1400px) / 2)) 0; }
     .project-breadcrumb { font-family: 'Overpass', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; margin-bottom: 20px; }
     .project-breadcrumb a { color: rgba(255,255,255,0.3); text-decoration: none; }
@@ -494,6 +498,17 @@
       .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
       .faq-answer, .faq-a { opacity: 1; }
     }
+
+  /* card dos detalhes: mesma estetica dos cards das etapas (metodos): fundo quase preto,
+     veu branco a 2% e anel mais discreto (rosa so nos cantos) */
+  .pj-detalhes { background: linear-gradient(160deg, rgba(255,255,255,.022), rgba(255,255,255,0) 60%), #060608 !important; }
+  .pj-detalhes::before { background: linear-gradient(135deg, rgba(197,133,184,.38) 0%, rgba(255,255,255,.06) 32%, rgba(255,255,255,.05) 68%, rgba(197,133,184,.36) 100%) !important; }
+
+  /* mobile: as tags esticam e preenchem a linha (cada fila ocupa a largura toda do card) */
+  @media (max-width: 1199px) {
+    .pj-det .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pj-det .project-tag { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 8px 14px !important; }
+  }
 </style>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -955,7 +970,7 @@ function render(id) {
       </div>
     </section>
 
-    <div class="project-light">
+    <div class="project-light so-leitores">
       <section class="project-info">
         <div class="pj-detalhes">
           <div class="pj-det">

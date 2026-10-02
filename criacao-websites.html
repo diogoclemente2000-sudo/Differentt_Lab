@@ -1635,7 +1635,7 @@
 
 <!-- SECTION 5: WHO IS IT FOR -->
 <section class="section">
-  <h2 class="section-title">Feito para <span>negócios</span><br>que querem crescer</h2>
+  <h2 class="section-title">Feito para <span>negócios</span><br>que ambicionam crescer</h2>
   <p class="section-sub-nova">Trabalhamos sobretudo com três tipos de empresa, cada uma num momento diferente do seu percurso digital.</p>
   <div class="who-grid">
     <div class="who-card">
@@ -3140,7 +3140,7 @@
         if(dots[k]) dots[k].classList.toggle('on', k === actual);
       }
     }
-    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 4200); }
+    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 2000); }
     function parar(){ if(timer){ clearInterval(timer); timer = null; } }
 
     palco.querySelector('.ciclo-seg').addEventListener('click', function(){ ir(actual + 1); parar(); arrancar(); });

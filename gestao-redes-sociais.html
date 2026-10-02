@@ -1590,7 +1590,11 @@
   .lp-modal h3 { font-weight: 500; font-size: 25px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 10px;
     background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; }
-  .lp-modal p { font-weight: 400; font-size: 14.5px; line-height: 1.4; color: rgba(255,255,255,0.78); margin: 0; }
+  /* pre-line: respeita as quebras de linha escritas nos textos dos pop-ups */
+  .lp-modal p { font-weight: 400; font-size: 14.5px; line-height: 1.4; color: rgba(255,255,255,0.78); margin: 0; white-space: pre-line; }
+  /* nota do rodape do pop-up: letra mais pequena, sublinhada e numa linha propria */
+  .lp-modal p.lp-nota { font-size: 12px; line-height: 1.35; color: rgba(255,255,255,0.55); margin: 10px 0 0;
+    text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.3); }
   .lp-linhas { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 18px 0 0;
     padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.09); }
   .lp-linhas li { display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
@@ -2085,11 +2089,11 @@
       <p class="pack-preco">550 €<span>/mês</span></p>
       <p class="pack-frase">Para negócios que já dispõem de material fotográfico e precisam de presença regular e consistente nas redes.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="essencial" aria-label="Detalhes do Essencial"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">2 redes sociais à tua escolha</p>
+      <p class="pack-redes-nota">2 redes sociais à sua escolha</p>
       <ul class="pack-lista">
         <li><strong>10 publicações</strong> por mês e 2 Reels</li>
         <li>Copywriting, design e agendamento das publicações</li>
-        <li>Calendário editorial aprovado por ti antes da publicação</li>
+        <li>Calendário editorial aprovado por si antes da publicação</li>
         <li>Relatório mensal de resultados</li>
       </ul>
       <button type="button" class="pack-pick"><svg><use href="#g-visto"/></svg><span class="rot-off">Escolher</span><span class="rot-on">Escolhido</span></button>
@@ -2100,9 +2104,9 @@
       <p class="pack-eyebrow">Plano 02</p>
       <h3 class="pack-nome">Pro</h3>
       <p class="pack-preco">750 €<span>/mês</span></p>
-      <p class="pack-frase">Filmagens e fotografia presenciais no teu espaço. Conteúdo original, produzido para a tua marca.</p>
+      <p class="pack-frase">Filmagens e fotografia presenciais no seu espaço. Conteúdo original, produzido para a sua marca.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span></span>2 redes</span><button type="button" class="pack-info" data-lp="pro" aria-label="Detalhes da produção do Pro"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">2 redes sociais à tua escolha</p>
+      <p class="pack-redes-nota">2 redes sociais à sua escolha</p>
       <ul class="pack-lista">
         <li><strong>8 horas de produção presencial</strong></li>
         <li>10 publicações por mês e 3 Reels</li>
@@ -2119,7 +2123,7 @@
       <p class="pack-preco">900 €<span>/mês</span></p>
       <p class="pack-frase">O dobro da produção presencial e mais publicações, para uma presença contínua com material sempre novo.</p>
       <p class="pack-pilulas pack-pilulas--topo"><span class="pack-pilula pack-pilula--apps"><span class="pack-pilha"><span><svg><use href="#g-ig"/></svg></span><span><svg><use href="#g-fb"/></svg></span><span><svg><use href="#g-tt"/></svg></span></span>3 redes</span><button type="button" class="pack-info" data-lp="performance" aria-label="Detalhes da produção do Performance"><span></span><span></span><span></span></button></p>
-      <p class="pack-redes-nota">3 redes sociais à tua escolha</p>
+      <p class="pack-redes-nota">3 redes sociais à sua escolha</p>
       <ul class="pack-lista">
         <li><strong>16 horas de produção presencial</strong></li>
         <li>12 publicações por mês e 4 Reels</li>
@@ -2135,7 +2139,7 @@
       <p class="pack-eyebrow">Complementa qualquer plano</p>
       <h3 class="pack-nome">Scale</h3>
       <p class="pack-preco pack-preco--sob">Sob orçamento</p>
-      <p class="pack-frase">Campanhas de anúncios, funil de vendas ou várias marcas. Uma proposta desenhada à medida do teu objetivo.</p>
+      <p class="pack-frase">Campanhas de anúncios, funil de vendas ou várias marcas. Uma proposta desenhada à medida do seu objetivo.</p>
       <div class="pack-pills">
         <span class="pack-pill"><span class="pack-logo pack-logo--meta"><svg><use href="#g-meta"/></svg></span>Meta Ads</span>
         <span class="pack-pill"><span class="pack-logo"><svg><use href="#g-google"/></svg></span>Google Ads</span>
@@ -2155,7 +2159,7 @@
   <div class="packs-resumo">
     <div class="resumo-topo">
       <div class="resumo-esq">
-        <p class="resumo-rot">A tua escolha</p>
+        <p class="resumo-rot">A sua escolha</p>
         <div class="resumo-chips" id="resumoChips"></div>
       </div>
       <div class="resumo-dir">
@@ -2180,7 +2184,7 @@
       </button>
       <button type="button" class="selo" data-lp="desc">
         <span class="selo-ico"><svg><use href="#g-desconto"/></svg></span>
-        <span class="selo-txt"><b>Semestre à cabeça: menos 10%</b><span>poupas até 540 €</span></span>
+        <span class="selo-txt"><b>Semestre à cabeça: menos 10%</b><span>poupança até 540 €</span></span>
         <svg class="selo-mais"><use href="#g-seta"/></svg>
       </button>
     </div>
@@ -2196,6 +2200,7 @@
     <span class="lp-ico" id="lpIco"></span>
     <h3 id="lpTitulo"></h3>
     <p id="lpTexto"></p>
+    <p class="lp-nota" id="lpNota"></p>
     <ul class="lp-linhas" id="lpLinhas"></ul>
   </div>
 </div>
@@ -2247,7 +2252,7 @@
     if (!pack && !juntos.length) {
       var vazio = document.createElement('span');
       vazio.className = 'resumo-chip';
-      vazio.textContent = 'Ainda não escolheste nada';
+      vazio.textContent = 'Ainda não selecionou nada';
       chips.appendChild(vazio);
     }
 
@@ -2259,7 +2264,7 @@
     } else if (isNaN(preco)) {
       val.innerHTML = 'Sob orçamento';
       val.style.fontSize = '24px';
-      nota.textContent = 'Falamos contigo e desenhamos ao teu caso.';
+      nota.textContent = 'Falamos consigo e desenhamos a proposta ao seu caso.';
     } else {
       val.innerHTML = euros(preco) + '<i>/mês</i>';
       val.style.fontSize = '';
@@ -2323,26 +2328,29 @@
     praz: { ico: 'g-prazo', titulo: 'Depois, contratos de 6 meses',
       texto: 'Seis meses é o período mínimo para os resultados surgirem e poderem ser medidos. Nas redes sociais, os primeiros dois meses são de construção; a partir do terceiro a diferença torna-se visível.',
       linhas: [] },
-    desc: { ico: 'g-desconto', titulo: 'Pagas o semestre à cabeça? Menos 10%',
+    desc: { ico: 'g-desconto', titulo: 'Semestre à cabeça: menos 10%',
       texto: 'Com o pagamento dos 6 meses à cabeça, o investimento total reduz 10%:',
-      linhas: [['Essencial', '2.970 €', 'poupas 330 €'], ['Pro', '4.050 €', 'poupas 450 €'], ['Performance', '4.860 €', 'poupas 540 €']] },
+      linhas: [['Essencial', '2.970 €', 'poupança de 330 €'], ['Pro', '4.050 €', 'poupança de 450 €'], ['Performance', '4.860 €', 'poupança de 540 €']] },
     essencial: { ico: 'g-foto', titulo: 'O que inclui o plano Essencial',
-      texto: 'Trabalhamos com o material fotográfico e de vídeo que o teu negócio já tem. Asseguramos o restante: copywriting, design e agendamento, com o calendário editorial aprovado por ti antes da publicação.',
-      linhas: [['Conteúdo por mês', '10 posts e 2 Reels'], ['Redes', '2 à tua escolha'], ['Produção presencial', 'não incluída'], ['Relatório de resultados', 'mensal']] },
+      texto: 'Trabalhamos com o material fotográfico e de vídeo que o negócio já tem. Asseguramos o restante: copywriting, design e agendamento, com o calendário editorial aprovado por si antes da publicação.',
+      linhas: [['Conteúdo por mês', '10 posts e 2 Reels'], ['Redes', '2 à sua escolha'], ['Produção presencial', 'não incluída'], ['Relatório de resultados', 'mensal']] },
     pro: { ico: 'g-video', titulo: 'A produção presencial do plano Pro',
-      texto: 'Filmagens e fotografia presenciais no teu espaço. As 8 horas de produção repartem-se por 2 sessões, agendadas contigo. Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
+      texto: 'Filmagens e fotografia presenciais no seu espaço.\nAs 8 horas de produção repartem-se por 2 sessões previamente agendadas.',
+      nota: 'Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
       linhas: [['Horas de produção', '8 h'], ['Sessões presenciais', '2'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '10 posts e 3 Reels']] },
     performance: { ico: 'g-video', titulo: 'A produção presencial do plano Performance',
-      texto: 'O dobro da produção presencial: 16 horas de filmagens e fotografia repartidas por 3 sessões, agendadas contigo. Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
+      texto: 'O dobro da produção presencial: 16 horas de filmagens e fotografia repartidas por 3 sessões previamente agendadas.',
+      nota: 'Horas adicionais e deslocações além dos 30 km são orçamentadas à parte.',
       linhas: [['Horas de produção', '16 h'], ['Sessões presenciais', '3'], ['Deslocação incluída', 'até 30 km'], ['Conteúdo por mês', '12 posts e 4 Reels']] },
     scale: { ico: 'g-subir', titulo: 'Como funciona o extra Scale',
-      texto: 'Complementa qualquer plano. Analisamos o teu objetivo e desenhamos uma proposta à medida: campanhas de anúncios, funil de vendas ou estratégia para várias marcas.',
+      texto: 'Complementa qualquer plano. Analisamos o seu objetivo e desenhamos uma proposta à medida: campanhas de anúncios, funil de vendas ou estratégia para várias marcas.',
       linhas: [['Anúncios', 'Meta e Google Ads'], ['Produção de criativos', 'dedicada aos anúncios'], ['Funil de vendas', 'com rastreio de conversões'], ['Preço', 'sob orçamento']] }
   };
   var fundo  = document.getElementById('lpFundo');
   var ico    = document.getElementById('lpIco');
   var titulo = document.getElementById('lpTitulo');
   var texto  = document.getElementById('lpTexto');
+  var nota   = document.getElementById('lpNota');
   var linhas = document.getElementById('lpLinhas');
   var ultimo = null;
 
@@ -2352,6 +2360,8 @@
     ico.innerHTML = '<svg><use href="#' + d.ico + '"/></svg>';
     titulo.textContent = d.titulo;
     texto.textContent = d.texto;
+    nota.textContent = d.nota || '';
+    nota.hidden = !d.nota;
     linhas.innerHTML = '';
     linhas.hidden = !d.linhas.length;
     d.linhas.forEach(function(l){
@@ -2767,7 +2777,7 @@
         if(dots[k]) dots[k].classList.toggle('on', k === actual);
       }
     }
-    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 4200); }
+    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 2000); }
     function parar(){ if(timer){ clearInterval(timer); timer = null; } }
 
     palco.querySelector('.ciclo-seg').addEventListener('click', function(){ ir(actual + 1); parar(); arrancar(); });

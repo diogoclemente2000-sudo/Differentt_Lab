@@ -981,7 +981,7 @@
         if(dots[k]) dots[k].classList.toggle('on', k === actual);
       }
     }
-    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 4200); }
+    function arrancar(){ if(!timer) timer = setInterval(function(){ ir(actual + 1); }, 2000); }
     function parar(){ if(timer){ clearInterval(timer); timer = null; } }
 
     palco.querySelector('.ciclo-seg').addEventListener('click', function(){ ir(actual + 1); parar(); arrancar(); });
