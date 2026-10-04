@@ -272,6 +272,25 @@
     #services-section { overflow: hidden; }
     .services-esfera { position: absolute; left: 50%; top: 200px; transform: translateX(-50%); width: 165%; max-width: none; opacity: 0.5; pointer-events: none; z-index: 0; user-select: none; }
     #services-section > :not(.services-esfera) { position: relative; z-index: 1; }
+    /* ondas roxas por tras da seccao de servicos. A imagem tem fundo preto, mas a
+       pagina tambem, por isso nao precisa de mix-blend-mode — e com ele o backdrop-filter
+       dos cards deixava passar a onda nitida (sobretudo no Safari). */
+    #services-section::before { content: ''; position: absolute; left: 50%; top: 50%; z-index: 0;
+      width: 150%; aspect-ratio: 2132 / 500; transform: translate(-50%, -50%); pointer-events: none;
+      /* e_trim corta as margens pretas da imagem no proprio Cloudinary */
+      background: url('https://res.cloudinary.com/dgun4lhkm/image/upload/e_trim:12/q_auto,f_auto/Website_photos/photos_home_page/ondas-luminosas-roxo.png') center / 100% 100% no-repeat;
+      /* pontas esbatidas: sem isto via-se o rebordo reto da imagem */
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      opacity: .75; }
+    @media (max-width: 1199px) { #services-section::before { width: 260%; opacity: .6; } }
+    /* pc: as ondas vao de bordo a bordo do ecra. A seccao deixa de as cortar;
+       o corte passa para o contentor full-width (clip: so na horizontal, sem scroll) */
+    @media (min-width: 1200px) {
+      #logos-services-wrap { overflow-x: clip; }
+      #services-section { overflow: visible; }
+      #services-section::before { width: max(150%, 100vw); }
+    }
     @media (max-width: 1199px) { .services-esfera { width: 240%; } }
     /* auto-fit: as colunas vazias colapsam, por isso 2 ou 3 cards ficam sempre centrados */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, 365px); justify-content: center; gap: 12px; max-width: var(--larg-max); margin-inline: auto; }
@@ -293,7 +312,7 @@
     /* cards vetoriais: superficie continua (sem barra) e texto no enquadramento
        da referencia — titulo grande prateado + paragrafo, como "Clientes"/"Receita" */
     .service-card--vetor { height: 280px; background: #0a0a0a; }
-    .service-card--vetor .service-card-content { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 4px 26px 14px; }
+    .service-card--vetor .service-card-content { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 4px 26px 26px; }   /* fundo igual as laterais */
     /* o desenho deixa de acabar onde comeca o texto: passa a cobrir o card
        inteiro, por tras do titulo (a caixa da foto deixa de o cortar) */
     .service-card--vetor { position: relative; }
@@ -413,16 +432,19 @@
     .reels-slide-frame { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
     .reels-slide-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .reels-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.35) 100%); pointer-events: none; }
-    .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-    .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
-    .reels-slide-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
-    .reels-slide-org { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c585b8; margin-top: 6px; }
+    /* etiqueta do leitor: as duas linhas em maiusculas partilham letra, tamanho, espacamento e cor,
+       e o espaco acima e abaixo do nome e o mesmo */
+    .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .reels-slide-cat, .reels-slide-org { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #c585b8; line-height: 1.2; }
+    .reels-slide-cat { color: rgba(197,133,184,0.72); }
+    .reels-slide-name { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.01em; line-height: 1.1; }
+    .reels-slide-org { margin-top: 0; }
     /* GLASSMORPHISM CTA (gradient + blur, no SVG distortion — reliable across browsers/GPUs) */
-    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
-    .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-    .reels-slide-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.26); }
+    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; justify-content: center; margin-top: 8px; border: none; border-radius: 100px; text-decoration: none; cursor: pointer; background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(0,0,0,0.35); transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1); }   /* mesmo pill dos CTAs do site (.gx-btn) */
+    .reels-slide-cta::before { content: none; }
+    .reels-slide-cta:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 14px 30px rgba(0,0,0,0.4); }
     .reels-slide-cta-effect, .reels-slide-cta-tint, .reels-slide-cta-shine { display: none; }
-    .reels-slide-cta-text { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .reels-slide-cta-text { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #0d0d10; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: -0.005em; line-height: 1; }
     .reels-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
     .reels-mute { position: absolute; top: 24px; left: 24px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
     .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
@@ -859,7 +881,7 @@
     /* titulo maior e mais grosso, com o texto mais perto */
     .steps-fluxo .st-nome { font-size: clamp(30px, 4.2vw, 44px); font-weight: 700; margin: 0.32em 0 -0.17em; -webkit-text-stroke: 0.77px rgba(255,255,255,0.25); }
     /* frase maior e com as letras mais juntas */
-    .steps-fluxo .st-desc { font-size: clamp(14.5px, 1.25vw, 16.5px); letter-spacing: -0.012em; line-height: 1.45; max-width: 38ch; }
+    .steps-fluxo .st-desc { font-size: clamp(14.5px, 1.25vw, 16.5px); letter-spacing: -0.012em; line-height: 1.45; max-width: 38ch; text-wrap: balance; }   /* balance: linhas equilibradas, sem palavra viuva */
     /* outline com reflexo nos dois vertices opostos (borda em gradiente) */
     .steps-orbe { border-color: transparent; }
     .steps-palco::before { content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px; background: linear-gradient(135deg, rgba(197,133,184,0.95) 0%, rgba(158,123,182,0.10) 30%, rgba(158,123,182,0.08) 70%, rgba(197,133,184,0.92) 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 5; }
@@ -961,7 +983,12 @@
       .cta-inner, .ft-grid { max-width: var(--larg-max); }
     }
     /* cards de servicos em vidro: transparentes + blur, deixam ver o fundo 3D */
-    .service-card--vetor { background: rgba(12,10,16,0.38); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+    /* vidro: so o blur forte, sem veu nem tinta propria (o veu cinzento foi retirado a
+       pedido do Diogo) — as ondas aparecem difusas por tras, nao nitidas */
+    .service-card--vetor { background: transparent;
+      border-color: rgba(255,255,255,0.16);
+      -webkit-backdrop-filter: blur(28px) saturate(150%); backdrop-filter: blur(28px) saturate(150%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14); }
     /* borda com reflexo nos vertices opostos (portfolio) — mesma familia do card dos 4 passos */
     /* borda a 0: o anel passa a coincidir com o bordo real do card, senao o raio
        do pseudo (12px) nao casa com o raio interior (12 - 1.5px) e o canto parte */
@@ -1460,6 +1487,21 @@
     @media (min-width:1200px){ #reels-panels .rp-acc{ max-width:var(--larg-max); height:clamp(420px,40vw,500px); } }
     #reels-panels .rp-p{ position:relative; flex:1 1 0; min-width:0; border-radius:12px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.22,1,.36,1); background:#0a0711; border:1px solid rgba(158,123,182,.16); }
     #reels-panels .rp-fill{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; filter:brightness(.7) saturate(1.02); transition:filter .5s; }
+    /* enquadramento por cliente: estes videos preenchem a altura toda (so sao cortados
+       nos lados), por isso o object-position vertical nao mexe nada — a pessoa sobe
+       com zoom + translate. So onde a cabeca ficava enfiada na frase. */
+    /* PC: o painel e mais largo que o video, que fica cortado em cima e em baixo — aqui
+       basta descer a janela (object-position) para mostrar o corpo e menos teto, sem zoom */
+    #reels-panels .rp-p[data-cli="villas"] .rp-fill { object-position: center 100%; }
+    #reels-panels .rp-p[data-cli="evo"] .rp-fill { object-position: center 90%; }
+    #reels-panels .rp-p[data-cli="telma"] .rp-fill { object-position: center 80%; }
+    /* telemovel: o painel e mais alto que largo, o video preenche a altura e o object-position
+       nao faz nada — a pessoa sobe com um zoom leve e translate */
+    @media (max-width: 1199px) {
+      #reels-panels .rp-p[data-cli="villas"] .rp-fill { transform: scale(1.15) translateY(-10%); }
+      #reels-panels .rp-p[data-cli="evo"] .rp-fill { transform: scale(1.15) translateY(-6.5%); }
+      #reels-panels .rp-p[data-cli="telma"] .rp-fill { transform: scale(1.18) translateY(-12%); }
+    }
     #reels-panels .rp-vig{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.92) 4%, rgba(0,0,0,.12) 44%, rgba(0,0,0,.32)); }
     #reels-panels .rp-p.on .rp-fill{ filter:brightness(.9); }
     /* botão de som do primeiro card (vídeo em auto-play) */
@@ -1510,7 +1552,7 @@
   </style>
   <div class="rp-head">
     <h2 class="section-title">Os nossos clientes</h2>
-    <p class="rp-sub">Pessoas e marcas que cresceram connosco, o impacto real das nossas parcerias.<span class="so-pc"> Clínicas, lojas e serviços locais que passaram a ser encontrados, reconhecidos e escolhidos.</span></p>
+    <p class="rp-sub">Pessoas e marcas que cresceram connosco, o impacto real das nossas parcerias.<span class="so-pc"><br>Clínicas, lojas e serviços locais que passaram a ser encontrados, reconhecidos e escolhidos.</span></p>
   </div>
   <div class="rp-acc" id="rpAcc" aria-label="Testemunhos em vídeo"></div>
 </section>
@@ -1524,11 +1566,11 @@
                                      : IMG+'c_fill,w_120,h_120,g_face,q_auto,f_auto/Website_photos/testemunhos/'+c.f; }
   // ordem alinhada com a constelação (C[0..4]) para o player de reels abrir o vídeo certo
   var RP=[
-    { f:'capa-moment', av:'icon-moment', name:'Ruben Campos',  org:'Moment Laser',  dur:'0:18', quote:'Criaram-nos um CRM à medida para a agenda e as despesas. Deixámos o Excel e passámos a ter tudo num dashboard.' },
-    { f:'capa-aroma',  av:'icon-aroma',  name:'Alexandra',     org:'Aroma Boreal',  dur:'0:58', quote: 'Tratam de tudo, catálogos, loja online e os conteúdos das redes. A nossa imagem nunca foi tão coerente.' },
-    { f:'capa-villas', av:'icon-villas', name:'Vera',          org:'Villas Gourmet',dur:'0:22', quote:'Fizeram-nos o site com reservas próprias e a app do Clube dos Vinhos, exclusiva para os clientes Gold, com pagamentos integrados.' },
-    { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. A agenda de tratamentos cresceu de verdade.' },
-    { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote: 'Deram forma à minha marca pessoal, vídeos de posicionamento, mais interação e um programa próprio para clientes.' }
+    { f:'capa-moment', av:'icon-moment', name:'Ruben Campos',  org:'Moment Laser',  dur:'0:18', quote:'Tínhamos tudo em Excel. Hoje a agenda, as despesas e o registo de vendas e alugueres estão num CRM feito à nossa medida, num só sítio.' },
+    { f:'capa-aroma',  av:'icon-aroma',  name:'Alexandra',     org:'Aroma Boreal',  dur:'0:58', quote: 'Fazem os catálogos, a loja online e as redes. Pela primeira vez a marca tem a mesma imagem em todo o lado.' },
+    { f:'capa-villas', av:'icon-villas', name:'Vera',          org:'Villas Gourmet',dur:'0:22', quote:'O site trata das reservas sozinho e os clientes Gold têm a app do Clube dos Vinhos, com o pagamento incluído.' },
+    { f:'capa-evo',    av:'icon-evo',    name:'Inês Campos',   org:'Evo Clinic',    dur:'0:19', quote:'Gerem os conteúdos e os anúncios no Meta e no Google. Hoje temos mais previsibilidade na agenda.' },
+    { f:'capa-telma',  av:null, mono:'TF', name:'Telma Fonseca', org:'Marca pessoal', dur:'0:20', quote: 'Ajudaram-me a construir a marca pessoal: vídeos de posicionamento, mais interação e um programa só para as minhas clientes.' }
   ];
   var PLAY='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>';
   var MINI='<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg>';
@@ -1550,7 +1592,7 @@
   var activo = -1;
 
   RP.forEach(function(c,k){
-    var p=document.createElement('div'); p.className='rp-p has-video'+(k===0?' on':''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
+    var p=document.createElement('div'); p.className='rp-p has-video'+(k===0?' on':''); p.dataset.cli=c.f.replace('capa-',''); p.tabIndex=0; p.setAttribute('role','button'); p.setAttribute('aria-label','Testemunho de '+c.name+' — '+c.org);
     p.innerHTML=
       '<video class="rp-fill" data-src="'+VBASE+VID[k]+'" poster="'+poster(c.f)+'" loop playsinline webkit-playsinline preload="none" aria-label="Testemunho de '+c.name+' — '+c.org+'"></video>'+
       '<button class="rp-sound" type="button" aria-label="Ligar ou desligar o som">'+SND_OFF+'</button>'+
@@ -1560,7 +1602,7 @@
       '<div class="rp-badge">'+(c.mono?'<span class="rp-av mono"><b>'+c.mono+'</b></span>':'<span class="rp-av"><img src="'+avatarUrl(c)+'" alt="'+c.org+'" loading="lazy"></span>')+'<b>'+c.org+'</b></div>'+
       '<div class="rp-dur">'+c.dur+'</div>'+
       '<button class="rp-play" type="button" aria-label="Ver em ecrã completo — '+c.name+'">'+PLAY+'</button>'+
-      '<div class="rp-cap"><div class="rp-q">'+c.quote+'</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
+      '<div class="rp-cap"><div class="rp-q">“'+c.quote+'”</div><div class="rp-who"><span class="rp-nm">'+c.name+'</span><span class="rp-og">'+c.org+'</span></div></div>';
 
     var video = p.querySelector('video.rp-fill');
     var botaoSom = p.querySelector('.rp-sound');
@@ -1710,7 +1752,7 @@
 <!-- 4 STEPS -->
 <section class="steps-section">
   <h2 class="section-title">4 Passos para o Sucesso</h2>
-  <p class="section-sub">Entenda o nosso workflow.<span class="so-pc"> Um processo estruturado, do primeiro contacto à entrega final, com etapas e prazos acordados desde o início.</span></p>
+  <p class="section-sub">Entenda o nosso workflow.<span class="so-pc"><br>Um processo estruturado, do primeiro contacto à entrega, com etapas e prazos definidos.</span></p>
 
   <div class="steps-palco" id="stepsPalco">
     <svg class="steps-argo" viewBox="0 0 492 492" aria-hidden="true">
@@ -1730,7 +1772,7 @@
       <div class="st-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
       <a class="st-pill" href="./metodos" style="display:none">Saber mais<i class="st-anel" aria-hidden="true"></i></a>
     </div>
-    <button class="st-seg" type="button" aria-label="Passo seguinte"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+    <button class="st-seg" type="button" aria-label="Passo seguinte"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></button>
   </div>
   <!-- DESKTOP: 4 orbes, um por passo -->
   <div class="steps-grid4" id="stepsGrid4"></div>
@@ -2075,7 +2117,7 @@
         <div class="tm-ic tm-ic--d" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-5 4 5 4"/><path d="m15 8 5 4-5 4"/></svg></div>
       </div>
       <h3 class="tm-join-title">Interessado em<br>trabalhar connosco?</h3>
-      <span class="tm-join-btn">Consultar vagas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg></span>
+      <span class="tm-join-btn">Consultar vagas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M12.5 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></span>
     </a>
   </div>
 </section>
@@ -2152,7 +2194,7 @@
       muteBtn.innerHTML=media.muted?mutedIcon:soundIcon; });
     frame.appendChild(muteBtn);
     var info=document.createElement('div'); info.className='reels-slide-info';
-    info.innerHTML='<span class="reels-slide-cat">Testemunho</span><span class="reels-slide-name">'+n.name+'</span>'+(n.org?'<span class="reels-slide-org">'+n.org+'</span>':'');
+    info.innerHTML='<span class="reels-slide-name">'+n.name+'</span>'+(n.org?'<span class="reels-slide-org">'+n.org+'</span>':'');
     frame.appendChild(info);
     slide.appendChild(frame); tvTrack.appendChild(slide);
     var bar=document.createElement('div'); bar.className='reels-progress-bar'; bar.innerHTML='<span></span>'; tvProg.appendChild(bar);
@@ -2360,7 +2402,7 @@
   <p class="grev-cta">
     <a href="https://www.google.com/search?sa=X&amp;sca_esv=6f93171fcacd3140&amp;sxsrf=APpeQnuDJ8RU-GaiVV_yqWGKhAgaynY0mw:1785339395807&amp;q=Differentt+Lab+design+Cr%C3%ADticas&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxIxtDAxNDc1s7QwBpKGluYWFuYmGxgZXzHKu2SmpaUWpeaVlCj4JCYppKQWZ6bnKTgXHV5bkpmcWLyIlZAKABHtvTBfAAAA&amp;rldimm=18417569837561978874&amp;tbm=lcl&amp;hl=pt-PT&amp;ved=2ahUKEwjn-fXDm_iVAxX-OPsDHQ5uAq4Q9fQKegQILxAG&amp;biw=3127&amp;bih=1186&amp;dpr=1.1#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer">
       <span class="grev-cta-label">Ver todas no Google</span>
-      <span class="grev-arrow" aria-hidden="true">→</span>
+      <span class="grev-arrow" aria-hidden="true"><svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></span>
     </a>
   </p>
 
@@ -2839,11 +2881,11 @@
   #reels-panels .rp-cap { padding-bottom: clamp(20px, 2.4vw, 28px);
     background: linear-gradient(0deg, rgba(0,0,0,.96) 4%, rgba(0,0,0,.72) 34%, rgba(0,0,0,.28) 62%, transparent) !important; }
   #reels-panels .rp-q { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important;
-    font-size: clamp(16.5px, 1.65vw, 20px) !important; line-height: 1.32 !important; letter-spacing: -0.011em;
+    font-size: clamp(14.5px, 1.5vw, 17px) !important; line-height: 1.2 !important; letter-spacing: -0.011em;
     max-width: 30ch !important; display: inline-block; padding-bottom: .12em;
     background: linear-gradient(180deg, #ffffff 20%, #d6d4dc 100%);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    text-wrap: pretty; }
+    text-wrap: balance; }   /* linhas equilibradas, sem palavra viuva */
   #reels-panels .rp-who { margin-top: 14px !important; align-items: center !important; gap: 8px !important; }
   #reels-panels .rp-nm { font-size: 13.5px !important; font-weight: 700 !important; color: #fff !important;
     letter-spacing: -0.005em; }
@@ -3283,7 +3325,7 @@
 
     var info = document.createElement('div');
     info.className = 'reels-slide-info';
-    info.innerHTML = '<span class="reels-slide-cat">' + data.cat + '</span><span class="reels-slide-name">' + data.name + '</span><a class="reels-slide-cta" href="./projeto?p=' + data.project + '"><span class="reels-slide-cta-effect"></span><span class="reels-slide-cta-tint"></span><span class="reels-slide-cta-shine"></span><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
+    info.innerHTML = '<span class="reels-slide-cat">' + data.cat + '</span><span class="reels-slide-name">' + data.name + '</span><a class="reels-slide-cta" href="./projeto?p=' + data.project + '"><span class="reels-slide-cta-effect"></span><span class="reels-slide-cta-tint"></span><span class="reels-slide-cta-shine"></span><span class="reels-slide-cta-text">Projeto completo <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></span></a>';
     frame.appendChild(info);
 
     slide.appendChild(frame);

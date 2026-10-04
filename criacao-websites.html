@@ -780,10 +780,10 @@
     .reels-slide-info { position: relative; z-index: 2; width: 100%; max-width: 480px; margin: 0 auto; padding: 0 24px 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
     .reels-slide-cat { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #c585b8; }
     .reels-slide-name { font-family: 'Overpass', sans-serif; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
-    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; margin-top: 6px; border-radius: 100px; text-decoration: none; background: rgba(255,255,255,0.18); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.4), background 0.3s ease; }
-    .reels-slide-cta::before { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none; background: linear-gradient(45deg, rgba(255,255,255,1), rgba(255,255,255,0)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-    .reels-slide-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.26); }
-    .reels-slide-cta-text { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+    .reels-slide-cta { position: relative; display: inline-flex; align-items: center; justify-content: center; margin-top: 8px; border: none; border-radius: 100px; text-decoration: none; cursor: pointer; background: linear-gradient(180deg, #f0f0f2 0%, #d3d3d8 48%, #ababb2 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 26px rgba(0,0,0,0.35); transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1); }   /* mesmo pill dos CTAs do site (.gx-btn) */
+    .reels-slide-cta::before { content: none; }
+    .reels-slide-cta:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 14px 30px rgba(0,0,0,0.4); }
+    .reels-slide-cta-text { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #0d0d10; font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: -0.005em; line-height: 1; }
     .reels-close { position: fixed; top: 24px; right: 24px; z-index: 1010; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
     .reels-mute { position: absolute; top: 24px; left: 24px; z-index: 3; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; }
     .reels-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 1010; display: flex; gap: 4px; padding: 14px 24px 0; }
@@ -1252,7 +1252,7 @@
     <div class="example-card example-card--clickable" onclick="document.getElementById('lp-modal').classList.add('open')" style="cursor:pointer;">
       <div class="example-img-wrap">
         <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/12.jpg" alt="Landing Page" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-        <div class="example-hover-hint">Ver detalhes →</div>
+        <div class="example-hover-hint">Ver detalhes <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></div>
       </div>
       <div class="example-meta">
         <span class="example-tag">Landing Page</span>
@@ -1342,7 +1342,7 @@
     <div class="example-card example-card--clickable" onclick="document.getElementById('mp-modal').classList.add('open')" style="cursor:pointer;">
       <div class="example-img-wrap">
         <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1280,q_auto,f_auto/Website_photos/photos_home_page/V9qkn3A4cW9VBqmn1I9Io5kZfb8.jpg" alt="Website Institucional" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-        <div class="example-hover-hint">Ver detalhes →</div>
+        <div class="example-hover-hint">Ver detalhes <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></div>
       </div>
       <div class="example-meta">
         <span class="example-tag">Website Institucional</span>
@@ -1353,7 +1353,7 @@
     <div class="example-card example-card--clickable" onclick="document.getElementById('ec-modal').classList.add('open')" style="cursor:pointer;">
       <div class="example-img-wrap">
         <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/105392.jpg" alt="Integração de Vendas" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-        <div class="example-hover-hint">Ver detalhes →</div>
+        <div class="example-hover-hint">Ver detalhes <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></div>
       </div>
       <div class="example-meta">
         <span class="example-tag">E-commerce</span>
@@ -1364,7 +1364,7 @@
     <div class="example-card example-card--clickable" onclick="document.getElementById('sw-modal').classList.add('open')" style="cursor:pointer;">
       <div class="example-img-wrap">
         <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/business-data-analytics-dashboard.jpg" alt="Software à medida" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
-        <div class="example-hover-hint">Ver detalhes →</div>
+        <div class="example-hover-hint">Ver detalhes <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></div>
       </div>
       <div class="example-meta">
         <span class="example-tag">Software à medida</span>
@@ -3002,7 +3002,7 @@
     var info=document.createElement('div'); info.className='reels-slide-info';
     info.innerHTML='<span class="reels-slide-cat">'+c.querySelector('.reel-card-cat').textContent+'</span>'+
                    '<span class="reels-slide-name">'+c.querySelector('.reel-card-name').textContent+'</span>'+
-                   '<a class="reels-slide-cta" href="'+c.getAttribute('href')+'"><span class="reels-slide-cta-text">Ver projeto completo →</span></a>';
+                   '<a class="reels-slide-cta" href="'+c.getAttribute('href')+'"><span class="reels-slide-cta-text">Projeto completo <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></span></a>';
     frame.appendChild(info);
     slide.appendChild(frame);
 
@@ -3090,7 +3090,7 @@
    Le os cards que ja existem no HTML e reconstroi-os como slides — todos ficam
    no DOM, so muda a opacidade, para nao se perder texto indexavel. */
 (function(){
-  var SETA = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
+  var SETA = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg>';
   function dois(n){ return n < 10 ? '0' + n : '' + n; }
 
   function converter(grelha){
