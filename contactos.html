@@ -742,7 +742,9 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const submitBtn = form.querySelector('.btn-submit');
-    const submitLabel = submitBtn.querySelector('.hero-cta-label');
+    // o texto do botao vive em .gx-btn-inner (antes era .hero-cta-label: com o seletor antigo
+    // isto dava null e o envio rebentava aqui, antes do fetch)
+    const submitLabel = submitBtn.querySelector('.gx-btn-inner') || submitBtn;
     submitLabel.textContent = 'A enviar...';
     submitBtn.disabled = true;
 
