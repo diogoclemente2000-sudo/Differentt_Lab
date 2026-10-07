@@ -31,12 +31,16 @@
   <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perguntas Frequentes (FAQ) | Differentt Lab</title>
-  <meta name="description" content="Respostas às perguntas mais frequentes sobre os serviços do Differentt Lab: websites, gestão de redes sociais, branding, preços, prazos e como começar.">
+  <title>Perguntas Frequentes | Preços, Packs e Prazos | Differentt Lab</title>
+  <meta name="description" content="Respostas às perguntas mais frequentes sobre a Differentt Lab: packs de gestão de redes sociais e preços, websites e software à medida, anúncios no ChatGPT, prazos, contratos e como começar.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&family=Inter:wght@400&display=swap" rel="stylesheet">
   <style>
+    /* variaveis do sistema visual (a pagina nao as tinha e os var() ficavam vazios) */
+    :root { --gutter: 80px; --larg-max: 1120px; --card-mob: 334px; }
+    @media (max-width: 1199px) { :root { --gutter: 28px; } }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: linear-gradient(45deg, #000 0%, #020202 25%, #010101 50%, #030303 75%, #000 100%); color: #fff; font-family: 'Nunito Sans', sans-serif; }
 
@@ -110,16 +114,52 @@
     }
 
     /* FAQ */
-    .faq-list { display: flex; flex-direction: column; gap: 10px; }
-    .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
-    .faq-item:hover { border-color: rgba(158,123,182,0.35); }
-    .faq-item[open] { border-color: rgba(158,123,182,0.5); background: rgba(158,123,182,0.05); }
-    .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary svg { flex-shrink: 0; color: #9e7bb6; transition: transform 0.25s; }
-    .faq-item[open] summary svg { transform: rotate(180deg); }
-    .faq-answer { padding: 0 24px 20px; }
-    .faq-answer p { margin-bottom: 0; }
+    /* ═══ FAQ POR TEMAS (out/2026): componente das paginas do site, agrupado por tema ═══ */
+    .faq-section { padding: 0 var(--gutter) 100px; max-width: calc(var(--larg-max) + 2 * var(--gutter)); margin: 0 auto; }
+    .faq-intro { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 17px; line-height: 1.32; color: rgba(255,255,255,.88); max-width: 62ch; margin: 0 auto 28px; text-align: center; }
+    .faq-intro a { color: #c585b8; text-decoration: none; } .faq-intro a:hover { text-decoration: underline; }
+    .faq-saltos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto 64px; }
+    .faq-saltos a { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: 100px; text-decoration: none;
+      font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 13.5px; letter-spacing: -.005em; line-height: 1; color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: box-shadow .3s ease, color .3s ease, transform .35s cubic-bezier(.22,1,.36,1); }
+    .faq-saltos a:hover { color: #fff; box-shadow: inset 0 0 0 1px rgba(197,133,184,.55); transform: translateY(-2px); }
+    .faq-grupo { max-width: calc(var(--larg-max) * 0.9); margin: 0 auto 56px; scroll-margin-top: 110px; }
+    .faq-eyebrow { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 700; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin: 0 0 6px; }
+    .faq-cat { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 500; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 20px; padding: .06em 0 .18em;
+      background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: .77px rgba(255,255,255,.25); }
+    .faq-list { display: flex; flex-direction: column; gap: 14px; width: 100%; margin: 0; }
+    .faq-item { position: relative; border: 0; border-radius: 14px; overflow: hidden;
+      background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.012) 60%), #0b0a0f; transition: background .35s ease; }
+    .faq-item::before { content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px; z-index: 2; pointer-events: none;
+      background: linear-gradient(135deg, rgba(197,133,184,.55) 0%, rgba(158,123,182,.07) 32%, rgba(158,123,182,.06) 68%, rgba(197,133,184,.52) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; transition: background .35s ease; }
+    .faq-item.open { background: radial-gradient(130% 62% at 0% 0%, rgba(176,138,204,.26) 0%, rgba(158,123,182,.06) 46%, transparent 78%), #0b0a0f; }
+    .faq-item.open::before { background: linear-gradient(135deg, rgba(197,133,184,.9) 0%, rgba(158,123,182,.12) 32%, rgba(158,123,182,.1) 68%, rgba(197,133,184,.85) 100%); }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 24px; cursor: pointer; }
+    .faq-question-left { display: flex; align-items: center; gap: 0; }
+    .faq-question .faq-num { display: none; }
+    .faq-question span:not(.faq-num) { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.3; max-width: 34ch; display: inline-block; padding: .04em 0 .16em;
+      background: linear-gradient(180deg, #f2f2f4 10%, #9a9aa0 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .faq-item.open .faq-question span:not(.faq-num) { background: linear-gradient(180deg, #ffffff 10%, #c9c9cf 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .faq-icon { flex-shrink: 0; width: 20px; height: 20px; position: relative; display: grid; place-items: center; transition: transform .35s ease; }
+    .faq-icon::before { content: ''; position: absolute; width: 9px; height: 9px; background: none; border-right: 2px solid #c585b8; border-bottom: 2px solid #c585b8; transform: rotate(45deg); margin-top: -3px; }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-item.open .faq-icon::before { border-right-color: #e2b4d8; border-bottom-color: #e2b4d8; }
+    .faq-answer { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-weight: 400; font-size: 16.5px; line-height: 1.4; color: rgba(255,255,255,.78); max-height: 0; overflow: hidden; padding: 0 24px; transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s; }
+    .faq-answer a { color: #e2b4d8; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(197,133,184,.6); }
+    .faq-answer strong { color: #fff; font-weight: 700; }
+    .faq-item.open .faq-answer { max-height: 720px; padding: 0 24px 24px; }
+    @media (min-width: 1200px) {
+      .faq-question { padding: 26px 32px; } .faq-question span:not(.faq-num) { font-size: 20px; max-width: 62ch; }
+      .faq-answer { font-size: 17.5px; padding: 0 32px; } .faq-item.open .faq-answer { padding: 0 32px 28px; }
+      .faq-icon { width: 24px; height: 24px; } .faq-icon::before { width: 11px; height: 11px; }
+    }
+    @media (max-width: 1199px) {
+      .faq-section { padding: 0 var(--gutter) 72px; }
+      .faq-intro, .faq-saltos, .faq-grupo, .faq-list { width: min(var(--card-mob), 100%); max-width: min(var(--card-mob), 100%); margin-left: auto; margin-right: auto; }
+      .faq-intro { text-align: left; } .faq-saltos { justify-content: flex-start; margin-bottom: 48px; } .faq-grupo { margin-bottom: 44px; }
+      .faq-saltos a { padding: 9px 14px; font-size: 13px; }
+    }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 64px max(48px, calc((100% - 1400px) / 2)) 32px; }
@@ -240,58 +280,53 @@
     .page-title { animation: rvHero .9s cubic-bezier(.22,1,.36,1) 0.19s both; }
     .page-updated { animation: rvHero .9s cubic-bezier(.22,1,.36,1) 0.30s both; }
     @media (prefers-reduced-motion: reduce) { .page-eyebrow, .page-title, .page-updated { animation: none; } }
+
+    /* hero da FAQ no sistema visual: Satoshi, titulo com gradiente e contorno, etiqueta a branco 50% */
+    .page-eyebrow { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-size: 10.5px !important; letter-spacing: .12em !important; color: rgba(255,255,255,.5) !important; margin-bottom: 14px !important; }
+    .page-title { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important; text-transform: none !important; font-size: clamp(44px, 4.9vw, 72px) !important; line-height: .96 !important; letter-spacing: -.03em !important;
+      padding: .06em 0 .18em; color: #fff; background: linear-gradient(180deg, #e6e6e9 12%, #79797c 100%) no-repeat; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: .77px rgba(255,255,255,.25); }
+    .page-updated { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 400 !important; font-size: 17px !important; letter-spacing: 0 !important; text-transform: none !important; line-height: 1.3; color: rgba(255,255,255,.72) !important; margin-top: 16px !important; max-width: 54ch; margin-left: auto; margin-right: auto; }
+    .faq-section .faq-cat { font-family: 'Satoshi', 'Nunito Sans', sans-serif !important; font-weight: 500 !important; font-size: clamp(24px, 2.2vw, 30px) !important; text-transform: none !important; letter-spacing: -.02em !important; }
+    @media (max-width: 1199px) { .page-title { font-size: 36px !important; font-weight: 600 !important; } .page-updated { font-size: 16px !important; } }
+    .page-updated { text-wrap: balance; } @media (min-width: 1200px) { .page-updated { max-width: 60ch !important; } }
+    .page-updated a { color: #c585b8; text-decoration: none; } .page-updated a:hover { text-decoration: underline; }
+    .faq-saltos { margin-top: 8px; }
+
+    /* a FAQ sai do contentor estreito das paginas legais (860px) e usa a coluna de 1120px do site */
+    .legal-wrap { max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+    .faq-section { padding: 0 var(--gutter) 100px !important; max-width: calc(var(--larg-max) + 2 * var(--gutter)) !important; margin: 0 auto !important; }
+    .faq-saltos { max-width: calc(var(--larg-max) * 0.9); margin-left: auto; margin-right: auto; }
+    @media (max-width: 1199px) { .faq-section { padding: 0 var(--gutter) 72px !important; } }
+
+    /* footer alinhado com o resto do site (a pagina tinha uma versao antiga: 1160px, corte aos 900px) */
+    @media (max-width: 1199px) {
+      .ft-grid { grid-template-columns: 1fr !important; gap: 44px !important; } .ft-social--mob { display: flex !important; } .ft-social--desk { display: none !important; }
+      footer { padding-left: 0 !important; padding-right: 0 !important; }
+      .ft-grid, .ft-bottom { width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))) !important; max-width: min(var(--card-mob), calc(100vw - 2 * var(--gutter))) !important; margin-left: auto !important; margin-right: auto !important; }
+    }
+    @media (min-width: 1200px) {
+      footer { padding-left: 0 !important; padding-right: 0 !important; }
+      .ft-grid, .ft-bottom { max-width: calc(var(--larg-max) + 2 * var(--gutter)) !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; margin-left: auto !important; margin-right: auto !important; }
+    }
 </style>
-  <script type="application/ld+json">
-{
+  <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Que serviços oferece o Differentt Lab?",
+      "name": "Que serviços oferece a Differentt Lab?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Somos uma agência digital completa: branding e identidade visual, criação de websites, design gráfico, gestão de redes sociais e visualizações 3D. Cobrimos toda a presença digital do seu negócio — da estratégia à execução."
+        "text": "Somos uma agência digital completa: branding e identidade visual, criação de websites e software à medida, gestão de redes sociais, design gráfico, captação de fotografia e vídeo, visualizações 3D, campanhas Meta e Google Ads e landing pages. Cobrimos toda a presença digital do teu negócio, do logótipo às redes, com uma só equipa e um só interlocutor."
       }
     },
     {
       "@type": "Question",
-      "name": "Onde estão localizados? Trabalham remotamente?",
+      "name": "Onde estão sediados? Trabalham remotamente?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Estamos sediados em Odivelas, Lisboa, e trabalhamos de forma 100% remota com clientes em todo o país e no estrangeiro. Para clientes da região de Lisboa fazemos também sessões presenciais de captação de conteúdo (foto e vídeo)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quanto custa um website ou a gestão de redes sociais?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cada projeto é orçamentado à medida, em função dos objetivos, do número de páginas ou publicações e da complexidade. Fale connosco através da página de contactos e enviamos-lhe uma proposta sem compromisso, normalmente em 24–48 horas."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quanto tempo demora a criação de um website?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Depende da dimensão do projeto: uma landing page pode ficar pronta em 1–2 semanas; um website institucional completo demora tipicamente 3–6 semanas, incluindo design, desenvolvimento, conteúdos e otimização SEO."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "O que inclui a gestão mensal de redes sociais?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Os nossos planos incluem estratégia e calendário editorial, criação de conteúdo (foto e vídeo captados no seu espaço), publicações mensais, stories semanais e acompanhamento de resultados. Podemos também gerir campanhas de anúncios (Meta Ads e Google Ads)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Que resultados posso esperar das redes sociais?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cada negócio é diferente, mas temos casos reais: a Evo Clinic registou +70% de ligações telefónicas e +30% na taxa de marcações em menos de um ano; a Moment Laser cresceu de 7.000 para 10.000 seguidores com mais de 813 mil visualizações no Instagram."
+        "text": "Estamos em Odivelas, Lisboa, e trabalhamos de forma remota com clientes em todo o país e no estrangeiro. Para a região de Lisboa fazemos também produções presenciais de fotografia e vídeo: nos packs Pro e Performance da gestão de redes, as deslocações até 30 km estão incluídas."
       }
     },
     {
@@ -299,23 +334,135 @@
       "name": "Trabalham com pequenas empresas?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim — a maioria dos nossos clientes são PMEs portuguesas: clínicas, restaurantes, comércio local e serviços. Adaptamos o investimento à fase em que o negócio está."
+        "text": "Sim, a maioria dos nossos clientes são PMEs portuguesas: clínicas e estética, restauração, comércio local, serviços e profissionais liberais. Os packs e as propostas são ajustados à fase em que o negócio está, e o primeiro mês de gestão de redes é à experiência."
       }
     },
     {
       "@type": "Question",
-      "name": "Os websites são otimizados para SEO?",
+      "name": "Em quanto tempo respondem a um pedido?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim. Todos os websites que criamos incluem otimização técnica de base: estrutura semântica, velocidade de carregamento, responsividade mobile, meta tags e dados estruturados, prontos para serem encontrados no Google."
+        "text": "Respondemos em 24 horas úteis a todos os pedidos feitos pela página de contactos, email ou WhatsApp. Se o pedido for uma proposta, marcamos primeiro uma conversa curta para perceber o objetivo e enviamos a proposta a seguir."
       }
     },
     {
       "@type": "Question",
-      "name": "Fazem manutenção e atualizações depois da entrega?",
+      "name": "Quanto custa criar um website?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim. Oferecemos planos de manutenção e suporte contínuo — atualização de conteúdos, monitorização e melhorias — para que o seu website se mantenha rápido, seguro e atual."
+        "text": "Depende do número de páginas, das funcionalidades e de haver ou não loja online, reservas ou integrações. Por isso não trabalhamos com pacotes fechados para websites: fazemos uma proposta à medida, sem compromisso, depois de uma conversa curta sobre o que precisas. Pede a tua na página de criação de websites ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo demora a criar um website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uma landing page fica pronta em 1 a 2 semanas. Um website institucional simples leva 3 a 4 semanas. Projetos com funcionalidades específicas ou loja online levam entre 6 e 10 semanas. O prazo é sempre definido em conjunto antes de começarmos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Os websites são otimizados para o Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Todos os websites incluem SEO on-page desde a primeira linha de código: estrutura semântica, velocidade de carregamento, versão mobile, meta tags e dados estruturados. Hoje isso inclui também as respostas dos assistentes de IA. Explicamos como funciona no nosso guia sobre como aparecer no ChatGPT sem pagar ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fazem websites em WordPress ou em código próprio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ambos. Desenvolvemos em WordPress quando o cliente quer gerir o conteúdo de forma autónoma, e em código próprio (HTML, CSS e JavaScript) quando a prioridade é velocidade, segurança e um design sem limitações. Em qualquer dos casos garantimos design profissional, SEO integrado e performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Também desenvolvem software à medida para empresas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Desenvolvemos CRM para gerir clientes e vendas, gestão de inventário e stock, recursos humanos (colaboradores, férias e assiduidade), faturação e plataformas internas. É frequente substituirmos folhas de Excel por um sistema onde várias pessoas trabalham ao mesmo tempo, com histórico de alterações. Também automatizamos confirmações e lembretes por WhatsApp, SMS ou email, e ligamos o sistema às ferramentas que já usas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso gerir o website sozinho depois do lançamento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Entregamos formação e documentação para atualizares conteúdos de forma autónoma. Para quem prefere não se preocupar, temos planos de manutenção mensal com atualizações, monitorização e melhorias contínuas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto custa a gestão de redes sociais?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trabalhamos com três packs mensais: Essencial , a 550 € por mês, Pro , a 750 € por mês, e Performance , a 900 € por mês. Para campanhas de anúncios, funil de vendas ou várias marcas existe o extra Scale , orçamentado à medida. Os valores são sem IVA. Vê o detalhe de cada pack na página de gestão de redes sociais ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual é a diferença entre os packs Essencial, Pro e Performance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A diferença está na produção. O Essencial trabalha com o material fotográfico que o teu negócio já tem, com 10 publicações e 2 Reels por mês em 2 redes. O Pro acrescenta 8 horas de produção presencial por mês, em 2 sessões no teu espaço, com 10 publicações e 3 Reels. O Performance duplica para 16 horas em 3 sessões, com 12 publicações e 4 Reels em 3 redes. Todos incluem copywriting, design, agendamento e relatório mensal de resultados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que redes sociais gerem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instagram, Facebook, TikTok e LinkedIn. Em cada pack escolhes 2 ou 3 redes, consoante o plano. Nem sempre faz sentido estar em todas: recomendamos as plataformas onde o teu público realmente está."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Há fidelização? Como funcionam os contratos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O primeiro mês é à experiência, sem contrato nem fidelização. A partir daí trabalhamos com contratos de 6 meses, o tempo mínimo para os resultados surgirem e poderem ser medidos. Quem paga o semestre à cabeça tem 10% de desconto: 2.970 € no Essencial, 4.050 € no Pro e 4.860 € no Performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo até ver resultados nas redes sociais?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Os primeiros sinais, mais alcance, mais interações e mais mensagens, surgem normalmente entre 4 e 8 semanas. Resultados consolidados, como crescimento consistente de seguidores e contactos regulares, desenvolvem-se ao longo de 3 a 6 meses de trabalho contínuo. A maioria dos nossos clientes começa a notar diferença nos primeiros 60 a 90 dias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que resultados têm os vossos clientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Casos reais de clientes de estética e saúde: a Evo Clinic registou mais 70% de chamadas telefónicas e mais 30% na taxa de marcações em menos de um ano; a Moment Laser cresceu de 7.000 para 10.000 seguidores, com mais de 813 mil visualizações no Instagram e mais de 70 agendamentos mensais. Em conjunto, as duas marcas ultrapassaram 900 mil visualizações em 30 dias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Fazem campanhas de anúncios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, através do extra Scale: campanhas Meta Ads (Facebook e Instagram) e Google Ads, com produção de criativos dedicada aos anúncios, landing page e rastreio de conversões. O investimento em publicidade é pago por ti diretamente à plataforma, sem percentagem para nós."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Já é possível anunciar no ChatGPT em Portugal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Os anúncios chegaram ao ChatGPT em Portugal a 24 de agosto de 2026 e, segundo a OpenAI, desde 31 de agosto qualquer empresa pode comprá-los em autosserviço. Aparecem apenas aos utilizadores dos planos Free e Go, e há categorias restritas: fora dos Estados Unidos, os anúncios de serviços de saúde são geralmente proibidos. Juntámos tudo o que se sabe no nosso guia de anúncios no ChatGPT para empresas ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como aparecer nas respostas da IA sem pagar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chama-se GEO (otimização para motores generativos) e sobrepõe-se em grande parte ao SEO: o site tem de ser rastreável pela OpenAI, responder diretamente a perguntas reais e ser citado por fontes que a IA já consulta. Comprar anúncios não influencia as respostas. O método está no artigo como aparecer no ChatGPT sem pagar ."
       }
     },
     {
@@ -323,12 +470,59 @@
       "name": "Como começamos a trabalhar juntos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Envie-nos uma mensagem pela página de contactos, email ou WhatsApp. Marcamos uma conversa para conhecer o seu negócio e objetivos, e apresentamos uma proposta à medida. Do briefing à entrega, acompanhamos todo o processo em 4 passos: entendimento, definição, design e ação."
+        "text": "Envia-nos uma mensagem pela página de contactos , por email ou WhatsApp. Marcamos uma conversa para conhecer o negócio e os objetivos, e apresentamos uma proposta. Depois seguimos as nossas 4 etapas, Colheita, Definição, Grafismo e Ação, que explicamos na página de métodos ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que preciso de partilhar para começarmos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quanto mais contexto, melhor: missão da marca, público-alvo, referências visuais, objetivos e o material que já exista (logótipo, fotografias, acessos). Mas não te preocupes: guiamos-te em todo o processo e pedimos só o que for mesmo necessário em cada fase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso ver diferentes opções antes de decidir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Em branding e design apresentamos sempre mais do que uma direção criativa, para escolheres a que melhor se alinha com a tua visão. Nas redes sociais, o calendário editorial é aprovado por ti antes de qualquer publicação sair."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo demora um projeto de branding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Um projeto de branding completo demora normalmente entre 3 e 6 semanas, dependendo da complexidade e da rapidez do feedback. Trabalhamos sempre com prazos definidos à partida."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O projeto termina na entrega dos ficheiros?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não necessariamente. Entregamos todos os ficheiros finais e damos suporte pós-entrega, e muitos clientes continuam connosco como parceiros a longo prazo, na gestão de redes sociais, na manutenção do website ou em campanhas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Os preços incluem IVA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Os valores apresentados no site, incluindo os packs de gestão de redes sociais, são sem IVA. Produções especiais e horas além das incluídas nos packs são orçamentadas caso a caso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Os dados e os ficheiros ficam nossos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Os dados são da tua empresa e os ficheiros finais são teus. Nos projetos de software definimos contigo onde fica alojado, quem tem acesso a quê e como são feitas as cópias de segurança, em cumprimento do RGPD."
       }
     }
   ]
-}
-  </script>
+}</script>
   <script src="/meta-pixel.js"></script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
@@ -395,56 +589,161 @@
   <div class="page-head-inner">
     <div class="page-eyebrow">Ajuda</div>
     <h1 class="page-title">Perguntas Frequentes</h1>
-    <p class="page-updated">Tudo o que precisa de saber antes de trabalhar connosco</p>
+    <p class="page-updated">Respostas diretas sobre serviços, packs, prazos e condições. Se faltar alguma, <a href="./contactos">fala connosco</a>.</p>
   </div>
 </div>
 
 <!-- CONTENT -->
 <div class="legal-wrap">
 
-  <section>
-    <p style="text-align:center;max-width:640px;margin:0 auto 40px;">Reunimos as perguntas que mais nos fazem sobre os nossos serviços, prazos e forma de trabalhar. Não encontra a resposta? <a href="./contactos">Fale connosco</a>.</p>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary><span>Que serviços oferece o Differentt Lab?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Somos uma agência digital completa: branding e identidade visual, criação de websites, design gráfico, gestão de redes sociais e visualizações 3D. Cobrimos toda a presença digital do seu negócio, da estratégia à execução.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Onde estão localizados? Trabalham remotamente?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Estamos sediados em Odivelas, Lisboa, e trabalhamos de forma 100% remota com clientes em todo o país e no estrangeiro. Para clientes da região de Lisboa fazemos também sessões presenciais de captação de conteúdo (foto e vídeo).</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Quanto custa um website ou a gestão de redes sociais?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Cada projeto é orçamentado à medida, em função dos objetivos, do número de páginas ou publicações e da complexidade. Fale connosco através da página de contactos e enviamos-lhe uma proposta sem compromisso, normalmente em 24–48 horas.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Quanto tempo demora a criação de um website?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Depende da dimensão do projeto: uma landing page pode ficar pronta em 1–2 semanas; um website institucional completo demora tipicamente 3–6 semanas, incluindo design, desenvolvimento, conteúdos e otimização SEO.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>O que inclui a gestão mensal de redes sociais?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Os nossos planos incluem estratégia e calendário editorial, criação de conteúdo (foto e vídeo captados no seu espaço), publicações mensais, stories semanais e acompanhamento de resultados. Podemos também gerir campanhas de anúncios (Meta Ads e Google Ads).</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Que resultados posso esperar das redes sociais?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Cada negócio é diferente, mas temos casos reais: a Evo Clinic registou +70% de ligações telefónicas e +30% na taxa de marcações em menos de um ano; a Moment Laser cresceu de 7.000 para 10.000 seguidores com mais de 813 mil visualizações no Instagram.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Trabalham com pequenas empresas?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Sim, a maioria dos nossos clientes são PMEs portuguesas: clínicas, restaurantes, comércio local e serviços. Adaptamos o investimento à fase em que o negócio está.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Os websites são otimizados para SEO?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Sim. Todos os websites que criamos incluem otimização técnica de base: estrutura semântica, velocidade de carregamento, responsividade mobile, meta tags e dados estruturados, prontos para serem encontrados no Google.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Fazem manutenção e atualizações depois da entrega?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Sim. Oferecemos planos de manutenção e suporte contínuo, atualização de conteúdos, monitorização e melhorias, para que o seu website se mantenha rápido, seguro e atual.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary><span>Como começamos a trabalhar juntos?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-answer"><p>Envie-nos uma mensagem pela página de contactos, email ou WhatsApp. Marcamos uma conversa para conhecer o seu negócio e objetivos, e apresentamos uma proposta à medida. Do briefing à entrega, acompanhamos todo o processo em 4 passos: entendimento, definição, design e ação.</p></div>
-      </details>
+  <section class="faq-section">
+    <div class="faq-saltos" role="navigation" aria-label="Temas">
+      <a href="#faq-geral">Geral</a>
+      <a href="#faq-websites">Websites e software</a>
+      <a href="#faq-redes">Redes sociais e packs</a>
+      <a href="#faq-anuncios">Publicidade e IA</a>
+      <a href="#faq-processo">Processo e prazos</a>
+      <a href="#faq-condicoes">Preços e condições</a>
+    </div>
+    <div class="faq-grupo" id="faq-geral">
+      <p class="faq-eyebrow">Sobre nós</p>
+      <h2 class="faq-cat">Geral</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">01</span><span>Que serviços oferece a Differentt Lab?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Somos uma agência digital completa: branding e identidade visual, criação de websites e software à medida, gestão de redes sociais, design gráfico, captação de fotografia e vídeo, visualizações 3D, campanhas Meta e Google Ads e landing pages. Cobrimos toda a presença digital do teu negócio, do logótipo às redes, com uma só equipa e um só interlocutor.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">02</span><span>Onde estão sediados? Trabalham remotamente?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Estamos em Odivelas, Lisboa, e trabalhamos de forma remota com clientes em todo o país e no estrangeiro. Para a região de Lisboa fazemos também produções presenciais de fotografia e vídeo: nos packs Pro e Performance da gestão de redes, as deslocações até 30 km estão incluídas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">03</span><span>Trabalham com pequenas empresas?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim, a maioria dos nossos clientes são PMEs portuguesas: clínicas e estética, restauração, comércio local, serviços e profissionais liberais. Os packs e as propostas são ajustados à fase em que o negócio está, e o primeiro mês de gestão de redes é à experiência.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">04</span><span>Em quanto tempo respondem a um pedido?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Respondemos em 24 horas úteis a todos os pedidos feitos pela página de contactos, email ou WhatsApp. Se o pedido for uma proposta, marcamos primeiro uma conversa curta para perceber o objetivo e enviamos a proposta a seguir.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-grupo" id="faq-websites">
+      <p class="faq-eyebrow">Websites, lojas e sistemas</p>
+      <h2 class="faq-cat">Websites e software</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">05</span><span>Quanto custa criar um website?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Depende do número de páginas, das funcionalidades e de haver ou não loja online, reservas ou integrações. Por isso não trabalhamos com pacotes fechados para websites: fazemos uma proposta à medida, sem compromisso, depois de uma conversa curta sobre o que precisas. Pede a tua na <a href="./criacao-websites">página de criação de websites</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">06</span><span>Quanto tempo demora a criar um website?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Uma landing page fica pronta em 1 a 2 semanas. Um website institucional simples leva 3 a 4 semanas. Projetos com funcionalidades específicas ou loja online levam entre 6 e 10 semanas. O prazo é sempre definido em conjunto antes de começarmos.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">07</span><span>Os websites são otimizados para o Google?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Todos os websites incluem SEO on-page desde a primeira linha de código: estrutura semântica, velocidade de carregamento, versão mobile, meta tags e dados estruturados. Hoje isso inclui também as respostas dos assistentes de IA. Explicamos como funciona no nosso guia sobre <a href="./blog/como-aparecer-no-chatgpt-sem-pagar">como aparecer no ChatGPT sem pagar</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">08</span><span>Fazem websites em WordPress ou em código próprio?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Ambos. Desenvolvemos em WordPress quando o cliente quer gerir o conteúdo de forma autónoma, e em código próprio (HTML, CSS e JavaScript) quando a prioridade é velocidade, segurança e um design sem limitações. Em qualquer dos casos garantimos design profissional, SEO integrado e performance.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">09</span><span>Também desenvolvem software à medida para empresas?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Desenvolvemos CRM para gerir clientes e vendas, gestão de inventário e stock, recursos humanos (colaboradores, férias e assiduidade), faturação e plataformas internas. É frequente substituirmos folhas de Excel por um sistema onde várias pessoas trabalham ao mesmo tempo, com histórico de alterações. Também automatizamos confirmações e lembretes por WhatsApp, SMS ou email, e ligamos o sistema às ferramentas que já usas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">10</span><span>Posso gerir o website sozinho depois do lançamento?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Entregamos formação e documentação para atualizares conteúdos de forma autónoma. Para quem prefere não se preocupar, temos planos de manutenção mensal com atualizações, monitorização e melhorias contínuas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-grupo" id="faq-redes">
+      <p class="faq-eyebrow">Gestão de redes sociais</p>
+      <h2 class="faq-cat">Redes sociais e packs</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">11</span><span>Quanto custa a gestão de redes sociais?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Trabalhamos com três packs mensais: <strong>Essencial</strong>, a 550 € por mês, <strong>Pro</strong>, a 750 € por mês, e <strong>Performance</strong>, a 900 € por mês. Para campanhas de anúncios, funil de vendas ou várias marcas existe o extra <strong>Scale</strong>, orçamentado à medida. Os valores são sem IVA. Vê o detalhe de cada pack na <a href="./gestao-redes-sociais#packs">página de gestão de redes sociais</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">12</span><span>Qual é a diferença entre os packs Essencial, Pro e Performance?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">A diferença está na produção. O Essencial trabalha com o material fotográfico que o teu negócio já tem, com 10 publicações e 2 Reels por mês em 2 redes. O Pro acrescenta 8 horas de produção presencial por mês, em 2 sessões no teu espaço, com 10 publicações e 3 Reels. O Performance duplica para 16 horas em 3 sessões, com 12 publicações e 4 Reels em 3 redes. Todos incluem copywriting, design, agendamento e relatório mensal de resultados.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">13</span><span>Que redes sociais gerem?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Instagram, Facebook, TikTok e LinkedIn. Em cada pack escolhes 2 ou 3 redes, consoante o plano. Nem sempre faz sentido estar em todas: recomendamos as plataformas onde o teu público realmente está.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">14</span><span>Há fidelização? Como funcionam os contratos?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">O primeiro mês é à experiência, sem contrato nem fidelização. A partir daí trabalhamos com contratos de 6 meses, o tempo mínimo para os resultados surgirem e poderem ser medidos. Quem paga o semestre à cabeça tem 10% de desconto: 2.970 € no Essencial, 4.050 € no Pro e 4.860 € no Performance.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">15</span><span>Quanto tempo até ver resultados nas redes sociais?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Os primeiros sinais, mais alcance, mais interações e mais mensagens, surgem normalmente entre 4 e 8 semanas. Resultados consolidados, como crescimento consistente de seguidores e contactos regulares, desenvolvem-se ao longo de 3 a 6 meses de trabalho contínuo. A maioria dos nossos clientes começa a notar diferença nos primeiros 60 a 90 dias.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">16</span><span>Que resultados têm os vossos clientes?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Casos reais de clientes de estética e saúde: a Evo Clinic registou mais 70% de chamadas telefónicas e mais 30% na taxa de marcações em menos de um ano; a Moment Laser cresceu de 7.000 para 10.000 seguidores, com mais de 813 mil visualizações no Instagram e mais de 70 agendamentos mensais. Em conjunto, as duas marcas ultrapassaram 900 mil visualizações em 30 dias.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-grupo" id="faq-anuncios">
+      <p class="faq-eyebrow">Anúncios e inteligência artificial</p>
+      <h2 class="faq-cat">Publicidade e IA</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">17</span><span>Fazem campanhas de anúncios?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim, através do extra Scale: campanhas Meta Ads (Facebook e Instagram) e Google Ads, com produção de criativos dedicada aos anúncios, landing page e rastreio de conversões. O investimento em publicidade é pago por ti diretamente à plataforma, sem percentagem para nós.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">18</span><span>Já é possível anunciar no ChatGPT em Portugal?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Os anúncios chegaram ao ChatGPT em Portugal a 24 de agosto de 2026 e, segundo a OpenAI, desde 31 de agosto qualquer empresa pode comprá-los em autosserviço. Aparecem apenas aos utilizadores dos planos Free e Go, e há categorias restritas: fora dos Estados Unidos, os anúncios de serviços de saúde são geralmente proibidos. Juntámos tudo o que se sabe no nosso <a href="./blog/anuncios-no-chatgpt-guia-empresas-portugal">guia de anúncios no ChatGPT para empresas</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">19</span><span>Como aparecer nas respostas da IA sem pagar?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Chama-se GEO (otimização para motores generativos) e sobrepõe-se em grande parte ao SEO: o site tem de ser rastreável pela OpenAI, responder diretamente a perguntas reais e ser citado por fontes que a IA já consulta. Comprar anúncios não influencia as respostas. O método está no artigo <a href="./blog/como-aparecer-no-chatgpt-sem-pagar">como aparecer no ChatGPT sem pagar</a>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-grupo" id="faq-processo">
+      <p class="faq-eyebrow">Como trabalhamos</p>
+      <h2 class="faq-cat">Processo e prazos</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">20</span><span>Como começamos a trabalhar juntos?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Envia-nos uma mensagem pela <a href="./contactos">página de contactos</a>, por email ou WhatsApp. Marcamos uma conversa para conhecer o negócio e os objetivos, e apresentamos uma proposta. Depois seguimos as nossas 4 etapas, Colheita, Definição, Grafismo e Ação, que explicamos na <a href="./metodos">página de métodos</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">21</span><span>O que preciso de partilhar para começarmos?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Quanto mais contexto, melhor: missão da marca, público-alvo, referências visuais, objetivos e o material que já exista (logótipo, fotografias, acessos). Mas não te preocupes: guiamos-te em todo o processo e pedimos só o que for mesmo necessário em cada fase.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">22</span><span>Posso ver diferentes opções antes de decidir?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Em branding e design apresentamos sempre mais do que uma direção criativa, para escolheres a que melhor se alinha com a tua visão. Nas redes sociais, o calendário editorial é aprovado por ti antes de qualquer publicação sair.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">23</span><span>Quanto tempo demora um projeto de branding?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Um projeto de branding completo demora normalmente entre 3 e 6 semanas, dependendo da complexidade e da rapidez do feedback. Trabalhamos sempre com prazos definidos à partida.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">24</span><span>O projeto termina na entrega dos ficheiros?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Não necessariamente. Entregamos todos os ficheiros finais e damos suporte pós-entrega, e muitos clientes continuam connosco como parceiros a longo prazo, na gestão de redes sociais, na manutenção do website ou em campanhas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-grupo" id="faq-condicoes">
+      <p class="faq-eyebrow">Valores, IVA e dados</p>
+      <h2 class="faq-cat">Preços e condições</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">25</span><span>Os preços incluem IVA?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Não. Os valores apresentados no site, incluindo os packs de gestão de redes sociais, são sem IVA. Produções especiais e horas além das incluídas nos packs são orçamentadas caso a caso.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><div class="faq-question-left"><span class="faq-num">26</span><span>Os dados e os ficheiros ficam nossos?</span></div><div class="faq-icon"></div></div>
+          <div class="faq-answer">Sim. Os dados são da tua empresa e os ficheiros finais são teus. Nos projetos de software definimos contigo onde fica alojado, quem tem acesso a quê e como são feitas as cópias de segurança, em cumprimento do RGPD.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -552,6 +851,16 @@
     if (r.top < innerHeight && r.bottom > 0) { a.classList.add("in", a.classList.contains("rv-card") ? "rv-done" : "in"); } else { io.observe(a); }
   });
 })();
+</script>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement; const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 </script>
 </body>
 </html>

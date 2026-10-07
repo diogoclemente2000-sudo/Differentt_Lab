@@ -1214,6 +1214,7 @@
     <span class="marquee-item"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%2016.svg" alt="Evo Clinic – cliente Differentt Lab"></span>
     <span class="marquee-item"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%203.png" alt="Fit Clinic – cliente Differentt Lab"></span>
     <span class="marquee-item"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/villas.svg" alt="Villas – cliente Differentt Lab"></span>
+    <span class="marquee-item"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/htm-portugal.svg" alt="HTM Portugal – cliente Differentt Lab"></span>
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%208.svg" alt=""></span>
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%209.svg" alt=""></span>
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%2010.svg" alt=""></span>
@@ -1223,6 +1224,7 @@
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%2016.svg" alt=""></span>
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/Ativo%203.png" alt=""></span>
     <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/villas.svg" alt=""></span>
+    <span class="marquee-item" aria-hidden="true"><img class="marquee-logo" loading="eager" decoding="sync" src="./Brand_assets/client_logos/htm-portugal.svg" alt=""></span>
   </div>
 </div>
 
@@ -3042,6 +3044,30 @@
     @media (prefers-reduced-motion: reduce) {
       .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
       .faq-answer, .faq-a { opacity: 1; }
+    }
+
+    /* ondas em PC: a onda media max(150%,100vw) mas o .site-wrap (1750px) cortava-a com um
+       rebordo a direito em ecras largos. Agora nunca excede os 1750px, e a mascara desvanece
+       nas quatro direcoes (horizontal x vertical) ate zero nas pontas: sem retangulo. */
+    @media (min-width: 1200px) {
+      #services-section::before {
+        width: min(max(150%, 100vw), 1750px);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+        -webkit-mask-composite: source-in; mask-composite: intersect;
+      }
+    }
+
+    /* ondas em mobile: por tras dos dois cards. A faixa tinha 238px de altura, centrada, e so
+       aparecia no intervalo entre os cards. Passa a ocupar quase a altura toda da seccao
+       (esticada: e um brilho difuso, aguenta), com fade nas quatro direcoes. */
+    @media (max-width: 1199px) {
+      #services-section::before {
+        width: 230%; height: 96%; aspect-ratio: auto; opacity: .62;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+        -webkit-mask-composite: source-in; mask-composite: intersect;
+      }
     }
 </style>
 
