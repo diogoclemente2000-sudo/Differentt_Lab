@@ -99,6 +99,11 @@
     .project-fecho p { font-family: 'Satoshi', 'Nunito Sans', sans-serif; font-size: 15.5px; line-height: 1.55;
       color: rgba(255,255,255,0.62); max-width: 68ch; margin: 0 0 12px; }
     .project-fecho .pj-ficha { color: rgba(255,255,255,0.4); }
+    .project-fecho a { color: #fff; text-decoration: underline; text-decoration-color: rgba(158,123,182,0.7);
+      text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    .project-fecho a:hover { text-decoration-color: #9e7bb6; }
+    .project-fecho a:focus-visible { outline: 2px solid #9e7bb6; outline-offset: 3px; border-radius: 2px; }
+    .project-fecho a:active { opacity: 0.7; }
     .project-fecho p:last-child { margin-bottom: 0; }
     @media (max-width: 1199px) { .project-fecho { padding-bottom: 56px; } .project-fecho p { font-size: 14.5px; } }
     .project-info { padding: 72px max(48px, calc((100% - 1400px) / 2)) 0; }
@@ -672,6 +677,16 @@ const PROJECTS = {
     gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Garrafeira%20wine%20club/frame2.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Garrafeira%20wine%20club/frame3.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Garrafeira%20wine%20club/frame.png'],
     tags: ['Back Office', 'Web Service', 'Reservas & Stock']
   },
+  'esthetic-solution-website': {
+    name: 'Esthetic Solution',
+    cat: 'Transformação Digital',
+    catKey: 'web',
+    date: '27/10/2026',
+    hero: 'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/website-hero-mac.jpg',
+    description: ['Transformação digital da Esthetic Solution, empresa de aluguer e venda de equipamentos de estética: website, provas sociais e CRM de vendas ligados num só sistema, para que cada visita possa acabar num pedido de aluguer.', 'A hero section abre com a escolha direta do equipamento: quem chega seleciona o produto e o tipo de aluguer e pede contacto sem sair do topo da página. As provas sociais acompanham toda a página, com vídeos de clientes que já trabalham com os equipamentos, e um simulador de faturação mostra quanto rende um aluguer antes do primeiro contacto.', 'Por trás do site, todos os formulários entram diretamente no CRM de vendas. Cada pedido fica centralizado num só sítio e a equipa comercial acompanha-o sem copiar dados à mão.', 'A presença digital continua nas redes sociais, que também gerimos para a Esthetic Solution: +6.000 seguidores e +127 mil visualizações por mês. Vê o trabalho e os números na página de <a href="./gestao-redes-sociais#marcas">gestão de redes sociais</a>.'],
+    gallery: [{src:'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-site-web.mp4',full:true},'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/website-slide-testemunhos.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/website-slide-formulario.png',{src:'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/website-slide-chatbot.png',full:true}],
+    tags: ['Presença Digital', 'Website', 'Integração CRM']
+  },
   'zeetelecom': {
     name: 'ZeeTelecom',
     cat: 'Websites',
@@ -684,13 +699,13 @@ const PROJECTS = {
   },
   'gymtime-app': {
     name: 'GYMTIME app',
-    cat: '3D & Produto',
-    catKey: '3d',
+    cat: 'Web & Produto',
+    catKey: 'web',
     date: '20/03/2025',
     hero: 'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/szYm9GEkyeKRDx0ge1EUlw7voA.jpg',
     description: ['Desenvolvimento visual e de produto para a aplicação GYMTIME, focada em gestão de treinos e comunidade fitness.'],
-    gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_1.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_2.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_3.jpg'],
-    tags: ['3D', 'App', 'Produto']
+    gallery: [{src:'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/gym-time-web.mp4',full:true},{src:'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_1.jpg',full:true},'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_2.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/time%20gym/Advertising_3.jpg'],
+    tags: ['Web', 'Produto']
   },
   'hightech': {
     name: 'HighTech',
@@ -839,7 +854,7 @@ const PROJECTS = {
     date: '01/05/2025',
     hero: 'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg',
     description: ['Gestão de redes sociais e criação de conteúdo para a Esthetic Solution. Presença digital profissional e visualmente coerente no setor da estética.'],
-    gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-8.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/LOGO-ESTHETICAL-SOLUTION%20(v2)1-12.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Criativos%20(meta)-17.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Posts%204-3-03.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/hifu%20360.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Ficha%20tecnica%20hifu-360.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4'],
+    gallery: ['https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-porque-web.mp4','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-8.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/LOGO-ESTHETICAL-SOLUTION%20(v2)1-12.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Criativos%20(meta)-17.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Posts%204-3-03.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/hifu%20360.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/Ficha%20tecnica%20hifu-360.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/1%20INES%20AUDIO%20FIXED.mp4'],
     tags: ['Redes Sociais', 'Estética', 'Conteúdo']
   },
   'shroom-fest': {
@@ -949,7 +964,8 @@ function render(id) {
   }
   const count = project.gallery.length;
   const galleryHTML = project.gallery.map((img, i) => {
-    const full = count === 1 || (count % 2 !== 0 && i === 0);
+    // {src, full:true} forca a largura toda (ex.: um slide de destaque no fim da galeria)
+    const full = count === 1 || (count % 2 !== 0 && i === 0) || (typeof img === 'object' && img.full);
     return `<div class="gallery-item${full ? ' gallery-full' : ''}">${mediaTag(img, project.name)}</div>`;
   }).join('');
 

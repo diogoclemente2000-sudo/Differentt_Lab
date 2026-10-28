@@ -1509,7 +1509,7 @@
   .pack-card--extra::before { --pk-canto: rgba(197,133,184,0.3); --pk-meio: rgba(158,123,182,0.05); }
   .pack-card--extra .pack-lista { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; }
 
-  /* ── resumo: a tua escolha + total + WhatsApp ── */
+  /* ── resumo: a tua escolha + total + pedido (formulario por email, WhatsApp como alternativa) ── */
   .packs-resumo { position: relative; margin-top: 34px; border-radius: 14px; padding: 24px 28px;
     background: linear-gradient(160deg, rgba(158,123,182,0.13), rgba(158,123,182,0.02) 60%), #0b0a0f; }
   .resumo-topo { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
@@ -1605,6 +1605,37 @@
     color: rgba(255,255,255,0.75); font-family: inherit; font-size: 16px; line-height: 0.9; cursor: pointer;
     transition: background .2s ease, border-color .2s ease; }
   .lp-fechar:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
+
+  /* ── pedido do plano: formulario no pop-up (mesma moldura do .lp-modal) ── */
+  .pf-modal { width: min(460px, 100%); max-height: calc(100dvh - 48px); overflow-y: auto; overscroll-behavior: contain; }
+  .pf-modal h3 { padding-right: 36px; }
+  .pf-resumo { margin: 14px 0 0; padding-top: 14px; }
+  .pf-form { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .pf-campo { display: flex; flex-direction: column; gap: 6px; }
+  .pf-campo span { font-weight: 600; font-size: 12px; letter-spacing: 0.02em; color: rgba(255,255,255,0.62); }
+  .pf-campo em { font-style: normal; font-weight: 400; color: rgba(255,255,255,0.36); margin-left: 4px; }
+  /* 16px: abaixo disso o iOS faz zoom ao focar o campo */
+  .pf-campo input, .pf-campo textarea { width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #fff;
+    font-family: inherit; font-size: 16px; line-height: 1.3; outline: none; resize: vertical; }
+  .pf-campo input:hover, .pf-campo textarea:hover { border-color: rgba(255,255,255,0.22); }
+  .pf-campo input:focus-visible, .pf-campo textarea:focus-visible { border-color: rgba(197,133,184,0.85);
+    background: rgba(197,133,184,0.06); box-shadow: 0 0 0 3px rgba(197,133,184,0.16); }
+  .pf-campo [aria-invalid="true"], .pf-campo [aria-invalid="true"]:focus-visible { border-color: rgba(240,128,150,0.85); }
+  .lp-modal p.pf-erro { font-size: 13px; line-height: 1.35; color: #f2a5b6; }
+  .pf-enviar { width: 100%; margin-top: 6px; padding: 15px 0; text-transform: none; }
+  .pf-enviar::after { display: none; }
+  .pf-enviar:active { transform: translateY(0) scale(0.98); }
+  .pf-enviar:focus-visible { outline: 2px solid #e2b4d8; outline-offset: 3px; }
+  .pf-enviar[disabled] { opacity: 0.6; cursor: progress; transform: none; }
+  .lp-modal p.pf-nota { font-size: 12px; line-height: 1.4; color: rgba(255,255,255,0.48); text-align: center; }
+  .pf-nota a, .pf-zap { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-color: rgba(197,133,184,0.6); }
+  .pf-zap { display: block; margin-top: 2px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center; font-weight: 500; font-size: 13px; }
+  .pf-nota a:hover, .pf-zap:hover { color: #e2b4d8; }
+  .pf-nota a:focus-visible, .pf-zap:focus-visible { outline: 2px solid #c585b8; outline-offset: 3px; border-radius: 4px; }
+  .pf-zap:active { opacity: 0.7; }
 
   @media (max-width: 1199px) {
     /* os cards sangram ate a borda num carrossel, como os reels */
@@ -1872,13 +1903,13 @@
 <hr class="divider">
 
 <!-- SECTION 5: REELS SHOWCASE -->
-<section class="section reels-section-center">
+<section class="section reels-section-center" id="marcas">
   <h2 class="section-title">Marcas que <span>cresceram</span> connosco</h2>
   <p class="section-sub">Conteúdo orientado para resultados de negócio: mais ligações, marcações e seguidores, com desempenho medido e estratégia reajustada todos&nbsp;os&nbsp;meses.</p>
   <div class="reels-grid" id="reelsGrid">
     <div class="reel-item">
       <div class="reel-card" data-project="aroma-boreal" data-video="./Website_videos/aroma-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_work_page/uGPsvLLYFV8VYbt7bYcDA6FnUo.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/photos_home_page/aroma-capa.jpg" alt="Aroma Boreal – Gestão de Redes Sociais pela Differentt Lab">
         <div class="reel-card-overlay"></div>
         <div class="reel-card-play"><svg width="23" height="23" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5.2v13.6l11-6.8z"/></svg></div>
         <div class="reel-card-info"><span class="reel-card-cat">Bem-estar</span><span class="reel-card-name">Aroma Boreal</span><span class="reel-card-metric">Conteúdo & comunidade</span></div>
@@ -1901,8 +1932,8 @@
       </div>
     </div>
     <div class="reel-item">
-      <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-reels-web.mp4">
-        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/Esthetic%20solution/MANUAL-DE-NORMAS-LOGO-ESTHETIC-SOLUTION-11.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
+      <div class="reel-card" data-project="esthetic-solution" data-video="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-porque-web.mp4">
+        <img loading="lazy" decoding="async" class="reel-card-img" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/esthetic-porque-capa.jpg" alt="Esthetic Solution – Gestão de Redes Sociais pela Differentt Lab">
         <div class="reel-card-overlay"></div>
         <div class="reel-card-play"><svg width="23" height="23" viewBox="0 0 24 24" fill="#fff" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5.2v13.6l11-6.8z"/></svg></div>
         <div class="reel-card-info"><span class="reel-card-cat">Equipamentos em Movimento</span><span class="reel-card-name">Esthetic Solution</span><span class="reel-card-metric">+6.000 seguidores · 400 clientes/mês · +127 mil views/mês</span></div>
@@ -2167,7 +2198,7 @@
           <b id="resumoVal">750 €<i>/mês</i></b>
           <small id="resumoNota">Semestre à cabeça: 4.050 €</small>
         </div>
-        <a class="gx-btn gx-btn--purple" id="resumoCta" href="https://wa.me/351910185220" target="_blank" rel="noopener"><span class="gx-btn-inner">Falar connosco</span></a>
+        <a class="gx-btn gx-btn--purple" id="resumoCta" href="#pedir-plano" role="button" aria-haspopup="dialog"><span class="gx-btn-inner">Falar connosco</span></a>
       </div>
     </div>
 
@@ -2194,6 +2225,26 @@
   <p class="packs-fine">Os anúncios já chegaram ao ChatGPT em Portugal. O que se pode fazer, quanto custa e para quem faz sentido está no nosso <a href="./blog/anuncios-no-chatgpt-guia-empresas-portugal">guia de anúncios no ChatGPT para empresas</a>.</p>
 </section>
 
+<!-- pedido do plano: o "Falar connosco" do resumo abre este formulario. O pedido segue por email
+     (send-email.js, formType 'pack') e quem o envia recebe a confirmacao com o resumo da escolha -->
+<div class="lp-fundo" id="pfFundo" role="dialog" aria-modal="true" aria-labelledby="pfTitulo">
+  <div class="lp-modal pf-modal">
+    <button type="button" class="lp-fechar" id="pfFechar" aria-label="Fechar">×</button>
+    <h3 id="pfTitulo">Pedir o plano</h3>
+    <ul class="lp-linhas pf-resumo" id="pfResumo"></ul>
+    <form class="pf-form" id="pfForm" novalidate>
+      <label class="pf-campo"><span>Nome</span><input type="text" name="nome" autocomplete="name" required></label>
+      <label class="pf-campo"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+      <label class="pf-campo"><span>Telefone <em>opcional</em></span><input type="tel" name="telefone" autocomplete="tel" inputmode="tel"></label>
+      <label class="pf-campo"><span>Sobre o seu negócio <em>opcional</em></span><textarea name="mensagem" rows="2"></textarea></label>
+      <p class="pf-erro" id="pfErro" role="alert" hidden></p>
+      <button type="submit" class="gx-btn gx-btn--purple pf-enviar" id="pfEnviar"><span class="gx-btn-inner">Enviar pedido</span></button>
+      <p class="pf-nota">Recebe já um email com o resumo e respondemos em 24 a 48 horas úteis. Ao enviar, aceita a <a href="./privacidade">política de privacidade</a>.</p>
+      <a class="pf-zap" id="pfZap" href="https://wa.me/351910185220" target="_blank" rel="noopener">Prefere WhatsApp? Envie a escolha por mensagem</a>
+    </form>
+  </div>
+</div>
+
 <div class="lp-fundo" id="lpFundo" role="dialog" aria-modal="true" aria-labelledby="lpTitulo">
   <div class="lp-modal">
     <button type="button" class="lp-fechar" id="lpFechar" aria-label="Fechar">×</button>
@@ -2206,7 +2257,7 @@
 </div>
 
 <script>
-// Packs: escolha de um pack (+ extras), total, e o link do WhatsApp com a escolha
+// Packs: escolha de um pack (+ extras), total, e o pedido da escolha (formulario por email ou WhatsApp)
 (function(){
   var packs  = [].slice.call(document.querySelectorAll('[data-pack]'));
   var extras = [].slice.call(document.querySelectorAll('[data-extra]'));
@@ -2214,6 +2265,7 @@
   var val    = document.getElementById('resumoVal');
   var nota   = document.getElementById('resumoNota');
   var cta    = document.getElementById('resumoCta');
+  var zap    = document.getElementById('pfZap');
   var ZAP    = '351910185220';
 
   // separador de milhares a mao: o toLocaleString nem sempre aplica o ponto
@@ -2271,7 +2323,7 @@
       nota.textContent = 'Semestre à cabeça: ' + euros(Math.round(preco * 6 * 0.9))
         + (juntos.length ? '  ·  extras sob consulta' : '');
     }
-    cta.href = linkZap();
+    zap.href = linkZap();
   }
 
   function fazChip(card, extraClasse){
@@ -2309,10 +2361,125 @@
     });
   });
 
-  // o link final monta-se no clique: assim ganha sempre ao reescrever do meta-pixel.js;
+  // o link do WhatsApp monta-se no clique: assim ganha sempre ao reescrever do meta-pixel.js;
   // e repoe-se depois dele no arranque, para o link visivel (ao manter premido) ja levar o pack
-  cta.addEventListener('click', function(){ cta.href = linkZap(); });
-  document.addEventListener('DOMContentLoaded', function(){ cta.href = linkZap(); });
+  zap.addEventListener('click', function(){ zap.href = linkZap(); });
+  document.addEventListener('DOMContentLoaded', function(){ zap.href = linkZap(); });
+
+  // ── pedido por email: o "Falar connosco" abre o formulario com o resumo da escolha ──
+  var pfFundo  = document.getElementById('pfFundo');
+  var pfTitulo = document.getElementById('pfTitulo');
+  var pfResumo = document.getElementById('pfResumo');
+  var pfForm   = document.getElementById('pfForm');
+  var pfErro   = document.getElementById('pfErro');
+  var pfEnviar = document.getElementById('pfEnviar');
+
+  function escolha(){
+    var pack = packs.filter(function(c){ return c.classList.contains('on'); })[0];
+    var preco = pack ? parseInt(pack.dataset.preco || '', 10) : NaN;
+    return {
+      plano: pack ? pack.dataset.nome : '',
+      valor: !pack ? '' : (isNaN(preco) ? 'Sob orçamento' : euros(preco) + '/mês'),
+      semestre: pack && !isNaN(preco) ? euros(Math.round(preco * 6 * 0.9)) : '',
+      extras: extras.filter(function(c){ return c.classList.contains('on'); }).map(function(e){ return e.dataset.nome; })
+    };
+  }
+
+  function abrirPedido(){
+    var e = escolha();
+    pfTitulo.textContent = e.plano ? 'Pedir o plano ' + e.plano
+      : (e.extras.length ? 'Pedir o extra ' + e.extras.join(' e ') : 'Pedir uma proposta');
+    var linhas = [];
+    linhas.push(['Plano', e.plano || 'ainda por escolher', e.valor]);
+    if (e.extras.length) linhas.push([e.extras.length > 1 ? 'Extras' : 'Extra', e.extras.join(', '), 'sob orçamento']);
+    if (e.semestre) linhas.push(['Semestre à cabeça', e.semestre, 'menos 10%']);
+    pfResumo.innerHTML = '';
+    linhas.forEach(function(l){
+      var li = document.createElement('li');
+      var a = document.createElement('span'); a.textContent = l[0];
+      var b = document.createElement('span');
+      var forte = document.createElement('b'); forte.textContent = l[1];
+      b.appendChild(forte);
+      if (l[2]) b.appendChild(document.createTextNode(' · ' + l[2]));
+      li.appendChild(a); li.appendChild(b);
+      pfResumo.appendChild(li);
+    });
+    pfErro.hidden = true;
+    zap.href = linkZap();
+    pfFundo.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    // no telemovel nao se foca o campo: abriria o teclado por cima do resumo
+    var foco = window.matchMedia('(hover: hover)').matches ? pfForm.elements.nome : document.getElementById('pfFechar');
+    setTimeout(function(){ foco.focus(); }, 60);
+  }
+  function fecharPedido(){
+    pfFundo.classList.remove('on');
+    document.body.style.overflow = '';
+    cta.focus();
+  }
+
+  cta.addEventListener('click', function(ev){ ev.preventDefault(); abrirPedido(); });
+  document.getElementById('pfFechar').addEventListener('click', fecharPedido);
+  pfFundo.addEventListener('click', function(ev){ if (ev.target === pfFundo) fecharPedido(); });
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape' && pfFundo.classList.contains('on')) fecharPedido(); });
+
+  function erro(msg, campo){
+    pfErro.textContent = msg;
+    pfErro.hidden = false;
+    if (campo) { campo.setAttribute('aria-invalid', 'true'); campo.focus(); }
+  }
+  [].forEach.call(pfForm.querySelectorAll('input, textarea'), function(c){
+    c.addEventListener('input', function(){ c.removeAttribute('aria-invalid'); });
+  });
+
+  pfForm.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var f = pfForm.elements;
+    var nome = f.nome.value.trim(), email = f.email.value.trim();
+    pfErro.hidden = true;
+    if (!nome) return erro('Indique o seu nome.', f.nome);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return erro('Indique um email válido, é para lá que enviamos o resumo.', f.email);
+
+    var e = escolha();
+    var payload = {
+      formType: 'pack',
+      name: nome,
+      email: email,
+      phone: f.telefone.value.trim(),
+      message: f.mensagem.value.trim(),
+      plano: e.plano,
+      valor: e.valor,
+      semestre: e.semestre,
+      extras: e.extras,
+      services: ['REDES'],
+      servicos_selecionados: ['REDES'],
+      pagina_origem: window.location.pathname,
+      timestamp: new Date().toISOString(),
+      attrib: window.getAttrib ? window.getAttrib() : {}
+    };
+
+    var rotulo = pfEnviar.querySelector('.gx-btn-inner');
+    pfEnviar.disabled = true;
+    rotulo.textContent = 'A enviar…';
+    fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      // Lead pendente: o Pixel dispara-o na /obrigado (mesmo circuito do formulario dos contactos)
+      try {
+        sessionStorage.setItem('meta_lead_pending', JSON.stringify({
+          formulario: 'packs-redes-sociais', nServicos: 1 + e.extras.length, ts: Date.now()
+        }));
+      } catch (x) {}
+      window.location.assign('/obrigado');
+    }).catch(function(){
+      pfEnviar.disabled = false;
+      rotulo.textContent = 'Enviar pedido';
+      erro('Não foi possível enviar agora. Tente de novo ou envie a escolha pelo WhatsApp.');
+    });
+  });
 
   // o Pro comeca escolhido
   marcar(packs[1], true);
