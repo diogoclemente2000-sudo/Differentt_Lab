@@ -5,6 +5,9 @@ Site institucional da **Differentt Lab**, agência digital sediada em Odivelas, 
 
 Domínio de produção: **https://differenttlab.com**
 
+> **Trabalho em curso (nov 2026):** transformar `criacao-websites` e `gestao-redes-sociais` em landing pages dos
+> anúncios. Estado, decisão pendente e plano em `md files_rules/SESSAO-LANDING-PAGES-2026-11.md`. Ler antes de mexer.
+
 ---
 
 ## Stack — o que isto é (e o que não é)
