@@ -5,6 +5,7 @@
 // Endpoint em produção:  /.netlify/functions/send-email
 // Espera JSON no body, ex.: { "formType":"contacto", "firstName":"...", "email":"...", ... }
 // formType: contacto (omissão) | ideia | newsletter | pack (pedido de plano na gestão de redes sociais)
+//           | website (pedido de proposta da landing page /criacao-websites, em 3 passos)
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 
@@ -29,6 +30,9 @@ const PROJETOS = {
   evo: { nome: 'Evo Clinic', linha: '+70% ligações · +30% marcações',
     img: IMG('Website_photos/photos_work_page/HV885HO4Fkcy0k237JIZVqfPd2w.jpg'),
     url: 'https://differenttlab.com/projeto?p=evo-clinic' },
+  zee: { nome: 'ZeeTelecom', linha: 'Website com pedidos de reparação online',
+    img: IMG('Website_photos/work%20individual%20pages/zeetelecom/final.jpg'),
+    url: 'https://differenttlab.com/projeto?p=zeetelecom' },
   moment: { nome: 'Moment Laser', linha: '7.000 → 10.000 seguidores',
     img: IMG('Website_photos/work%20individual%20pages/moment%20laser/about-banner.jpg'),
     url: 'https://differenttlab.com/projeto?p=moment-laser' },
@@ -36,6 +40,22 @@ const PROJETOS = {
 
 const WHATSAPP = '351910185220';
 const VIDEOCHAMADA = 'https://calendar.app.google/h1VQZZ1eKChfrCvZ6';
+
+// detalhes do formulario de websites: { servico: { rotulo: resposta | [respostas] } } -> [[rotulo, texto]]
+// (com mais de um servico, o rotulo leva o nome do servico a frente)
+function linhasDetalhes(d) {
+  const det = (d.detalhes && typeof d.detalhes === 'object') ? d.detalhes : {};
+  const servs = Object.keys(det);
+  const out = [];
+  servs.forEach((serv) => {
+    const qs = det[serv] && typeof det[serv] === 'object' ? det[serv] : {};
+    Object.keys(qs).forEach((q) => {
+      const v = Array.isArray(qs[q]) ? qs[q].filter(Boolean).join(', ') : String(qs[q] || '');
+      if (v) out.push([servs.length > 1 ? serv + ' · ' + q : q, v]);
+    });
+  });
+  return out;
+}
 
 const listaPt = (a) => a.length > 1 ? a.slice(0, -1).join(', ') + ' e ' + a[a.length - 1] : (a[0] || '');
 
@@ -70,6 +90,17 @@ function pedidoReply(type, d) {
     if (d.semestre) linhas.push(['Semestre à cabeça', d.semestre, 'menos 10%']);
     return { linhas, mensagem: msg, projetos: ['evo', 'moment'],
       zap: `Olá! Enviei pelo site o pedido do plano ${d.plano || 'de gestão de redes sociais'}.` };
+  }
+  if (type === 'website') {
+    const servs = Array.isArray(d.servicos) ? d.servicos.filter(Boolean) : [];
+    const linhas = [];
+    if (servs.length) linhas.push([servs.length > 1 ? 'Projetos' : 'Projeto', listaPt(servs), '']);
+    linhasDetalhes(d).forEach(([k, v]) => linhas.push([k, v, '']));
+    if (d.objetivo) linhas.push(['Objetivo', d.objetivo, '']);
+    if (d.situacao) linhas.push(['Ponto de partida', d.situacao, '']);
+    if (d.prazo) linhas.push(['Para quando', d.prazo, '']);
+    return { linhas, mensagem: msg, projetos: ['esthetic', 'zee'],
+      zap: 'Olá! Enviei pelo site um pedido de proposta para um projeto web.' };
   }
   const lista = d.servicos_selecionados || d.services;
   const codigos = Array.isArray(lista) ? lista : (lista ? [lista] : []);
@@ -280,6 +311,27 @@ exports.handler = async (event) => {
     const resumo = [`Plano: ${d.plano || 'por escolher'}${d.valor ? ' (' + d.valor + ')' : ''}`,
       extras.length ? 'Extras: ' + extras.join(', ') : '', d.phone ? 'Telefone: ' + d.phone : ''].filter(Boolean).join(' | ');
     mensagemLead = d.message ? resumo + '\n\n' + d.message : resumo;
+  } else if (type === 'website') {
+    // pedido de proposta da landing page de websites e software (/criacao-websites)
+    const servs = Array.isArray(d.servicos) ? d.servicos.filter(Boolean) : [];
+    formLabel = 'Pedido de proposta · Websites e software';
+    subject = `Novo pedido de proposta${servs.length ? ' (' + servs.join(', ') + ')' : ''} — ${nomeCompleto || email || 'sem nome'}`;
+    rows = [
+      { k: 'Nome', v: nomeCompleto },
+      { k: 'Email', v: email },
+      { k: 'Telefone', v: d.phone },
+      { k: servs.length > 1 ? 'Projetos' : 'Projeto', v: servs.join(', ') },
+      ...linhasDetalhes(d).map(([k, v]) => ({ k, v })),
+      { k: 'Objetivo', v: d.objetivo },
+      { k: 'Ponto de partida', v: d.situacao },
+      { k: 'Para quando', v: d.prazo },
+      { k: 'Mensagem', v: d.message },
+    ];
+    const resumo = [servs.length ? 'Projeto: ' + servs.join(', ') : '', ...linhasDetalhes(d).map(([k, v]) => k + ': ' + v),
+      d.objetivo ? 'Objetivo: ' + d.objetivo : '',
+      d.situacao ? 'Ponto de partida: ' + d.situacao : '', d.prazo ? 'Para quando: ' + d.prazo : '',
+      d.phone ? 'Telefone: ' + d.phone : ''].filter(Boolean).join(' | ');
+    mensagemLead = [resumo, d.message].filter(Boolean).join('\n\n') || null;
   } else {
     formLabel = 'Pedido de contacto';
     subject = `Novo contacto — ${nomeCompleto || email || 'sem nome'}`;
@@ -335,6 +387,7 @@ exports.handler = async (event) => {
   if (email && type !== 'newsletter') {
     const assunto = type === 'pack' && d.plano
       ? `Recebemos o teu pedido do plano ${d.plano} — Differentt Lab`
+      : type === 'website' ? 'Recebemos o teu pedido de proposta — Differentt Lab'
       : 'Recebemos o teu pedido — Differentt Lab';
     try {
       await send({ from: FROM, to: [email], subject: assunto, html: replyHtml(nome, pedidoReply(type, d)) });

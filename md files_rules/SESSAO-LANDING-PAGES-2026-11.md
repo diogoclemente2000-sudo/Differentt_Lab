@@ -30,6 +30,50 @@ desse PC (commit lá) ou se refazem com a descrição abaixo.
 - **Ainda com preços** (decidir com o Diogo): `blog/quanto-custa-gestao-redes-sociais-portugal.html` (artigo sobre
   preços, tirar os números enfraquece-o) e `blog/gestao-redes-sociais-vale-a-pena.html`.
 
+## Atualização 2026-11-09: `criacao-websites` passa a landing page no próprio endereço
+
+O Diogo decidiu: os anúncios de desenvolvimento caem direto na `/criacao-websites`, que fica **simples como está**
+(mesmo menu, topo, ordem das secções e FAQ), mais informativa e a prender o lead. Feito localmente, **não publicado**:
+
+- **Formulário em 4 passos** (atualizado: passo 2 "Conta-nos mais sobre o projeto" com perguntas de intenção só dos
+  serviços escolhidos, opcionais, em cartões: Landing page = para que é + anúncios; Website institucional = nº de
+  páginas + o que precisa; Loja online = nº de produtos + pagamentos + entregas; Software ou CRM = o que organizar +
+  nº de utilizadores; Automações = o que automatizar + ferramentas atuais. Só "Ainda não sei" salta este passo.
+  Passo 3 "Últimas perguntas": ponto de partida + para quando; o objetivo principal só aparece a quem não teve
+  perguntas de detalhe (só "Ainda não sei"/"Outro"), porque aí a intenção ainda não ficou clara.
+  Passo 1 tem também "Outro" (abre campo "Qual?", obrigatório; segue como "Outro: <texto>") e "Ainda não sei" em linha inteira.
+  "Outro" também nas perguntas de detalhe de escolha (para que é, precisa de ter, pagamentos, entregas, organizar,
+  automatizar, ferramentas), com "Qual?" opcional (segue como "Outro: <texto>"); as de quantidade não têm.
+  Tipografia do cartão: Satoshi nos títulos/perguntas/botões (500), Nunito Sans 400 nas respostas e campos.
+  ATUALIZADO: o "Outro" escreve-se no próprio cartão (é um <div> com o campo lá dentro, não <label>: num label cada
+  clique no texto ligava/desligava a opção); escrever marca, apagar desmarca. Passo 1: 6 meios cartões (… Automações,
+  Ainda não sei) + "Outro, escreve aqui" na linha inteira. Telemóvel: título, formulário, e só depois a lista
+  (consultoria/resposta/videochamada), estrelas e WhatsApp (display: contents + order); fita do fundo atrás do formulário.
+  Seguem em `detalhes` no payload e aparecem nos dois emails e no Supabase. Cantos dos cartões a 5px).
+- Estrutura original de 3 passos (`#pedir-proposta`, antes da FAQ): 1) "De que precisas?" em cartões de escolha múltipla
+  (Landing page, Website institucional, Loja online, Software ou CRM, Automações e integrações, Ainda não sei);
+  2) objetivo principal (Mais pedidos e clientes, Vender online, Leads mais qualificadas, Renovar a imagem),
+  ponto de partida e para quando (os três obrigatórios, um toque cada); 3) nome, email, telefone (opcional), nota.
+  Versão simples a pedido do Diogo: cartões só com o nome (sem ícones nem descrições), sem "Passo X de 3", só a
+  barra de progresso. Cartão em vidro baço como os cards de serviços da homepage (transparente,
+  `backdrop-filter: blur(28px) saturate(150%)`, borda branca fina, reflexo no topo), sem imagem dentro. Envia `formType: 'website'` →
+  `/obrigado` (Lead com `formulario: 'lp-websites'`). Evento `trackCustom('PedidoPropostaPasso')` em cada passo.
+- **Avaliações do Google** (secção copiada da homepage) depois da FAQ, antes do CTA final, com cards mais compactos (270px no PC, 230px no telemóvel; na home são 350px);
+  **estrelas** no hero e ao lado do formulário (este com a entrada do hero da home, disparada ao entrar no ecrã).
+- Botões levam ao formulário: hero ("Ver Portfólio" passou a "Ver projetos" → `#projetos`), modais dos exemplos
+  (pré-escolhem o serviço via `data-servico`), leitor de projetos ("Quero um projeto assim") e CTA final.
+- **Tirada a contagem "-15% expira em"** (HTML + script; ficou CSS sem uso).
+- Exemplos "Websites, lojas e sistemas de gestão": 3 em cima no tamanho original e o "Software à medida" a toda a
+  largura em baixo com imagem 3:1 (antes ficava um cartão sozinho; 4 colunas ficavam pequenos demais).
+- Lista ao lado do formulário: "Consultoria gratuita" (em vez de "Proposta sem compromisso").
+- Fundo da secção do formulário: fita roxa `criacao-websites_page/fundo-fita-roxa.jpg` (Cloudinary, 2400px) a toda
+  a largura, com máscara a desvanecer em cima e em baixo e escurecimento à esquerda (texto); no telemóvel a fita
+  fica só por trás do formulário (versão `w_1400`).
+- `send-email.js`: ramo `website` (email ao estúdio com projetos, site, prazo, telefone; confirmação com Esthetic + ZeeTelecom).
+
+Ainda por decidir na `criacao-websites`: texto do hero ("Transformação digital" continua), tirar o menu/rodapé
+completos, e a secção "O que entregamos" com o "93%".
+
 ## Próximo passo: transformar as páginas em landing pages
 
 Pedido do Diogo: `criacao-websites` e `gestao-redes-sociais` a funcionar como LPs dos anúncios Meta (formulário
