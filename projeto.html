@@ -667,6 +667,18 @@ const PROJECTS = {
     gallery: ['https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/32.jpg','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/vista1.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/vista2.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/vista3.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/vista21.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/3123.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/444.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/432.png','https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/remodelacao-3d/vi44sta2.png'],
     tags: ['3D', 'Interiores', 'Arquitetura']
   },
+  'dashboard-moment-laser': {
+    name: 'Dashboard Moment Laser',
+    cat: 'Desenvolvimento Web',
+    catKey: 'web',
+    date: '10/11/2026',
+    hero: 'https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/work%20individual%20pages/dashboard%20moment%20laser/hero-portatil.jpg',
+    // capa dos cartoes (portfolio e "outros projetos"): mais cor que o hero
+    thumb: 'https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1200,q_auto,f_auto/Website_photos/work%20individual%20pages/dashboard%20moment%20laser/capa-telemovel.jpg',
+    description: ['Plataforma de gestão feita à medida para a Moment Laser. Alugueres e vendas de equipamentos, formações, consumíveis, entregas e recolhas passam a viver num só painel, com a vista do grupo e de cada empresa.', 'O dashboard abre com a faturação do mês comparada com o ano anterior, as últimas operações em direto e a divisão por tipo de operação. Cada operação fica ligada ao comercial que a fez e passa de submetida a validada sem folhas de cálculo pelo meio.', 'A carteira de clientes guarda o histórico de cada clínica, do primeiro aluguer à compra de equipamento, e mostra onde estão os clientes por distrito. A frota acompanha consumos, quilómetros e custo por entrega de cada viatura, com alertas quando falta registar quilómetros ou o consumo sobe.'],
+    gallery: [{src:'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-promo.mp4',full:true},'https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-operacoes.mp4','https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-clientes.mp4','https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-consumiveis.mp4','https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-frota.mp4'],
+    tags: ['Software de Gestão', 'Dashboard', 'Back Office']
+  },
   'garrafeira-wine-club': {
     name: 'Garrafeira Wine Club',
     cat: 'Websites',
@@ -972,7 +984,7 @@ function render(id) {
   const related = getRelated(id);
   const relatedHTML = related.map(([relId, rel]) => `
     <a class="related-card" href="./projeto?p=${relId}">
-      <img src="${rel.hero}" alt="${rel.name}" loading="lazy">
+      <img src="${rel.thumb || rel.hero}" alt="${rel.name}" loading="lazy">
       <div class="related-overlay"></div>
       <div class="related-label">
         <div class="related-cat">${rel.cat}</div>

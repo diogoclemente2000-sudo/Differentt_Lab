@@ -1,8 +1,9 @@
 # Sessão landing pages — novembro 2026 (notas para continuar noutro PC)
 
 > Escrito a 2026-11-06 pelo Claude Code, a pedido do Diogo, para retomar o trabalho noutro computador.
-> Estado: **último deploy `d6741c2`** (28/10). Feito localmente e **ainda não publicado**: preços dos planos de
-> redes sociais ocultados (`gestao-redes-sociais.html` + `faq.html`). O `index.html` tem uma alteração local que
+> Estado: **último deploy a 2026-11-10** (acertos da LP `criacao-websites` + projeto Dashboard Moment Laser, ver
+> "Depois do deploy 907d98d"). Feito localmente e **ainda não publicado** (o Diogo ainda não deu OK): preços dos
+> planos de redes sociais ocultados (`gestao-redes-sociais.html` + `faq.html`). O `index.html` tem uma alteração local que
 > não é do Claude (`top: 42%` no brilho da secção de serviços em mobile): perguntar antes de a incluir num commit.
 
 ## Já em produção (deploy `d6741c2`)
@@ -70,6 +71,42 @@ O Diogo decidiu: os anúncios de desenvolvimento caem direto na `/criacao-websit
   a largura, com máscara a desvanecer em cima e em baixo e escurecimento à esquerda (texto); no telemóvel a fita
   fica só por trás do formulário (versão `w_1400`).
 - `send-email.js`: ramo `website` (email ao estúdio com projetos, site, prazo, telefone; confirmação com Esthetic + ZeeTelecom).
+
+**Publicado no deploy `907d98d`** (tudo o que está acima nesta secção).
+
+**Depois do deploy 907d98d — publicado a 2026-11-10:**
+- Hero: vídeos da Esthetic Solution primeiro na rotação (`esthetic-site-web.mp4` no MacBook, poster
+  `Website_videos/esthetic-site-web-poster.jpg`; `esthetic-site-mobile.mp4` no telemóvel).
+- Subtítulo do formulário: "Conta-nos o que precisas e recebe uma proposta em 24 horas úteis." (`text-wrap: balance`
+  e `&nbsp;` para "24 horas úteis" não partir).
+- Telemóvel: a lista vira nota numa só linha que encolhe com o ecrã; 600–1199px: fita a toda a largura com fade lateral.
+- Computador: coluna da esquerda em 3 blocos (título · lista · estrelas + WhatsApp) com 36px de cada lado de uma
+  linha fina que desvanece para a direita (bordas de cima e de baixo da lista). Vistos da lista mais pequenos
+  (19px, eram 24px): círculo em vidro (liquid glass) neutro e visto cinza, sem roxo. Espaço entre os 3 pontos: 12px.
+- **Dashboard Moment Laser** (plataforma de gestão; vídeos em `Website_photos/work individual pages/dashboard moment laser/`):
+  - Vídeo do Raylight comprimido e **cortado para tirar o "Made in Raylight"** (crop 1760×990 a partir de x=80, y=0,
+    30fps, 9 MB) → Cloudinary `Website_videos/dashboard-moment-promo.mp4` + `dashboard-moment-promo-poster.jpg`.
+  - Hero da `criacao-websites` no PC: este vídeo passa a 1.º (`#hvDP`), a Esthetic a 2.º; fundo do hero = poster novo.
+    No telemóvel continua a Esthetic em 1.º (o vídeo é 16:9 e cortado ao alto perdia os textos).
+  - Cartão "Software de gestão para empresas" (CRM & Gestão): a foto de banco de imagens deu lugar a um corte do
+    mesmo vídeo, só a parte do painel (8s–30s, sem a abertura nem os textos, para não repetir o hero):
+    `Website_videos/dashboard-moment-card.mp4` (1280px, 22s, 3,6 MB) + `dashboard-moment-card-poster.jpg`.
+    `.example-video` só carrega e toca quando aparece no ecrã.
+  - Capa do card no portfólio (e nos "outros projetos", campo `thumb` no `projeto.html`): frame do telemóvel com
+    "Sofia R." (`dashboard moment laser/capa-telemovel.jpg`, 1760×862); o hero do projeto continua o portátil.
+- **Hero**: subtítulo numa frase por linha no PC (`<br class="lead-br">`, escondido no telemóvel). Telemóvel: fundo
+  mais escuro na zona do texto e título com degradê até cinza claro (#c4c4c8), porque o vídeo da Esthetic é claro.
+- **Meio da página: fica como estava.** O Diogo quer a **mesma estética dos cartões ciclantes** (o JS
+  `converter()` transforma `.cards-grid` e `.who-grid` num card roxo com "01 / 0N", pontos e seta). Testou-se trocar
+  por listas à vista, tirar o "93%" e acrescentar um "Como funciona"; ele pediu para voltar tudo atrás e tirar o
+  "Como funciona". Diferenças que ficaram: "Áreas otimizadas" passou de **+3 para +10** (`data-target="10"`) e o
+  "Feito para negócios" tem texto novo (2.º perfil "Empresas em crescimento": Excel → sistema, a pensar nos
+  anúncios de software; 1.º e 3.º encurtados). Depois o Diogo pediu para **trocar de lugar** o "Implementações
+  incluídas" e o "Feito para negócios". Ordem final: Feito para → Projetos → Exemplos → O que entregamos →
+  Implementações → formulário → FAQ → avaliações → CTA.
+  - Projeto novo `projeto?p=dashboard-moment-laser` (Desenvolvimento Web, `catKey: 'web'`): hero
+    `dashboard moment laser/hero-portatil.jpg`, galeria = promo + 4 gravações do painel (`Website_videos/dashboard-moment-
+    {operacoes,clientes,consumiveis,frota}.mp4`, 1920px, ~2 MB cada). Card no portfólio (filtro web), depois da Esthetic.
 
 Ainda por decidir na `criacao-websites`: texto do hero ("Transformação digital" continua), tirar o menu/rodapé
 completos, e a secção "O que entregamos" com o "93%".

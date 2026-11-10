@@ -148,7 +148,7 @@
     /* HERO — iguais às regras e cores da home page */
     .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
     /* idem: a capa fica no contentor e o video so aparece quando esta a tocar */
-    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: #000 url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-poster.jpg') center/cover no-repeat; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: #000 url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/dashboard-moment-promo-poster.jpg') center/cover no-repeat; }
     .hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
     .hero-bg video.is-on.tocando { opacity: 1; }
     @media (max-width: 1199px) { .hero-bg { background-image: url('https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg'); } }
@@ -539,6 +539,8 @@
     .example-img-wrap { aspect-ratio: 16/10; overflow: hidden; position: relative; background: #111; }
     .example-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .example-card:hover .example-img-wrap img { transform: scale(1.04); }
+    .example-img-wrap video { transition: transform 0.4s ease; }
+    .example-card:hover .example-img-wrap video { transform: scale(1.04); }
     .example-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
     .example-meta { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
     .example-tag { font-family: 'Overpass', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9e7bb6; }
@@ -1204,11 +1206,12 @@
   /* telemovel: a lista (consultoria, resposta, videochamada) vira uma nota pequena por baixo do formulario,
      numa linha corrida com pontos, sem os icones */
   @media (max-width: 1199px) {
-    .lp-pedido-lista { display: block; margin-top: 24px; font-size: 12.5px; line-height: 1.55; color: rgba(255,255,255,0.5); }
+    .lp-pedido-lista { display: block; margin-top: 24px; white-space: nowrap; line-height: 1.55; color: rgba(255,255,255,0.5);
+      font-size: min(12.5px, calc((100vw - 56px) * 0.038)); }
     .lp-pedido-lista li { display: inline; font-size: inherit; font-weight: 400; color: inherit; }
     .lp-pedido-lista svg { display: none; }
     .lp-pedido-lista li { white-space: nowrap; }
-    .lp-pedido-lista li + li::before { content: '·'; margin: 0 7px; color: rgba(255,255,255,0.3); }
+    .lp-pedido-lista li + li::before { content: '·'; margin: 0 0.5em; color: rgba(255,255,255,0.3); }
     /* versoes curtas para a nota caber numa linha */
     .lp-pedido-lista .lp-longo { display: none; }
     .lp-pedido-lista .lp-curto { display: inline; }
@@ -1216,6 +1219,35 @@
     .lp-zap { margin-top: 16px; font-size: 13px; }
   }
   .lp-curto { display: none; }
+
+  /* tablets e ecras largos em modo telemovel (600-1199px): a fita passa a ocupar a largura toda e desvanece
+     para preto dos lados, em vez de ficar mais estreita que o ecra com margens pretas e corte seco */
+  @media (min-width: 600px) and (max-width: 1199px) {
+    .lp-pedido::before {
+      background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0.75) 13%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 54%, rgba(0,0,0,0.88) 66%, #000 78%),
+        url('https://res.cloudinary.com/dgun4lhkm/image/upload/c_limit,w_1400,q_auto,f_auto/Website_photos/criacao-websites_page/fundo-fita-roxa.jpg') 50% 30% / 100% auto no-repeat;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%), linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+      mask-composite: intersect; }
+  }
+  /* subtitulo do pedido: linhas equilibradas, sem uma palavra sozinha na ultima */
+  .lp-pedido-txt .section-sub-nova { text-wrap: balance; }
+  /* computador: tres blocos (titulo, lista, prova social) com o mesmo ritmo — 36px de cada lado de uma linha fina
+     que desvanece para a direita. As linhas sao bordas da lista, por isso nao entram na animacao das estrelas */
+  @media (min-width: 1200px) {
+    .lp-pedido-txt .section-sub-nova { margin-bottom: 0 !important; }
+    .lp-pedido-lista { margin-top: 36px; padding: 36px 0; gap: 12px; border-style: solid; border-width: 1px 0;
+      border-image: linear-gradient(90deg, rgba(255,255,255,0.16), rgba(197,133,184,0.1) 55%, rgba(255,255,255,0) 100%) 1; }
+    .lp-pedido-txt .lp-rev { margin-top: 36px; }
+    .lp-zap { margin-top: 18px; }
+    /* visto da lista: circulo de vidro (liquid glass) neutro, visto cinza */
+    .lp-pedido-lista li { gap: 11px; }
+    .lp-pedido-lista svg { width: 19px; height: 19px; padding: 5px; color: rgba(255,255,255,0.62); stroke-width: 3;
+      background: linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03) 55%, rgba(255,255,255,0.07));
+      -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14), inset 0 1px 0 rgba(255,255,255,0.28), 0 2px 6px rgba(0,0,0,0.35); }
+  }
   </style>
 </head>
 <body>
@@ -1280,7 +1312,17 @@
 <section class="hero">
   <div class="hero-bg">
     <!-- desktop: dois vídeos empilhados, crossfade sem reload -->
-    <video id="hvD1" class="hv-desktop is-on" autoplay muted playsinline webkit-playsinline preload="auto"
+    <!-- 1.o: plataforma de gestao da Moment Laser (video do Raylight, marca de agua cortada na compressao) -->
+    <video id="hvDP" class="hv-desktop is-on" autoplay muted playsinline webkit-playsinline preload="auto"
+           poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/dashboard-moment-promo-poster.jpg"
+           src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-promo.mp4"
+           aria-label="Plataforma de gestão desenvolvida pela Differentt Lab para a Moment Laser"></video>
+    <!-- 2.o: website da Esthetic Solution (MacBook) -->
+    <video id="hvDE" class="hv-desktop" muted playsinline webkit-playsinline preload="metadata"
+           poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/esthetic-site-web-poster.jpg"
+           src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-site-web.mp4"
+           aria-label="Website desenvolvido pela Differentt Lab para a Esthetic Solution"></video>
+    <video id="hvD1" class="hv-desktop" muted playsinline webkit-playsinline preload="metadata"
            poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-poster.jpg"
            src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/zeetelecom-hero-web.mp4"
            aria-label="Website desenvolvido pela Differentt Lab para a ZeeTelecom"></video>
@@ -1291,7 +1333,11 @@
            src="https://res.cloudinary.com/dgun4lhkm/video/upload/c_crop,w_1918,h_980,g_north/Website_videos/villas-hero-web-v2.mp4"
            aria-label="Website com reservas próprias desenvolvido pela Differentt Lab para a Villas Gourmet"></video>
     <!-- mobile: par equivalente em portrait -->
-    <video id="hvM1" class="hv-mobile is-on" autoplay muted playsinline webkit-playsinline preload="auto"
+    <video id="hvME" class="hv-mobile is-on" autoplay muted playsinline webkit-playsinline preload="auto"
+           poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/esthetic-site-mobile-poster.jpg"
+           src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/esthetic-site-mobile.mp4"
+           aria-label="Website da Esthetic Solution — vista mobile"></video>
+    <video id="hvM1" class="hv-mobile" muted playsinline webkit-playsinline preload="metadata"
            poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/zeetelecom-hero-mobile-poster.jpg"
            src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/zeetelecom-hero-mobile.mp4"
            aria-label="Website ZeeTelecom — vista mobile"></video>
@@ -1363,7 +1409,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="home-hero-title">Transformação<br>digital</h1>
-    <p class="hero-lead">Alinhamos equipas, dados e ferramentas. Automatizamos processos e eliminamos o trabalho manual.</p>
+    <p class="hero-lead">Alinhamos equipas, dados e ferramentas.<br class="lead-br"> Automatizamos processos e eliminamos o trabalho manual.</p>
     <div class="hero-btns" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-start;margin-top:48px;">
       <a href="#pedir-proposta" class="gx-btn"><span class="gx-btn-inner">Pedir Proposta</span><i class="st-anel" aria-hidden="true"></i></a>
       <a href="#projetos" class="gx-btn gx-btn--azul"><span class="gx-btn-inner">Ver projetos</span></a>
@@ -1406,65 +1452,22 @@
   </div>
 </div>
 
-<!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
+<!-- SECTION 5: WHO IS IT FOR -->
 <section class="section">
-  <h2 class="section-title" style="font-size:clamp(24px,3vw,40px);">Implementações <span>incluídas</span></h2>
-  <div class="cards-grid">
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <h3>Velocidade de carregamento</h3>
-      <p>Sites otimizados para carregar em menos de 2 segundos. O Google prioriza a velocidade, e os teus clientes também não esperam.</p>
+  <h2 class="section-title">Feito para <span>negócios</span><br>que ambicionam crescer</h2>
+  <p class="section-sub-nova">Trabalhamos sobretudo com três tipos de empresa, cada uma num momento diferente do seu percurso digital.</p>
+  <div class="who-grid">
+    <div class="who-card">
+      <h3>Pequenos negócios</h3>
+      <p>Lojas, restaurantes, clínicas e serviços locais que precisam de um site profissional, ou de renovar o que têm, para atrair mais clientes.</p>
     </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
-      </div>
-      <h3>Mobile-first design</h3>
-      <p>Mais de 70% das pesquisas em Portugal são feitas em telemóvel. Os nossos websites são desenhados primeiro para mobile, depois para desktop.</p>
+    <div class="who-card">
+      <h3>Empresas em crescimento</h3>
+      <p>Equipas que já gerem clientes, stock ou vendas em folhas de Excel e precisam de um sistema que junte tudo.</p>
     </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="12" cy="10" r="1"/><circle cx="8" cy="10" r="1"/><circle cx="16" cy="10" r="1"/></svg>
-      </div>
-      <h3>Chatbot com Inteligência Artificial</h3>
-      <p>Assistente virtual integrado no teu website, disponível 24h por dia. Responde a dúvidas, qualifica leads e encaminha clientes automaticamente, sem intervenção humana.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </div>
-      <h3>Estratégia de palavras-chave</h3>
-      <p>Identificamos as pesquisas que os teus clientes fazem em Lisboa e em Portugal, e construímos o conteúdo à volta delas.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      </div>
-      <h3>Botões, Formulários & WhatsApp</h3>
-      <p>CTAs estratégicos, formulários de contacto e integração direta com WhatsApp para captar mais leads e converter visitantes em clientes reais.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <h3>Analytics e conversões</h3>
-      <p>Google Analytics e rastreio de conversões configurados desde o início, para saberes exatamente o que funciona e o que pode melhorar.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3>Software à medida</h3>
-      <p>Desenvolvemos software feito para o teu negócio: CRMs, gestão de recursos humanos e ferramentas financeiras que substituem as folhas de Excel. Sistemas intuitivos, rápidos e pensados para o teu dia a dia.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v6c0 1.66-4 3-9 3s-9-1.34-9-3V5"/><path d="M21 11v6c0 1.66-4 3-9 3s-9-1.34-9-3v-6"/></svg>
-      </div>
-      <h3>Base de dados</h3>
-      <p>Guardamos e organizamos os dados do teu negócio numa base de dados segura: clientes, produtos, encomendas e métricas, prontos a consultar, cruzar e integrar com o resto do sistema.</p>
+    <div class="who-card">
+      <h3>Startups e novos projetos</h3>
+      <p>Marcas a começar que querem entrar no mercado com uma presença digital sólida, sem os erros de quem improvisa.</p>
     </div>
   </div>
 </section>
@@ -1697,7 +1700,13 @@
 
     <div class="example-card example-card--clickable" onclick="document.getElementById('sw-modal').classList.add('open')" style="cursor:pointer;">
       <div class="example-img-wrap">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_photos/criacao-websites_page/business-data-analytics-dashboard.jpg" alt="Software de gestão para empresas" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <!-- plataforma de gestao da Moment Laser: so carrega e toca quando o cartao entra no ecra.
+             E so o miolo do video do hero (8s a 30s: o painel), sem a abertura nem os textos, para nao repetir -->
+        <video class="example-video" muted loop playsinline webkit-playsinline preload="none"
+               poster="https://res.cloudinary.com/dgun4lhkm/image/upload/q_auto,f_auto/Website_videos/dashboard-moment-card-poster.jpg"
+               src="https://res.cloudinary.com/dgun4lhkm/video/upload/Website_videos/dashboard-moment-card.mp4"
+               aria-label="Plataforma de gestão desenvolvida pela Differentt Lab para a Moment Laser"
+               style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></video>
         <div class="example-hover-hint">Ver detalhes <svg class="seta" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-0.15em"><path d="M5 12h14"/><path d="M13 6c1.2 3 3 4.8 6 6c-3 1.2-4.8 3-6 6"/></svg></div>
       </div>
       <div class="example-meta">
@@ -1917,7 +1926,7 @@
             <span class="ig-tile ig-t8"><svg viewBox="0 0 24 24"><path d="M19 5a8 8 0 1 0 0 14M3 10h11M3 14h11"/></svg></span>
             <span class="ig-tile ig-t9"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
             <span class="ig-tile ig-t10"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-            <div class="ig-chip"><span class="ig-num"><span class="ig-sinal">+</span><span class="mini-stat-val" data-target="3">0</span></span></div>
+            <div class="ig-chip"><span class="ig-num"><span class="ig-sinal">+</span><span class="mini-stat-val" data-target="10">0</span></span></div>
           </div>
           <div class="ig-conteudo">
             <div class="ig-titulo">Áreas otimizadas</div>
@@ -1967,22 +1976,65 @@
   })();
 </script>
 
-<!-- SECTION 5: WHO IS IT FOR -->
+<!-- SECTION 2: SEO-OPTIMIZED WEBSITES -->
 <section class="section">
-  <h2 class="section-title">Feito para <span>negócios</span><br>que ambicionam crescer</h2>
-  <p class="section-sub-nova">Trabalhamos sobretudo com três tipos de empresa, cada uma num momento diferente do seu percurso digital.</p>
-  <div class="who-grid">
-    <div class="who-card">
-      <h3>Pequenos negócios</h3>
-      <p>Lojas, restaurantes, clínicas, salões e serviços locais em Lisboa, Odivelas e arredores que precisam de uma presença online profissional para atrair mais clientes.</p>
+  <h2 class="section-title" style="font-size:clamp(24px,3vw,40px);">Implementações <span>incluídas</span></h2>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3>Velocidade de carregamento</h3>
+      <p>Sites otimizados para carregar em menos de 2 segundos. O Google prioriza a velocidade, e os teus clientes também não esperam.</p>
     </div>
-    <div class="who-card">
-      <h3>Empresas locais</h3>
-      <p>Negócios estabelecidos que têm um site desatualizado ou que nunca investiram em SEO, e estão a perder visibilidade para a concorrência no Google.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+      </div>
+      <h3>Mobile-first design</h3>
+      <p>Mais de 70% das pesquisas em Portugal são feitas em telemóvel. Os nossos websites são desenhados primeiro para mobile, depois para desktop.</p>
     </div>
-    <div class="who-card">
-      <h3>Startups e novos projetos</h3>
-      <p>Marcas que estão a começar e querem entrar no mercado com uma identidade digital sólida, sem cometer os erros clássicos de quem improvisa.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="12" cy="10" r="1"/><circle cx="8" cy="10" r="1"/><circle cx="16" cy="10" r="1"/></svg>
+      </div>
+      <h3>Chatbot com Inteligência Artificial</h3>
+      <p>Assistente virtual integrado no teu website, disponível 24h por dia. Responde a dúvidas, qualifica leads e encaminha clientes automaticamente, sem intervenção humana.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <h3>Estratégia de palavras-chave</h3>
+      <p>Identificamos as pesquisas que os teus clientes fazem em Lisboa e em Portugal, e construímos o conteúdo à volta delas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <h3>Botões, Formulários & WhatsApp</h3>
+      <p>CTAs estratégicos, formulários de contacto e integração direta com WhatsApp para captar mais leads e converter visitantes em clientes reais.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Analytics e conversões</h3>
+      <p>Google Analytics e rastreio de conversões configurados desde o início, para saberes exatamente o que funciona e o que pode melhorar.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>Software à medida</h3>
+      <p>Desenvolvemos software feito para o teu negócio: CRMs, gestão de recursos humanos e ferramentas financeiras que substituem as folhas de Excel. Sistemas intuitivos, rápidos e pensados para o teu dia a dia.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v6c0 1.66-4 3-9 3s-9-1.34-9-3V5"/><path d="M21 11v6c0 1.66-4 3-9 3s-9-1.34-9-3v-6"/></svg>
+      </div>
+      <h3>Base de dados</h3>
+      <p>Guardamos e organizamos os dados do teu negócio numa base de dados segura: clientes, produtos, encomendas e métricas, prontos a consultar, cruzar e integrar com o resto do sistema.</p>
     </div>
   </div>
 </section>
@@ -1996,7 +2048,7 @@
   <div class="lp-pedido-grid">
     <div class="lp-pedido-txt">
       <h2 class="section-title">Pede a tua <span>proposta</span></h2>
-      <p class="section-sub-nova">Quatro passos rápidos. Respondemos em 24 horas úteis com perguntas, ideias e um orçamento para o teu projeto.</p>
+      <p class="section-sub-nova">Conta-nos o que precisas e recebe uma proposta em 24&nbsp;horas&nbsp;úteis.</p>
       <ul class="lp-pedido-lista">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Consultoria gratuita</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Resposta em 24<span class="lp-longo"> horas úteis</span><span class="lp-curto"> h</span></span></li>
@@ -2271,6 +2323,20 @@
 </script>
 
 <script>
+// video do cartao de software: carrega e toca so quando o cartao aparece; pausa quando sai
+(function(){
+  var v = document.querySelector('.example-video');
+  if (!v) return;
+  var tocar = function(){ v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+  if (!('IntersectionObserver' in window)) { v.preload = 'metadata'; tocar(); return; }
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; tocar(); }
+      else if (!v.paused) v.pause();
+    });
+  }, { threshold: 0.25 }).observe(v);
+})();
+
 // entrada do selo de estrelas do formulario quando aparece no ecra (uma vez)
 (function(){
   var selo = document.querySelector('.lp-pedido-txt .lp-rev');
@@ -3150,9 +3216,13 @@
         .hero-content { max-width: 1440px; padding: 0 var(--gutter) 72px; }
         .home-hero-title { text-align: left; font-size: clamp(44px, 4.9vw, 72px); line-height: 0.92; letter-spacing: -0.035em; margin-bottom: 20px; }
         .hero-lead { text-align: left; max-width: 54ch; line-height: 1.34; }
+        /* uma frase por linha: a quebra fica no ponto final, nao a meio da segunda frase */
+        .hero-content .hero-lead { max-width: none; }
         .hero-content .hero-btns { justify-content: flex-start !important; margin-top: 34px !important; }
         .hero-rev { justify-content: flex-start; margin-top: 30px; }
       }
+  /* no telemovel a quebra forcada dava 3-4 linhas com palavras soltas: la o texto corre como antes */
+  @media (max-width: 1199px) { .hero-lead .lead-br { display: none; } }
   @media (max-width: 1199px) { .hero-content { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important;
       max-width: calc(var(--card-mob) + 2 * var(--gutter)) !important; margin-left: auto !important; margin-right: auto !important; } }
   @media (max-width: 1199px) {
@@ -3699,6 +3769,18 @@
       .rv-pronto .rv, .rv-pronto .rv-card { opacity: 1; translate: none; filter: none; transition: none; animation: none; }
       .faq-answer, .faq-a { opacity: 1; }
     }
+
+/* ponto 5: no telemovel o titulo do topo perdia-se por cima do video claro da Esthetic.
+   Fundo mais escuro na zona do texto (lado esquerdo e altura do titulo) */
+@media (max-width: 1199px) {
+  .hero-overlay {
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.18) 75%, rgba(0,0,0,0.1) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.62) 28%, rgba(0,0,0,0.62) 52%, rgba(0,0,0,0.82) 76%, #000 100%) !important;
+  }
+  /* o degrade do titulo acabava em cinza (#79797c), da cor do video escurecido: aqui acaba em cinza claro */
+  .hero-content .home-hero-title { background-image: linear-gradient(180deg, #ffffff 15%, #c4c4c8 100%); }
+}
 </style>
 <div id="cookie-banner">
   <h4>Definições de Cookies</h4>
