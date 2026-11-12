@@ -1,10 +1,84 @@
 # Sessão landing pages — novembro 2026 (notas para continuar noutro PC)
 
 > Escrito a 2026-11-06 pelo Claude Code, a pedido do Diogo, para retomar o trabalho noutro computador.
-> Estado: **último deploy a 2026-11-10** (acertos da LP `criacao-websites` + projeto Dashboard Moment Laser, ver
-> "Depois do deploy 907d98d"). Feito localmente e **ainda não publicado** (o Diogo ainda não deu OK): preços dos
-> planos de redes sociais ocultados (`gestao-redes-sociais.html` + `faq.html`). O `index.html` tem uma alteração local que
-> não é do Claude (`top: 42%` no brilho da secção de serviços em mobile): perguntar antes de a incluir num commit.
+> Estado: **último deploy a 2026-11-12** — LP `gestao-redes-sociais` (ver "Atualização 2026-11-12"), `faq.html` sem
+> preços, `send-email.js` com o pedido `social`, `criacao-websites` sem "Feito para negócios" e vídeo do ZeeTelecom.
+> Antes, também a 2026-11-12: **número de contacto trocado em todo o site** para **926 283 061** (o 910 185 220 foi
+> atribuído a outra pessoa; não voltar a usá-lo). Fica **só local**: o `index.html` tem uma alteração que não é do
+> Claude (`top: 42%` no brilho da secção de serviços em mobile): perguntar antes de a incluir num commit.
+
+## Atualização 2026-11-12: secção dos planos reorganizada (publicado)
+
+- **3 planos lado a lado**: Performance ("O mais completo") · Pro · **Essencial passa a card completo** ("Plano 03",
+  2 redes, lista tirada do pop-up `essencial`). A linha `.pack-card--base` deixou de existir.
+- **Scale por baixo, a toda a largura, em azul** (`--azul: #7cb4ff`): texto + pills à esquerda, lista à direita, sem
+  divisória; pills e botão de detalhe azulados; botão das 3 barras logo a seguir a "Landing page".
+- **Condições** saíram do cartão e do cabeçalho: faixa centrada no fim de `#packs` (antes do pedido de proposta), sem
+  rótulo, ícones num aro cinzento, fio vertical a desvanecer entre elas, botão de detalhe discreto ("i" num aro).
+  Por baixo, pequeno: "87% dos nossos clientes renovam o plano".
+- **Secção "O que mudou nestas marcas" removida** (os números já estavam nos cards de "Marcas que cresceram
+  connosco"; só os 87% passaram para junto das condições). O JS dos contadores ficou, protegido por `if`.
+
+## Atualização 2026-11-11: `gestao-redes-sociais` passa a landing page, com a oferta de cima para baixo
+
+Pedido do Diogo: fazer na de redes sociais o mesmo que na `criacao-websites`, **sem preços**, a focar o **high
+ticket** e não o pack mais barato: a oferta constrói-se a partir de cima e o downsell só aparece depois.
+Feito localmente, **não publicado** (falta o "dá deploy"). Também só local: vídeo do hero do ZeeTelecom em 1.º na
+galeria do `projeto?p=zeetelecom`.
+
+- **Planos de cima para baixo** (`#packs`): 3 cards (Performance com selo "O mais completo" e já escolhido · Pro ·
+  extra Scale); o **Essencial desce para uma linha** por baixo ("Plano de entrada", para quem já tem material
+  próprio). Classes novas: `.packs-oferta` (grupo), `.pack-card--topo`, `.pack-card--base`.
+- **Semestre à cabeça** deixa de ser uma nota no rodapé do resumo e passa a escolha à vista (`.resumo-pag`, botões
+  `[data-pag]`: "Semestre à cabeça −10%" já ligado, ou "Mês a mês"). **O desconto continua nos 10%**: o Diogo
+  falou em melhorar a oferta de quem paga tudo, mas não disse o valor novo. Para mudar, procurar "10%" e "−10%" na
+  `gestao-redes-sociais.html` (resumo, pop-up `desc`, formulário, lista ao lado do formulário, FAQ visível e
+  JSON-LD), na `faq.html` e no `send-email.js` (`menos 10%` do ramo `pack`).
+- **Formulário em 4 passos** (`#pedir-proposta`, antes da FAQ; CSS copiado da `criacao-websites`, com `.lp-nota`
+  renomeada para `.lp-fnota` porque nesta página `.lp-nota` é a nota dos pop-ups): 1) "De que precisas?" (Gestão
+  das redes sociais, Anúncios Meta e Google, Funil de vendas, Marca pessoal, Outro; o Diogo mandou tirar
+  "Filmagens e fotografia" e "Ainda não sei" para o passo ser mais objetivo, e com a primeira saíram as perguntas
+  "o que filmar" e "onde fica o espaço"); 2) duas perguntas por cada escolha; 3) como estão as redes, para quando e **como prefere pagar**
+  (Semestre −10% · Mês a mês · Decido depois; as três obrigatórias); 4) nome, email, telefone, Instagram ou site,
+  nota. Envia `formType: 'social'` → `/obrigado` (Lead com `formulario: 'lp-redes-sociais'`).
+- **A escolha dos packs só segue no pedido se a pessoa mexeu neles** (clicou num card, no pagamento ou no "Pedir
+  proposta" do resumo): aí aparece "A tua escolha" no topo do formulário e o passo 1 vem pré-marcado pelo plano.
+  Quem vem direto do hero chega sem plano ("Não escolheu nos packs" no email), para a equipa saber quem escolheu
+  de facto. Ligação entre os dois scripts: `window.packsEscolha()`, `window.packsPagar()` e o evento `packs:mudou`.
+- **Pop-ups dos packs e das condições na identidade dos pop-ups da `criacao-websites`** (o Diogo pediu para
+  confirmar a conformidade; não estava): cartão de 480px com 34px de margem e sombra, etiqueta por cima do título
+  ("Plano Essencial", "Extra Scale", "Condições") em vez do ícone roxo, texto em cinza com os valores a branco (o
+  roxo fica só no anel e no botão), fechar de 32px e botão "Pedir Proposta" a toda a largura. Medido com
+  Puppeteer contra o `#ec-modal` de websites: 72 de 72 propriedades iguais, em 1440px e em 390px. O botão aplica o
+  que o pop-up descreve (`window.packsAplicar(chave)`: esse plano, o extra ou o semestre) e segue para o
+  formulário. Títulos encurtados porque a etiqueta já diz o plano ("O que está incluído", "A produção presencial",
+  "Como funciona"). Saíram os símbolos `g-foto`, `g-video` e `g-subir`.
+- **1.º mês à experiência à vista** (pedido do Diogo: tem de ser dito no pop-up dos 6 meses ou na página). As
+  condições do resumo passaram a três passos com o mesmo peso, pela ordem em que acontecem (`.resumo-pag` em 3
+  colunas, `.pag-passo`): 1.º mês à experiência → depois, contrato de 6 meses → semestre à cabeça −10% (com a
+  escolha do pagamento por baixo). Saiu a faixa esbatida (`.packs-selos`, `.selo`, símbolo `g-seta`). O mesmo é
+  dito no subtítulo dos planos, nos três pop-ups de condições (texto + as três linhas `CONDICOES`) e por baixo da
+  pergunta do pagamento no formulário. **Pressuposto a confirmar com o Diogo:** o semestre à cabeça paga-se no
+  contrato de 6 meses, depois do mês à experiência (era o que a página já dizia: "após o período de experiência").
+- Saiu o pop-up com formulário (`#pfFundo`) e o CSS `.pf-*`. O ramo `pack` do `send-email.js` ficou, sem uso.
+- Botões levam ao formulário: hero ("Ver Casos Reais" → `#marcas`), resumo dos packs, leitor de reels ("Quero
+  resultados assim", era "Projeto completo" → página do projeto) e CTA final. Já não há saídas para `/contactos`
+  fora do menu e do rodapé.
+- **Estrelas** no hero e ao lado do formulário; **avaliações do Google** depois da FAQ (secção copiada da
+  `criacao-websites`). Lista ao lado do formulário: 1.º mês à experiência · menos 10% no semestre · consultoria
+  gratuita (no telemóvel só as duas primeiras cabem na linha).
+- FAQ e JSON-LD: os planos leem-se Performance → Pro → Essencial. Tom: os packs continuam na 3.ª pessoa; o
+  formulário está por "tu", como o da `criacao-websites`.
+- `send-email.js`: ramo `social` (email ao estúdio com plano, extras, pagamento, necessidades, detalhes, Instagram;
+  confirmação com Evo + Moment). O Instagram/site segue também na coluna `website` do Supabase.
+- Testado em local com o envio intercetado (o servidor local não corre funções): os dois percursos (pelos packs e
+  direto do hero) chegam a `/obrigado` com o payload certo. **Falta testar em produção** os dois emails.
+- **Falso alarme nos testes locais:** o live reload do `serve.mjs` dispara com qualquer evento num `.html` da raiz,
+  incluindo a 1.ª leitura de um ficheiro parado há mais de ~1 hora (o Windows atualiza a data de último acesso).
+  Num teste Puppeteer, o primeiro envio dessa hora pode recarregar a página em vez de seguir para `/obrigado`
+  (é a 1.ª leitura do `obrigado.html`). Basta repetir a corrida; não é da página nem acontece em produção.
+- Por decidir: valor do desconto do semestre; se o Essencial fica à vista ou sai da página (downsell só na conversa);
+  texto do hero (continua "Com packs mensais para pequenas e médias empresas").
 
 ## Já em produção (deploy `d6741c2`)
 
@@ -102,7 +176,8 @@ O Diogo decidiu: os anúncios de desenvolvimento caem direto na `/criacao-websit
   "Como funciona". Diferenças que ficaram: "Áreas otimizadas" passou de **+3 para +10** (`data-target="10"`) e o
   "Feito para negócios" tem texto novo (2.º perfil "Empresas em crescimento": Excel → sistema, a pensar nos
   anúncios de software; 1.º e 3.º encurtados). Depois o Diogo pediu para **trocar de lugar** o "Implementações
-  incluídas" e o "Feito para negócios". Ordem final: Feito para → Projetos → Exemplos → O que entregamos →
+  incluídas" e o "Feito para negócios" (publicado assim a 2026-11-10, commit `5c11c3d`) e a seguir **tirou o
+  "Feito para negócios"** (só local até novo "dá deploy"). Ordem: Projetos → Exemplos → O que entregamos →
   Implementações → formulário → FAQ → avaliações → CTA.
   - Projeto novo `projeto?p=dashboard-moment-laser` (Desenvolvimento Web, `catKey: 'web'`): hero
     `dashboard moment laser/hero-portatil.jpg`, galeria = promo + 4 gravações do painel (`Website_videos/dashboard-moment-

@@ -6,6 +6,8 @@
 // Espera JSON no body, ex.: { "formType":"contacto", "firstName":"...", "email":"...", ... }
 // formType: contacto (omissão) | ideia | newsletter | pack (pedido de plano na gestão de redes sociais)
 //           | website (pedido de proposta da landing page /criacao-websites, em 3 passos)
+//           | social (pedido de proposta da landing page /gestao-redes-sociais: o que precisa, detalhes,
+//             contexto e pagamento; os planos da página são só informativos e não seguem no pedido)
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 
@@ -101,6 +103,18 @@ function pedidoReply(type, d) {
     if (d.prazo) linhas.push(['Para quando', d.prazo, '']);
     return { linhas, mensagem: msg, projetos: ['esthetic', 'zee'],
       zap: 'Olá! Enviei pelo site um pedido de proposta para um projeto web.' };
+  }
+  if (type === 'social') {
+    const servs = Array.isArray(d.servicos) ? d.servicos.filter(Boolean) : [];
+    const linhas = [];
+    if (servs.length) linhas.push(['Precisas de', listaPt(servs), '']);
+    linhasDetalhes(d).forEach(([k, v]) => linhas.push([k, v, '']));
+    if (d.objetivo) linhas.push(['Objetivo', d.objetivo, '']);
+    if (d.situacao) linhas.push(['As tuas redes hoje', d.situacao, '']);
+    if (d.prazo) linhas.push(['Para quando', d.prazo, '']);
+    if (d.pagamento) linhas.push(['Pagamento', d.pagamento, '']);
+    return { linhas, mensagem: msg, projetos: ['evo', 'moment'],
+      zap: 'Olá! Enviei pelo site um pedido de proposta de gestão de redes sociais.' };
   }
   const lista = d.servicos_selecionados || d.services;
   const codigos = Array.isArray(lista) ? lista : (lista ? [lista] : []);
@@ -332,6 +346,32 @@ exports.handler = async (event) => {
       d.situacao ? 'Ponto de partida: ' + d.situacao : '', d.prazo ? 'Para quando: ' + d.prazo : '',
       d.phone ? 'Telefone: ' + d.phone : ''].filter(Boolean).join(' | ');
     mensagemLead = [resumo, d.message].filter(Boolean).join('\n\n') || null;
+  } else if (type === 'social') {
+    // pedido de proposta da landing page de redes sociais (/gestao-redes-sociais). Os planos da página são só
+    // informativos: o pedido traz o que a pessoa precisa, o contexto e o pagamento, respondidos no formulário
+    const servs = Array.isArray(d.servicos) ? d.servicos.filter(Boolean) : [];
+    formLabel = 'Pedido de proposta · Redes sociais';
+    subject = `Novo pedido de proposta · Redes sociais — ${nomeCompleto || email || 'sem nome'}`;
+    rows = [
+      { k: 'Nome', v: nomeCompleto },
+      { k: 'Email', v: email },
+      { k: 'Telefone', v: d.phone },
+      { k: 'Instagram ou site', v: d.instagram },
+      { k: 'Precisa de', v: servs.join(', ') },
+      ...linhasDetalhes(d).map(([k, v]) => ({ k, v })),
+      { k: 'Objetivo', v: d.objetivo },
+      { k: 'Redes hoje', v: d.situacao },
+      { k: 'Para quando', v: d.prazo },
+      { k: 'Pagamento', v: d.pagamento },
+      { k: 'Mensagem', v: d.message },
+    ];
+    const resumo = [servs.length ? 'Precisa de: ' + servs.join(', ') : '',
+      ...linhasDetalhes(d).map(([k, v]) => k + ': ' + v),
+      d.objetivo ? 'Objetivo: ' + d.objetivo : '', d.situacao ? 'Redes hoje: ' + d.situacao : '',
+      d.prazo ? 'Para quando: ' + d.prazo : '', d.pagamento ? 'Pagamento: ' + d.pagamento : '',
+      d.instagram ? 'Instagram ou site: ' + d.instagram : '',
+      d.phone ? 'Telefone: ' + d.phone : ''].filter(Boolean).join(' | ');
+    mensagemLead = [resumo, d.message].filter(Boolean).join('\n\n') || null;
   } else {
     formLabel = 'Pedido de contacto';
     subject = `Novo contacto — ${nomeCompleto || email || 'sem nome'}`;
@@ -387,7 +427,7 @@ exports.handler = async (event) => {
   if (email && type !== 'newsletter') {
     const assunto = type === 'pack' && d.plano
       ? `Recebemos o teu pedido do plano ${d.plano} — Differentt Lab`
-      : type === 'website' ? 'Recebemos o teu pedido de proposta — Differentt Lab'
+      : (type === 'website' || type === 'social') ? 'Recebemos o teu pedido de proposta — Differentt Lab'
       : 'Recebemos o teu pedido — Differentt Lab';
     try {
       await send({ from: FROM, to: [email], subject: assunto, html: replyHtml(nome, pedidoReply(type, d)) });
@@ -413,7 +453,7 @@ exports.handler = async (event) => {
     const svc = Array.isArray(svcList) ? svcList : (svcList ? [svcList] : null);
     const base = isNewsletter
       ? { email: email || null, page_origin: d.pagina_origem || null, raw: d }
-      : { form_type: type, name: nomeCompleto || null, email: email || null, website: d.website || null, services: svc, message: mensagemLead, page_origin: d.pagina_origem || null, raw: d };
+      : { form_type: type, name: nomeCompleto || null, email: email || null, website: d.website || d.instagram || null, services: svc, message: mensagemLead, page_origin: d.pagina_origem || null, raw: d };
     const record = Object.assign(base, col(first, 'first_'), col(last, 'last_'));
     const sbTable = isNewsletter ? 'subscribers' : 'leads';
     const sbEndpoint = SB_URL.replace(/\/+$/, '').replace(/\/rest\/v1$/, '') + '/rest/v1/' + sbTable;
