@@ -58,7 +58,7 @@
   // Todos os botões de WhatsApp passam a apontar para o número dedicado e levam a
   // origem da lead na mensagem: "(ref: <utm_content|utm_campaign|utm_source|direto>)".
   // A ref usa o ÚLTIMO toque (campanha mais recente), caindo para o primeiro toque.
-  var WHATSAPP_NUMBER = '351910185220';
+  var WHATSAPP_NUMBER = '351926283061';
 
   function attribRef() {
     var s = readStore();

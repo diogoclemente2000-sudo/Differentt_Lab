@@ -38,7 +38,7 @@ const PROJETOS = {
     url: 'https://differenttlab.com/projeto?p=moment-laser' },
 };
 
-const WHATSAPP = '351910185220';
+const WHATSAPP = '351926283061';
 const VIDEOCHAMADA = 'https://calendar.app.google/h1VQZZ1eKChfrCvZ6';
 
 // detalhes do formulario de websites: { servico: { rotulo: resposta | [respostas] } } -> [[rotulo, texto]]
@@ -244,7 +244,7 @@ function replyHtml(nome, pedido) {
       <div style="border-top:1px solid #1f1b24;padding-top:24px;font-family:${F};font-size:12px;line-height:1.8;color:#6f6876;">
         Differentt Lab · Av. Miguel Torga 20 A · 2675-664 Odivelas · Lisboa<br>
         <a href="https://differenttlab.com" style="color:#a19aa8;text-decoration:none;">differenttlab.com</a> &nbsp;·&nbsp;
-        <a href="tel:+351910185220" style="color:#a19aa8;text-decoration:none;">+351&nbsp;910&nbsp;185&nbsp;220</a> &nbsp;·&nbsp;
+        <a href="tel:+351926283061" style="color:#a19aa8;text-decoration:none;">+351&nbsp;926&nbsp;283&nbsp;061</a> &nbsp;·&nbsp;
         <a href="https://www.instagram.com/differentt_lab/" style="color:#a19aa8;text-decoration:none;">Instagram</a> &nbsp;·&nbsp;
         <a href="https://www.tiktok.com/@differentt_lab" style="color:#a19aa8;text-decoration:none;">TikTok</a> &nbsp;·&nbsp;
         <a href="https://www.facebook.com/profile.php?id=61566459876656&amp;locale=pt_PT" style="color:#a19aa8;text-decoration:none;">Facebook</a><br>
